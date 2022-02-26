@@ -5,17 +5,25 @@ import { Home } from 'components/Home';
 import { ApartmentEdit } from 'components/apartments/ApartmentEdit';
 import Routes from 'constants/Routes';
 import apartments from 'models/mocks/apartments';
+import { plainToClass } from 'serializers/Serializer';
+import Apartment from 'models/Apartment';
+import { Container } from 'reactstrap';
 
 function App() {
+
+    console.log(plainToClass(Apartment, apartments[0]))
+
     return (
-        <div className="App">
+        <Container>
+            <h2>#KoalicjaOtwartyKraków</h2>
+
             <Switch>
                 <Route path={Routes.ROOT} render={() => <Home />} exact />
                 <Switch>
                     <Route path={Routes.APARTMENTS_EDIT} render={() => <ApartmentEdit apartments={apartments} />} />
                 </Switch>
             </Switch>
-        </div>
+        </Container>
     );
 }
 
