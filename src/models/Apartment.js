@@ -54,7 +54,7 @@ class Apartment {
     createdAt = undefined;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('ApartmentId')
     id = undefined;
 
     @JsonType(Number)

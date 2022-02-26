@@ -11,7 +11,7 @@ export const Home = () => {
                 <h3>Lista lokali</h3>
             </CardHeader>
             <CardBody>
-                <ApartmentsPage apartments={apartments} />
+                <ApartmentsPage  />
             </CardBody>
         </Card>
     </React.Fragment>
