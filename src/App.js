@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { Home } from 'components/Home';
-import { ApartmentEdit } from 'components/ApartmentEdit';
+import { ApartmentEdit } from 'components/apartments/ApartmentEdit';
 import Routes from 'constants/Routes';
 
 function App() {
