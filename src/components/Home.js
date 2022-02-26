@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading } from "./Heading";
-import { ApartmentList } from "./ApartmentList";
+import ApartmentList from "./ApartmentList";
 
 export const Home = () => {
   return (

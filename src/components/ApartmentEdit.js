@@ -1,41 +1,43 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from 'context/GlobalState';
 
-export const ApartmentEdit = (route) => {
-  let history = useNavigate();
+export const ApartmentEdit = () => {
+  const params = useParams();
 
-  const { appartments, editAppartment } = useContext(GlobalContext);
+  const { apartments } = useContext(GlobalContext);
+  const { apartmentId } = params;
 
-  const [selectedAppartment, setSelectedAppartment] = useState({
+  const apartmentExists = apartments.some((apartment) => apartment.apartmentId === apartmentId);
+
+
+  const [selectedApartment, setSelectedApartment] = useState({
     id: null,
     name: "",
     designation: "",
     location: "",
   });
 
-  const currentApartmentId = route.match.params.id;
 
   useEffect(() => {
-    const apartmentId = currentApartmentId;
-    const selectedAppartment = appartments.find(
+    const selectedAppartment = apartments.find(
       (currentAppartmentTraversal) => currentAppartmentTraversal.apartmentId === parseInt(apartmentId)
     );
-    setSelectedAppartment(selectedAppartment);
-  }, [currentApartmentId, appartments]);
+    setSelectedApartment(selectedAppartment);
+  }, [apartmentId, apartments]);
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    editAppartment(selectedAppartment);
-    history.push("/");
+    // e.preventDefault();
+    // editAppartment(selectedAppartment);
+    // // history.push("/");
   };
 
   const handleOnChange = (userKey, newValue) =>
-  setSelectedAppartment({ ...selectedAppartment, [userKey]: newValue });
+  setSelectedApartment({ ...selectedApartment, [userKey]: newValue });
 
-  if (!selectedAppartment || !selectedAppartment.apartmentId) {
-    return <div>Invalid Appartment ID.</div>;
+  if (!apartmentExists) {
+    return <div>Invalid Apartment ID.</div>;
   }
 
   return (
