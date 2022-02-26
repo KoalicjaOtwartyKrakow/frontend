@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-
-import { GlobalContext } from 'context/GlobalState';
+import React from 'react';
 import ApartmentList from 'components/apartments/ApartmentList';
 
-const ApartmentsPage = () => {
-    const { apartments } = useContext(GlobalContext);
+const ApartmentsPage = ({ apartments }) => {
 
     return (
         <React.Fragment>

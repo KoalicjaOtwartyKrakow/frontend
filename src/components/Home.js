@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading } from "./Heading";
-import ApartmentList from "components/apartments/ApartmentList";
 import ApartmentsPage from 'components/pages/AppartmentsPage';
+import apartments from 'models/mocks/apartments';
 
 export const Home = () => {
   return (
@@ -11,7 +11,7 @@ export const Home = () => {
           #KoalicjaOtwartyKraków
         </h3>
         <Heading />
-        <ApartmentsPage />
+        <ApartmentsPage apartments={apartments} />
       </div>
     </React.Fragment>
   );
