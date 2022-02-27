@@ -1,14 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, useLocation, matchPath } from 'react-router-dom';
 import withApartments from 'components/apartments/Apartments';
 import PageCard from 'components/atoms/PageCard';
 import { Alert } from 'reactstrap';
 import InProgress from 'components/atoms/InProgress';
 import PageErrorMessage from 'components/atoms/PageErrorMessage';
 import PageNavigationApartmentList from 'components/atoms/PageNavHome';
+import ApartmentForm from 'components/apartments/apartment/ApartmentForm';
+import Routes from 'constants/Routes';
+import memoize from 'lodash-es/memoize';
+import { ApartmentFormFields } from 'components/apartments/apartment/ApartmentFormFields';
+import Apartment from 'models/Apartment';
 
 const ApartmentEditPage = ({ apartments, apartmentsErrorMessage, apartmentsInProgress, apartmentsSuccess }) => {
     const params = useParams();
+    const location = useLocation();
 
     const { apartmentId } = params;
 
@@ -17,8 +23,38 @@ const ApartmentEditPage = ({ apartments, apartmentsErrorMessage, apartmentsInPro
     const showEditForm = hasApartments && isRouteApartmentPresent;
     const showApartmentNotFoundVisible = hasApartments && !isRouteApartmentPresent;
 
+    let initialValues = {};
+
     const onSubmit = () => {
     };
+
+    const updateInitialValuesFromLocation = () => {
+        const options = {
+            exact: false,
+            strict: false
+        };
+
+        const { pathname } = location;
+
+        const editPath = matchPath(pathname, { ...options, path: Routes.APARTMENTS_EDIT });
+        const createPath = matchPath(pathname, { ...options, path: Routes.APARTMENTS_CREATE });
+
+        const getInitialValues = memoize(ApartmentFormFields.getInitialValues);
+
+        if (editPath !== null && isRouteApartmentPresent) {
+            const apartmentId = editPath.params.apartmentId;
+            const apartment = apartments.find((item) => item.id === apartmentId);
+            initialValues = getInitialValues(apartment);
+        }
+
+        if (createPath !== null) {
+            const apartment = new Apartment();
+            initialValues = getInitialValues(apartment);
+        }
+
+    };
+
+    useEffect(updateInitialValuesFromLocation, [location, isRouteApartmentPresent]);
 
     return (
         <PageCard header="Edycja lokalu">
@@ -30,8 +66,11 @@ const ApartmentEditPage = ({ apartments, apartmentsErrorMessage, apartmentsInPro
             }
             {
                 showEditForm &&
-                <form onSubmit={onSubmit}>
-                </form>
+                <ApartmentForm
+                    apartmentInProgress={'FIXME_PUT_PROGRESS_TYPE_HERE'}
+                    initialValues={initialValues}
+                    onSubmit={onSubmit}
+                />
             }
             <PageNavigationApartmentList />
         </PageCard>

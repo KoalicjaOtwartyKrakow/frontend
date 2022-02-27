@@ -1,0 +1,3 @@
+const DATE_FORMAT = process.env.REACT_APP_APARTMENTS_DATE_FORMAT;
+
+export { DATE_FORMAT };
