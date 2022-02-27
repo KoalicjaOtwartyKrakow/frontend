@@ -7,12 +7,12 @@ import ApartmentListItem from 'components/apartments/ApartmentListItem';
 
 const ApartmentList = ({ apartments, history }) => {
 
-    const getEditRoute = (id) => {
-        return generatePath(Routes.APARTMENTS_EDIT, { id });
+    const getEditRoute = (apartmentId) => {
+        return generatePath(Routes.APARTMENTS_EDIT, { apartmentId });
     };
 
-    const onEdit = (id) => {
-        const path = getEditRoute(id);
+    const onEdit = (apartmentId) => {
+        const path = getEditRoute(apartmentId);
         history.push(path);
     };
 
@@ -29,14 +29,16 @@ const ApartmentList = ({ apartments, history }) => {
             </thead>
             <tbody>
             {
-                apartments.map((apartment) => (
-                    <ApartmentListItem
-                        key={apartment.id}
-                        apartment={apartment}
-                        onEdit={onEdit}
-                        editRoute={getEditRoute(apartment.id)}
-                    />
-                ))
+                apartments.map((apartment) => {
+                    const { id } = apartment;
+                    return (
+                        <ApartmentListItem
+                            key={id}
+                            apartment={apartment}
+                            onEdit={onEdit}
+                        />
+                    );
+                })
             }
             </tbody>
         </Table>

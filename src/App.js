@@ -11,6 +11,7 @@ import { Container } from 'reactstrap';
 
 function App() {
 
+    console.log(apartments[0])
     console.log(plainToClass(Apartment, apartments[0]))
 
     return (

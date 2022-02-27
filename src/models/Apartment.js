@@ -1,77 +1,91 @@
-import { JsonConverter, JsonObject, JsonProperty, JsonType, JsonWriteonly, OnDeserialized } from 'ta-json';
+import {
+    BeforeDeserialized,
+    JsonConverter,
+    JsonElementType,
+    JsonObject,
+    JsonProperty,
+    JsonType,
+    JsonWriteonly,
+    OnDeserialized
+} from 'ta-json';
 import MomentSerializer from 'serializers/MomentSerializer';
 import { nanoid } from 'nanoid';
 
-
 @JsonObject()
 class Apartment {
+
     @JsonType(String)
-    @JsonProperty('cntName')
+    @JsonProperty('CNT_NAME')
     addressCountyName = '';
 
     @JsonType(String)
-    @JsonProperty('city')
+    @JsonProperty('CITY')
     addressCity = '';
 
     @JsonType(String)
-    @JsonProperty('aptNum')
+    @JsonProperty('APT_NUM')
     addressFlatNumber = '';
 
     @JsonType(String)
-    @JsonProperty('stNum')
+    @JsonProperty('ST_NUM')
     addressStreetNumber = '' ;
 
     @JsonType(String)
-    @JsonProperty('stName')
+    @JsonProperty('ST_NAME')
     addressStreetName = '' ;
 
     @JsonType(String)
-    @JsonProperty('zip')
+    @JsonProperty('ZIP')
     addressZip = '';
 
-    @JsonProperty('creationTime')
+    @JsonProperty('CreationTime')
     @JsonConverter(new MomentSerializer())
     @JsonType(String)
     createdAt = undefined;
 
     @JsonType(String)
-    @JsonProperty('apartmentId')
-    id = undefined;
-
-    @JsonType(Number)
-    @JsonProperty('placesNum')
-    peopleCount = 0;
-
-    @JsonType(Number)
-    @JsonProperty('placesBusy')
-    peopleCountTaken = 0;
-
-    @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('DESCRIPTION')
     description = '';
 
+    @JsonType(String)
+    @JsonProperty('ApartmentId')
+    id = undefined;
+
     @JsonType(Boolean)
-    @JsonProperty()
+    @JsonProperty('IS_VERIFIED')
     isVerified = false;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('LANDLORD_EMAIL')
     landlordEmail = '' ;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('LANDLORD_NAME')
     landlordName = '' ;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('LANDLORD_PHONE')
     landlordPhone = '' ;
 
+    @JsonType(Number)
+    @JsonProperty('PLACES_NUM')
+    peopleCountMax = 0;
+
+    @JsonType(Number)
+    @JsonProperty('PLACES_BUSY')
+    peopleCountAllocated = 0;
+
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('VOLUNTEER_NAME')
     volunteerName = '' ;
 
     constructor() {
         this.uuidRegenerate();
+    }
+
+    @BeforeDeserialized()
+    setDefaults() {
+        this.peopleCountAllocated = 0;
     }
 
     @OnDeserialized()

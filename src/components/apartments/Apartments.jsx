@@ -66,7 +66,6 @@ const withApartments = (WrappedComponent) => {
         };
 
         fetchApartmentsSuccess = (response, resolve) => {
-            debugger;
             const data = response.data;
 
             const apartments = data.map(item => plainToClass(Apartment, item));
