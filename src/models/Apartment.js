@@ -2,68 +2,49 @@ import { JsonConverter, JsonObject, JsonProperty, JsonType, JsonWriteonly, OnDes
 import MomentSerializer from 'serializers/MomentSerializer';
 import { nanoid } from 'nanoid';
 
-// {
-//     'ZIP': '30-392',
-//     'CITY': 'Krak\u00f3w',
-//     'DESCRIPTION': 'Puste mieszkanie na 2 osoby',
-//     'LANDLORD_PHONE': '\'+48111111111',
-//     'ApartmentId': '33ae637c-5f42-48ef-80b6-b5e1c4256df1',
-//     'LANDLORD_EMAIL': 'random@email.com',
-//     'PLACES_NUM': 2,
-//     'LANDLORD_NAME': 'Karol Nowak',
-//     'CNT_NAME': 'Ma\u0142opolskie',
-//     'APT_NUM': 45,
-//     'ST_NAME': 'Czerwone Maki',
-//     'VOLUNTEER_NAME': '',
-//     'CreationTime': '26/02/2022 19:36:53',
-//     'PLACES_BUSY': 0,
-//     'ST_NUM': 45,
-//     'IS_VERIFIED': false
-// }
 
 @JsonObject()
 class Apartment {
-
     @JsonType(String)
-    @JsonProperty('CNT_NAME')
+    @JsonProperty('cntName')
     addressCountyName = '';
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('city')
     addressCity = '';
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('aptNum')
     addressFlatNumber = '';
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('stNum')
     addressStreetNumber = '' ;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('stName')
     addressStreetName = '' ;
 
     @JsonType(String)
-    @JsonProperty()
+    @JsonProperty('zip')
     addressZip = '';
 
-    @JsonProperty()
+    @JsonProperty('creationTime')
     @JsonConverter(new MomentSerializer())
     @JsonType(String)
     createdAt = undefined;
 
     @JsonType(String)
-    @JsonProperty('ApartmentId')
+    @JsonProperty('apartmentId')
     id = undefined;
 
     @JsonType(Number)
-    @JsonProperty()
+    @JsonProperty('placesNum')
     peopleCount = 0;
 
     @JsonType(Number)
-    @JsonProperty()
-    peopleCountTaken = 0; // PLACES_BUSY = 0
+    @JsonProperty('placesBusy')
+    peopleCountTaken = 0;
 
     @JsonType(String)
     @JsonProperty()

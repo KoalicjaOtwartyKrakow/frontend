@@ -5,9 +5,9 @@ import Routes from 'constants/Routes';
 export const ApartmentEdit = ({ apartments }) => {
     const params = useParams();
 
-    const { apartmentId } = params;
+    const { id } = params;
 
-    const apartmentExists = apartments.some((apartment) => apartment.apartmentId === apartmentId);
+    const apartmentExists = apartments.some((apartment) => apartment.id === id);
 
     const onSubmit = () => {
     };
