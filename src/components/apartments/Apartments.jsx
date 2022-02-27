@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Api } from 'services/Api';
-import { APARTMENTS_FETCH_DELAY, delay } from 'shared/Debug';
+import { APARTMENTS_FETCH_DELAY, delay, emptyFn } from 'shared/Debug';
 import { plainToClass } from 'serializers/Serializer';
 import Apartment from 'models/Apartment';
+import apartments from 'models/mocks/apartments';
 
 const withApartments = (WrappedComponent) => {
     return class extends React.PureComponent {
@@ -19,8 +20,8 @@ const withApartments = (WrappedComponent) => {
         }
 
         componentDidMount() {
-            debugger;
-            this.fetchApartmentsDelayed();
+            this.fetchApartmentsDelayed()
+                .finally(this.fetchApartmentsFinally);
         }
 
         /**
@@ -29,11 +30,14 @@ const withApartments = (WrappedComponent) => {
          * @param {function} reject
          * @returns {Promise}
          */
-        fetchApartments = (resolve, reject) => {
+        fetchApartments = (resolve = emptyFn, reject = emptyFn) => {
+            console.log('[APARTMENTS] Fetch in progress');
+
             const api = new Api();
             const url = api.getPath(Api.APARTMENTS);
-            debugger;
-            return axios.get(url)
+
+            const promise = Api.useMocks ? Promise.resolve({ data: apartments }) : axios.get(url);
+            return promise
                 .then((response) => this.fetchApartmentsSuccess(response, resolve))
                 .catch((error) => this.fetchApartmentsFailure(error, reject));
         };
@@ -42,16 +46,23 @@ const withApartments = (WrappedComponent) => {
          * Fetch Apartments with some predefined delay.
          */
         fetchApartmentsDelayed = () => {
-            console.log('Method Apartments.fetchApartmentsDelayed() fired');
+            console.log('[APARTMENTS] Fetch (delayed) fired');
 
             const apartmentsInProgress = true;
             this.setState({ apartmentsInProgress });
 
-            return delay(APARTMENTS_FETCH_DELAY, this.fetchApartments)
-                .finally(this.fetchApartmentsFinally);
+            return delay(APARTMENTS_FETCH_DELAY, this.fetchApartments);
         };
 
         fetchApartmentsFailure = (error, reject) => {
+            console.log('[APARTMENTS] Fetch apartments failure: ');
+
+            if (error instanceof TypeError) {
+                console.error(error);
+            } else {
+                console.log('[APARTMENTS] Error:', error);
+            }
+
             const apartmentsSuccess = false;
             const apartmentsErrorMessage = error.message;
 
@@ -64,35 +75,41 @@ const withApartments = (WrappedComponent) => {
         };
 
         fetchApartmentsFinally = () => {
-            console.log('Apartments finally');
+            console.log('[APARTMENTS] Fetch finalized');
             const apartmentsInProgress = false;
             this.setState({ apartmentsInProgress });
         };
 
         fetchApartmentsSuccess = (response, resolve) => {
-            const data = response.data;
+            try {
+                const data = response.data;
 
-            const apartments = data.map(item => plainToClass(Apartment, item));
-            const apartmentsSuccess = true;
-            const apartmentsErrorMessage = '';
+                const apartments = data.map(item => plainToClass(Apartment, item));
+                const apartmentsSuccess = true;
+                const apartmentsErrorMessage = '';
 
-            this.setState({
-                apartments,
-                apartmentsErrorMessage,
-                apartmentsSuccess,
-            });
+                this.setState({
+                    apartments,
+                    apartmentsErrorMessage,
+                    apartmentsSuccess,
+                });
 
-            console.log('Fetched apartments');
+                console.log('[APARTMENTS] Fetch success');
 
-            resolve();
+            } catch (error) {
+                throw error;
+            } finally {
+                resolve();
+            }
+
         };
 
         render() {
             return (
                 <WrappedComponent
-                    { ...this.state }
-                    { ...this.props }
-                    fetchApartments={ this.fetchApartmentsDelayed }
+                    {...this.state}
+                    {...this.props}
+                    fetchApartments={this.fetchApartmentsDelayed}
                 />
             );
         }
