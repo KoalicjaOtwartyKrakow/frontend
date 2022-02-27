@@ -24,6 +24,7 @@ const ApartmentList = ({ apartments, history }) => {
                 <th>Adres</th>
                 <th>Dostępność</th>
                 <th>Wolontariusz</th>
+                <th>Opis</th>
                 <th>Akcje</th>
             </tr>
             </thead>
