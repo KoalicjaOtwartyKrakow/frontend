@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-import {Alert} from "reactstrap";
+import { Button, Badge, ButtonGroup } from 'reactstrap';
+
 
 /**
  *
@@ -46,17 +46,17 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
     const getApartmentAvailability = (apartment) => {
         const { peopleCountAllocated, peopleCountMax } = apartment;
 
-        if (peopleCountAllocated > peopleCountMax) {
+        if (peopleCountAllocated >= peopleCountMax) {
             return (
                 <span className="apartment-availability">
-                    <span className="apartment-availability__unavailable">Brak</span>
+                    <Badge color="danger" pill>Brak</Badge>
                 </span>
             );
         }
 
         return (
             <span className="apartment-availability">
-                <span className="apartment-availability__count-allocated">{apartment.peopleCountAllocated}</span>
+                <span className="apartment-availability__count-allocated">{apartment.peopleCountAllocated}</span>{' / '}
                 <span className="apartment-availability__count-max">{apartment.peopleCountMax}</span>
             </span>
         );
@@ -77,8 +77,11 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
             <td>{apartment.volunteerName}</td>
             <td>{apartment.description}</td>
             <td>
-                <Button color='primary'>Edytuj lokal</Button>{' '}
-                <Button color='danger' outline>Usuń</Button>
+                <ButtonGroup>
+                    <Button color='primary'>Edytuj</Button>{' '}
+                    <Button color='danger' outline>Usuń</Button>
+                </ButtonGroup>
+
             </td>
         </tr>
     );
