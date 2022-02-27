@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Api from 'constants/Api';
+import { Api } from 'services/Api';
 import { APARTMENTS_FETCH_DELAY, delay } from 'shared/Debug';
 import { plainToClass } from 'serializers/Serializer';
 import Apartment from 'models/Apartment';
@@ -19,6 +19,7 @@ const withApartments = (WrappedComponent) => {
         }
 
         componentDidMount() {
+            debugger;
             this.fetchApartmentsDelayed();
         }
 
@@ -29,7 +30,10 @@ const withApartments = (WrappedComponent) => {
          * @returns {Promise}
          */
         fetchApartments = (resolve, reject) => {
-            return axios.get(Api.APARTMENTS)
+            const api = new Api();
+            const url = api.getPath(Api.APARTMENTS);
+            debugger;
+            return axios.get(url)
                 .then((response) => this.fetchApartmentsSuccess(response, resolve))
                 .catch((error) => this.fetchApartmentsFailure(error, reject));
         };

@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
 import App from './App';
-import Api from 'constants/Api';
+import { Api } from 'services/Api';
 // import reportWebVitals from './reportWebVitals';
 
 axios.defaults.baseURL = Api.baseUrl;
