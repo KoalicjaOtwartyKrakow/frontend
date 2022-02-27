@@ -96,7 +96,7 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
     const apartmentLandlord = getApartmentLandLord(apartment);
 
     return (
-        <tr key={id} onClick={handleEdit}>
+        <tr key={id} onClick={handleEdit} className="pointer">
             <td>{apartmentLandlord}</td>
             <td>{apartmentAddress}</td>
             <td>
@@ -108,7 +108,6 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
             <td>{apartment.description}</td>
             <td>
                 <ButtonGroup>
-                    <Button color="primary">Edytuj</Button>{' '}
                     <Button color="danger" outline>Usuń</Button>
                 </ButtonGroup>
 
