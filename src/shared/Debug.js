@@ -1,4 +1,4 @@
-const APARTMENTS_FETCH_DELAY = 250;
+const APARTMENTS_FETCH_DELAY = 1000;
 
 /**
  *

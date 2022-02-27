@@ -1,34 +1,28 @@
 import React from 'react';
 import ApartmentList from 'components/apartments/ApartmentList';
 import withApartments from 'components/apartments/Apartments';
-import { Alert, Card, CardBody, CardHeader } from 'reactstrap';
+import { Alert } from 'reactstrap';
+import PageCard from 'components/atoms/PageCard';
+import InProgress from 'components/atoms/InProgress';
+import PageErrorMessage from 'components/atoms/PageErrorMessage';
 
 const ApartmentsPage = ({ apartments, apartmentsErrorMessage, apartmentsInProgress, apartmentsSuccess }) => {
 
-    return (
-        <React.Fragment>
-                <Card>
-                    <CardHeader>
-                        <h3>Lista lokali</h3>
-                    </CardHeader>
-                    <CardBody>
-                        {
-                            apartmentsInProgress && <p>Ściągam dane...</p>
-                        }
-                        {
-                            apartmentsErrorMessage && <Alert color="danger">Błąd komunikacji z API</Alert>
-                        }
-                        {
-                            apartmentsSuccess &&
-                            <>
-                                {apartments.length && <ApartmentList apartments={apartments} /> }
-                                {!apartments.length && <Alert color="warning">Brak lokali.</Alert> }
-                            </>
-                        }
-                    </CardBody>
-                </Card>
+    const apartmentCount = apartmentsSuccess ? `(znaleziono: ${apartments.length})` : '';
+    const pageHeader = `Lista wszystkich lokali ${apartmentCount}`;
 
-        </React.Fragment>
+    return (
+        <PageCard header={pageHeader}>
+            <InProgress inProgress={apartmentsInProgress} />
+            <PageErrorMessage isError={apartmentsErrorMessage}>{apartmentsErrorMessage}</PageErrorMessage>
+            {
+                apartmentsSuccess &&
+                <>
+                    {apartments.length && <ApartmentList apartments={apartments} /> }
+                    {!apartments.length && <Alert color="warning">Nie znaleziono żadnych lokali w bazie.</Alert> }
+                </>
+            }
+        </PageCard>
     );
 };
 
