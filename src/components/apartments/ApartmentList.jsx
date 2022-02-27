@@ -4,8 +4,14 @@ import { generatePath, withRouter } from 'react-router-dom';
 import Routes from 'constants/Routes';
 import { Table } from 'reactstrap';
 import ApartmentListItem from 'components/apartments/ApartmentListItem';
+import compose from 'just-compose';
+import { withToastManager } from 'react-toast-notifications';
+import { Toast } from 'components/atoms/Toast';
+import withApartments from 'components/apartments/Apartments';
 
-const ApartmentList = ({ apartments, history }) => {
+const ApartmentList = ({ apartments, history, toastManager }) => {
+
+    const toast = new Toast(toastManager);
 
     const getEditRoute = (apartmentId) => {
         return generatePath(Routes.APARTMENTS_EDIT, { apartmentId });
@@ -14,6 +20,11 @@ const ApartmentList = ({ apartments, history }) => {
     const onEdit = (apartmentId) => {
         const path = getEditRoute(apartmentId);
         history.push(path);
+    };
+
+    const onRemove = (apartmentId, event) => {
+        toast.info('Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia lokalu ' + apartmentId, 'Jeszcze nie działa :(');
+        event.stopPropagation();
     };
 
     return (
@@ -37,6 +48,7 @@ const ApartmentList = ({ apartments, history }) => {
                             key={id}
                             apartment={apartment}
                             onEdit={onEdit}
+                            onRemove={onRemove}
                         />
                     );
                 })
@@ -46,4 +58,8 @@ const ApartmentList = ({ apartments, history }) => {
     );
 };
 
-export default withRouter(ApartmentList);
+export default compose(
+    withApartments,
+    withToastManager,
+    withRouter
+)(ApartmentList);

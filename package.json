@@ -26,6 +26,7 @@
     "formik": "^2.1.4",
     "formik-yup": "0.0.5",
     "http-status-codes": "^1.4.0",
+    "just-compose": "^2.1.0",
     "lodash-es": "^4.17.15",
     "memoize-one": "^5.1.1",
     "moment-es6": "^1.0.0",

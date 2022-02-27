@@ -7196,6 +7196,11 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
     array-includes "^3.1.1"
     object.assign "^4.1.0"
 
+just-compose@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/just-compose/-/just-compose-2.1.0.tgz#c828eeccf4a377ca8e461e50bee0018c868eb094"
+  integrity sha512-Fe0b2358630hMNb4FUbJ7Q0IwFI5QCsZesojfQO7WMv2Lb58hDhN1use6plZ8IWnslGoCcMT6cqPovAd1hheRg==
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"

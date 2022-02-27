@@ -7,10 +7,11 @@ import './ApartmentListItem.sass';
  *
  * @param {Apartment} apartment
  * @param {function} onEdit
+ * @param {function} onRemove
  * @returns {JSX.Element}
  * @constructor
  */
-const ApartmentListItem = ({ apartment, onEdit }) => {
+const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
     const { id } = apartment;
     const handleEdit = () => onEdit(id);
 
@@ -108,7 +109,7 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
             <td>{apartment.description}</td>
             <td>
                 <ButtonGroup>
-                    <Button color="danger" outline>Usuń</Button>
+                    <Button color="danger" outline onClick={(event) => onRemove(id, event)}>Usuń</Button>
                 </ButtonGroup>
 
             </td>
