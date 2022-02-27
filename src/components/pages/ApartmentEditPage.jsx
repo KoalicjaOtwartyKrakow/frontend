@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Routes from 'constants/Routes';
+import withApartments from 'components/apartments/Apartments';
+import PageCard from 'components/atoms/PageCard';
 
-export const ApartmentEdit = ({ apartments }) => {
+const ApartmentEditPage = ({ apartments }) => {
     const params = useParams();
 
     const { apartmentId } = params;
@@ -17,13 +19,14 @@ export const ApartmentEdit = ({ apartments }) => {
     }
 
     return (
-        <div className="w-full max-w-sm container mt-20 mx-auto">
+        <PageCard header="Edycja lokalu">
             <form onSubmit={onSubmit}>
-                <h3>Edit Apartment</h3>
                 <div className="text-center mt-4 text-gray-500">
                     <Link to={Routes.ROOT}>Cancel</Link>
                 </div>
             </form>
-        </div>
+        </PageCard>
     );
 };
+
+export default withApartments(ApartmentEditPage);
