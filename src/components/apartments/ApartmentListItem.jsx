@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Badge, ButtonGroup } from 'reactstrap';
+import './ApartmentListItem.sass';
 
 
 /**
@@ -21,19 +22,30 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
     const getApartmentAddressContent = (apartment) => {
         return (
             <address className="apartment">
-                <span className="apartment__street-name">
-                    {apartment.addressStreetName}
-                </span>
-                <span className="apartment__street-number">
-                    {apartment.addressStreetNumber}
-                </span>
-                <span className="apartment__street-number">
-                    {apartment.addressStreetNumber}
-                </span>
+                <p className="mb-0">
+                    <strong className="apartment__street-name">
+                        {apartment.addressStreetName}
+                    </strong>
+                    <strong className="apartment__street-number">
+                        {apartment.addressStreetNumber}
+                    </strong>
+                    {
+                        apartment.addressFlatNumber &&
+                        <span className="apartment__flat-number">
+                            / {apartment.addressFlatNumber}
+                        </span>
+                    }
+                </p>
+                <p>
+                    <span>
+                        {apartment.addressZip}
+                        {' '}
+                        {apartment.addressCity}
+                        {', '}
+                        {apartment.addressCountyName}
+                    </span>
 
-                <span>{ apartment.addressStreetName } { apartment.addressStreetNumber}/{ apartment.addressFlatNumber}</span>
-                <span>{ apartment.addressZip } { apartment.addressCity}, { apartment.addressCountyName }</span>
-
+                </p>
             </address>
         );
     };
@@ -48,38 +60,56 @@ const ApartmentListItem = ({ apartment, onEdit }) => {
 
         if (peopleCountAllocated >= peopleCountMax) {
             return (
-                <span className="apartment-availability">
-                    <Badge color="danger" pill>Brak</Badge>
-                </span>
+                <Badge color="danger" className="apartment-availability">Brak</Badge>
             );
         }
 
+        const badgeColor = peopleCountAllocated === 0 ? 'success' : 'info';
+
         return (
-            <span className="apartment-availability">
+            <Badge color={badgeColor} className="apartment-availability">
                 <span className="apartment-availability__count-allocated">{apartment.peopleCountAllocated}</span>{' / '}
                 <span className="apartment-availability__count-max">{apartment.peopleCountMax}</span>
-            </span>
+            </Badge>
+        );
+    };
+
+    const getApartmentLandLord = (apartment) => {
+        return (
+            <>
+                <span className="font-weight-semibold">{apartment.landlordName}</span>
+                {
+                    apartment.landlordEmail &&
+                    <>
+                        <br />
+                        <a href={`mailto:${apartment.landlordEmail}`}>{apartment.landlordEmail}</a>
+                    </>
+                }
+                <br />
+                <span>{apartment.landlordPhone}</span>
+            </>
         );
     };
 
     const apartmentAddress = getApartmentAddressContent(apartment);
     const apartmentAvailability = getApartmentAvailability(apartment);
+    const apartmentLandlord = getApartmentLandLord(apartment);
 
     return (
         <tr key={id} onClick={handleEdit}>
-            <td>
-                <span>{ apartment.landlordName }</span>
-                <span>{ apartment.landlordEmail }</span>
-                <span>{ apartment.landlordPhone }</span>
-            </td>
+            <td>{apartmentLandlord}</td>
             <td>{apartmentAddress}</td>
-            <td>{apartmentAvailability}</td>
+            <td>
+                <p>
+                    {apartmentAvailability}
+                </p>
+            </td>
             <td>{apartment.volunteerName}</td>
             <td>{apartment.description}</td>
             <td>
                 <ButtonGroup>
-                    <Button color='primary'>Edytuj</Button>{' '}
-                    <Button color='danger' outline>Usuń</Button>
+                    <Button color="primary">Edytuj</Button>{' '}
+                    <Button color="danger" outline>Usuń</Button>
                 </ButtonGroup>
 
             </td>
