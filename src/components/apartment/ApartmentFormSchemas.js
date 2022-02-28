@@ -3,26 +3,13 @@ import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 import isSafeInteger from 'lodash-es/isSafeInteger';
 import { appConfig } from 'constants/AppConfig';
 import moment from 'moment-es6';
+import { t } from 'i18n/formValidation';
 
-const toSafeIntegerWithUndefined = (value) => (isSafeInteger(+value) && +value) || undefined;
-
-const integerRequired = (requiredMessage) => Yup
-    .number()
-    .integer('Podaj liczbę całkowitą.')
-    .transform(toSafeIntegerWithUndefined)
-    .typeError('Podaj liczbę.');
-
-const positiveIntegerRequired = (requiredMessage) => Yup
-  .number()
-  .integer('Podaj liczbę całkowitą.')
-  .transform(toSafeIntegerWithUndefined)
-  .typeError('Podaj liczbę.')
-  .positive('Wartość musi być większa od 0.');
-  // .required(requiredMessage);
-
-const numericIndex = () => Yup
-  .number()
-  .transform(toSafeIntegerWithUndefined);
+// const toSafeIntegerWithUndefined = (value) => {
+//   const safeInteger = isSafeInteger(+value) ? +value : value;
+//   console.log(value, +value, isSafeInteger(+value), safeInteger)
+//   return safeInteger;
+// };
 
 const dateAsYMDValidator = () => Yup
   .mixed()
@@ -33,20 +20,29 @@ const dateAsYMDValidator = () => Yup
   );
 
 const commonSchema = Yup.object().shape({
-  [ ApartmentFormFields.ADDRESS_COUNTY_NAME ]: Yup.string().required('Proszę podać województwo.'),
-  [ ApartmentFormFields.ADDRESS_CITY ]: Yup.string().required('Proszę podać miejscowość.'),
+  [ ApartmentFormFields.ADDRESS_COUNTY_NAME ]: Yup.string().required(t.countyName),
+  [ ApartmentFormFields.ADDRESS_CITY ]: Yup.string().required(t.cityName),
   [ ApartmentFormFields.ADDRESS_FLAT_NUMBER ]: Yup.string(),
-  [ ApartmentFormFields.ADDRESS_STREET_NUMBER ]: Yup.string().required('Wpisz nazwę ulicy.'),
-  [ ApartmentFormFields.ADDRESS_STREET_NAME ]: Yup.string().required('Wpisz nazwę ulicy.'),
+  [ ApartmentFormFields.ADDRESS_STREET_NUMBER ]: Yup.string().required(t.streetNumber),
+  [ ApartmentFormFields.ADDRESS_STREET_NAME ]: Yup.string().required(t.streetName),
   [ ApartmentFormFields.ADDRESS_ZIP ]: Yup.string(),
   [ ApartmentFormFields.DESCRIPTION ]: Yup.string(),
   [ ApartmentFormFields.IS_VERIFIED ]: Yup.boolean(),
-  [ ApartmentFormFields.LANDLORD_EMAIL ]: Yup.string().required('Uzupełnij adres e-mail.'),
-  [ ApartmentFormFields.LANDLORD_NAME ]: Yup.string().required('Uzupełnij imię i nazwisko.'),
-  [ ApartmentFormFields.LANDLORD_PHONE ]: Yup.string().required('Podaj numer telefonu.'),
-  [ ApartmentFormFields.VACANCIES_TOTAL ]: Yup.number().required('Wpisz maks. liczbę osób.'),
-  [ ApartmentFormFields.VACANCIES_TAKEN ]: Yup.number().required('Wpisz liczbę zakwaterowanych.'),
-  [ ApartmentFormFields.VOLUNTEER_NAME ]: Yup.string().required('Uzupełnij imię i nazwisko.'),
+  [ ApartmentFormFields.LANDLORD_EMAIL ]: Yup.string().required(t.email),
+  [ ApartmentFormFields.LANDLORD_NAME ]: Yup.string().required(t.fullName),
+  [ ApartmentFormFields.LANDLORD_PHONE ]: Yup.string().required(t.phoneNumber),
+  [ ApartmentFormFields.VACANCIES_TOTAL ]: Yup
+      .number()
+      .integer(t.integer)
+      .moreThan(0, t.positiveNumber)
+      .min(1, `${t.numberMin} 1 osoba`)
+      .required(t.numberOfPeople),
+  [ ApartmentFormFields.VACANCIES_TAKEN ]: Yup
+      .number()
+      .integer(t.integer)
+      .moreThan(-1, t.positiveNumber)
+      .required(t.numberOfPeople),
+  [ ApartmentFormFields.VOLUNTEER_NAME ]: Yup.string().required(t.fullName),
   // [ ApartmentFormFields.UPDATED_AT ]: dateAsYMDValidator(),
 });
 
@@ -55,7 +51,7 @@ const apartmentFormCreateSchema = Yup.object()
 
 const apartmentFormUpdateSchema = Yup.object()
   .shape({
-    [ApartmentFormFields.ID]: Yup.string().required("Missing ID field, something is wrong…"),
+    [ApartmentFormFields.ID]: Yup.string().required(t.missingId),
   })
   .concat(commonSchema);
 

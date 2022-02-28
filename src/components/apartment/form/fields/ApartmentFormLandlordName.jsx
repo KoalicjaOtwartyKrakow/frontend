@@ -5,7 +5,7 @@ import FormInput from 'components/atoms/form/FormInput';
 import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 
 const ApartmentFormLandlordName = (props) => {
-    const fieldId = 'landlordName';
+    const fieldId = ApartmentFormFields.LANDLORD_NAME;
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
@@ -14,7 +14,7 @@ const ApartmentFormLandlordName = (props) => {
             <Field
                 component={FormInput}
                 id={fieldId}
-                name={ApartmentFormFields.LANDLORD_NAME}
+                name={fieldId}
                 placeholder="Janina Nowak"
                 type="text"
             />

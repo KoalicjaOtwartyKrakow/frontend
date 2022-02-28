@@ -4,24 +4,24 @@ import { Field } from "formik";
 import FormInput from 'components/atoms/form/FormInput';
 import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 
-const ApartmentFormStreetName = (props) => {
-    const fieldId = ApartmentFormFields.ADDRESS_STREET_NAME;
+const ApartmentFormVacanciesTotal = (props) => {
+    const fieldId = ApartmentFormFields.VACANCIES_TOTAL;
     return (
         <FormGroup>
             <Label for={ fieldId } className="required">
-                Ulica:
+                Dopuszczalna liczba osób:
             </Label>
             <Field
                 component={ FormInput }
                 id={ fieldId }
                 name={ fieldId }
-                placeholder="al. Powstania Warszawskiego"
+                placeholder="5"
                 type="text"
             />
         </FormGroup>
     );
 };
 
-ApartmentFormStreetName.propTypes = {};
+ApartmentFormVacanciesTotal.propTypes = {};
 
-export default ApartmentFormStreetName;
+export default ApartmentFormVacanciesTotal;
