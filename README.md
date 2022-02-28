@@ -1,4 +1,13 @@
-# Ukraine - database
+# Pomagam Ukrainie – Frontend
+
+## Development
+
+1. Try not to commit directly to `main`. It's not yet strictly enforced, but as the team grows larger we'll probably need to introduce this change. For now, let's just make this a mutual agreement. Urgent fixes might skip this pipeline.
+2. Assign yourself to the task.
+3. Create a branch (`task-123-some-name`) and a pull request when complete.
+4. Accepted PRs land in `main`.
+5. See a job you can do, but no task? Let's discuss it on Discord *#frontend* channel.
+6. In commits try not to describe what have you done, but rather _why_ have you done that and what is the outcome / improvement / fix.
 
 ## How to run
 
