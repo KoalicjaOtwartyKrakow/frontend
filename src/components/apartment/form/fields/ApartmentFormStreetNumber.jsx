@@ -15,7 +15,7 @@ const ApartmentFormStreetNumber = (props) => {
                 component={ FormInput }
                 id={ fieldId }
                 name={ fieldId }
-                placeholder="4A / 27"
+                placeholder="4A"
                 type="text"
             />
         </FormGroup>

@@ -6,6 +6,8 @@ import ApartmentFormStreetName from 'components/apartment/form/fields/ApartmentF
 import ApartmentFormVacanciesTotal from 'components/apartment/form/fields/ApartmentFormVacanciesTotal';
 import ApartmentFormVacanciesTaken from 'components/apartment/form/fields/ApartmentFormVacanciesTaken';
 import ApartmentFormStreetNumber from 'components/apartment/form/fields/ApartmentFormStreetNumber';
+import ApartmentFormFlatNumber from 'components/apartment/form/fields/ApartmentFormFlatNumber';
+import ApartmentFormZip from 'components/apartment/form/fields/ApartmentFormZip';
 
 /**
  * @component
@@ -17,11 +19,17 @@ const ApartmentFormAddress = () => {
             <Row>
                 <Col xs={12} md={6}>
                     <Row>
-                        <Col xs={12} md={8} lg={9}>
+                        <Col xs={12}>
                             <ApartmentFormStreetName />
                         </Col>
-                        <Col xs={12} md={4} lg={3}>
+                        <Col xs={4}>
                             <ApartmentFormStreetNumber />
+                        </Col>
+                        <Col xs={4}>
+                            <ApartmentFormFlatNumber />
+                        </Col>
+                        <Col xs={4}>
+                            <ApartmentFormZip />
                         </Col>
                     </Row>
                 </Col>
