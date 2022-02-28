@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker';
 import MomentSerializer from 'serializers/MomentSerializer';
 import React, { forwardRef } from 'react';
 import { Button, FormFeedback, Input, InputGroup, InputGroupAddon } from 'reactstrap';
-import { DATE_FORMAT } from 'constants/Config';
+import { appConfig } from 'constants/AppConfig';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useField, useFormikContext } from 'formik';
@@ -33,7 +33,7 @@ const FormDatePicker = ({ ...props }) => {
 
   const selected = momentSerializer.toDate(field.value);
   const ref = React.createRef();
-  const customInput = <CustomDatepickerInput placeholder={ DATE_FORMAT } ref={ ref } />;
+  const customInput = <CustomDatepickerInput placeholder={ appConfig.dateFormat } ref={ ref } />;
 
   const error = FormikApiErrors.getError(field.name, form);
   const invalid = !!error;

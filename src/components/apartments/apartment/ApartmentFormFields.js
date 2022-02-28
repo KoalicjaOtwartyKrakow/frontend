@@ -1,6 +1,6 @@
 import pick from 'lodash-es/pick';
 import moment from 'moment-es6';
-import { DATE_FORMAT } from 'constants/Config';
+import { appConfig } from 'constants/AppConfig';
 import { FormikApiErrors } from 'components/atoms/form/FormikApiErrors';
 import Apartment from 'models/Apartment';
 
@@ -45,7 +45,7 @@ class ApartmentFormFields {
   }
 
   getDateAsYMD(value) {
-    return moment.isMoment(value) ? value.format(DATE_FORMAT) : '';
+    return moment.isMoment(value) ? value.format(appConfig.dateFormat) : '';
   }
 
   /**
