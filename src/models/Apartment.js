@@ -69,11 +69,11 @@ class Apartment {
 
     @JsonType(Number)
     @JsonProperty('PLACES_NUM')
-    peopleCountMax = 0;
+    vacanciesTotal = 0;
 
     @JsonType(Number)
     @JsonProperty('PLACES_BUSY')
-    peopleCountAllocated = 0;
+    vacanciesTaken = 0;
 
     @JsonType(String)
     @JsonProperty('VOLUNTEER_NAME')
@@ -85,7 +85,7 @@ class Apartment {
 
     @BeforeDeserialized()
     setDefaults() {
-        this.peopleCountAllocated = 0;
+        this.vacanciesTaken = 0;
     }
 
     @OnDeserialized()

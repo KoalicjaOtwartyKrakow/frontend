@@ -18,8 +18,8 @@ class ApartmentFormFields {
   static LANDLORD_EMAIL = 'landlordEmail' ;
   static LANDLORD_NAME = 'landlordName' ;
   static LANDLORD_PHONE = 'landlordPhone' ;
-  static PEOPLE_COUNT_MAX = 'peopleCountMax';
-  static PEOPLE_COUNT_ALLOCATED = 'peopleCountAllocated';
+  static VACANCIES_TOTAL = 'vacanciesTotal';
+  static VACANCIES_TAKEN = 'vacanciesTaken';
   static UUID = 'uuid';
   static VOLUNTEER_NAME = 'volunteerName' ;
 
@@ -34,8 +34,8 @@ class ApartmentFormFields {
     const initialValues = pick(apartment, fieldNames);
 
     return apartment.id ? initialValues : Object.assign(initialValues, {
-      [ApartmentFormFields.PEOPLE_COUNT_MAX]: 0,
-      [ApartmentFormFields.PEOPLE_COUNT_ALLOCATED]: 0,
+      [ApartmentFormFields.VACANCIES_TOTAL]: 1,
+      [ApartmentFormFields.VACANCIES_TAKEN]: 0,
       [ApartmentFormFields.IS_VERIFIED]: false,
     });
   }
@@ -76,8 +76,8 @@ class ApartmentFormFields {
       [ ApartmentFormFields.LANDLORD_EMAIL ],
       [ ApartmentFormFields.LANDLORD_NAME ],
       [ ApartmentFormFields.LANDLORD_PHONE ],
-      [ ApartmentFormFields.PEOPLE_COUNT_MAX ],
-      [ ApartmentFormFields.PEOPLE_COUNT_ALLOCATED ],
+      [ ApartmentFormFields.VACANCIES_TOTAL ],
+      [ ApartmentFormFields.VACANCIES_TAKEN ],
       [ ApartmentFormFields.UUID ],
       [ ApartmentFormFields.VOLUNTEER_NAME ],
     ];

@@ -15,8 +15,8 @@ const apartmentFormInitialValuesPropTypes = PropTypes.shape({
   [ApartmentFormFields.LANDLORD_EMAIL]: PropTypes.string,
   [ApartmentFormFields.LANDLORD_NAME]: PropTypes.string,
   [ApartmentFormFields.LANDLORD_PHONE]: PropTypes.string,
-  [ApartmentFormFields.PEOPLE_COUNT_MAX]: PropTypes.number,
-  [ApartmentFormFields.PEOPLE_COUNT_ALLOCATED]: PropTypes.number,
+  [ApartmentFormFields.VACANCIES_TOTAL]: PropTypes.number,
+  [ApartmentFormFields.VACANCIES_TAKEN]: PropTypes.number,
   [ApartmentFormFields.UUID]: PropTypes.string,
   [ApartmentFormFields.VOLUNTEER_NAME]: PropTypes.string,
   

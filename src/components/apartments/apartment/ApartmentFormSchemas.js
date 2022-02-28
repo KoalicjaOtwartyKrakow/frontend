@@ -44,8 +44,8 @@ const commonSchema = Yup.object().shape({
   [ ApartmentFormFields.LANDLORD_EMAIL ]: Yup.string().required('Uzupełnij adres e-mail.'),
   [ ApartmentFormFields.LANDLORD_NAME ]: Yup.string().required('Uzupełnij imię i nazwisko.'),
   [ ApartmentFormFields.LANDLORD_PHONE ]: Yup.string().required('Podaj numer telefonu.'),
-  [ ApartmentFormFields.PEOPLE_COUNT_MAX ]: Yup.number().required('Wpisz maks. liczbę osób.'),
-  [ ApartmentFormFields.PEOPLE_COUNT_ALLOCATED ]: Yup.number().required('Wpisz liczbę zakwaterowanych.'),
+  [ ApartmentFormFields.VACANCIES_TOTAL ]: Yup.number().required('Wpisz maks. liczbę osób.'),
+  [ ApartmentFormFields.VACANCIES_TAKEN ]: Yup.number().required('Wpisz liczbę zakwaterowanych.'),
   [ ApartmentFormFields.VOLUNTEER_NAME ]: Yup.string().required('Uzupełnij imię i nazwisko.'),
   // [ ApartmentFormFields.UPDATED_AT ]: dateAsYMDValidator(),
 });

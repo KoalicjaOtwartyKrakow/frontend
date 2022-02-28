@@ -57,20 +57,20 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
      * @returns {JSX.Element}
      */
     const getApartmentAvailability = (apartment) => {
-        const { peopleCountAllocated, peopleCountMax } = apartment;
+        const { vacanciesTaken, vacanciesTotal } = apartment;
 
-        if (peopleCountAllocated >= peopleCountMax) {
+        if (vacanciesTaken >= vacanciesTotal) {
             return (
                 <Badge color="danger" className="apartment-availability">Brak</Badge>
             );
         }
 
-        const badgeColor = peopleCountAllocated === 0 ? 'success' : 'info';
+        const badgeColor = vacanciesTaken === 0 ? 'success' : 'info';
 
         return (
             <Badge color={badgeColor} className="apartment-availability">
-                <span className="apartment-availability__count-allocated">{apartment.peopleCountAllocated}</span>{' / '}
-                <span className="apartment-availability__count-max">{apartment.peopleCountMax}</span>
+                <span className="apartment-availability__count-allocated">{apartment.vacanciesTaken}</span>{' / '}
+                <span className="apartment-availability__count-max">{apartment.vacanciesTotal}</span>
             </Badge>
         );
     };
