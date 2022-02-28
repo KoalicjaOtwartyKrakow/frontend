@@ -4,28 +4,23 @@ import ApartmentFormSectionHeader from 'components/apartment/form/ApartmentFormS
 import ApartmentFormSection from 'components/apartment/form/ApartmentFormSection';
 import { apartmentFormLandlordPropTypes } from 'proptypes/ApartmentFormPropTypes';
 import ApartmentFormLandlordName from 'components/apartment/form/fields/ApartmentFormLandlordName';
+import ApartmentFormLandlordEmail from 'components/apartment/form/fields/ApartmentFormLandlordEmail';
+import ApartmentFormLandlordPhone from 'components/apartment/form/fields/ApartmentFormLandlordPhone';
 
 const ApartmentFormLandlord = ({ }) => {
   return (
     <ApartmentFormSection>
       <ApartmentFormSectionHeader>Dane osoby udostępniającej</ApartmentFormSectionHeader>
       <Row>
-        <Col xs={ 12 } lg={ 4 }>
+        <Col xs={ 12 } lg={ 6 }>
           <ApartmentFormLandlordName />
         </Col>
-        <Col xs={ 12 } lg={ 6 }>
-          TODO
+        <Col xs={ 12 } lg={ 3 }>
+          <ApartmentFormLandlordEmail />
         </Col>
-        <Col xs={ 12 } lg={ 2 }>
-          TODO
+        <Col xs={ 12 } lg={ 3 }>
+          <ApartmentFormLandlordPhone />
         </Col>
-        <Col xs={ 12 } lg={ 4 }>
-          TODO
-        </Col>
-        <Col xs={ 12 } lg={ 4 }>
-          TODO
-        </Col>
-
       </Row>
     </ApartmentFormSection>
   );

@@ -9,7 +9,7 @@ const ApartmentFormZip = (props) => {
     return (
         <FormGroup>
             <Label for={ fieldId } className="required">
-                Kod poczty:
+                Kod pocztowy:
             </Label>
             <Field
                 component={ FormInput }
