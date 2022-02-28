@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import ApartmentFormSection from 'components/apartments/apartment/form/ApartmentFormSection';
-import ApartmentFormSectionHeader from 'components/apartments/apartment/form/ApartmentFormSectionHeader';
-import ApartmentFormStreetName from 'components/apartments/apartment/form/fields/ApartmentFormStreetName';
+import ApartmentFormSection from 'components/apartment/form/ApartmentFormSection';
+import ApartmentFormSectionHeader from 'components/apartment/form/ApartmentFormSectionHeader';
+import ApartmentFormStreetName from 'components/apartment/form/fields/ApartmentFormStreetName';
 
 /**
  * @component

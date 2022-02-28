@@ -2,10 +2,10 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import PropTypes from 'prop-types';
 import { apartmentInProgressPropType } from 'proptypes/ApartmentFormPropTypes';
-import ApartmentFormRemoveButton from 'components/apartments/apartment/form/buttons/ApartmentFormRemoveButton';
-import ApartmentFormResetButton from 'components/apartments/apartment/form/buttons/ApartmentFormResetButton';
-import ApartmentFormSubmitButton from 'components/apartments/apartment/form/buttons/ApartmentFormSubmitButton';
-import ApartmentFormBackToListButton from 'components/apartments/apartment/form/buttons/ApartmentFormBackToListButton';
+import ApartmentFormRemoveButton from 'components/apartment/form/buttons/ApartmentFormRemoveButton';
+import ApartmentFormResetButton from 'components/apartment/form/buttons/ApartmentFormResetButton';
+import ApartmentFormSubmitButton from 'components/apartment/form/buttons/ApartmentFormSubmitButton';
+import ApartmentFormBackToListButton from 'components/apartment/form/buttons/ApartmentFormBackToListButton';
 
 // FIXME!!!
 const APARTMENT_PROGRESS_REMOVE = 'apartment-progress-remove';

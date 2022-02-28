@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { ApartmentFormFields } from 'components/apartments/apartment/ApartmentFormFields';
+import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 import isSafeInteger from 'lodash-es/isSafeInteger';
 import { appConfig } from 'constants/AppConfig';
 import moment from 'moment-es6';

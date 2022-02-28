@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { Field } from 'formik';
 import FormInput from 'components/atoms/form/FormInput';
-import { ApartmentFormFields } from 'components/apartments/apartment/ApartmentFormFields';
+import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 
 const ApartmentFormLandlordName = (props) => {
     const fieldId = 'landlordName';

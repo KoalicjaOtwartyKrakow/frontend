@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import ApartmentFormSectionHeader from 'components/apartments/apartment/form/ApartmentFormSectionHeader';
-import ApartmentFormSection from 'components/apartments/apartment/form/ApartmentFormSection';
+import ApartmentFormSectionHeader from 'components/apartment/form/ApartmentFormSectionHeader';
+import ApartmentFormSection from 'components/apartment/form/ApartmentFormSection';
 import { apartmentFormLandlordPropTypes } from 'proptypes/ApartmentFormPropTypes';
-import ApartmentFormLandlordName from 'components/apartments/apartment/form/fields/ApartmentFormLandlordName';
+import ApartmentFormLandlordName from 'components/apartment/form/fields/ApartmentFormLandlordName';
 
 const ApartmentFormLandlord = ({ }) => {
   return (

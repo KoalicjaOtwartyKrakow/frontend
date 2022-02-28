@@ -6,10 +6,10 @@ import { Alert } from 'reactstrap';
 import InProgress from 'components/atoms/InProgress';
 import PageErrorMessage from 'components/atoms/PageErrorMessage';
 import PageNavigationApartmentList from 'components/atoms/PageNavHome';
-import ApartmentForm from 'components/apartments/apartment/ApartmentForm';
+import ApartmentForm from 'components/apartment/ApartmentForm';
 import Routes from 'constants/Routes';
 import memoize from 'lodash-es/memoize';
-import { ApartmentFormFields } from 'components/apartments/apartment/ApartmentFormFields';
+import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 import Apartment from 'models/Apartment';
 
 const ApartmentEditPage = ({ apartments, apartmentsErrorMessage, apartmentsInProgress, apartmentsSuccess }) => {

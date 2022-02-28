@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { ApartmentFormFields } from 'components/apartments/apartment/ApartmentFormFields';
+import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
 
 const apartmentFormInitialValuesPropTypes = PropTypes.shape({
   [ApartmentFormFields.ADDRESS_COUNTY_NAME]: PropTypes.string,

@@ -1,5 +1,5 @@
 // import Effect from 'components/atoms/form/Effect';
-import { apartmentFormFields as formFields } from 'components/apartments/apartment/ApartmentFormFields';
+import { apartmentFormFields as formFields } from 'components/apartment/ApartmentFormFields';
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { formikFormApplyYupTransforms as yupTransform } from 'formik-yup';
@@ -7,11 +7,11 @@ import { apartmentFormPropTypes } from 'proptypes/ApartmentFormPropTypes';
 import {
   apartmentFormCreateSchema,
   apartmentFormUpdateSchema
-} from 'components/apartments/apartment/ApartmentFormSchemas';
-import ApartmentFormAddress from 'components/apartments/apartment/form/sections/ApartmentFormAddress';
-import ApartmentFormLandlord from 'components/apartments/apartment/form/sections/ApartmentFormLandlord';
-import ApartmentFormAdditional from 'components/apartments/apartment/form/sections/ApartmentFormAdditional';
-import ApartmentFormButtons from 'components/apartments/apartment/form/sections/ApartmentFormButtons';
+} from 'components/apartment/ApartmentFormSchemas';
+import ApartmentFormAddress from 'components/apartment/form/sections/ApartmentFormAddress';
+import ApartmentFormLandlord from 'components/apartment/form/sections/ApartmentFormLandlord';
+import ApartmentFormAdditional from 'components/apartment/form/sections/ApartmentFormAdditional';
+import ApartmentFormButtons from 'components/apartment/form/sections/ApartmentFormButtons';
 
 const ApartmentForm = (props) => {
   const {
