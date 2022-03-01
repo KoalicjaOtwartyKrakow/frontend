@@ -1,5 +1,19 @@
 # Pomagam Ukrainie – Frontend
 
+## Before you start
+
+At the moment, our IDEs of choice are JetBrains tools, i.e. WebStorm and family. If you
+plan to do development in some other editor (namely, VS Code, Vim, whatever), please make
+sure you're able to follow the code formatting etc. in the same way as everybody else.
+
+### Configure Prettier
+
+1. Go **Settings…** » **Plugins** and search for Prettier plugin. Install it.
+2. Go **Settings…** » **Languages & Frameworks** » **JavaScript** » **Prettier**.
+3. Choose Prettier plugin path from the dropdown.
+4. Set "Run for files" to `{**/*,*}.{js,ts,jsx,tsx,json,css,scss,sass}`
+5. Check both "On Reformat Code action" and "On Save" checkboxes.
+
 ## Development
 
 1. Try not to commit directly to `main`. It's not yet strictly enforced, but as the team grows larger we'll probably need to introduce this change. For now, let's just make this a mutual agreement. Urgent fixes might skip this pipeline.
