@@ -1,15 +1,19 @@
-import React from 'react';
-import { FormGroup, Label } from 'reactstrap';
-import { Field } from 'formik';
-import FormInput from 'components/atoms/form/FormInput';
-import { ApartmentFormFields } from 'components/apartment/ApartmentFormFields';
+import React from "react";
+import { FormGroup, Label } from "reactstrap";
+import { Field } from "formik";
+import { useTranslation } from "react-i18next";
+
+import FormInput from "components/atoms/form/FormInput";
+import { ApartmentFormFields } from "components/apartment/ApartmentFormFields";
 
 const ApartmentFormLandlordEmail = (props) => {
     const fieldId = ApartmentFormFields.LANDLORD_EMAIL;
+
+    const { t } = useTranslation();
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                Adres e-mail:
+                {t("apartment.email")}
             </Label>
             <Field
                 component={FormInput}

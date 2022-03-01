@@ -1,14 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const ApartmentFormSection = ({ children, className = "mb-4" }) => (
-  <section className={ className }>
-    { children }
-  </section>
+    <section className={className}>{children}</section>
 );
 
 ApartmentFormSection.propTypes = {
-  children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default ApartmentFormSection;

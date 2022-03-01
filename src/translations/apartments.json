@@ -1,0 +1,49 @@
+{
+    "en": {
+        "translation": {
+            "apartments": {
+                "host": "Host",
+                "address": "Address",
+                "availability": "Availability",
+                "volunteer": "Volunteer",
+                "description": "Description",
+                "actions": "Actions",
+                "delete": "Delete",
+                "not_found": "No apartments found.",
+                "list": "List of all apartments",
+                "found": "Found"
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "apartments": {
+                "host": "Udostępniający",
+                "address": "Adres",
+                "availability": "Dostępność",
+                "volunteer": "Wolontariusz",
+                "description": "Opis",
+                "actions": "Akcje",
+                "delete": "Usuń",
+                "not_found": "Nie znaleziono żadnych lokali w bazie.",
+                "list": "Lista wszystkich lokali",
+                "found": "Znaleziono"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "apartments": {
+                "host": "Ведучий",
+                "address": "Адреса",
+                "availability": "Доступність",
+                "volunteer": "Волонтер",
+                "description": "Опис",
+                "actions": "Дії",
+                "delete": "Видалити",
+                "list": "Список усіх квартир",
+                "found": "Знайдено"
+            }
+        }
+    }
+}

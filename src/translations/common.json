@@ -1,0 +1,23 @@
+{
+    "en": {
+        "translation": {
+            "common": {
+                "loading": "Loading data…"
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "common": {
+                "loading": "Trwa ładowanie danych…"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "common": {
+                "loading": "Завантаження даних…"
+            }
+        }
+    }
+}

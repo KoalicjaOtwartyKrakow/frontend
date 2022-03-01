@@ -1,19 +1,24 @@
-import React from 'react';
-import { Col, Row } from 'reactstrap';
-import ApartmentFormSection from 'components/apartment/form/ApartmentFormSection';
-import ApartmentFormSectionHeader from 'components/apartment/form/ApartmentFormSectionHeader';
-import ApartmentFormStreetName from 'components/apartment/form/fields/ApartmentFormStreetName';
-import ApartmentFormStreetNumber from 'components/apartment/form/fields/ApartmentFormStreetNumber';
-import ApartmentFormFlatNumber from 'components/apartment/form/fields/ApartmentFormFlatNumber';
-import ApartmentFormZip from 'components/apartment/form/fields/ApartmentFormZip';
+import React from "react";
+import { Col, Row } from "reactstrap";
+import { useTranslation } from "react-i18next";
+
+import ApartmentFormSection from "components/apartment/form/ApartmentFormSection";
+import ApartmentFormSectionHeader from "components/apartment/form/ApartmentFormSectionHeader";
+import ApartmentFormStreetName from "components/apartment/form/fields/ApartmentFormStreetName";
+import ApartmentFormStreetNumber from "components/apartment/form/fields/ApartmentFormStreetNumber";
+import ApartmentFormFlatNumber from "components/apartment/form/fields/ApartmentFormFlatNumber";
+import ApartmentFormZip from "components/apartment/form/fields/ApartmentFormZip";
 
 /**
  * @component
  */
 const ApartmentFormAddress = () => {
+    const { t } = useTranslation();
     return (
         <ApartmentFormSection>
-            <ApartmentFormSectionHeader>Dane adresowe lokalu</ApartmentFormSectionHeader>
+            <ApartmentFormSectionHeader>
+                {t("apartment.address_data")}
+            </ApartmentFormSectionHeader>
             <Row>
                 <Col xs={12}>
                     <ApartmentFormStreetName />

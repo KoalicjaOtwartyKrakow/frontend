@@ -1,0 +1,23 @@
+{
+    "en": {
+        "translation": {
+            "header": {
+                "subtitle": "Kraków citizens supporting Ukraine"
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "header": {
+                "subtitle": "Mieszkańcy Krakowa na pomoc Ukrainie"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "header": {
+                "subtitle": "Жителі Кракова на допомогу Україні"
+            }
+        }
+    }
+}
