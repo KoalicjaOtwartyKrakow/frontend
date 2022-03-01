@@ -13,7 +13,7 @@ const ApartmentFormStreetName = (props) => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-            {t("apartment.street_name")}
+                {t("apartment.street_name")}
             </Label>
             <Field
                 component={FormInput}

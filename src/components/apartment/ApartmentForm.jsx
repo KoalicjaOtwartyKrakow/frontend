@@ -99,7 +99,9 @@ const ApartmentForm = (props) => {
                         isSubmitting={isSubmitting}
                         submitDisabled={submitDisabled(isValid, isSubmitting)}
                         submitLabel={
-                            isCreateMode ? t("apartment.add_new") : t("apartment.save_changes")
+                            isCreateMode
+                                ? t("apartment.add_new")
+                                : t("apartment.save_changes")
                         }
                         onRemove={onRemove}
                         inProgress={apartmentInProgress}

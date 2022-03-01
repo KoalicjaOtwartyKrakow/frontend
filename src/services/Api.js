@@ -32,6 +32,7 @@ class Api {
     static timeout = Number(process.env.REACT_APP_APARTMENTS_API_TIMEOUT);
     static useMocks = process.env.REACT_APP_APARTMENTS_API_USE_MOCKS === "true";
     static APARTMENTS = "/apartments";
+
     /**
      * @private
      */

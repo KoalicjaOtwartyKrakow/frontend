@@ -13,7 +13,7 @@ const ApartmentFormVacanciesTotal = (props) => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t('apartment.vacancies_total')}
+                {t("apartment.vacancies_total")}
             </Label>
             <Field
                 component={FormInput}

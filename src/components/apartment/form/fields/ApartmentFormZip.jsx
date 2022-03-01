@@ -13,7 +13,7 @@ const ApartmentFormZip = (props) => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-            {t('apartment.zip_code')}
+                {t("apartment.zip_code")}
             </Label>
             <Field
                 component={FormInput}
