@@ -1,122 +1,118 @@
-import pick from 'lodash-es/pick';
-import moment from 'moment-es6';
-import { appConfig } from 'constants/AppConfig';
-import { FormikApiErrors } from 'components/atoms/form/FormikApiErrors';
-import Apartment from 'models/Apartment';
+import pick from "lodash-es/pick";
+import moment from "moment-es6";
+import { appConfig } from "constants/AppConfig";
+import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+import Apartment from "models/Apartment";
 
 class ApartmentFormFields {
-  static ADDRESS_COUNTY_NAME = 'addressCountyName';
-  static ADDRESS_CITY = 'addressCity';
-  static ADDRESS_FLAT_NUMBER = 'addressFlatNumber';
-  static ADDRESS_STREET_NUMBER = 'addressStreetNumber' ;
-  static ADDRESS_STREET_NAME = 'addressStreetName' ;
-  static ADDRESS_ZIP = 'addressZip';
-  // static CREATED_AT = 'createdAt';
-  static DESCRIPTION = 'description';
-  static ID = 'id';
-  static IS_VERIFIED = 'isVerified';
-  static LANDLORD_EMAIL = 'landlordEmail' ;
-  static LANDLORD_NAME = 'landlordName' ;
-  static LANDLORD_PHONE = 'landlordPhone' ;
-  static VACANCIES_TOTAL = 'vacanciesTotal';
-  static VACANCIES_TAKEN = 'vacanciesTaken';
-  static UUID = 'uuid';
-  static VOLUNTEER_NAME = 'volunteerName' ;
+    static ADDRESS_COUNTY_NAME = "addressCountyName";
+    static ADDRESS_CITY = "addressCity";
+    static ADDRESS_FLAT_NUMBER = "addressFlatNumber";
+    static ADDRESS_STREET_NUMBER = "addressStreetNumber";
+    static ADDRESS_STREET_NAME = "addressStreetName";
+    static ADDRESS_ZIP = "addressZip";
+    // static CREATED_AT = 'createdAt';
+    static DESCRIPTION = "description";
+    static ID = "id";
+    static IS_VERIFIED = "isVerified";
+    static LANDLORD_EMAIL = "landlordEmail";
+    static LANDLORD_NAME = "landlordName";
+    static LANDLORD_PHONE = "landlordPhone";
+    static VACANCIES_TOTAL = "vacanciesTotal";
+    static VACANCIES_TAKEN = "vacanciesTaken";
+    static UUID = "uuid";
+    static VOLUNTEER_NAME = "volunteerName";
 
-  /**
-   *
-   * @param {Apartment} apartment
-   * @return {*}
-   */
-  static getInitialValues(apartment) {
+    /**
+     *
+     * @param {Apartment} apartment
+     * @return {*}
+     */
+    static getInitialValues(apartment) {
+        const fieldNames = Object.values(ApartmentFormFields);
+        const initialValues = pick(apartment, fieldNames);
 
-    const fieldNames = Object.values(ApartmentFormFields);
-    const initialValues = pick(apartment, fieldNames);
-
-    return apartment.id ? initialValues : Object.assign(initialValues, {
-      [ApartmentFormFields.VACANCIES_TOTAL]: 1,
-      [ApartmentFormFields.VACANCIES_TAKEN]: 0,
-      [ApartmentFormFields.IS_VERIFIED]: false,
-    });
-  }
-
-  getInitialStatus() {
-    return FormikApiErrors.getInitialStatus();
-  }
-
-  getDateAsYMD(value) {
-    return moment.isMoment(value) ? value.format(appConfig.dateFormat) : '';
-  }
-
-  /**
-   *
-   * @param {object} apiErrors
-   * @param {ApiErrorStatus} status
-   * @return {ApiErrors}
-   */
-  getStatusFromApi(apiErrors, status) {
-    return FormikApiErrors.getStatusFromApi(apiErrors, status);
-  }
-
-
-  areValuesEqual(prevValues, nextValues) {
-    const prev = prevValues || {};
-    const next = nextValues || {};
-
-    const simpleTypeFields = [
-      [ ApartmentFormFields.ADDRESS_COUNTY_NAME ],
-      [ ApartmentFormFields.ADDRESS_CITY ],
-      [ ApartmentFormFields.ADDRESS_FLAT_NUMBER ],
-      [ ApartmentFormFields.ADDRESS_STREET_NUMBER ],
-      [ ApartmentFormFields.ADDRESS_STREET_NAME ],
-      [ ApartmentFormFields.ADDRESS_ZIP ],
-      [ ApartmentFormFields.DESCRIPTION ],
-      [ ApartmentFormFields.ID ],
-      [ ApartmentFormFields.IS_VERIFIED ],
-      [ ApartmentFormFields.LANDLORD_EMAIL ],
-      [ ApartmentFormFields.LANDLORD_NAME ],
-      [ ApartmentFormFields.LANDLORD_PHONE ],
-      [ ApartmentFormFields.VACANCIES_TOTAL ],
-      [ ApartmentFormFields.VACANCIES_TAKEN ],
-      [ ApartmentFormFields.UUID ],
-      [ ApartmentFormFields.VOLUNTEER_NAME ],
-    ];
-
-    const simpleTypeDiff = (key) => prev[key] !== next[key];
-
-    if (simpleTypeFields.some(simpleTypeDiff)) {
-      return false;
+        return apartment.id
+            ? initialValues
+            : Object.assign(initialValues, {
+                  [ApartmentFormFields.VACANCIES_TOTAL]: 1,
+                  [ApartmentFormFields.VACANCIES_TAKEN]: 0,
+                  [ApartmentFormFields.IS_VERIFIED]: false,
+              });
     }
 
-    const dateTimeFields = [
-      // [ ApartmentFormFields.CREATED_AT ],
-    ];
+    getInitialStatus() {
+        return FormikApiErrors.getInitialStatus();
+    }
 
-    const dateDiff = (key) => {
-      const firstDateTime = prev[key];
-      const secondDateTime = next[key];
-      const asYmd = apartmentFormFields.getDateAsYMD;
-      return asYmd(firstDateTime) !== asYmd(secondDateTime);
-    };
+    getDateAsYMD(value) {
+        return moment.isMoment(value) ? value.format(appConfig.dateFormat) : "";
+    }
 
-    return !dateTimeFields.some(dateDiff);
+    /**
+     *
+     * @param {object} apiErrors
+     * @param {ApiErrorStatus} status
+     * @return {ApiErrors}
+     */
+    getStatusFromApi(apiErrors, status) {
+        return FormikApiErrors.getStatusFromApi(apiErrors, status);
+    }
 
-  }
+    areValuesEqual(prevValues, nextValues) {
+        const prev = prevValues || {};
+        const next = nextValues || {};
 
-  /**
-   *
-   * @param {Object} values
-   * @returns {Apartment}
-   */
-  toModel(values) {
-    const apartment = new Apartment();
-    return Object.assign(apartment, values);
-  }
+        const simpleTypeFields = [
+            [ApartmentFormFields.ADDRESS_COUNTY_NAME],
+            [ApartmentFormFields.ADDRESS_CITY],
+            [ApartmentFormFields.ADDRESS_FLAT_NUMBER],
+            [ApartmentFormFields.ADDRESS_STREET_NUMBER],
+            [ApartmentFormFields.ADDRESS_STREET_NAME],
+            [ApartmentFormFields.ADDRESS_ZIP],
+            [ApartmentFormFields.DESCRIPTION],
+            [ApartmentFormFields.ID],
+            [ApartmentFormFields.IS_VERIFIED],
+            [ApartmentFormFields.LANDLORD_EMAIL],
+            [ApartmentFormFields.LANDLORD_NAME],
+            [ApartmentFormFields.LANDLORD_PHONE],
+            [ApartmentFormFields.VACANCIES_TOTAL],
+            [ApartmentFormFields.VACANCIES_TAKEN],
+            [ApartmentFormFields.UUID],
+            [ApartmentFormFields.VOLUNTEER_NAME],
+        ];
+
+        const simpleTypeDiff = (key) => prev[key] !== next[key];
+
+        if (simpleTypeFields.some(simpleTypeDiff)) {
+            return false;
+        }
+
+        const dateTimeFields = [
+            // [ ApartmentFormFields.CREATED_AT ],
+        ];
+
+        const dateDiff = (key) => {
+            const firstDateTime = prev[key];
+            const secondDateTime = next[key];
+            const asYmd = apartmentFormFields.getDateAsYMD;
+            return asYmd(firstDateTime) !== asYmd(secondDateTime);
+        };
+
+        return !dateTimeFields.some(dateDiff);
+    }
+
+    /**
+     *
+     * @param {Object} values
+     * @returns {Apartment}
+     */
+    toModel(values) {
+        const apartment = new Apartment();
+        return Object.assign(apartment, values);
+    }
 }
 
 const apartmentFormFields = new ApartmentFormFields();
 
-export {
-  apartmentFormFields,
-  ApartmentFormFields
-};
+export { apartmentFormFields, ApartmentFormFields };

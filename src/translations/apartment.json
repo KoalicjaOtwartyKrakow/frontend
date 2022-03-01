@@ -1,0 +1,83 @@
+{
+    "en": {
+        "translation": {
+            "apartment": {
+                "add_new": "Add new apartment",
+                "save_changes": "Save changes",
+                "flat_no": "Flat no.",
+                "email": "Email",
+                "host": "Host",
+                "phone": "Phone no.",
+                "street_name": "Street name",
+                "no": "House no.",
+                "vacancies_taken": "Vacancies taken",
+                "vacancies_total": "Vacancies total",
+                "zip_code": "Zip code",
+                "address_data": "Address data",
+                "host_data": "Host data",
+                "availability": "Availability",
+                "edit": "Edit apartment",
+                "not_found": "Apartment not found.",
+                "reset": "Reset",
+                "back": "Back",
+                "delete": "Delete",
+                "back_to_list": "Back to list",
+                "additional_info": "Additional information"
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "apartment": {
+                "add_new": "Dodaj nowy lokal",
+                "save_changes": "Zapisz zmiany",
+                "flat_no": "Numer lokalu",
+                "email": "Adres email",
+                "host": "Osoba udostępniająca lokal",
+                "phone": "Numer telefonu",
+                "street_name": "Ulica",
+                "no": "Numer domu",
+                "vacancies_taken": "Przydzielono osób",
+                "vacancies_total": "Maksimum osób",
+                "zip_code": "Kod pocztowy",
+                "address_data": "Dane adresowe lokalu",
+                "host_data": "Dane osoby udostępniającej",
+                "availability": "Dostępność lokalu",
+                "edit": "Edycja lokalu",
+                "not_found": "Nie znaleziono takiego lokalu w bazie.",
+                "reset": "Zresetuj",
+                "back": "Powrót",
+                "delete": "Usuń",
+                "back_to_list": "Wróć do listy lokali",
+                "additional_info": "Pozostałe informacje"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "apartment": {
+                "add_new": "Додати нове місце",
+                "save_changes": "зберегти зміни",
+                "flat_no": "Номер квартири",
+                "email": "Електронна пошта",
+                "host": "господар",
+                "phone": "телефонний номер",
+                "street_name": "назва вулиці",
+                "no": "номер будинку",
+                "vacancies_taken": "Вакансії зайняті",
+                "vacancies_total": "Вакансії всього",
+                "zip_code": "ЗІП код",
+                "address_data": "Адресні дані приміщення",
+                "host_data": "Деталі хоста",
+                "availability": "наявність приміщення",
+                "edit": "Редагування приміщення",
+                "not_found": "Такого місця в базі даних не знайдено.",
+                "reset": "скинути",
+                "back": "назад",
+                "delete": "видалити",
+                "back_to_list": "Повернутися до списку приміщень",
+                "additional_info": "Інша інформація"
+            }
+        }
+    }
+}

@@ -6,12 +6,9 @@ const APARTMENTS_FETCH_DELAY = 1000;
  * @param {function} f Function to execute
  * @returns {Promise<TimerHandler>}
  */
-const delay = (delay, f) => new Promise((resolve, reject) => setTimeout(f, delay, resolve, reject));
+const delay = (delay, f) =>
+    new Promise((resolve, reject) => setTimeout(f, delay, resolve, reject));
 
 const emptyFn = () => {};
 
-export {
-  APARTMENTS_FETCH_DELAY,
-  delay,
-  emptyFn
-};
+export { APARTMENTS_FETCH_DELAY, delay, emptyFn };

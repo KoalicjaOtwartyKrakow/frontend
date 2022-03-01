@@ -1,8 +1,9 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
 /**
  *
@@ -13,12 +14,13 @@ import classNames from 'classnames';
  * @constructor
  */
 const InProgress = ({ inProgress, label, centered = true }) => {
-    const className = classNames(
-        'mb-3',
-        {
-            'text-center': centered,
-        }
-    );
+    const className = classNames("mb-3", {
+        "text-center": centered,
+    });
+
+    const { t } = useTranslation();
+
+    const defaultLabel = t("common.loading");
 
     if (inProgress === false) {
         return null;
@@ -26,15 +28,9 @@ const InProgress = ({ inProgress, label, centered = true }) => {
 
     return (
         <p className={className}>
-            <FontAwesomeIcon icon={faSpinner} spin />
-            {' '}
-            {label}
+            <FontAwesomeIcon icon={faSpinner} spin /> {label || defaultLabel}
         </p>
     );
-};
-
-InProgress.defaultProps = {
-    label: 'Trwa ładowanie danych…'
 };
 
 InProgress.propTypes = {

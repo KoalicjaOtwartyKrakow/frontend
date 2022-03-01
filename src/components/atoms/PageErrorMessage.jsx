@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Alert } from "reactstrap";
 
 /**
  *
@@ -10,7 +10,6 @@ import { Alert } from 'reactstrap';
  * @constructor
  */
 const PageErrorMessage = ({ children, isError }) => {
-
     if (!isError) {
         return null;
     }
@@ -18,9 +17,7 @@ const PageErrorMessage = ({ children, isError }) => {
     return (
         <Alert color="danger">
             <p>Błąd komunikacji z API. Szczegóły: </p>
-            <p>
-                {children}
-            </p>
+            <p>{children}</p>
         </Alert>
     );
 };

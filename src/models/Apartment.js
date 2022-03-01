@@ -1,83 +1,80 @@
 import {
     BeforeDeserialized,
     JsonConverter,
-    JsonElementType,
     JsonObject,
     JsonProperty,
     JsonType,
-    JsonWriteonly,
-    OnDeserialized
-} from 'ta-json';
-import MomentSerializer from 'serializers/MomentSerializer';
-import { nanoid } from 'nanoid';
+    OnDeserialized,
+} from "ta-json";
+import MomentSerializer from "serializers/MomentSerializer";
+import { nanoid } from "nanoid";
 
 @JsonObject()
 class Apartment {
+    @JsonType(String)
+    @JsonProperty("CNT_NAME")
+    addressCountyName = "";
 
     @JsonType(String)
-    @JsonProperty('CNT_NAME')
-    addressCountyName = '';
+    @JsonProperty("CITY")
+    addressCity = "";
 
     @JsonType(String)
-    @JsonProperty('CITY')
-    addressCity = '';
+    @JsonProperty("APT_NUM")
+    addressFlatNumber = "";
 
     @JsonType(String)
-    @JsonProperty('APT_NUM')
-    addressFlatNumber = '';
+    @JsonProperty("ST_NUM")
+    addressStreetNumber = "";
 
     @JsonType(String)
-    @JsonProperty('ST_NUM')
-    addressStreetNumber = '' ;
+    @JsonProperty("ST_NAME")
+    addressStreetName = "";
 
     @JsonType(String)
-    @JsonProperty('ST_NAME')
-    addressStreetName = '' ;
+    @JsonProperty("ZIP")
+    addressZip = "";
 
-    @JsonType(String)
-    @JsonProperty('ZIP')
-    addressZip = '';
-
-    @JsonProperty('CreationTime')
+    @JsonProperty("CreationTime")
     @JsonConverter(new MomentSerializer())
     @JsonType(String)
     createdAt = undefined;
 
     @JsonType(String)
-    @JsonProperty('DESCRIPTION')
-    description = '';
+    @JsonProperty("DESCRIPTION")
+    description = "";
 
     @JsonType(String)
-    @JsonProperty('ApartmentId')
+    @JsonProperty("ApartmentId")
     id = undefined;
 
     @JsonType(Boolean)
-    @JsonProperty('IS_VERIFIED')
+    @JsonProperty("IS_VERIFIED")
     isVerified = false;
 
     @JsonType(String)
-    @JsonProperty('LANDLORD_EMAIL')
-    landlordEmail = '' ;
+    @JsonProperty("LANDLORD_EMAIL")
+    landlordEmail = "";
 
     @JsonType(String)
-    @JsonProperty('LANDLORD_NAME')
-    landlordName = '' ;
+    @JsonProperty("LANDLORD_NAME")
+    landlordName = "";
 
     @JsonType(String)
-    @JsonProperty('LANDLORD_PHONE')
-    landlordPhone = '' ;
+    @JsonProperty("LANDLORD_PHONE")
+    landlordPhone = "";
 
     @JsonType(Number)
-    @JsonProperty('PLACES_NUM')
+    @JsonProperty("PLACES_NUM")
     vacanciesTotal = 0;
 
     @JsonType(Number)
-    @JsonProperty('PLACES_BUSY')
+    @JsonProperty("PLACES_BUSY")
     vacanciesTaken = 0;
 
     @JsonType(String)
-    @JsonProperty('VOLUNTEER_NAME')
-    volunteerName = '' ;
+    @JsonProperty("VOLUNTEER_NAME")
+    volunteerName = "";
 
     constructor() {
         this.uuidRegenerate();
@@ -92,7 +89,6 @@ class Apartment {
     uuidRegenerate() {
         this.uuid = nanoid();
     }
-
 }
 
 export default Apartment;

@@ -1,7 +1,8 @@
-import React from 'react';
-import { Button, Badge, ButtonGroup } from 'reactstrap';
-import './ApartmentListItem.sass';
+import React from "react";
+import { Button, Badge, ButtonGroup } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
+import "./ApartmentListItem.sass";
 
 /**
  *
@@ -30,22 +31,18 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
                     <strong className="apartment__street-number">
                         {apartment.addressStreetNumber}
                     </strong>
-                    {
-                        apartment.addressFlatNumber &&
+                    {apartment.addressFlatNumber && (
                         <span className="apartment__flat-number">
                             / {apartment.addressFlatNumber}
                         </span>
-                    }
+                    )}
                 </p>
                 <p>
                     <span>
-                        {apartment.addressZip}
-                        {' '}
-                        {apartment.addressCity}
-                        {', '}
+                        {apartment.addressZip} {apartment.addressCity}
+                        {", "}
                         {apartment.addressCountyName}
                     </span>
-
                 </p>
             </address>
         );
@@ -61,16 +58,23 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
 
         if (vacanciesTaken >= vacanciesTotal) {
             return (
-                <Badge color="danger" className="apartment-availability">Brak</Badge>
+                <Badge color="danger" className="apartment-availability">
+                    Brak
+                </Badge>
             );
         }
 
-        const badgeColor = vacanciesTaken === 0 ? 'success' : 'info';
+        const badgeColor = vacanciesTaken === 0 ? "success" : "info";
 
         return (
             <Badge color={badgeColor} className="apartment-availability">
-                <span className="apartment-availability__count-allocated">{apartment.vacanciesTaken}</span>{' / '}
-                <span className="apartment-availability__count-max">{apartment.vacanciesTotal}</span>
+                <span className="apartment-availability__count-allocated">
+                    {apartment.vacanciesTaken}
+                </span>
+                {" / "}
+                <span className="apartment-availability__count-max">
+                    {apartment.vacanciesTotal}
+                </span>
             </Badge>
         );
     };
@@ -78,14 +82,17 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
     const getApartmentLandLord = (apartment) => {
         return (
             <>
-                <span className="font-weight-semibold">{apartment.landlordName}</span>
-                {
-                    apartment.landlordEmail &&
+                <span className="font-weight-semibold">
+                    {apartment.landlordName}
+                </span>
+                {apartment.landlordEmail && (
                     <>
                         <br />
-                        <a href={`mailto:${apartment.landlordEmail}`}>{apartment.landlordEmail}</a>
+                        <a href={`mailto:${apartment.landlordEmail}`}>
+                            {apartment.landlordEmail}
+                        </a>
                     </>
-                }
+                )}
                 <br />
                 <span>{apartment.landlordPhone}</span>
             </>
@@ -96,22 +103,27 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
     const apartmentAvailability = getApartmentAvailability(apartment);
     const apartmentLandlord = getApartmentLandLord(apartment);
 
+    const { t } = useTranslation();
+
     return (
         <tr key={id} onClick={handleEdit} className="pointer">
             <td>{apartmentLandlord}</td>
             <td>{apartmentAddress}</td>
             <td>
-                <p>
-                    {apartmentAvailability}
-                </p>
+                <p>{apartmentAvailability}</p>
             </td>
             <td>{apartment.volunteerName}</td>
             <td>{apartment.description}</td>
             <td>
                 <ButtonGroup>
-                    <Button color="danger" outline onClick={(event) => onRemove(id, event)}>Usuń</Button>
+                    <Button
+                        color="danger"
+                        outline
+                        onClick={(event) => onRemove(id, event)}
+                    >
+                        {t("apartments.delete")}
+                    </Button>
                 </ButtonGroup>
-
             </td>
         </tr>
     );
