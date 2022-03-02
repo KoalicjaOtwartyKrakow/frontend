@@ -11,7 +11,8 @@
                 "delete": "Delete",
                 "not_found": "No apartments found.",
                 "list": "List of all apartments",
-                "found": "Found"
+                "found": "Found",
+                "none": "None"
             }
         }
     },
@@ -27,7 +28,8 @@
                 "delete": "Usuń",
                 "not_found": "Nie znaleziono żadnych lokali w bazie.",
                 "list": "Lista wszystkich lokali",
-                "found": "Znaleziono"
+                "found": "Znaleziono",
+                "none": "Brak"
             }
         }
     },
@@ -42,7 +44,8 @@
                 "actions": "Дії",
                 "delete": "Видалити",
                 "list": "Список усіх квартир",
-                "found": "Знайдено"
+                "found": "Знайдено",
+                "none": "Недоступно"
             }
         }
     }
