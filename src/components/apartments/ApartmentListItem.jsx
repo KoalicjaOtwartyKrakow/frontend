@@ -13,6 +13,8 @@ import "./ApartmentListItem.sass";
  * @constructor
  */
 const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
+    const { t } = useTranslation();
+
     const { id } = apartment;
     const handleEdit = () => onEdit(id);
 
@@ -59,7 +61,7 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
         if (vacanciesTaken >= vacanciesTotal) {
             return (
                 <Badge color="danger" className="apartment-availability">
-                    Brak
+                    {t("apartments.none")}
                 </Badge>
             );
         }
@@ -102,8 +104,6 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
     const apartmentAddress = getApartmentAddressContent(apartment);
     const apartmentAvailability = getApartmentAvailability(apartment);
     const apartmentLandlord = getApartmentLandLord(apartment);
-
-    const { t } = useTranslation();
 
     return (
         <tr key={id} onClick={handleEdit} className="pointer">
