@@ -5,7 +5,7 @@ import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Apartment from "models/Apartment";
 
 class ApartmentFormFields {
-    static ADDRESS_COUNTY_NAME = "addressCountyName";
+    static ADDRESS_STATE_NAME = "addressStateName";
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_FLAT_NUMBER = "addressFlatNumber";
     static ADDRESS_STREET_NUMBER = "addressStreetNumber";
@@ -64,7 +64,7 @@ class ApartmentFormFields {
         const next = nextValues || {};
 
         const simpleTypeFields = [
-            [ApartmentFormFields.ADDRESS_COUNTY_NAME],
+            [ApartmentFormFields.ADDRESS_STATE_NAME],
             [ApartmentFormFields.ADDRESS_CITY],
             [ApartmentFormFields.ADDRESS_FLAT_NUMBER],
             [ApartmentFormFields.ADDRESS_STREET_NUMBER],

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { ApartmentFormFields } from "components/apartment/ApartmentFormFields";
 
 const apartmentFormInitialValuesPropTypes = PropTypes.shape({
-    [ApartmentFormFields.ADDRESS_COUNTY_NAME]: PropTypes.string,
+    [ApartmentFormFields.ADDRESS_STATE_NAME]: PropTypes.string,
     [ApartmentFormFields.ADDRESS_CITY]: PropTypes.string,
     [ApartmentFormFields.ADDRESS_FLAT_NUMBER]: PropTypes.string,
     [ApartmentFormFields.ADDRESS_STREET_NUMBER]: PropTypes.string,

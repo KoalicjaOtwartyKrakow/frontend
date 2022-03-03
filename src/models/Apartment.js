@@ -13,7 +13,7 @@ import { nanoid } from "nanoid";
 class Apartment {
     @JsonType(String)
     @JsonProperty("CNT_NAME")
-    addressCountyName = "";
+    addressStateName = "";
 
     @JsonType(String)
     @JsonProperty("CITY")

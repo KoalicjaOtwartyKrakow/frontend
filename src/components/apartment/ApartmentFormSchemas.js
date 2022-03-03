@@ -21,8 +21,8 @@ import { t } from "i18n/formValidation";
 //     );
 
 const commonSchema = Yup.object().shape({
-    [ApartmentFormFields.ADDRESS_COUNTY_NAME]: Yup.string().required(
-        t.countyName
+    [ApartmentFormFields.ADDRESS_STATE_NAME]: Yup.string().required(
+        t.stateName
     ),
     [ApartmentFormFields.ADDRESS_CITY]: Yup.string().required(t.cityName),
     [ApartmentFormFields.ADDRESS_FLAT_NUMBER]: Yup.string(),

@@ -43,7 +43,7 @@ const ApartmentListItem = ({ apartment, onEdit, onRemove }) => {
                     <span>
                         {apartment.addressZip} {apartment.addressCity}
                         {", "}
-                        {apartment.addressCountyName}
+                        {apartment.addressStateName}
                     </span>
                 </p>
             </address>
