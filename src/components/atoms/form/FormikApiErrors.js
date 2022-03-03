@@ -5,7 +5,7 @@ import {
     API_NON_FIELD_ERRORS,
     ApiErrors,
     ApiErrorTypes,
-} from "services/Api";
+} from "services/Api/constants";
 
 /**
  *

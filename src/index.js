@@ -7,13 +7,13 @@ import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import "./index.sass";
 import App from "App";
-import { Api } from "services/Api";
+import { baseUrl, timeout } from "services/Api/constants";
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
 // import reportWebVitals from './reportWebVitals';
 
-axios.defaults.baseURL = Api.baseUrl;
-axios.defaults.timeout = Api.timeout;
+axios.defaults.baseURL = baseUrl;
+axios.defaults.timeout = timeout;
 
 ReactDOM.render(
     <BrowserRouter basename={appConfig.routerBasename}>

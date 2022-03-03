@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, useLocation, matchPath } from "react-router-dom";
-import withApartments from "components/apartments/Apartments";
+import withApartments from "components/apartments/withApartments";
 import PageCard from "components/atoms/PageCard";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
