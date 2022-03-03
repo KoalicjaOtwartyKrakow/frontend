@@ -1,0 +1,62 @@
+{
+    "pl": {
+        "polishStates": {
+            "dolnoslaskie": "dolnośląskie",
+            "kujawsko_pomorskie": "kujawsko-pomorskie",
+            "lodzkie": "łódzkie",
+            "lubelskie": "lubelskie",
+            "lubuskie": "lubuskie",
+            "malopolskie": "małopolskie",
+            "mazowieckie": "mazowieckie",
+            "opolskie": "opolskie",
+            "podkarpackie": "podkarpackie",
+            "podlaskie": "podlaskie",
+            "pomorskie": "pomorskie",
+            "slaskie": "śląskie",
+            "swietokrzyskie": "świętokrzyskie",
+            "warminsko_mazurskie": "warmińsko-mazurskie",
+            "wielkopolskie": "wielkopolskie",
+            "zachodniopomorskie": "zachodniopomorskie"
+        }
+    },
+    "en": {
+        "polishStates": {
+            "dolnoslaskie": "dolnośląskie",
+            "kujawsko_pomorskie": "kujawsko-pomorskie",
+            "lodzkie": "łódzkie",
+            "lubelskie": "lubelskie",
+            "lubuskie": "lubuskie",
+            "malopolskie": "małopolskie",
+            "mazowieckie": "mazowieckie",
+            "opolskie": "opolskie",
+            "podkarpackie": "podkarpackie",
+            "podlaskie": "podlaskie",
+            "pomorskie": "pomorskie",
+            "slaskie": "śląskie",
+            "swietokrzyskie": "świętokrzyskie",
+            "warminsko_mazurskie": "warmińsko-mazurskie",
+            "wielkopolskie": "wielkopolskie",
+            "zachodniopomorskie": "zachodniopomorskie"
+        }
+    },
+    "ua": {
+        "polishStates": {
+            "dolnoslaskie": "dolnośląskie",
+            "kujawsko_pomorskie": "kujawsko-pomorskie",
+            "lodzkie": "łódzkie",
+            "lubelskie": "lubelskie",
+            "lubuskie": "lubuskie",
+            "malopolskie": "małopolskie",
+            "mazowieckie": "mazowieckie",
+            "opolskie": "opolskie",
+            "podkarpackie": "podkarpackie",
+            "podlaskie": "podlaskie",
+            "pomorskie": "pomorskie",
+            "slaskie": "śląskie",
+            "swietokrzyskie": "świętokrzyskie",
+            "warminsko_mazurskie": "warmińsko-mazurskie",
+            "wielkopolskie": "wielkopolskie",
+            "zachodniopomorskie": "zachodniopomorskie"
+        }
+    }
+}
