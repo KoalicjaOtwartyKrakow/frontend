@@ -2,50 +2,50 @@
     "en": {
         "translation": {
             "apartments": {
-                "host": "Host",
+                "actions": "Actions",
                 "address": "Address",
                 "availability": "Availability",
-                "volunteer": "Volunteer",
-                "description": "Description",
-                "actions": "Actions",
                 "delete": "Delete",
-                "not_found": "No apartments found.",
-                "list": "List of all apartments",
+                "description": "Description",
                 "found": "Found",
-                "none": "None"
+                "host": "Host",
+                "list": "List of all apartments",
+                "none": "None",
+                "not_found": "No apartments found.",
+                "volunteer": "Volunteer"
             }
         }
     },
     "pl": {
         "translation": {
             "apartments": {
-                "host": "Udostępniający",
+                "actions": "Akcje",
                 "address": "Adres",
                 "availability": "Dostępność",
-                "volunteer": "Wolontariusz",
-                "description": "Opis",
-                "actions": "Akcje",
                 "delete": "Usuń",
-                "not_found": "Nie znaleziono żadnych lokali w bazie.",
-                "list": "Lista wszystkich lokali",
+                "description": "Opis",
                 "found": "Znaleziono",
-                "none": "Brak"
+                "host": "Udostępniający",
+                "list": "Lista wszystkich lokali",
+                "none": "Brak",
+                "not_found": "Nie znaleziono żadnych lokali w bazie.",
+                "volunteer": "Wolontariusz"
             }
         }
     },
     "ua": {
         "translation": {
             "apartments": {
-                "host": "Ведучий",
+                "actions": "Дії",
                 "address": "Адреса",
                 "availability": "Доступність",
-                "volunteer": "Волонтер",
-                "description": "Опис",
-                "actions": "Дії",
                 "delete": "Видалити",
-                "list": "Список усіх квартир",
+                "description": "Опис",
                 "found": "Знайдено",
-                "none": "Недоступно"
+                "host": "Ведучий",
+                "list": "Список усіх квартир",
+                "none": "Недоступно",
+                "volunteer": "Волонтер"
             }
         }
     }

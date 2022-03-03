@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import ApartmentFormSectionHeader from "components/apartment/form/ApartmentFormSectionHeader";
 import ApartmentFormSection from "components/apartment/form/ApartmentFormSection";
+import ApartmentFormVolunteerName from "components/apartment/form/fields/ApartmentFormVolunteerName";
 
 const ApartmentFormAdditional = () => {
     const { t } = useTranslation();
@@ -14,7 +15,7 @@ const ApartmentFormAdditional = () => {
             </ApartmentFormSectionHeader>
             <Row>
                 <Col xs={12} md={6} lg={3} xl={2}>
-                    TODO
+                    <ApartmentFormVolunteerName />
                 </Col>
                 <Col xs={12} md={6} lg={3} xl={2}>
                     TODO

@@ -32,4 +32,21 @@ export async function fetchApartmentsDelayed(
     return fetchApartments(null, onSuccess, onFailure, onFinish);
 }
 
-export const updateApartments = (data, onSuccess, onFailure) => {};
+export const updateApartment = (
+    data,
+    before,
+    onSuccess,
+    onFailure,
+    onFinish
+) => {
+    console.log("[APARTMENTS] update fired");
+    before && before();
+
+    const url = utils.getPath(constants.Paths.APARTMENTS);
+
+    return axios
+        .put(url, data)
+        .then(onSuccess)
+        .catch(onFailure)
+        .finally(onFinish);
+};

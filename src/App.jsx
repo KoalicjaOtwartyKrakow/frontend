@@ -23,7 +23,7 @@ function App() {
                     />
                     <Route
                         path={Routes.APARTMENTS_EDIT}
-                        render={() => <ApartmentEdit />}
+                        component={ApartmentEdit}
                     />
                 </Switch>
             </Switch>
