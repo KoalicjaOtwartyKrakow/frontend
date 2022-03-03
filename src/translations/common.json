@@ -1,6 +1,9 @@
 {
     "en": {
         "translation": {
+            "form": {
+                "please_select": "Please select…"
+            },
             "common": {
                 "loading": "Loading data…"
             }
@@ -8,6 +11,9 @@
     },
     "pl": {
         "translation": {
+            "form": {
+                "please_select": "Proszę wybrać…"
+            },
             "common": {
                 "loading": "Trwa ładowanie danych…"
             }
@@ -15,6 +21,9 @@
     },
     "ua": {
         "translation": {
+            "form": {
+                "please_select": "Please select…"
+            },
             "common": {
                 "loading": "Завантаження даних…"
             }

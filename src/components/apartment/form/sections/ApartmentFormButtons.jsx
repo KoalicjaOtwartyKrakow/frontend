@@ -16,13 +16,8 @@ const APARTMENT_PROGRESS_REMOVE = "apartment-progress-remove";
  * @component
  */
 const ApartmentFormButtons = React.memo((props) => {
-    const {
-        isSubmitting,
-        onRemove,
-        apartmentInProgress,
-        submitDisabled,
-        submitLabel,
-    } = props;
+    const { isSubmitting, onRemove, inProgress, submitDisabled, submitLabel } =
+        props;
 
     const { t } = useTranslation();
     return (
@@ -46,8 +41,7 @@ const ApartmentFormButtons = React.memo((props) => {
                             label={t("apartment.delete")}
                             onClick={onRemove}
                             inProgress={
-                                apartmentInProgress ===
-                                APARTMENT_PROGRESS_REMOVE
+                                inProgress === APARTMENT_PROGRESS_REMOVE
                             }
                         />
                     )}
@@ -61,7 +55,7 @@ const ApartmentFormButtons = React.memo((props) => {
 ApartmentFormButtons.propTypes = {
     isSubmitting: PropTypes.bool.isRequired,
     onRemove: PropTypes.func,
-    apartmentInProgress: apartmentInProgressPropType,
+    inProgress: apartmentInProgressPropType,
     submitDisabled: PropTypes.bool.isRequired,
     submitLabel: PropTypes.string.isRequired,
 };
