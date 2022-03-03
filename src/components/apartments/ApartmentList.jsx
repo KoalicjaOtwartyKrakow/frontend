@@ -8,7 +8,7 @@ import { withToastManager } from "react-toast-notifications";
 import Routes from "constants/Routes";
 import ApartmentListItem from "components/apartments/ApartmentListItem";
 import { Toast } from "components/atoms/Toast";
-import withApartments from "components/apartments/Apartments";
+import withApartments from "components/apartments/withApartments";
 
 const ApartmentList = ({ apartments, history, toastManager }) => {
     const { t } = useTranslation();

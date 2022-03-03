@@ -1,6 +1,6 @@
 import React from "react";
 import ApartmentList from "components/apartments/ApartmentList";
-import withApartments from "components/apartments/Apartments";
+import withApartments from "components/apartments/withApartments";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
