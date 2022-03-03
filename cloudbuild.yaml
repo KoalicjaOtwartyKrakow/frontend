@@ -1,10 +1,10 @@
 steps:
-- name: node
+- name: node:14
   entrypoint: yarn
   args: ['install']
-- name: node
+- name: node:14
   entrypoint: yarn
   args: ['test']
-- name: node
+- name: node:14
   entrypoint: yarn
   args: ['run', 'build']
