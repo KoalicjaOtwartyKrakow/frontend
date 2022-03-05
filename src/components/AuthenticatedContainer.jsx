@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Jumbotron } from "reactstrap";
+import { Container } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import Routes from "constants/Routes";
 import LanguageSwitcher from "components/atoms/LanguageSwitcher";
+import Jumbotron from "components/atoms/compat/Jumbotron";
 
 const AuthenticatedContainer = ({ children, history }) => {
     const onJumbotronClick = () => {
@@ -27,7 +28,7 @@ const AuthenticatedContainer = ({ children, history }) => {
             <Container>
                 <LanguageSwitcher />
             </Container>
-            <Container>{children}</Container>
+            <Container fluid={false}>{children}</Container>
         </ToastProvider>
     );
 };

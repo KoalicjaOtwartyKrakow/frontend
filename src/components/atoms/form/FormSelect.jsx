@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomInput, FormFeedback } from "reactstrap";
+import { Input, FormFeedback } from "reactstrap";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
 const FormSelect = React.memo(({ field, form, items, children, ...props }) => {
@@ -8,14 +8,14 @@ const FormSelect = React.memo(({ field, form, items, children, ...props }) => {
 
     return (
         <React.Fragment>
-            <CustomInput {...field} {...props} type="select" invalid={invalid}>
+            <Input {...field} {...props} type="select" invalid={invalid}>
                 {children}
                 {items.map((item) => (
                     <option value={item.id} key={item.id}>
                         {item.name}
                     </option>
                 ))}
-            </CustomInput>
+            </Input>
             {invalid && <FormFeedback>{error}</FormFeedback>}
         </React.Fragment>
     );
