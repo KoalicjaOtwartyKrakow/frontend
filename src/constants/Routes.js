@@ -1,8 +1,9 @@
 class Routes {
     static ROOT = "/";
-    static APARTMENTS = "/apartments";
-    static APARTMENTS_CREATE = Routes.APARTMENTS + "/create";
-    static APARTMENTS_EDIT = Routes.APARTMENTS + "/:apartmentId/edit";
+    static ACCOMMODATIONS = "/accommodations";
+    static ACCOMMODATIONS_CREATE = Routes.ACCOMMODATIONS + "/create";
+    static ACCOMMODATION_EDIT =
+        Routes.ACCOMMODATIONS + "/:accommodationId/edit";
 }
 
 export default Routes;

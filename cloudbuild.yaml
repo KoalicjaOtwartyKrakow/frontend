@@ -6,9 +6,9 @@ steps:
   entrypoint: yarn
   args: ['run', 'build']
   env:
-  - 'REACT_APP_APARTMENTS_API_URL=https://europe-central2-salamlab-aparatments.cloudfunctions.net/'
-  - 'REACT_APP_APARTMENTS_ROUTER_BASENAME='
-  - 'REACT_APP_APARTMENTS_API_USE_MOCKS=false'
+  - 'REACT_APP_KOKON_API_URL=https://europe-central2-salamlab-aparatments.cloudfunctions.net/'
+  - 'REACT_APP_KOKON_ROUTER_BASENAME='
+  - 'REACT_APP_KOKON_API_USE_MOCKS=false'
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args:
   - gsutil

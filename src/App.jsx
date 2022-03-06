@@ -2,9 +2,9 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import AuthenticatedContainer from "components/AuthenticatedContainer";
-import ApartmentEdit from "components/pages/ApartmentEditPage";
+import AccommodationEdit from "components/pages/AccommodationEditPage";
 import Routes from "constants/Routes";
-import ApartmentsPage from "components/pages/ApartmentsPage";
+import AccommodationsPage from "components/pages/AccommodationsPage";
 
 function App() {
     return (
@@ -12,18 +12,18 @@ function App() {
             <Switch>
                 <Route
                     path={Routes.ROOT}
-                    render={() => <Redirect to={Routes.APARTMENTS} />}
+                    render={() => <Redirect to={Routes.ACCOMMODATIONS} />}
                     exact
                 />
                 <Switch>
                     <Route
-                        path={Routes.APARTMENTS}
+                        path={Routes.ACCOMMODATIONS}
                         exact
-                        render={() => <ApartmentsPage />}
+                        render={() => <AccommodationsPage />}
                     />
                     <Route
-                        path={Routes.APARTMENTS_EDIT}
-                        component={ApartmentEdit}
+                        path={Routes.ACCOMMODATION_EDIT}
+                        component={AccommodationEdit}
                     />
                 </Switch>
             </Switch>
