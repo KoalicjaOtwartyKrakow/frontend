@@ -12,16 +12,16 @@ const accommodationFormInitialValuesPropTypes = PropTypes.shape({
     [AccommodationFormFields.DESCRIPTION]: PropTypes.string,
     [AccommodationFormFields.ID]: PropTypes.number,
     [AccommodationFormFields.IS_VERIFIED]: PropTypes.bool,
-    [AccommodationFormFields.LANDLORD_EMAIL]: PropTypes.string,
-    [AccommodationFormFields.LANDLORD_NAME]: PropTypes.string,
-    [AccommodationFormFields.LANDLORD_PHONE]: PropTypes.string,
+    [AccommodationFormFields.HOST_EMAIL]: PropTypes.string,
+    [AccommodationFormFields.HOST_NAME]: PropTypes.string,
+    [AccommodationFormFields.HOST_PHONE]: PropTypes.string,
     [AccommodationFormFields.VACANCIES_TOTAL]: PropTypes.number,
     [AccommodationFormFields.VACANCIES_TAKEN]: PropTypes.number,
     [AccommodationFormFields.UUID]: PropTypes.string,
     [AccommodationFormFields.VOLUNTEER_NAME]: PropTypes.string,
 });
 
-const accommodationFormLandlordPropTypes = {};
+const accommodationFormHostPropTypes = {};
 
 const accommodationInProgressPropType = PropTypes.string.isRequired;
 
@@ -34,7 +34,7 @@ const accommodationFormPropTypesBase = {
 
 const accommodationFormPropTypes = {
     ...accommodationFormPropTypesBase,
-    onLandlordNameChange: PropTypes.func,
+    onHostNameChange: PropTypes.func,
 };
 
 const accommodationFormCardPropTypes = {
@@ -44,7 +44,7 @@ const accommodationFormCardPropTypes = {
 
 export {
     accommodationFormCardPropTypes,
-    accommodationFormLandlordPropTypes,
+    accommodationFormHostPropTypes,
     accommodationFormPropTypes,
     accommodationInProgressPropType,
 };

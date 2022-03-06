@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
-import { accommodationFormLandlordPropTypes } from "proptypes/AccommodationFormPropTypes";
-import AccommodationFormLandlordName from "components/accommodation/form/fields/AccommodationFormLandlordName";
-import AccommodationFormLandlordEmail from "components/accommodation/form/fields/AccommodationFormLandlordEmail";
-import AccommodationFormLandlordPhone from "components/accommodation/form/fields/AccommodationFormLandlordPhone";
+import { accommodationFormHostPropTypes } from "proptypes/AccommodationFormPropTypes";
+import AccommodationFormHostName from "components/accommodation/form/fields/AccommodationFormHostName";
+import AccommodationFormHostEmail from "components/accommodation/form/fields/AccommodationFormHostEmail";
+import AccommodationFormHostPhone from "components/accommodation/form/fields/AccommodationFormHostPhone";
 
-const AccommodationFormLandlord = () => {
+const AccommodationFormHost = () => {
     const { t } = useTranslation();
 
     return (
@@ -19,19 +19,19 @@ const AccommodationFormLandlord = () => {
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12} lg={6}>
-                    <AccommodationFormLandlordName />
+                    <AccommodationFormHostName />
                 </Col>
                 <Col xs={12} lg={3}>
-                    <AccommodationFormLandlordEmail />
+                    <AccommodationFormHostEmail />
                 </Col>
                 <Col xs={12} lg={3}>
-                    <AccommodationFormLandlordPhone />
+                    <AccommodationFormHostPhone />
                 </Col>
             </Row>
         </AccommodationFormSection>
     );
 };
 
-AccommodationFormLandlord.propTypes = accommodationFormLandlordPropTypes;
+AccommodationFormHost.propTypes = accommodationFormHostPropTypes;
 
-export default React.memo(AccommodationFormLandlord);
+export default React.memo(AccommodationFormHost);

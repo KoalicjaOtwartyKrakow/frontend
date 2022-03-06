@@ -81,22 +81,22 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
         );
     };
 
-    const getAccommodationLandLord = (accommodation) => {
+    const getAccommodationHost = (accommodation) => {
         return (
             <>
                 <span className="font-weight-semibold">
-                    {accommodation.landlordName}
+                    {accommodation.hostName}
                 </span>
-                {accommodation.landlordEmail && (
+                {accommodation.hostEmail && (
                     <>
                         <br />
-                        <a href={`mailto:${accommodation.landlordEmail}`}>
-                            {accommodation.landlordEmail}
+                        <a href={`mailto:${accommodation.hostEmail}`}>
+                            {accommodation.hostEmail}
                         </a>
                     </>
                 )}
                 <br />
-                <span>{accommodation.landlordPhone}</span>
+                <span>{accommodation.hostPhone}</span>
             </>
         );
     };
@@ -104,11 +104,11 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
     const accommodationAddress = getAccommodationAddressContent(accommodation);
     const accommodationAvailability =
         getAccommodationAvailability(accommodation);
-    const accommodationLandlord = getAccommodationLandLord(accommodation);
+    const accommodationHost = getAccommodationHost(accommodation);
 
     return (
         <tr key={id} onClick={handleEdit} className="pointer">
-            <td>{accommodationLandlord}</td>
+            <td>{accommodationHost}</td>
             <td>{accommodationAddress}</td>
             <td>
                 <p>{accommodationAvailability}</p>

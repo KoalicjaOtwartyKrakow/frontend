@@ -15,9 +15,9 @@ class AccommodationFormFields {
     static DESCRIPTION = "description";
     static ID = "id";
     static IS_VERIFIED = "isVerified";
-    static LANDLORD_EMAIL = "landlordEmail";
-    static LANDLORD_NAME = "landlordName";
-    static LANDLORD_PHONE = "landlordPhone";
+    static HOST_EMAIL = "hostEmail";
+    static HOST_NAME = "hostName";
+    static HOST_PHONE = "hostPhone";
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VACANCIES_TAKEN = "vacanciesTaken";
     static UUID = "uuid";
@@ -73,9 +73,9 @@ class AccommodationFormFields {
             [AccommodationFormFields.DESCRIPTION],
             [AccommodationFormFields.ID],
             [AccommodationFormFields.IS_VERIFIED],
-            [AccommodationFormFields.LANDLORD_EMAIL],
-            [AccommodationFormFields.LANDLORD_NAME],
-            [AccommodationFormFields.LANDLORD_PHONE],
+            [AccommodationFormFields.HOST_EMAIL],
+            [AccommodationFormFields.HOST_NAME],
+            [AccommodationFormFields.HOST_PHONE],
             [AccommodationFormFields.VACANCIES_TOTAL],
             [AccommodationFormFields.VACANCIES_TAKEN],
             [AccommodationFormFields.UUID],
