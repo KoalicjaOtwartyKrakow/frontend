@@ -22,6 +22,7 @@ import { updateApartment } from "services/Api";
 const EDITING = 0;
 const SENDING = 1;
 const SENT = 2;
+
 class ApartmentEditPage extends React.Component {
     constructor(props) {
         super(props);
@@ -143,8 +144,9 @@ class ApartmentEditPage extends React.Component {
         );
     }
 }
+
 export default compose(
     withApartments,
     withToastManager,
-    withTranslation()
+    withTranslation(),
 )(ApartmentEditPage);
