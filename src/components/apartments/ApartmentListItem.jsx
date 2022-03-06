@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Badge, ButtonGroup } from "reactstrap";
+import { Badge, Button, ButtonGroup } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
 import "./ApartmentListItem.sass";

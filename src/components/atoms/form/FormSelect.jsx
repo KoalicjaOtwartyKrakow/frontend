@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, FormFeedback } from "reactstrap";
+import { FormFeedback, Input } from "reactstrap";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
 const FormSelect = React.memo(({ field, form, items, children, ...props }) => {

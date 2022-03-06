@@ -3,7 +3,7 @@ import get from "lodash-es/get";
 import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 
-import { ApiErrorTypes, ApiErrorStatus, ApiClientStatus } from "./constants";
+import { ApiClientStatus, ApiErrorStatus, ApiErrorTypes } from "./constants";
 
 const _getStatus = (error) => {
     /**
