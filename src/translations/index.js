@@ -1,8 +1,8 @@
 import { merge } from "lodash";
 
-import apartments from "./apartments";
-import apartment from "./apartment";
+import accommodations from "./accommodations";
+import accommodation from "./accommodation";
 import header from "./header";
 import common from "./common";
 
-export default merge(apartments, apartment, header, common);
+export default merge(accommodations, accommodation, header, common);

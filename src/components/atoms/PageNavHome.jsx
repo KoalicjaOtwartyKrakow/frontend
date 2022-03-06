@@ -4,16 +4,21 @@ import Routes from "constants/Routes";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const PageNavigationApartmentList = () => {
+const PageNavigationAccommodationList = () => {
     const { t } = useTranslation();
 
     return (
         <p className="text-center mb-0">
-            <Button color="secondary" outline tag={Link} to={Routes.APARTMENTS}>
-                {t("apartment.back_to_list")}
+            <Button
+                color="secondary"
+                outline
+                tag={Link}
+                to={Routes.ACCOMMODATIONS}
+            >
+                {t("accommodation.back_to_list")}
             </Button>
         </p>
     );
 };
 
-export default PageNavigationApartmentList;
+export default PageNavigationAccommodationList;

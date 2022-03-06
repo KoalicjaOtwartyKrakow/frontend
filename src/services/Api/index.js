@@ -1,48 +1,48 @@
 import axios from "axios";
 
-import mockApartments from "models/mocks/apartments";
+import mockAccommodations from "models/mocks/accommodations";
 import { sleep } from "shared/utils";
 import * as constants from "./constants";
 import * as utils from "./utils";
 
-export const fetchApartments = (before, onSuccess, onFailure, onFinish) => {
-    console.log("[APARTMENTS] Fetch in progress");
+export const fetchAccommodations = (before, onSuccess, onFailure, onFinish) => {
+    console.log("[ACCOMMODATIONS] Fetch in progress");
     before && before();
 
-    const url = utils.getPath(constants.Paths.APARTMENTS);
+    const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
     const promise = constants.useMocks
-        ? Promise.resolve({ data: mockApartments })
+        ? Promise.resolve({ data: mockAccommodations })
         : axios.get(url);
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
 
-export async function fetchApartmentsDelayed(
+export async function fetchAccommodationsDelayed(
     before,
     onSuccess,
     onFailure,
     onFinish
 ) {
-    console.log("[APARTMENTS] Fetch (delayed) fired");
+    console.log("[ACCOMMODATIONS] Fetch (delayed) fired");
     before && before();
 
-    await sleep(constants.APARTMENTS_FETCH_DELAY);
+    await sleep(constants.ACCOMMODATIONS_FETCH_DELAY);
 
-    return fetchApartments(null, onSuccess, onFailure, onFinish);
+    return fetchAccommodations(null, onSuccess, onFailure, onFinish);
 }
 
-export const updateApartment = (
+export const updateAccommodation = (
     data,
     before,
     onSuccess,
     onFailure,
     onFinish
 ) => {
-    console.log("[APARTMENTS] update fired");
+    console.log("[ACCOMMODATIONS] update fired");
     before && before();
 
-    const url = utils.getPath(constants.Paths.APARTMENTS);
+    const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
     return axios
         .put(url, data)

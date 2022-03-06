@@ -1,6 +1,6 @@
 import camelCase from "lodash-es/camelCase";
 
-export const APARTMENTS_FETCH_DELAY = 1000;
+export const ACCOMMODATIONS_FETCH_DELAY = 1000;
 
 export const API_ERRORS = "apiErrors";
 export const API_NON_FIELD_ERRORS = camelCase("non_field_errors");
@@ -25,13 +25,12 @@ export const ApiGenericStatus = Object.freeze({
     UNKNOWN: "unknown",
 });
 
-export const baseUrl = process.env.REACT_APP_APARTMENTS_API_URL;
-export const timeout = Number(process.env.REACT_APP_APARTMENTS_API_TIMEOUT);
-export const useMocks =
-    process.env.REACT_APP_APARTMENTS_API_USE_MOCKS === "true";
+export const baseUrl = process.env.REACT_APP_KOKON_API_URL;
+export const timeout = Number(process.env.REACT_APP_KOKON_API_TIMEOUT);
+export const useMocks = process.env.REACT_APP_KOKON_API_USE_MOCKS === "true";
 
 export class Paths {
-    static APARTMENTS = "/apartments";
+    static ACCOMMODATIONS = "/apartments";
 }
 
 export class ApiErrorStatus {
