@@ -45,7 +45,7 @@ class Accommodation {
     description = "";
 
     @JsonType(String)
-    @JsonProperty("AccommodationId")
+    @JsonProperty("ApartmentId")
     id = undefined;
 
     @JsonType(Boolean)
@@ -54,15 +54,15 @@ class Accommodation {
 
     @JsonType(String)
     @JsonProperty("LANDLORD_EMAIL")
-    landlordEmail = "";
+    hostEmail = "";
 
     @JsonType(String)
     @JsonProperty("LANDLORD_NAME")
-    landlordName = "";
+    hostName = "";
 
     @JsonType(String)
     @JsonProperty("LANDLORD_PHONE")
-    landlordPhone = "";
+    hostPhone = "";
 
     @JsonType(Number)
     @JsonProperty("PLACES_NUM")

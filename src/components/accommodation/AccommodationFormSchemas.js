@@ -35,11 +35,9 @@ const commonSchema = Yup.object().shape({
     [AccommodationFormFields.ADDRESS_ZIP]: Yup.string(),
     [AccommodationFormFields.DESCRIPTION]: Yup.string(),
     [AccommodationFormFields.IS_VERIFIED]: Yup.boolean(),
-    [AccommodationFormFields.LANDLORD_EMAIL]: Yup.string().required(t.email),
-    [AccommodationFormFields.LANDLORD_NAME]: Yup.string().required(t.fullName),
-    [AccommodationFormFields.LANDLORD_PHONE]: Yup.string().required(
-        t.phoneNumber
-    ),
+    [AccommodationFormFields.HOST_EMAIL]: Yup.string().required(t.email),
+    [AccommodationFormFields.HOST_NAME]: Yup.string().required(t.fullName),
+    [AccommodationFormFields.HOST_PHONE]: Yup.string().required(t.phoneNumber),
     [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
         .integer(t.integer)
         .moreThan(0, t.positiveNumber)

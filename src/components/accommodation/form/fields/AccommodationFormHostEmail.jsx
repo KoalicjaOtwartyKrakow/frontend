@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 
-const AccommodationFormLandlordEmail = (props) => {
-    const fieldId = AccommodationFormFields.LANDLORD_EMAIL;
+const AccommodationFormHostEmail = (props) => {
+    const fieldId = AccommodationFormFields.HOST_EMAIL;
 
     const { t } = useTranslation();
     return (
@@ -26,6 +26,6 @@ const AccommodationFormLandlordEmail = (props) => {
     );
 };
 
-AccommodationFormLandlordEmail.propTypes = {};
+AccommodationFormHostEmail.propTypes = {};
 
-export default AccommodationFormLandlordEmail;
+export default AccommodationFormHostEmail;

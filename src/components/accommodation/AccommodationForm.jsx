@@ -11,7 +11,7 @@ import {
     accommodationFormUpdateSchema,
 } from "components/accommodation/AccommodationFormSchemas";
 import AccommodationFormAddress from "components/accommodation/form/sections/AccommodationFormAddress";
-import AccommodationFormLandlord from "components/accommodation/form/sections/AccommodationFormLandlord";
+import AccommodationFormHost from "components/accommodation/form/sections/AccommodationFormHost";
 import AccommodationFormAdditional from "components/accommodation/form/sections/AccommodationFormAdditional";
 import AccommodationFormButtons from "components/accommodation/form/sections/AccommodationFormButtons";
 import { Col, Row } from "reactstrap";
@@ -34,7 +34,7 @@ const AccommodationForm = (props) => {
 
     // const onChange = (currentState) => {
     //   const { name } = currentState.values;
-    //   props.onLandlordNameChange(name);
+    //   props.onHostNameChange(name);
     // };
 
     /**
@@ -93,7 +93,7 @@ const AccommodationForm = (props) => {
                         </Col>
                     </Row>
 
-                    <AccommodationFormLandlord />
+                    <AccommodationFormHost />
                     <AccommodationFormAdditional />
                     <AccommodationFormButtons
                         isSubmitting={isSubmitting}
