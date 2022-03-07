@@ -1,9 +1,17 @@
 import { merge } from "lodash";
 
-import accommodations from "./accommodations";
-import accommodation from "./accommodation";
-import header from "./header";
-import common from "./common";
-import homepage from "./pages/homepage";
+import accommodations from "translations/accommodations";
+import accommodation from "translations/accommodation";
+import header from "translations/header";
+import navbar from "translations/components/navbar.json";
+import common from "translations/common";
+import homepage from "translations/pages/homepage";
 
-export default merge(accommodations, accommodation, header, common, homepage);
+export default merge(
+    accommodations,
+    accommodation,
+    common,
+    header,
+    homepage,
+    navbar
+);

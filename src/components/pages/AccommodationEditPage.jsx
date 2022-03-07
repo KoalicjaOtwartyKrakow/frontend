@@ -12,7 +12,7 @@ import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import PageNavigationAccommodationList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
-import Routes from "constants/Routes";
+import { Routes } from "constants/Routes";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import Accommodation from "models/Accommodation";
 import { classToPlain } from "serializers/Serializer";

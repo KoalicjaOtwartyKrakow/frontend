@@ -1,3 +1,11 @@
+import {
+    faBed,
+    faExclamation,
+    faHandHoldingHeart,
+    faHome,
+    faUserFriends,
+} from "@fortawesome/free-solid-svg-icons";
+
 class Routes {
     static ROOT = "/";
     static ACCOMMODATIONS = "/accommodations";
@@ -14,4 +22,24 @@ class Routes {
     static GUEST_EDIT = Routes.GUESTS + "/:guestId/edit";
 }
 
-export default Routes;
+class RoutesIcons {
+    static [Routes.ROOT] = faHome;
+    static [Routes.ACCOMMODATIONS] = faBed;
+    static [Routes.GUESTS] = faUserFriends;
+    static [Routes.HOSTS] = faHandHoldingHeart;
+}
+
+const getRouteIcon = (route) => {
+    const icon = RoutesIcons[route];
+
+    if (!icon) {
+        console.warn(
+            `[Routes.getRouteIcon] Missing icon for router ${route}, please add it in RoutesIcons`
+        );
+        return faExclamation;
+    }
+
+    return icon;
+};
+
+export { Routes, getRouteIcon };

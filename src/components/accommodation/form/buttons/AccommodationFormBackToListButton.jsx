@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import Routes from "constants/Routes";
+import { Routes } from "constants/Routes";
 import { Button } from "reactstrap";
 import { compose } from "redux";
 import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";

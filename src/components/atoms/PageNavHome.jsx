@@ -1,6 +1,6 @@
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import Routes from "constants/Routes";
+import { Routes } from "constants/Routes";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
