@@ -1,10 +1,10 @@
 import React from "react";
 
 import Accommodation from "models/Accommodation";
-import { fetchAccommodationsDelayed } from "services/Api";
 import { plainToClass } from "serializers/Serializer";
+import { fetchAccommodations } from "services/Api";
 
-const withAccommodation = (WrappedComponent) => {
+const withAccommodations = (WrappedComponent) => {
     return class extends React.PureComponent {
         constructor(props) {
             super(props);
@@ -66,8 +66,8 @@ const withAccommodation = (WrappedComponent) => {
             this.setState({ accommodationsInProgress });
         };
 
-        fetchAccommodations = () =>
-            fetchAccommodationsDelayed(
+        fetchAccommodations = async () =>
+            await fetchAccommodations(
                 this.fetchAccommodationsBefore,
                 this.fetchAccommodationsSuccess,
                 this.fetchAccommodationsFailure,
@@ -86,4 +86,4 @@ const withAccommodation = (WrappedComponent) => {
     };
 };
 
-export default withAccommodation;
+export default withAccommodations;

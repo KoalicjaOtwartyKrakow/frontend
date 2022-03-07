@@ -30,7 +30,7 @@ const HomePageCard = ({
         <Card
             color={color}
             inverse
-            className="mt-4 pointer"
+            className="mb-3 pointer"
             onClick={() => onNavigate(navigationRoute)}
         >
             <CardHeader>

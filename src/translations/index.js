@@ -1,4 +1,4 @@
-import { merge } from "lodash";
+import merge from "lodash-es/merge";
 
 import accommodations from "translations/accommodations";
 import accommodation from "translations/accommodation";

@@ -1,6 +1,6 @@
 import React from "react";
 import AccommodationList from "components/accommodations/AccommodationList";
-import withAccommodation from "components/accommodations/withAccommodation";
+import withAccommodations from "components/accommodations/withAccommodations";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
@@ -43,4 +43,4 @@ const AccommodationsPage = ({
     );
 };
 
-export default withAccommodation(AccommodationsPage);
+export default withAccommodations(AccommodationsPage);
