@@ -5,7 +5,7 @@ import { Table } from "reactstrap";
 import compose from "just-compose";
 import { withToastManager } from "react-toast-notifications";
 
-import Routes from "constants/Routes";
+import { Routes } from "constants/Routes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
 import { Toast } from "components/atoms/Toast";
 import withAccommodation from "components/accommodations/withAccommodation";

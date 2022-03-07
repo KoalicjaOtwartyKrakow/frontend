@@ -1,14 +1,9 @@
 import React from "react";
-import {
-    faBed,
-    faHandHoldingHeart,
-    faHome,
-} from "@fortawesome/free-solid-svg-icons";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
 import PageCard from "components/atoms/PageCard";
-import Routes from "constants/Routes";
+import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
 const HomePage = ({}) => {
@@ -19,7 +14,7 @@ const HomePage = ({}) => {
             body: t("homepage.accommodations.description"),
             color: "accommodations",
             header: t("homepage.accommodations.header"),
-            icon: faHome,
+            icon: getRouteIcon(Routes.ACCOMMODATIONS),
             navigationButtonLabel: t(
                 "homepage.accommodations.navigateButtonLabel"
             ),
@@ -29,7 +24,7 @@ const HomePage = ({}) => {
             body: t("homepage.guests.description"),
             color: "guests",
             header: t("homepage.guests.header"),
-            icon: faBed,
+            icon: getRouteIcon(Routes.GUESTS),
             navigationButtonLabel: t("homepage.guests.navigateButtonLabel"),
             navigationRoute: Routes.GUESTS,
         },
@@ -37,7 +32,7 @@ const HomePage = ({}) => {
             body: t("homepage.hosts.description"),
             color: "hosts",
             header: t("homepage.hosts.header"),
-            icon: faHandHoldingHeart,
+            icon: getRouteIcon(Routes.HOSTS),
             navigationButtonLabel: t("homepage.hosts.navigateButtonLabel"),
             navigationRoute: Routes.HOSTS,
         },

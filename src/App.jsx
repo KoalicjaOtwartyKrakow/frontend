@@ -1,9 +1,9 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import AuthenticatedContainer from "components/AuthenticatedContainer";
 import AccommodationEdit from "components/pages/AccommodationEditPage";
-import Routes from "constants/Routes";
+import { Routes } from "constants/Routes";
 import AccommodationsPage from "components/pages/AccommodationsPage";
 import HomePage from "components/pages/HomePage";
 

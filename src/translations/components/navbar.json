@@ -1,0 +1,41 @@
+{
+    "pl": {
+        "translation": {
+            "navbar": {
+                "accommodations": "Zakwaterowanie",
+                "account": "Account",
+                "dashboard": "Pulpit",
+                "hosts": "Udostępniający",
+                "guests": "Goście",
+                "settings": "Ustawienia…",
+                "signOut": "Sign out"
+            }
+        }
+    },
+    "en": {
+        "translation": {
+            "navbar": {
+                "accommodations": "Accommodation",
+                "account": "Account",
+                "dashboard": "Dashboard",
+                "hosts": "Hosts",
+                "guests": "Guests",
+                "settings": "Settings…",
+                "signOut": "Sign out"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "navbar": {
+                "accommodations": "translation required",
+                "account": "translation required",
+                "dashboard": "translation required",
+                "hosts": "translation required",
+                "guests": "translation required",
+                "settings": "translation required",
+                "signOut": "translation required"
+            }
+        }
+    }
+}
