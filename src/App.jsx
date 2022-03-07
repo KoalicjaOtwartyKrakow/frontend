@@ -5,16 +5,13 @@ import AuthenticatedContainer from "components/AuthenticatedContainer";
 import AccommodationEdit from "components/pages/AccommodationEditPage";
 import Routes from "constants/Routes";
 import AccommodationsPage from "components/pages/AccommodationsPage";
+import HomePage from "components/pages/HomePage";
 
 function App() {
     return (
         <AuthenticatedContainer>
             <Switch>
-                <Route
-                    path={Routes.ROOT}
-                    render={() => <Redirect to={Routes.ACCOMMODATIONS} />}
-                    exact
-                />
+                <Route path={Routes.ROOT} render={() => <HomePage />} exact />
                 <Switch>
                     <Route
                         path={Routes.ACCOMMODATIONS}

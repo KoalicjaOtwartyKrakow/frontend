@@ -1,0 +1,33 @@
+@import "src/styles/variables-pre-custom"
+@import "src/styles/variables-post-custom"
+@import "~bootstrap/scss/mixins/gradients"
+@import "~bootstrap/scss/mixins/box-shadow"
+@import "~bootstrap/scss/mixins/buttons"
+
+$bg-color-accommodations: $blue-300
+$bg-color-accommodations-primary: $blue-500
+
+$bg-color-guests: #ffc41b
+$bg-color-guests-primary: shade-color($bg-color-guests, 10%)
+
+$bg-color-hosts: $teal-500
+$bg-color-hosts-primary: $teal-300
+
+
+.bg-accommodations
+  background-color: $bg-color-accommodations
+
+.btn-accommodations
+  @include button-variant($bg-color-accommodations-primary, $bg-color-accommodations-primary, $color-contrast-light)
+
+.bg-guests
+  background-color: $bg-color-guests
+
+.btn-guests
+  @include button-variant($bg-color-guests-primary, $bg-color-guests-primary, $color-contrast-light)
+
+.bg-hosts
+  background-color: $bg-color-hosts
+
+.btn-hosts
+  @include button-variant($bg-color-hosts-primary, $bg-color-hosts-primary, $color-contrast-light)

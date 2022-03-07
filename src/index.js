@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "core-js/proposals/reflect-metadata";
 import "styles/bootstrap-pre-custom.sass";
 import "styles/bootstrap-post-custom.sass";
+import "styles/kokon-theme.sass";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import "./index.sass";
@@ -19,7 +20,7 @@ ReactDOM.render(
     <BrowserRouter basename={appConfig.routerBasename}>
         <App />
     </BrowserRouter>,
-    document.getElementById("root"),
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
