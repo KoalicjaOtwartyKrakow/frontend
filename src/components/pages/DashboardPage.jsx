@@ -6,7 +6,7 @@ import PageCard from "components/atoms/PageCard";
 import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
-const HomePage = ({}) => {
+const DashboardPage = ({}) => {
     const { t } = useTranslation();
 
     const homePageCards = [
@@ -43,7 +43,7 @@ const HomePage = ({}) => {
     return (
         <PageCard header={pageHeader}>
             <Row>
-                <Col lg={{ size: 10, offset: 1 }}>
+                <Col lg={{ size: 10, offset: 1 }} xl={{ size: 8, offset: 2 }}>
                     {homePageCards.map((item, index) => (
                         <HomePageCard {...item} key={index}>
                             {item.body}
@@ -55,4 +55,4 @@ const HomePage = ({}) => {
     );
 };
 
-export default HomePage;
+export default DashboardPage;

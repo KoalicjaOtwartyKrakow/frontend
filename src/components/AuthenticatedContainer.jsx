@@ -6,7 +6,6 @@ import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
 
 import { Routes } from "constants/Routes";
-import LanguageSwitcher from "components/atoms/LanguageSwitcher";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
@@ -29,9 +28,11 @@ const AuthenticatedContainer = ({ children, history }) => {
                 </Container>
             </Jumbotron>
             <Container>
-                <LanguageSwitcher />
+                <div className="mt-3 mb-3 text-muted">
+                    Dashboard > Breadcrumbs here...
+                </div>
+                {children}
             </Container>
-            <Container fluid={false}>{children}</Container>
         </ToastProvider>
     );
 };
