@@ -18,6 +18,8 @@ class AccommodationFormFields {
     static HOST_EMAIL = "hostEmail";
     static HOST_NAME = "hostName";
     static HOST_PHONE = "hostPhone";
+    static PETS_PRESENT = "petsPresent";
+    static PETS_ALLOWED = "petsAllowed";
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VACANCIES_TAKEN = "vacanciesTaken";
     static UUID = "uuid";

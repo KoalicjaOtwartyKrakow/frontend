@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
 import AccommodationFormVolunteerName from "components/accommodation/form/fields/AccommodationFormVolunteerName";
+import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
 
 const AccommodationFormAdditional = () => {
     const { t } = useTranslation();
@@ -14,17 +15,11 @@ const AccommodationFormAdditional = () => {
                 {t("accommodation.additional_info")}
             </AccommodationFormSectionHeader>
             <Row>
-                <Col xs={12} md={6} lg={3} xl={2}>
+                <Col xs={12} md={6}>
                     <AccommodationFormVolunteerName />
                 </Col>
-                <Col xs={12} md={6} lg={3} xl={2}>
-                    TODO
-                </Col>
-                <Col xs={12} md={6} lg={3} xl={4}>
-                    TODO
-                </Col>
-                <Col xs={12} md={6} lg={3} xl={4}>
-                    TODO
+                <Col xs={12} md={6}>
+                    <AccommodationFormPets />
                 </Col>
             </Row>
         </AccommodationFormSection>

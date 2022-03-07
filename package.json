@@ -51,7 +51,7 @@
         "camelcase-keys": "^6.2.2",
         "classnames": "^2.2.6",
         "core-js": "^3.6.5",
-        "formik": "^2.1.4",
+        "formik": "2.2.9",
         "formik-yup": "0.0.5",
         "http-status-codes": "^1.4.0",
         "i18next": "^21.6.12",
