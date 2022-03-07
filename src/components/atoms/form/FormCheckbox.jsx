@@ -1,22 +1,29 @@
 import React from "react";
-import { CustomInput } from "reactstrap";
+import { FormGroup, Input, Label } from "reactstrap";
+import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
-const FormCheckbox = React.memo(
-    ({ field, form: { touched, errors, values, setFieldValue }, ...props }) => {
-        return (
-            <CustomInput
-                {...props}
-                type="checkbox"
-                name={field.name}
-                invalid={!!(touched[field.name] && errors[field.name])}
-                checked={field.value}
-                value={field.value}
-                onChange={(event, value) =>
-                    setFieldValue(field.name, !field.value)
-                }
-            ></CustomInput>
-        );
-    }
-);
+const FormCheckbox = ({
+    children,
+    className,
+    label,
+    id,
+    inline,
+    field,
+    form,
+    ...props
+}) => {
+    const error = FormikApiErrors.getError(field.name, form);
+    const invalid = !!error;
+
+    return (
+        <FormGroup check className={className} inline={inline}>
+            <Input {...props} id={id} invalid={invalid} {...field} />
+            <Label check for={id}>
+                {label}
+            </Label>
+            {children}
+        </FormGroup>
+    );
+};
 
 export default FormCheckbox;

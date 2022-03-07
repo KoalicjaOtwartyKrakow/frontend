@@ -79,6 +79,10 @@ const AccommodationForm = (props) => {
 
     const { t } = useTranslation();
 
+    const submitLabel = isCreateMode
+        ? t("accommodation.add_new")
+        : t("accommodation.save_changes");
+
     return (
         <Formik {...formikProps}>
             {({ isValid, isSubmitting }) => (
@@ -98,11 +102,7 @@ const AccommodationForm = (props) => {
                     <AccommodationFormButtons
                         isSubmitting={isSubmitting}
                         submitDisabled={submitDisabled(isValid, isSubmitting)}
-                        submitLabel={
-                            isCreateMode
-                                ? t("accommodation.add_new")
-                                : t("accommodation.save_changes")
-                        }
+                        submitLabel={submitLabel}
                         onRemove={onRemove}
                         inProgress={accommodationInProgress}
                     />

@@ -18,6 +18,11 @@
                 "host_data": "Host data",
                 "no": "House no.",
                 "not_found": "Accommodation not found.",
+                "pets": {
+                    "allowed": "Allowed",
+                    "label": "Pets presence and approval",
+                    "present": "Present"
+                },
                 "phone": "Phone no.",
                 "reset": "Reset",
                 "save_changes": "Save changes",
