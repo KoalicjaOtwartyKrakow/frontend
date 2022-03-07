@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import navbarItems from "components/navbar/constants/NavbarItems";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "components/atoms/LanguageSwitcher";
 
 const AuthenticatedNavbar = ({ onLogout }) => {
     const { t } = useTranslation();
@@ -34,14 +35,12 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                 <Nav className="me-auto" navbar>
                     {navbarItems.map((navbarItem) => (
                         <AuthenticatedNavbarItem
-                            exact={navbarItem.exact}
-                            icon={navbarItem.icon}
+                            {...navbarItem}
                             key={navbarItem.path}
-                            name={navbarItem.name}
-                            path={navbarItem.path}
                         />
                     ))}
                 </Nav>
+                <LanguageSwitcher className="me-3" />
                 <Nav navbar>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
@@ -55,7 +54,7 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                             </DropdownItem>
                             <DropdownItem divider />
                             <DropdownItem onClick={onLogout}>
-                                Logout
+                                {t("navbar.signOut")}
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
