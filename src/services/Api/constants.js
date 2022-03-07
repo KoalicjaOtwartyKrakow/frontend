@@ -1,7 +1,5 @@
 import camelCase from "lodash-es/camelCase";
 
-export const ACCOMMODATIONS_FETCH_DELAY = 1000;
-
 export const API_ERRORS = "apiErrors";
 export const API_NON_FIELD_ERRORS = camelCase("non_field_errors");
 
@@ -31,6 +29,7 @@ export const useMocks = process.env.REACT_APP_KOKON_API_USE_MOCKS === "true";
 
 export class Paths {
     static ACCOMMODATIONS = "/apartments";
+    static GUESTS = "/guests";
 }
 
 export class ApiErrorStatus {

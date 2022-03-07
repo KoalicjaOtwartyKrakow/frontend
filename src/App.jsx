@@ -6,6 +6,7 @@ import AccommodationEdit from "components/pages/AccommodationEditPage";
 import { Routes } from "constants/Routes";
 import AccommodationsPage from "components/pages/AccommodationsPage";
 import DashboardPage from "components/pages/DashboardPage";
+import GuestsPage from "components/pages/GuestsPage";
 
 function App() {
     return (
@@ -25,6 +26,13 @@ function App() {
                     <Route
                         path={Routes.ACCOMMODATION_EDIT}
                         component={AccommodationEdit}
+                    />
+                </Switch>
+                <Switch>
+                    <Route
+                        path={Routes.GUESTS}
+                        exact
+                        render={() => <GuestsPage />}
                     />
                 </Switch>
             </Switch>

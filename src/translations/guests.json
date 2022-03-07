@@ -1,0 +1,26 @@
+{
+    "en": {
+        "translation": {
+            "guests": {
+                "list": "List of all guests",
+                "not_found": "No guests found."
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "guests": {
+                "list": "List of all guests",
+                "not_found": "No guests found."
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "guests": {
+                "list": "List of all guests",
+                "not_found": "No guests found."
+            }
+        }
+    }
+}

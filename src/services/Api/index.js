@@ -4,10 +4,18 @@ import mockAccommodations from "models/mocks/accommodations";
 import { sleep } from "shared/utils";
 import * as constants from "./constants";
 import * as utils from "./utils";
+import { DEBUG_API_FETCH_DELAY } from "shared/debug";
 
-export const fetchAccommodations = (before, onSuccess, onFailure, onFinish) => {
+export const fetchAccommodations = async (
+    before,
+    onSuccess,
+    onFailure,
+    onFinish
+) => {
     console.log("[ACCOMMODATIONS] Fetch in progress");
     before && before();
+
+    await sleep(DEBUG_API_FETCH_DELAY);
 
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
@@ -17,20 +25,6 @@ export const fetchAccommodations = (before, onSuccess, onFailure, onFinish) => {
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
-
-export async function fetchAccommodationsDelayed(
-    before,
-    onSuccess,
-    onFailure,
-    onFinish
-) {
-    console.log("[ACCOMMODATIONS] Fetch (delayed) fired");
-    before && before();
-
-    await sleep(constants.ACCOMMODATIONS_FETCH_DELAY);
-
-    return fetchAccommodations(null, onSuccess, onFailure, onFinish);
-}
 
 export const updateAccommodation = (
     data,
@@ -49,4 +43,19 @@ export const updateAccommodation = (
         .then(onSuccess)
         .catch(onFailure)
         .finally(onFinish);
+};
+
+export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
+    console.log("[GUESTS] Fetch in progress");
+    before && before();
+
+    await sleep(DEBUG_API_FETCH_DELAY);
+
+    const url = utils.getPath(constants.Paths.GUESTS);
+
+    const promise = constants.useMocks
+        ? Promise.resolve({ data: [] })
+        : axios.get(url);
+
+    return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };

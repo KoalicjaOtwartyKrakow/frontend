@@ -1,6 +1,6 @@
 import React from "react";
 import { matchPath, Redirect } from "react-router-dom";
-import withAccommodation from "components/accommodations/withAccommodation";
+import withAccommodations from "components/accommodations/withAccommodations";
 import PageCard from "components/atoms/PageCard";
 import compose from "just-compose";
 import { Alert } from "reactstrap";
@@ -151,7 +151,7 @@ class AccommodationEditPage extends React.Component {
 }
 
 export default compose(
-    withAccommodation,
+    withAccommodations,
     withToastManager,
     withTranslation()
 )(AccommodationEditPage);
