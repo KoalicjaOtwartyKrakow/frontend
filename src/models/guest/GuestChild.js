@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 @JsonObject()
 class GuestChild {
-    @JsonProperty
+    @JsonProperty()
     @JsonType(Number)
     age = 1;
 

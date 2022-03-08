@@ -1,3 +1,3 @@
-const hosts = [];
+const mockedHosts = [];
 
-export default hosts;
+export default mockedHosts;

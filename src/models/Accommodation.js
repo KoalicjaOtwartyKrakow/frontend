@@ -15,7 +15,7 @@ class Accommodation {
     @JsonType(String)
     addressCity = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     addressLine = "";
 
@@ -27,20 +27,20 @@ class Accommodation {
     @JsonProperty("zip")
     addressZip = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     comments = "";
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     hostId = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     id = undefined;
 
@@ -52,20 +52,20 @@ class Accommodation {
     @JsonType(String)
     petsPresent = false;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     status = AccommodationStatus.CREATED;
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     updatedAt = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(Number)
     vacanciesFree = 1;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(Number)
     vacanciesTotal = 1;
 
