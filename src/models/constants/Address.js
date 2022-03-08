@@ -1,4 +1,4 @@
-const polishStates = [
+const polishVoivodeships = Object.freeze([
     { id: "DOLNOSLASKIE", name: "dolnośląskie" },
     { id: "KUJAWSKO_POMORSKIE", name: "kujawsko-pomorskie" },
     { id: "LUBELSKIE", name: "lubelskie" },
@@ -15,6 +15,6 @@ const polishStates = [
     { id: "WARMINSKO_MAZURSKIE", name: "warmińsko-mazurskie" },
     { id: "WIELKOPOLSKIE", name: "wielkopolskie" },
     { id: "ZACHODNIOPOMORSKIE", name: "zachodniopomorskie" },
-];
+]);
 
-export { polishStates };
+export { polishVoivodeships };
