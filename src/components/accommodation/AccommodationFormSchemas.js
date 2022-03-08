@@ -3,7 +3,7 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 // import isSafeInteger from "lodash-es/isSafeInteger";
 // import { appConfig } from "constants/AppConfig";
 // import moment from "moment-es6";
-import { t } from "i18n/formValidation";
+import { t } from "translations/formValidation";
 
 // const toSafeIntegerWithUndefined = (value) => {
 //   const safeInteger = isSafeInteger(+value) ? +value : value;

@@ -1,5 +1,4 @@
 import {
-    BeforeDeserialized,
     JsonConverter,
     JsonObject,
     JsonProperty,
@@ -8,81 +7,70 @@ import {
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
+import { AccommodationStatus } from "models/constants/AccomodationStatus";
 
 @JsonObject()
 class Accommodation {
+    @JsonProperty("city")
     @JsonType(String)
-    @JsonProperty("CNT_NAME")
-    addressStateName = "";
-
-    @JsonType(String)
-    @JsonProperty("CITY")
     addressCity = "";
 
+    @JsonProperty
     @JsonType(String)
-    @JsonProperty("APT_NUM")
-    addressFlatNumber = "";
+    addressLine = "";
+
+    @JsonProperty("voivodeship")
+    @JsonType(String)
+    addressVoivodeship = "";
 
     @JsonType(String)
-    @JsonProperty("ST_NUM")
-    addressStreetNumber = "";
-
-    @JsonType(String)
-    @JsonProperty("ST_NAME")
-    addressStreetName = "";
-
-    @JsonType(String)
-    @JsonProperty("ZIP")
+    @JsonProperty("zip")
     addressZip = "";
 
-    @JsonProperty("CreationTime")
+    @JsonProperty
+    @JsonType(String)
+    comments = "";
+
     @JsonConverter(new MomentSerializer())
+    @JsonProperty
     @JsonType(String)
     createdAt = undefined;
 
+    @JsonProperty
     @JsonType(String)
-    @JsonProperty("DESCRIPTION")
-    description = "";
+    hostId = undefined;
 
+    @JsonProperty
     @JsonType(String)
-    @JsonProperty("ApartmentId")
     id = undefined;
 
-    @JsonType(Boolean)
-    @JsonProperty("IS_VERIFIED")
-    isVerified = false;
-
+    @JsonProperty("acceptsPets")
     @JsonType(String)
-    @JsonProperty("LANDLORD_EMAIL")
-    hostEmail = "";
+    petsAllowed = true;
 
+    @JsonProperty("havePets")
     @JsonType(String)
-    @JsonProperty("LANDLORD_NAME")
-    hostName = "";
+    petsPresent = false;
 
+    @JsonProperty
     @JsonType(String)
-    @JsonProperty("LANDLORD_PHONE")
-    hostPhone = "";
+    status = AccommodationStatus.CREATED;
 
+    @JsonConverter(new MomentSerializer())
+    @JsonProperty
+    @JsonType(String)
+    updatedAt = undefined;
+
+    @JsonProperty
     @JsonType(Number)
-    @JsonProperty("PLACES_NUM")
-    vacanciesTotal = 0;
+    vacanciesFree = 1;
 
+    @JsonProperty
     @JsonType(Number)
-    @JsonProperty("PLACES_BUSY")
-    vacanciesTaken = 0;
+    vacanciesTotal = 1;
 
-    @JsonType(String)
-    @JsonProperty("VOLUNTEER_NAME")
-    volunteerName = "";
-
-    constructor() {
-        this.uuidRegenerate();
-    }
-
-    @BeforeDeserialized()
-    setDefaults() {
-        this.vacanciesTaken = 0;
+    get vacanciesTaken() {
+        return this.vacanciesTotal - this.vacanciesFree;
     }
 
     @OnDeserialized()

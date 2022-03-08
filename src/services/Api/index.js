@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import mockAccommodations from "models/mocks/accommodations";
+import mockedAccommodations from "mocks/accommodations";
 import { sleep } from "shared/utils";
 import * as constants from "./constants";
 import * as utils from "./utils";
@@ -20,7 +20,7 @@ export const fetchAccommodations = async (
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
     const promise = constants.useMocks
-        ? Promise.resolve({ data: mockAccommodations })
+        ? Promise.resolve({ data: mockedAccommodations })
         : axios.get(url);
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
