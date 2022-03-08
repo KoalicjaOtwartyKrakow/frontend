@@ -1,3 +1,3 @@
-const accommodations = [];
+const mockedAccommodations = [];
 
-export default accommodations;
+export default mockedAccommodations;

@@ -12,49 +12,49 @@ import { HostStatus } from "models/constants/HostStatus";
 
 @JsonObject()
 class Host {
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     id = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     fullName = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     email = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     phoneNumber = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     callAfter = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     callBefore = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     comments = "";
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonElementType(String)
     languagesSpoken = ["pl"];
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     status = HostStatus.CREATED;
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     updatedAt = undefined;
 
@@ -72,3 +72,5 @@ class Host {
         return true;
     }
 }
+
+export default Host;

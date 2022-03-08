@@ -13,16 +13,16 @@ import { GuestStatus } from "models/constants/GuestStatus";
 
 @JsonObject()
 class Guest {
-    @JsonProperty
+    @JsonProperty()
     @JsonElementType(GuestChild)
     children = [];
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     email = "";
 
@@ -30,15 +30,15 @@ class Guest {
     @JsonType(String)
     financialStatus = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     fullName = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     howLongToStay = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     id = undefined;
 
@@ -54,7 +54,7 @@ class Guest {
     @JsonType(Number)
     peopleMaleCount = 0;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     petsDescription = "";
 
@@ -62,31 +62,31 @@ class Guest {
     @JsonType(Number)
     petsPresent = false;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     phoneNumber = "";
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     priorityDate = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     specialNeeds = "";
 
     @JsonConverter(new MomentSerializer())
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     updatedAt = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     status = GuestStatus.CREATED;
 
-    constructor() {
-        this.uuidRegenerate();
-    }
+    // constructor() {
+    //     this.uuidRegenerate();
+    // }
 
     @OnDeserialized()
     uuidRegenerate() {

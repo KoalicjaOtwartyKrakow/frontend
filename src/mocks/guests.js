@@ -1,3 +1,3 @@
-const guests = [];
+const mockedGuests = [];
 
-export default guests;
+export default mockedGuests;

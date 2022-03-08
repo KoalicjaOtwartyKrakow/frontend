@@ -3,15 +3,15 @@ import { nanoid } from "nanoid";
 
 @JsonObject()
 class Volunteer {
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     id = undefined;
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     fullName = "";
 
-    @JsonProperty
+    @JsonProperty()
     @JsonType(String)
     phoneNumber = "";
 
@@ -24,3 +24,5 @@ class Volunteer {
         this.uuid = nanoid();
     }
 }
+
+export default Volunteer;

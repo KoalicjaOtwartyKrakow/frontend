@@ -1,10 +1,25 @@
 import axios from "axios";
 
-import mockedAccommodations from "mocks/accommodations";
 import { sleep } from "shared/utils";
 import * as constants from "./constants";
 import * as utils from "./utils";
 import { DEBUG_API_FETCH_DELAY } from "shared/debug";
+
+import { generateAllMocks } from "mocks";
+import { classToPlain } from "serializers/Serializer";
+
+let mockedAccommodations = [];
+let mockedGuests = [];
+let mockedHosts = [];
+
+if (constants.useMocks) {
+    const allMocks = generateAllMocks();
+    mockedAccommodations = allMocks.mockedAccommodations.map((item) =>
+        classToPlain(item)
+    );
+    mockedGuests = allMocks.mockedGuests.map((item) => classToPlain(item));
+    mockedHosts = allMocks.mockedHosts.map((item) => classToPlain(item));
+}
 
 export const fetchAccommodations = async (
     before,
@@ -18,6 +33,8 @@ export const fetchAccommodations = async (
     await sleep(DEBUG_API_FETCH_DELAY);
 
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
+
+    debugger;
 
     const promise = constants.useMocks
         ? Promise.resolve({ data: mockedAccommodations })
@@ -54,7 +71,7 @@ export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
     const url = utils.getPath(constants.Paths.GUESTS);
 
     const promise = constants.useMocks
-        ? Promise.resolve({ data: [] })
+        ? Promise.resolve({ data: mockedGuests })
         : axios.get(url);
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
