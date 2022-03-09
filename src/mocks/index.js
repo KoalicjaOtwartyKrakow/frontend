@@ -45,16 +45,32 @@ export function generateAllMocks() {
         accommodation.addressVoivodeship =
             polishVoivodeships[
                 chance.natural({ min: 0, max: polishVoivodeships.length - 1 })
-            ];
+            ].id;
         accommodation.addressCity = chance.city();
         accommodation.addressZip = chance.zip();
+
+        accommodation.status = chance.pickone(
+            Object.values(AccommodationStatus)
+        );
+
         accommodation.vacanciesTotal = chance.natural({ min: 1, max: 8 });
-        accommodation.vacanciesFree = chance.natural({
-            min: 0,
-            max: accommodation.vacanciesTotal,
-        });
+        switch (accommodation.status) {
+            case AccommodationStatus.CREATED:
+                accommodation.vacanciesFree = accommodation.vacanciesTotal;
+                break;
+            case AccommodationStatus.REJECTED:
+                accommodation.vacanciesFree = 0;
+                break;
+            case AccommodationStatus.VERIFIED:
+                accommodation.vacanciesFree = chance.natural({
+                    min: 0,
+                    max: accommodation.vacanciesTotal,
+                });
+                break;
+        }
 
         accommodation.comments = chance.paragraph();
+        accommodation.description = chance.paragraph({ sentences: 2 });
 
         accommodation.hostId =
             mockedHosts[
@@ -63,9 +79,6 @@ export function generateAllMocks() {
 
         accommodation.petsAllowed = chance.bool();
         accommodation.petsPresent = chance.bool();
-        accommodation.status = chance.pickone(
-            Object.values(AccommodationStatus)
-        );
 
         return accommodation;
     });

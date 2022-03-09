@@ -2,8 +2,11 @@ import React from "react";
 import { Badge, Button, ButtonGroup } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
-import "components/accommodations/AccommodationListItem.sass";
-
+import { AccommodationContext } from "components/accommodation/AccommodationContext";
+import AccommodationItemAddress from "components/accommodations/item/AccommodationItemAddress";
+import AccommodationItemAvailability from "components/accommodations/item/AccommodationItemAvailability";
+import AccommodationItemStatus from "components/accommodations/item/AccommodationItemStatus";
+import AccommodationItemCity from "components/accommodations/item/AccommodationItemCity";
 /**
  *
  * @param {Accommodation} accommodation
@@ -18,115 +21,36 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
     const { id } = accommodation;
     const handleEdit = () => onEdit(id);
 
-    /**
-     *
-     * @param {Accommodation} accommodation
-     * @returns {JSX.Element}
-     */
-    const getAccommodationAddressContent = (accommodation) => {
-        return (
-            <address className="accommodation">
-                <p className="mb-0">
-                    <strong className="accommodation__street-name">
-                        {accommodation.addressStreetName}
-                    </strong>
-                    <strong className="accommodation__street-number">
-                        {accommodation.addressStreetNumber}
-                    </strong>
-                    {accommodation.addressFlatNumber && (
-                        <span className="accommodation__flat-number">
-                            / {accommodation.addressFlatNumber}
-                        </span>
-                    )}
-                </p>
-                <p>
-                    <span>
-                        {accommodation.addressZip} {accommodation.addressCity}
-                        {", "}
-                        {accommodation.addressStateName}
-                    </span>
-                </p>
-            </address>
-        );
-    };
-
-    /**
-     *
-     * @param {Accommodation} accommodation
-     * @returns {JSX.Element}
-     */
-    const getAccommodationAvailability = (accommodation) => {
-        const { vacanciesTaken, vacanciesTotal } = accommodation;
-
-        if (vacanciesTaken >= vacanciesTotal) {
-            return (
-                <Badge color="danger" className="accommodation-availability">
-                    {t("accommodations.none")}
-                </Badge>
-            );
-        }
-
-        const badgeColor = vacanciesTaken === 0 ? "success" : "info";
-
-        return (
-            <Badge color={badgeColor} className="accommodation-availability">
-                <span className="accommodation-availability__count-allocated">
-                    {accommodation.vacanciesTaken}
-                </span>
-                {" / "}
-                <span className="accommodation-availability__count-max">
-                    {accommodation.vacanciesTotal}
-                </span>
-            </Badge>
-        );
-    };
-
-    const getAccommodationHost = (accommodation) => {
-        return (
-            <>
-                <span className="font-weight-semibold">
-                    {accommodation.hostName}
-                </span>
-                {accommodation.hostEmail && (
-                    <>
-                        <br />
-                        <a href={`mailto:${accommodation.hostEmail}`}>
-                            {accommodation.hostEmail}
-                        </a>
-                    </>
-                )}
-                <br />
-                <span>{accommodation.hostPhone}</span>
-            </>
-        );
-    };
-
-    const accommodationAddress = getAccommodationAddressContent(accommodation);
-    const accommodationAvailability =
-        getAccommodationAvailability(accommodation);
-    const accommodationHost = getAccommodationHost(accommodation);
-
     return (
-        <tr key={id} onClick={handleEdit} className="pointer">
-            <td>{accommodationHost}</td>
-            <td>{accommodationAddress}</td>
-            <td>
-                <p>{accommodationAvailability}</p>
-            </td>
-            <td>{accommodation.volunteerName}</td>
-            <td>{accommodation.description}</td>
-            <td>
-                <ButtonGroup>
-                    <Button
-                        color="danger"
-                        outline
-                        onClick={(event) => onRemove(id, event)}
-                    >
-                        {t("accommodations.delete")}
-                    </Button>
-                </ButtonGroup>
-            </td>
-        </tr>
+        <AccommodationContext.Provider value={accommodation}>
+            <tr onClick={handleEdit} className="pointer">
+                <td>
+                    <AccommodationItemCity />
+                </td>
+                <td>
+                    <AccommodationItemAddress />
+                </td>
+                <td className="accommodation__cell-status">
+                    <AccommodationItemStatus />
+                </td>
+                <td>
+                    <AccommodationItemAvailability />
+                </td>
+                <td>{accommodation.description}</td>
+                <td>
+                    <ButtonGroup>
+                        <Button
+                            color="danger"
+                            className="w-100"
+                            outline
+                            onClick={(event) => onRemove(id, event)}
+                        >
+                            {t("accommodations.delete")}
+                        </Button>
+                    </ButtonGroup>
+                </td>
+            </tr>
+        </AccommodationContext.Provider>
     );
 };
 

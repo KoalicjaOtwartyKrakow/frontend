@@ -8,6 +8,7 @@ import {
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccomodationStatus";
+import Host from "models/Host";
 
 @JsonObject()
 class Accommodation {
@@ -35,6 +36,14 @@ class Accommodation {
     @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    description = "";
+
+    @JsonProperty()
+    @JsonType(Host)
+    host = new Host();
 
     @JsonProperty()
     @JsonType(String)
@@ -76,6 +85,7 @@ class Accommodation {
     @OnDeserialized()
     uuidRegenerate() {
         this.uuid = nanoid();
+        this.host.id = this.hostId;
     }
 }
 
