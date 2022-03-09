@@ -27,6 +27,11 @@
                 "reset": "Reset",
                 "save_changes": "Save changes",
                 "street_name": "Street name",
+                "status": {
+                    "created": "New",
+                    "verified": "Verified",
+                    "rejected": "Rejected"
+                },
                 "success": "Changes saved successfully",
                 "vacancies_taken": "Vacancies taken",
                 "vacancies_total": "Vacancies total",

@@ -34,8 +34,6 @@ export const fetchAccommodations = async (
 
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
-    debugger;
-
     const promise = constants.useMocks
         ? Promise.resolve({ data: mockedAccommodations })
         : axios.get(url);

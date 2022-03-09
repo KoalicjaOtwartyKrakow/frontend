@@ -19,9 +19,7 @@ const NonFieldErrors = ({ formik: { status }, label = "" }) => {
         hasErrors && (
             <Alert color="danger">
                 {label && (
-                    <h4 className="alert-heading font-weight-semibold mb-3">
-                        {label}
-                    </h4>
+                    <h4 className="alert-heading fw-semibold mb-3">{label}</h4>
                 )}
                 {nonFieldErrors.map((error, index, arr) => (
                     <NonFieldError

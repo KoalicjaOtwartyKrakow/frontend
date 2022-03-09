@@ -17,4 +17,9 @@ const polishVoivodeships = Object.freeze([
     { id: "ZACHODNIOPOMORSKIE", name: "zachodniopomorskie" },
 ]);
 
-export { polishVoivodeships };
+const getPolishVoivodeshipNameById = (id) => {
+    const name = polishVoivodeships.find((item) => item.id === id)?.name || "-";
+    return name;
+};
+
+export { getPolishVoivodeshipNameById, polishVoivodeships };

@@ -5,14 +5,17 @@
                 "actions": "Actions",
                 "address": "Address",
                 "availability": "Availability",
+                "city": "City",
                 "delete": "Delete",
                 "description": "Description",
                 "found": "Found",
                 "host": "Host",
-                "list": "List of all accommodations",
+                "list": "Accommodation Units",
                 "none": "None",
                 "not_found": "No accommodations found.",
-                "volunteer": "Volunteer"
+                "volunteer": "Volunteer",
+                "status": "Status",
+                "rejected": "Rejected"
             }
         }
     },
@@ -22,13 +25,14 @@
                 "actions": "Akcje",
                 "address": "Adres",
                 "availability": "Dostępność",
+                "city": "City",
                 "delete": "Usuń",
                 "description": "Opis",
                 "found": "Znaleziono",
                 "host": "Udostępniający",
-                "list": "Lista wszystkich lokali",
+                "list": "Lista lokali",
                 "none": "Brak",
-                "not_found": "Nie znaleziono żadnych lokali w bazie.",
+                "not_found": "Nie znaleziono żadnych lokali.",
                 "volunteer": "Wolontariusz"
             }
         }

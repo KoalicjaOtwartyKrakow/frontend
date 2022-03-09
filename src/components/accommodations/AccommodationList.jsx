@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import compose from "just-compose";
 import { withToastManager } from "react-toast-notifications";
+import "components/accommodations/AccommodationList.sass";
 
 import { Routes } from "constants/Routes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
@@ -33,16 +34,26 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
         event.stopPropagation();
     };
 
+    const columnNames = [
+        "city",
+        "address",
+        "status",
+        "availability",
+        "description",
+    ];
+
     return (
         <Table hover striped responsive>
+            <colgroup>
+                {columnNames.map((columnName) => (
+                    <col className={`accommodation__col-${columnName}`} />
+                ))}
+            </colgroup>
             <thead className="thead-dark">
                 <tr>
-                    <th>{t("accommodations.host")}</th>
-                    <th>{t("accommodations.address")}</th>
-                    <th>{t("accommodations.availability")}</th>
-                    <th>{t("accommodations.volunteer")}</th>
-                    <th>{t("accommodations.description")}</th>
-                    <th>{t("accommodations.actions")}</th>
+                    {columnNames.map((columnName) => (
+                        <th>{t(`accommodations.${columnName}`)}</th>
+                    ))}
                 </tr>
             </thead>
             <tbody>
