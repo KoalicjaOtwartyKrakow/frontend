@@ -12,7 +12,7 @@ import { Toast } from "components/atoms/Toast";
 import withAccommodations from "components/accommodations/withAccommodations";
 
 const AccommodationList = ({ accommodations, history, toastManager }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodations"]);
 
     const toast = new Toast(toastManager);
 
@@ -38,9 +38,9 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
         "city",
         "address",
         "status",
-        "availability",
+        "capacity",
         "description",
-        "info",
+        "information",
     ];
 
     return (
@@ -57,7 +57,9 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
                 <tr>
                     {columnNames.map((columnName) => (
                         <th key={columnName}>
-                            {t(`accommodations.${columnName}`)}
+                            {t(
+                                `accommodations:list.columnHeader:${columnName}`
+                            )}
                         </th>
                     ))}
                 </tr>

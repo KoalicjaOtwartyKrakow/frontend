@@ -17,8 +17,6 @@ import AccommodationItemInfo from "components/accommodations/item/AccommodationI
  * @constructor
  */
 const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
-    const { t } = useTranslation();
-
     const { id } = accommodation;
     const handleEdit = () => onEdit(id);
 

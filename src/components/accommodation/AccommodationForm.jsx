@@ -77,11 +77,11 @@ const AccommodationForm = (props) => {
 
     const submitDisabled = (isValid, isSubmitting) => !isValid || isSubmitting;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     const submitLabel = isCreateMode
-        ? t("accommodation.add_new")
-        : t("accommodation.save_changes");
+        ? t("accommodation:form.button.create")
+        : t("accommodation:form.button.update");
 
     return (
         <Formik {...formikProps}>

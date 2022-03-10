@@ -14,7 +14,7 @@ const GuestsPage = ({
     guestsInProgress,
     guestsSuccess,
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     const guestCount = guestsSuccess
         ? `(${t("guests.found")}: ${guests.length})`

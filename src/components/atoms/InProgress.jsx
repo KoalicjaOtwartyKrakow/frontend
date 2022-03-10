@@ -18,9 +18,9 @@ const InProgress = ({ inProgress, label, centered = true }) => {
         "text-center": centered,
     });
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
 
-    const defaultLabel = t("common.loading");
+    const defaultLabel = t("common:data.loading");
 
     if (inProgress === false) {
         return null;

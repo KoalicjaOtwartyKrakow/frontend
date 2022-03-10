@@ -19,18 +19,18 @@ const AccommodationFormButtons = React.memo((props) => {
     const { isSubmitting, onRemove, inProgress, submitDisabled, submitLabel } =
         props;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation", "common"]);
     return (
         <React.Fragment>
             <hr className="mb-4 mt-4" />
-            <Row form className="mb-2">
+            <Row className="mb-2">
                 <Col xs={4}>
                     <AccommodationFormBackToListButton
-                        label={t("accommodation.back")}
-                        mobileLabel={t("accommodation.back")}
+                        label={t("common:form.button.backToList")}
+                        mobileLabel={t("common:form.button.backToList")}
                     />
                 </Col>
-                <Col xs={8} className="mb-0 d-flex flex-row-reverse">
+                <Col xs={8} className="d-flex flex-row-reverse">
                     <AccommodationFormSubmitButton
                         disabled={submitDisabled}
                         isSubmitting={isSubmitting}
@@ -38,7 +38,7 @@ const AccommodationFormButtons = React.memo((props) => {
                     />
                     {onRemove && (
                         <AccommodationFormRemoveButton
-                            label={t("accommodation.delete")}
+                            label={t("accommodation:form.button.remove")}
                             onClick={onRemove}
                             inProgress={
                                 inProgress === ACCOMMODATION_PROGRESS_REMOVE
@@ -46,7 +46,7 @@ const AccommodationFormButtons = React.memo((props) => {
                         />
                     )}
                     <AccommodationFormResetButton
-                        label={t("accommodation.reset")}
+                        label={t("common:form.button.reset")}
                     />
                 </Col>
             </Row>

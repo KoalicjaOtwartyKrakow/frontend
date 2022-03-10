@@ -9,11 +9,11 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 const AccommodationFormZip = (props) => {
     const fieldId = AccommodationFormFields.ADDRESS_ZIP;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation.zip_code")}
+                {t("accommodation:form.label.addressZip")}
             </Label>
             <Field
                 component={FormInput}

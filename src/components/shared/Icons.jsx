@@ -11,19 +11,22 @@ const getDomId = () => `icon-${nanoid(10)}`;
 const IconContainer = ({ children }) => <span>{children}</span>;
 
 const IconTooltip = ({ label, target }) => {
-    const { t } = useTranslation();
     return (
         <UncontrolledTooltip placement="top" target={target}>
-            {t(label)}
+            {label}
         </UncontrolledTooltip>
     );
 };
 
 const IconPetsPresent = () => {
     const id = getDomId();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
-            <IconTooltip target={id} label="accommodation.pets.present" />
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.pets.present")}
+            />
             <span className="fa-layers fa-fw fa-lg" id={id}>
                 <FontAwesomeIcon icon={faDog} />
             </span>
@@ -33,9 +36,13 @@ const IconPetsPresent = () => {
 
 const IconPetsNotPresent = () => {
     const id = getDomId();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
-            <IconTooltip target={id} label="accommodation.pets.not_present" />
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.pets.notPresent")}
+            />
             <span className="fa-layers fa-fw fa-lg" id={id}>
                 <FontAwesomeIcon
                     icon={faDogNotPresent}
@@ -48,9 +55,13 @@ const IconPetsNotPresent = () => {
 
 const IconPetsAllowed = () => {
     const id = getDomId();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
-            <IconTooltip target={id} label="accommodation.pets.allowed" />
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.pets.allowed")}
+            />
             <span className="fa-layers fa-fw fa-lg" id={id}>
                 <FontAwesomeIcon icon={faDog} className="text-success" />
             </span>
@@ -60,9 +71,13 @@ const IconPetsAllowed = () => {
 
 const IconPetsNotAllowed = () => {
     const id = getDomId();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
-            <IconTooltip target={id} label="accommodation.pets.not_allowed" />
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.pets.notAllowed")}
+            />
             <span className="fa-layers fa-fw fa-lg fa-sr-only" id={id}>
                 <FontAwesomeIcon icon={faDog} className="text-danger" />
             </span>

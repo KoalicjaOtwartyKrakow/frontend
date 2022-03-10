@@ -9,17 +9,17 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 const AccommodationFormHostPhone = (props) => {
     const fieldId = AccommodationFormFields.HOST_PHONE;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation.phone")}
+                {t("common:form.label.phone")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="+48 123 456 789"
+                placeholder={t("common:form.placeholder.phone")}
                 type="text"
             />
         </FormGroup>

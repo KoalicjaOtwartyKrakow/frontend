@@ -10,7 +10,7 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
  */
 const AccommodationItemStatus = () => {
     const accommodation = useContext(AccommodationContext);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     const { status } = accommodation;
 
@@ -21,9 +21,9 @@ const AccommodationItemStatus = () => {
     };
 
     const labelFromStatus = {
-        [AccommodationStatus.CREATED]: t("accommodation.status.created"),
-        [AccommodationStatus.VERIFIED]: t("accommodation.status.verified"),
-        [AccommodationStatus.REJECTED]: t("accommodation.status.rejected"),
+        [AccommodationStatus.CREATED]: t("accommodation:status.created"),
+        [AccommodationStatus.VERIFIED]: t("accommodation:status.verified"),
+        [AccommodationStatus.REJECTED]: t("accommodation:status.rejected"),
     };
 
     const statusBadgeColor = colorFromStatus[status];

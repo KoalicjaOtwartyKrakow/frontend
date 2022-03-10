@@ -4,32 +4,26 @@ import { useTranslation } from "react-i18next";
 
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
-import AccommodationFormStreetName from "components/accommodation/form/fields/AccommodationFormStreetName";
-import AccommodationFormStreetNumber from "components/accommodation/form/fields/AccommodationFormStreetNumber";
-import AccommodationFormFlatNumber from "components/accommodation/form/fields/AccommodationFormFlatNumber";
+import AccommodationFormAddressLine from "components/accommodation/form/fields/AccommodationFormAddressLine";
 import AccommodationFormZip from "components/accommodation/form/fields/AccommodationFormZip";
-import AccommodationFormAddressState from "components/accommodation/form/fields/AccommodationFormState";
+import AccommodationFormAddressState from "components/accommodation/form/fields/AccommodationFormProvince";
 
 /**
  * @component
  */
 const AccommodationFormAddress = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <AccommodationFormSection>
             <AccommodationFormSectionHeader>
-                {t("accommodation.address_data")}
+                {t("accommodation:form.section.addressData")}
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12}>
-                    <AccommodationFormStreetName />
+                    <AccommodationFormAddressLine />
                 </Col>
-                <Col xs={4}>
-                    <AccommodationFormStreetNumber />
-                </Col>
-                <Col xs={4}>
-                    <AccommodationFormFlatNumber />
-                </Col>
+                <Col xs={4}></Col>
+                <Col xs={4}></Col>
                 <Col xs={4}>
                     <AccommodationFormZip />
                 </Col>

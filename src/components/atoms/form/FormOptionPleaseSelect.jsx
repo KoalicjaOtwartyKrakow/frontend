@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
 const FormOptionPleaseSelect = ({ value = "" }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
     return (
         <option value={value} hidden>
-            {t("form.please_select")}
+            {t("common:form.pleaseSelect")}
         </option>
     );
 };

@@ -15,7 +15,7 @@ const AccommodationFormBackToListButton = ({ label, mobileLabel, ...rest }) => {
             className="mr-0 mr-md-2"
             {...rest}
         >
-            <FontAwesomeIcon icon={faCaretLeft} className="mr-2" />
+            <FontAwesomeIcon icon={faCaretLeft} />{" "}
             <span className="d-inline d-sm-none">{mobileLabel}</span>
             <span className="d-none d-sm-inline">{label}</span>
         </Button>

@@ -11,7 +11,7 @@ import { Toast } from "components/atoms/Toast";
 import withAccommodations from "components/accommodations/withAccommodations";
 
 const AccommodationList = ({ accommodations, history, toastManager }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["guests"]);
 
     const toast = new Toast(toastManager);
 
@@ -37,12 +37,12 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
         <Table hover striped responsive>
             <thead className="thead-dark">
                 <tr>
-                    <th>{t("accommodations.host")}</th>
-                    <th>{t("accommodations.address")}</th>
-                    <th>{t("accommodations.availability")}</th>
-                    <th>{t("accommodations.volunteer")}</th>
-                    <th>{t("accommodations.description")}</th>
-                    <th>{t("accommodations.actions")}</th>
+                    <th>{t("guests:host")}</th>
+                    <th>{t("guests:address")}</th>
+                    <th>{t("guests:availability")}</th>
+                    <th>{t("guests:volunteer")}</th>
+                    <th>{t("guests:description")}</th>
+                    <th>{t("guests:actions")}</th>
                 </tr>
             </thead>
             <tbody>
