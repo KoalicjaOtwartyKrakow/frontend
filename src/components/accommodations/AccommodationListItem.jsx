@@ -7,6 +7,7 @@ import AccommodationItemAddress from "components/accommodations/item/Accommodati
 import AccommodationItemAvailability from "components/accommodations/item/AccommodationItemAvailability";
 import AccommodationItemStatus from "components/accommodations/item/AccommodationItemStatus";
 import AccommodationItemCity from "components/accommodations/item/AccommodationItemCity";
+import AccommodationItemInfo from "components/accommodations/item/AccommodationItemInfo";
 /**
  *
  * @param {Accommodation} accommodation
@@ -38,17 +39,20 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
                 </td>
                 <td>{accommodation.description}</td>
                 <td>
-                    <ButtonGroup>
-                        <Button
-                            color="danger"
-                            className="w-100"
-                            outline
-                            onClick={(event) => onRemove(id, event)}
-                        >
-                            {t("accommodations.delete")}
-                        </Button>
-                    </ButtonGroup>
+                    <AccommodationItemInfo />
                 </td>
+                {/*<td>*/}
+                {/*    <ButtonGroup>*/}
+                {/*        <Button*/}
+                {/*            color="danger"*/}
+                {/*            className="w-100"*/}
+                {/*            outline*/}
+                {/*            onClick={(event) => onRemove(id, event)}*/}
+                {/*        >*/}
+                {/*            {t("accommodations.delete")}*/}
+                {/*        </Button>*/}
+                {/*    </ButtonGroup>*/}
+                {/*</td>*/}
             </tr>
         </AccommodationContext.Provider>
     );

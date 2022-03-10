@@ -19,9 +19,11 @@
                 "no": "House no.",
                 "not_found": "Accommodation not found.",
                 "pets": {
-                    "allowed": "Allowed",
+                    "allowed": "Pets allowed",
                     "label": "Pets presence and approval",
-                    "present": "Present"
+                    "present": "Pets present",
+                    "not_allowed": "Pets not allowed",
+                    "not_present": "Pets not present"
                 },
                 "phone": "Phone no.",
                 "reset": "Reset",
