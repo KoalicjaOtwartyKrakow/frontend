@@ -1,0 +1,50 @@
+{
+    "en": {
+        "translation": {
+            "guests": {
+                "list": "List of all guests",
+                "found": "Found",
+                "not_found": "No guests found.",
+                "full_name": "Full name",
+                "phone_number": "Phone number",
+                "status": "Status",
+                "priority": "Priority",
+                "number": "Number of guests",
+                "duration": "Duration of stay",
+                "delete": "Delete"
+            }
+        }
+    },
+    "pl": {
+        "translation": {
+            "guests": {
+                "list": "Lista gości",
+                "found": "Znaleziono",
+                "not_found": "Nie znaleziono żadnych gości.",
+                "full_name": "Imię i nazwisko",
+                "phone_number": "Numer telefonu",
+                "status": "Status",
+                "priority": "Priorytet",
+                "number": "Liczba gości",
+                "duration": "Czas pobytu",
+                "delete": "Usuń"
+            }
+        }
+    },
+    "ua": {
+        "translation": {
+            "guests": {
+                "list": "Список усіх гостей",
+                "found": "Знайдено",
+                "not_found": "Гостей не знайдено.",
+                "full_name": "Повне ім'я",
+                "phone_number": "Телефонний номер",
+                "status": "Статус",
+                "priority": "Пріоритет",
+                "number": "Кількість гостей",
+                "duration": "Тривалість перебування",
+                "delete": "Видалити"
+            }
+        }
+    }
+}

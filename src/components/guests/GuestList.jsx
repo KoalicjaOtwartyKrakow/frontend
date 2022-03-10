@@ -6,28 +6,28 @@ import compose from "just-compose";
 import { withToastManager } from "react-toast-notifications";
 
 import { Routes } from "constants/Routes";
-import AccommodationListItem from "components/accommodations/AccommodationListItem";
+import GuestListItem from "components/guests/GuestListItem";
 import { Toast } from "components/atoms/Toast";
-import withAccommodations from "components/accommodations/withAccommodations";
+import withGuests from "components/guests/withGuests";
 
-const AccommodationList = ({ accommodations, history, toastManager }) => {
+const GuestList = ({ guests, history, toastManager }) => {
     const { t } = useTranslation(["guests"]);
 
     const toast = new Toast(toastManager);
 
-    const getEditRoute = (accommodationId) => {
-        return generatePath(Routes.ACCOMMODATION_EDIT, { accommodationId });
+    const getEditRoute = (guestId) => {
+        return generatePath(Routes.GUEST_EDIT, { guestId });
     };
 
-    const onEdit = (accommodationId) => {
-        const path = getEditRoute(accommodationId);
+    const onEdit = (guestId) => {
+        const path = getEditRoute(guestId);
         history.push(path);
     };
 
-    const onRemove = (accommodationId, event) => {
+    const onRemove = (guestId, event) => {
         toast.info(
-            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia lokalu " +
-                accommodationId,
+            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia " +
+                guestId,
             "Jeszcze nie działa :("
         );
         event.stopPropagation();
@@ -46,12 +46,12 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
                 </tr>
             </thead>
             <tbody>
-                {accommodations.map((accommodation) => {
-                    const { id } = accommodation;
+                {guests.map((guest) => {
+                    const { id } = guest;
                     return (
-                        <AccommodationListItem
+                        <GuestListItem
                             key={id}
-                            accommodation={accommodation}
+                            guest={guest}
                             onEdit={onEdit}
                             onRemove={onRemove}
                         />
@@ -62,8 +62,4 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
     );
 };
 
-export default compose(
-    withAccommodations,
-    withToastManager,
-    withRouter
-)(AccommodationList);
+export default compose(withGuests, withToastManager, withRouter)(GuestList);
