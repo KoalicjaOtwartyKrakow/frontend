@@ -6,11 +6,11 @@
     },
     "common": {
         "pets": {
-            "allowed": "Pets allowed",
-            "label": "Pets presence and approval",
-            "present": "Pets present",
-            "notAllowed": "Pets not allowed",
-            "notPresent": "Pets not present"
+            "allowed": "Можна з тваринами",
+            "label": "Наявність або прийом домашніх тварин",
+            "present": "Присутні домашні тварини",
+            "notAllowed": "Домашні тварини не допускаються",
+            "notPresent": "Домашніх тварин немає"
         }
     },
     "errors": {
