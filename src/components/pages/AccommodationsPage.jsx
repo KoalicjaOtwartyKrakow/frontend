@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
+import AccommodationListDescription from "components/accommodations/AccommodationListDescription";
 
 const AccommodationsPage = ({
     accommodations,
@@ -29,6 +30,7 @@ const AccommodationsPage = ({
             </PageErrorMessage>
             {accommodationsSuccess && (
                 <>
+                    <AccommodationListDescription />
                     {accommodations.length && (
                         <AccommodationList accommodations={accommodations} />
                     )}

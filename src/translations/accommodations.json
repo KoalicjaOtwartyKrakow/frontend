@@ -10,6 +10,7 @@
                 "description": "Description",
                 "found": "Found",
                 "host": "Host",
+                "info": "Information",
                 "list": "Accommodation Units",
                 "none": "None",
                 "not_found": "No accommodations found.",

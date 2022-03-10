@@ -40,28 +40,34 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
         "status",
         "availability",
         "description",
+        "info",
     ];
 
     return (
         <Table hover striped responsive>
             <colgroup>
                 {columnNames.map((columnName) => (
-                    <col className={`accommodation__col-${columnName}`} />
+                    <col
+                        className={`accommodation__col-${columnName}`}
+                        key={columnName}
+                    />
                 ))}
             </colgroup>
             <thead className="thead-dark">
                 <tr>
                     {columnNames.map((columnName) => (
-                        <th>{t(`accommodations.${columnName}`)}</th>
+                        <th key={columnName}>
+                            {t(`accommodations.${columnName}`)}
+                        </th>
                     ))}
                 </tr>
             </thead>
             <tbody>
                 {accommodations.map((accommodation) => {
-                    const { id } = accommodation;
+                    const { uuid } = accommodation;
                     return (
                         <AccommodationListItem
-                            key={id}
+                            key={uuid}
                             accommodation={accommodation}
                             onEdit={onEdit}
                             onRemove={onRemove}
