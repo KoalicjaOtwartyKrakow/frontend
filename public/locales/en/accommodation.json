@@ -30,6 +30,7 @@
         },
         "label": {
             "addressLine": "Address",
+            "addressCity": "City",
             "addressProvince": "State / province",
             "addressZip": "Zip code",
             "pets": "Pets acceptance and presence",

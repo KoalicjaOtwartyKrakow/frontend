@@ -7,6 +7,7 @@ import AccommodationFormSectionHeader from "components/accommodation/form/Accomm
 import AccommodationFormAddressLine from "components/accommodation/form/fields/AccommodationFormAddressLine";
 import AccommodationFormZip from "components/accommodation/form/fields/AccommodationFormZip";
 import AccommodationFormAddressState from "components/accommodation/form/fields/AccommodationFormProvince";
+import AccommodationFormCity from "components/accommodation/form/fields/AccommodationFormCity";
 
 /**
  * @component
@@ -19,19 +20,21 @@ const AccommodationFormAddress = () => {
                 {t("accommodation:form.section.addressData")}
             </AccommodationFormSectionHeader>
             <Row>
-                <Col xs={12}>
+                <Col xs={12} md={8}>
                     <AccommodationFormAddressLine />
                 </Col>
-                <Col xs={4}></Col>
-                <Col xs={4}></Col>
+                <Col xs={4}>
+                    <AccommodationFormCity />
+                </Col>
+                <Col xs={12} md={8}>
+                    <AccommodationFormAddressState />
+                </Col>
                 <Col xs={4}>
                     <AccommodationFormZip />
                 </Col>
             </Row>
             <Row>
-                <Col xs={12}>
-                    <AccommodationFormAddressState />
-                </Col>
+                <Col xs={12}></Col>
             </Row>
         </AccommodationFormSection>
     );

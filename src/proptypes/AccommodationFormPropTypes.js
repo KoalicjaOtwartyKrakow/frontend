@@ -4,8 +4,6 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 const accommodationFormInitialValuesPropTypes = PropTypes.shape({
     [AccommodationFormFields.ADDRESS_STATE_NAME]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_CITY]: PropTypes.string,
-    [AccommodationFormFields.ADDRESS_FLAT_NUMBER]: PropTypes.string,
-    [AccommodationFormFields.ADDRESS_STREET_NUMBER]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_STREET_NAME]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_ZIP]: PropTypes.string,
     // [AccommodationFormFields.CREATED_AT]: PropTypes.number,

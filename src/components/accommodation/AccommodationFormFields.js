@@ -68,8 +68,6 @@ class AccommodationFormFields {
         const simpleTypeFields = [
             [AccommodationFormFields.ADDRESS_STATE_NAME],
             [AccommodationFormFields.ADDRESS_CITY],
-            [AccommodationFormFields.ADDRESS_FLAT_NUMBER],
-            [AccommodationFormFields.ADDRESS_STREET_NUMBER],
             [AccommodationFormFields.ADDRESS_STREET_NAME],
             [AccommodationFormFields.ADDRESS_ZIP],
             [AccommodationFormFields.DESCRIPTION],

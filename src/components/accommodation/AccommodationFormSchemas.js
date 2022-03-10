@@ -25,10 +25,6 @@ const commonSchema = Yup.object().shape({
         t.stateName
     ),
     [AccommodationFormFields.ADDRESS_CITY]: Yup.string().required(t.cityName),
-    [AccommodationFormFields.ADDRESS_FLAT_NUMBER]: Yup.string(),
-    [AccommodationFormFields.ADDRESS_STREET_NUMBER]: Yup.string().required(
-        t.streetNumber
-    ),
     [AccommodationFormFields.ADDRESS_STREET_NAME]: Yup.string().required(
         t.streetName
     ),
