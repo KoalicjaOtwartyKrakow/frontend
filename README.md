@@ -31,6 +31,15 @@ repository.
 4. Set "Run for files" to `{**/*,*}.{js,ts,jsx,tsx,json,css,scss,sass}`
 5. Check both "On Reformat Code action" and "On Save" checkboxes.
 
+## Add access to Font Awesome Pro icons
+
+```shell
+npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+npm config set "//npm.fontawesome.com/:_authToken" ????????-????-????-????-????????????
+```
+
+Ask for authToken on `#frontend` channel on the project's Discord. 
+
 ## Development
 
 1. Try not to commit directly to `main`. It's not yet strictly enforced, but as the team grows larger we'll probably
@@ -78,3 +87,6 @@ yarn build
 
 Obviously `/ukraina/` should point to whatever directory you plan to serve as your base url. Build is created
 in `./build` directory.
+
+
+FullName, Phone Number, Status, Priority, Amount of People [split], For how long
