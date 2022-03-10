@@ -38,7 +38,7 @@ class AccommodationEditPage extends React.Component {
         this.setState({ status: SENT });
 
         const toast = new Toast(this.props.toastManager);
-        toast.info(this.props.t("accommodation.success"));
+        toast.info(this.props.t("accommodation:form.message.updateSuccess"));
     };
 
     onSubmitFailure = (onSubmitApiErrors) => (error) => {
@@ -46,7 +46,7 @@ class AccommodationEditPage extends React.Component {
         this.setState({ status: EDITING });
         const toast = new Toast(this.props.toastManager);
         onSubmitApiErrors(error, error.response.status);
-        toast.info(this.props.t("accommodation.failure"));
+        toast.info(this.props.t("accommodation:form.message.updateFailure"));
     };
 
     onSubmit = (accommodation, onSubmitApiErrors) => {
@@ -108,25 +108,26 @@ class AccommodationEditPage extends React.Component {
         );
 
     renderForm = () => {
-        if (this.hasAccommodations()) {
-            if (this.isRouteAccommodationPresent()) {
-                const initialValues = this.initialValuesFromLocation();
-                return (
-                    <AccommodationForm
-                        accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
-                        initialValues={initialValues}
-                        onSubmit={this.onSubmit}
-                    />
-                );
-            }
+        if (!this.hasAccommodations()) {
+            return null;
+        }
 
+        if (this.isRouteAccommodationPresent()) {
+            const initialValues = this.initialValuesFromLocation();
             return (
-                <Alert color="warning">
-                    {this.props.t("accommodation.not_found")}
-                </Alert>
+                <AccommodationForm
+                    accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+                    initialValues={initialValues}
+                    onSubmit={this.onSubmit}
+                />
             );
         }
-        return null;
+
+        return (
+            <Alert color="warning">
+                {this.props.t("accommodation:errors.notFound")}
+            </Alert>
+        );
     };
 
     render() {
@@ -138,7 +139,7 @@ class AccommodationEditPage extends React.Component {
         }
 
         return (
-            <PageCard header={t("accommodation.edit")}>
+            <PageCard header={t("accommodation:card.title.update")}>
                 <InProgress inProgress={accommodationsInProgress} />
                 <PageErrorMessage isError={accommodationsErrorMessage}>
                     {accommodationsErrorMessage}
@@ -153,5 +154,5 @@ class AccommodationEditPage extends React.Component {
 export default compose(
     withAccommodations,
     withToastManager,
-    withTranslation()
+    withTranslation(["accommodation"])
 )(AccommodationEditPage);

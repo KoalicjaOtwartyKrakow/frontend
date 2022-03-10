@@ -9,19 +9,13 @@ import { FormItemsStates } from "components/molecules/form/FormItemsStates";
 const AccommodationFormAddressState = (props) => {
     const fieldId = AccommodationFormFields.ADDRESS_STATE_NAME;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation.address_state")}
+                {t("accommodation:form.label.addressProvince")}
             </Label>
-            <Field
-                component={FormItemsStates}
-                id={fieldId}
-                name={fieldId}
-                placeholder="Janina Nowak"
-                type="text"
-            />
+            <Field component={FormItemsStates} id={fieldId} name={fieldId} />
         </FormGroup>
     );
 };

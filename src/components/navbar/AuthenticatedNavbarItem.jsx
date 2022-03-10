@@ -7,7 +7,7 @@ import { fasIconPropType } from "proptypes/CommonPropTypes";
 import { useTranslation } from "react-i18next";
 
 const AuthenticatedNavbarItem = React.memo(({ exact, icon, i18nKey, path }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <NavItem>
             <NavLink

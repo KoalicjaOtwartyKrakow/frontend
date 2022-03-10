@@ -10,12 +10,12 @@ import AccommodationFormHostEmail from "components/accommodation/form/fields/Acc
 import AccommodationFormHostPhone from "components/accommodation/form/fields/AccommodationFormHostPhone";
 
 const AccommodationFormHost = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     return (
         <AccommodationFormSection>
             <AccommodationFormSectionHeader>
-                {t("accommodation.host_data")}
+                {t("accommodation:form.host_data")}
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12} lg={6}>

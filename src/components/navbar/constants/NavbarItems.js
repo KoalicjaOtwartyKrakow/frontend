@@ -5,23 +5,23 @@ const navbarItems = [
     {
         path: Routes.ROOT,
         icon: faHome,
-        i18nKey: "navbar.dashboard",
+        i18nKey: "navbar:dashboard",
         exact: true,
     },
     {
         path: Routes.ACCOMMODATIONS,
         icon: getRouteIcon(Routes.ACCOMMODATIONS),
-        i18nKey: "navbar.accommodations",
+        i18nKey: "navbar:accommodations",
     },
     {
         path: Routes.GUESTS,
         icon: getRouteIcon(Routes.GUESTS),
-        i18nKey: "navbar.guests",
+        i18nKey: "navbar:guests",
     },
     {
         path: Routes.HOSTS,
         icon: getRouteIcon(Routes.HOSTS),
-        i18nKey: "navbar.hosts",
+        i18nKey: "navbar:hosts",
     },
 ];
 

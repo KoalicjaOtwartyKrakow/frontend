@@ -9,17 +9,17 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 const AccommodationFormHostEmail = (props) => {
     const fieldId = AccommodationFormFields.HOST_EMAIL;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation.email")}
+                {t("common:form.label.email")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="imie.nazwisko@domena.tld"
+                placeholder={t("common:form.placeholder.email")}
                 type="text"
             />
         </FormGroup>

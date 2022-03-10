@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "components/atoms/LanguageSwitcher";
 
 const AuthenticatedNavbar = ({ onLogout }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["navbar"]);
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -45,16 +45,16 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
                             <FontAwesomeIcon icon={faUser} />{" "}
-                            {t("navbar.account")}
+                            {t("navbar:account")}
                         </DropdownToggle>
                         <DropdownMenu end>
                             <DropdownItem>
                                 <FontAwesomeIcon icon={faCog} />{" "}
-                                {t("navbar.settings")}
+                                {t("navbar:applicationSettings")}
                             </DropdownItem>
                             <DropdownItem divider />
                             <DropdownItem onClick={onLogout}>
-                                {t("navbar.signOut")}
+                                {t("navbar:signOut")}
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>

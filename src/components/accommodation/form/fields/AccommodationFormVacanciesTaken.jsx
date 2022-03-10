@@ -9,11 +9,11 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 const AccommodationFormVacanciesTaken = (props) => {
     const fieldId = AccommodationFormFields.VACANCIES_TAKEN;
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation.vacancies_taken")}
+                {t("accommodation:form.label.vacanciesTaken")}
             </Label>
             <Field
                 component={FormInput}

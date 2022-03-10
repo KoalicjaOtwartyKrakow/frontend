@@ -18,7 +18,7 @@ const AccommodationItemInfo = () => {
      * @type {Accommodation}
      */
     const accommodation = useContext(AccommodationContext);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     const { petsAllowed, petsPresent } = accommodation;
 

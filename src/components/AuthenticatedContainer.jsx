@@ -16,7 +16,7 @@ const AuthenticatedContainer = ({ children, history }) => {
         history.push(path);
     };
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
 
     return (
         <ToastProvider autoDismiss={Notifications.toastAutoDismiss}>
@@ -24,7 +24,9 @@ const AuthenticatedContainer = ({ children, history }) => {
             <Jumbotron onClick={onJumbotronClick} className="pointer">
                 <Container>
                     <h1 className="display-6">#KoalicjaOtwartyKraków</h1>
-                    <p className="lead">{t("header.subtitle")}</p>
+                    <p className="lead">
+                        {t("common:application.header.subtitle")}
+                    </p>
                 </Container>
             </Jumbotron>
             <Container>

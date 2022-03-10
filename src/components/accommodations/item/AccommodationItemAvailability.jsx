@@ -10,7 +10,7 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
  */
 const AccommodationItemAvailability = () => {
     const accommodation = useContext(AccommodationContext);
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodations"]);
 
     const { vacanciesTaken, vacanciesTotal, status } = accommodation;
     const className = "accommodation-availability w-100";
@@ -27,7 +27,7 @@ const AccommodationItemAvailability = () => {
     if (vacanciesTaken >= vacanciesTotal) {
         return (
             <Badge color="danger" className={className}>
-                {t("accommodations.none")}
+                {t("accommodations:list.item.capacityNone")}
             </Badge>
         );
     }

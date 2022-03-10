@@ -8,11 +8,11 @@ import AccommodationFormVolunteerName from "components/accommodation/form/fields
 import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
 
 const AccommodationFormAdditional = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <AccommodationFormSection className="mb-0">
             <AccommodationFormSectionHeader>
-                {t("accommodation.additional_info")}
+                {t("accommodation:form.section.additionalInfo")}
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12} md={6}>

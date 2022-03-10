@@ -15,12 +15,15 @@ const AccommodationsPage = ({
     accommodationsInProgress,
     accommodationsSuccess,
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodations"]);
 
     const accommodationCount = accommodationsSuccess
-        ? `(${t("accommodations.found")}: ${accommodations.length})`
+        ? `(${t("accommodations:card.found")}: ${accommodations.length})`
         : "";
-    const pageHeader = `${t("accommodations.list")} ${accommodationCount}`;
+
+    const pageHeader = `${t(
+        "accommodations:card.title"
+    )} ${accommodationCount}`;
 
     return (
         <PageCard header={pageHeader}>
@@ -36,7 +39,7 @@ const AccommodationsPage = ({
                     )}
                     {!accommodations.length && (
                         <Alert color="warning">
-                            {t("accommodations.not_found")}
+                            {t("accommodations:card.notAvailable")}
                         </Alert>
                     )}
                 </>

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, ButtonGroup } from "reactstrap";
 
 const LanguageSwitcher = ({ className }) => {
-    const { i18n } = useTranslation();
+    const { i18n } = useTranslation(["accommodation"]);
     const storedLanguage = localStorage.getItem("language") || "en";
     const [language, setLanguage] = useState(storedLanguage);
 
