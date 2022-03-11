@@ -4,6 +4,13 @@
             "subtitle": "KOK:on – we help people find a safe harbor!"
         }
     },
+    "data": {
+        "loading": "Loading data…",
+        "updateSuccess": "Changes saved successfully"
+    },
+    "errors": {
+        "apiFailure": "API communication error:"
+    },
     "form": {
         "label": {
             "email": "E-mail",
@@ -19,25 +26,18 @@
             "backToList": "Back to the list"
         },
         "validator": {
+            "cityName": "Wpisz miejscowość",
+            "email": "E-mail is required",
+            "fullName": "Name is required",
             "integer": "Podaj liczbę całkowitą",
-            "positiveNumber": "Wartości ujemne są niepoprawne",
+            "missingId": "Missing ID value, something is wrong…",
             "numberMin": "Musi być co najmniej",
-            "email": "Wpisz adres e-mail",
-            "fullName": "Wpisz imię i nazwisko",
-            "phoneNumber": "Wpisz numer telefonu",
+            "numberOfPeople": "Wpisz liczbę osób",
+            "phoneNumber": "Phone number is required",
+            "positiveNumber": "Wartości ujemne są niepoprawne",
             "streetName": "Wpisz nazwę ulicy",
             "streetNumber": "Wpisz numer lokalu",
-            "cityName": "Wpisz miejscowość",
-            "voivodeshipName": "Wpisz województwo",
-            "missingId": "Missing ID value, something is wrong…",
-            "numberOfPeople": "Wpisz liczbę osób"
+            "voivodeshipName": "Wpisz województwo"
         }
-    },
-    "data": {
-        "loading": "Loading data…",
-        "updateSuccess": "Changes saved successfully"
-    },
-    "errors": {
-        "apiFailure": "API communication error:"
     }
 }
