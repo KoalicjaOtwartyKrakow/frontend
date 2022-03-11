@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
 import { accommodationFormHostPropTypes } from "proptypes/AccommodationFormPropTypes";
-import AccommodationFormHostName from "components/accommodation/form/fields/AccommodationFormHostName";
-import AccommodationFormHostEmail from "components/accommodation/form/fields/AccommodationFormHostEmail";
-import AccommodationFormHostPhone from "components/accommodation/form/fields/AccommodationFormHostPhone";
+import AccommodationFormHostName from "components/host/form/fields/AccommodationFormHostName";
+import AccommodationFormHostEmail from "components/host/form/fields/AccommodationFormHostEmail";
+import AccommodationFormHostPhone from "components/host/form/fields/AccommodationFormHostPhone";
 
 const AccommodationFormHost = () => {
     const { t } = useTranslation(["accommodation"]);

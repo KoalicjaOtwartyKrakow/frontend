@@ -17,7 +17,7 @@ import React, { useState } from "react";
 import navbarItems from "components/navbar/constants/NavbarItems";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "components/atoms/LanguageSwitcher";
+import LanguageSwitcher from "components/molecules/LanguageSwitcher";
 
 const AuthenticatedNavbar = ({ onLogout }) => {
     const { t } = useTranslation(["navbar"]);

@@ -3,29 +3,27 @@ import { FormGroup, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
-import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import { FormItemsVoivodeships } from "components/molecules/form/FormItemsVoivodeships";
 
-const AccommodationFormAddressLine = (props) => {
-    const fieldId = AccommodationFormFields.ADDRESS_LINE;
+const AccommodationFormAddressVoivodeship = (props) => {
+    const fieldId = AccommodationFormFields.ADDRESS_VOIVODESHIP;
 
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation:form.label.addressLine")}
+                {t("accommodation:form.label.addressVoivodeship")}
             </Label>
             <Field
-                component={FormInput}
+                component={FormItemsVoivodeships}
                 id={fieldId}
                 name={fieldId}
-                placeholder="al. Powstania Warszawskiego 3A/44"
-                type="text"
             />
         </FormGroup>
     );
 };
 
-AccommodationFormAddressLine.propTypes = {};
+AccommodationFormAddressVoivodeship.propTypes = {};
 
-export default AccommodationFormAddressLine;
+export default AccommodationFormAddressVoivodeship;

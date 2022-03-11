@@ -16,6 +16,7 @@ import AccommodationFormAdditional from "components/accommodation/form/sections/
 import AccommodationFormButtons from "components/accommodation/form/sections/AccommodationFormButtons";
 import { Col, Row } from "reactstrap";
 import AccommodationFormVacancies from "components/accommodation/form/sections/AccommodationFormVacancies";
+import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
 
 const AccommodationForm = (props) => {
     const { initialValues, onRemove, accommodationInProgress } = props;
@@ -91,14 +92,14 @@ const AccommodationForm = (props) => {
                     <Row>
                         <Col xs={12} lg={6}>
                             <AccommodationFormAddress />
+                            <AccommodationFormVacancies />
                         </Col>
                         <Col xs={12} lg={6}>
-                            <AccommodationFormVacancies />
+                            <AccommodationFormAdditional />
                         </Col>
                     </Row>
 
-                    <AccommodationFormHost />
-                    <AccommodationFormAdditional />
+                    <AccommodationFormDetailedInformation />
                     <AccommodationFormButtons
                         isSubmitting={isSubmitting}
                         submitDisabled={submitDisabled(isValid, isSubmitting)}

@@ -21,6 +21,7 @@
             "addressData": "Address data",
             "additionalInfo": "Additional information",
             "availability": "Availability",
+            "detailedInfo": "Detailed information",
             "host": "Host data"
         },
         "button": {
@@ -31,8 +32,10 @@
         "label": {
             "addressLine": "Address",
             "addressCity": "City",
-            "addressProvince": "State / province",
+            "addressVoivodeship": "Voivodeship",
             "addressZip": "Zip code",
+            "comments": "Host comments",
+            "description": "Volunteer notes",
             "pets": "Pets acceptance and presence",
             "petsAllowed": "Pets allowed",
             "petsPresent": "Pets present",
@@ -42,6 +45,13 @@
         "message": {
             "updateSuccess": "Successfully updated Accommodation Unit",
             "updateFailure": "Failed to update Accommodation Unit"
+        },
+        "value": {
+            "status": {
+                "created": "Awaits verification",
+                "verified": "Verified",
+                "rejected": "Rejected"
+            }
         }
     },
     "status": {

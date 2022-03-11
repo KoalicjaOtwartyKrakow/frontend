@@ -21,13 +21,11 @@ import { t } from "translations/formValidation";
 //     );
 
 const commonSchema = Yup.object().shape({
-    [AccommodationFormFields.ADDRESS_STATE_NAME]: Yup.string().required(
-        t.stateName
+    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required(
+        t.voivodeshipName
     ),
     [AccommodationFormFields.ADDRESS_CITY]: Yup.string().required(t.cityName),
-    [AccommodationFormFields.ADDRESS_STREET_NAME]: Yup.string().required(
-        t.streetName
-    ),
+    [AccommodationFormFields.ADDRESS_LINE]: Yup.string().required(t.streetName),
     [AccommodationFormFields.ADDRESS_ZIP]: Yup.string(),
     [AccommodationFormFields.DESCRIPTION]: Yup.string(),
     [AccommodationFormFields.IS_VERIFIED]: Yup.boolean(),
