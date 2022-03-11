@@ -15,7 +15,7 @@ const AccommodationFormHost = () => {
     return (
         <AccommodationFormSection>
             <AccommodationFormSectionHeader>
-                {t("accommodation:form.host_data")}
+                {t("accommodation:form.section.host")}
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12} lg={6}>

@@ -1,9 +1,11 @@
 import React from "react";
 import { FormFeedback, Input } from "reactstrap";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+import { useTranslation } from "react-i18next";
 
 const FormSelect = React.memo(({ field, form, items, children, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
+    const { t } = useTranslation('common')
     const invalid = !!error;
 
     return (
@@ -16,7 +18,7 @@ const FormSelect = React.memo(({ field, form, items, children, ...props }) => {
                     </option>
                 ))}
             </Input>
-            {invalid && <FormFeedback>{error}</FormFeedback>}
+            {invalid && <FormFeedback>{t(error)}</FormFeedback>}
         </React.Fragment>
     );
 });

@@ -3,7 +3,6 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 // import isSafeInteger from "lodash-es/isSafeInteger";
 // import { appConfig } from "constants/AppConfig";
 // import moment from "moment-es6";
-import { t } from "translations/formValidation";
 
 // const toSafeIntegerWithUndefined = (value) => {
 //   const safeInteger = isSafeInteger(+value) ? +value : value;
@@ -22,26 +21,42 @@ import { t } from "translations/formValidation";
 
 const commonSchema = Yup.object().shape({
     [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required(
-        t.voivodeshipName
+        "form.validator.voivodeshipName"
     ),
-    [AccommodationFormFields.ADDRESS_CITY]: Yup.string().required(t.cityName),
-    [AccommodationFormFields.ADDRESS_LINE]: Yup.string().required(t.streetName),
+    [AccommodationFormFields.ADDRESS_CITY]: Yup.string().required(
+        "form.validator.cityName"
+    ),
+    [AccommodationFormFields.ADDRESS_FLAT_NUMBER]: Yup.string(),
+    [AccommodationFormFields.ADDRESS_STREET_NUMBER]: Yup.string().required(
+        "form.validator.streetNumber"
+    ),
+    [AccommodationFormFields.ADDRESS_STREET_NAME]: Yup.string().required(
+        "form.validator.streetName"
+    ),
     [AccommodationFormFields.ADDRESS_ZIP]: Yup.string(),
     [AccommodationFormFields.DESCRIPTION]: Yup.string(),
     [AccommodationFormFields.IS_VERIFIED]: Yup.boolean(),
-    [AccommodationFormFields.HOST_EMAIL]: Yup.string().required(t.email),
-    [AccommodationFormFields.HOST_NAME]: Yup.string().required(t.fullName),
-    [AccommodationFormFields.HOST_PHONE]: Yup.string().required(t.phoneNumber),
+    [AccommodationFormFields.HOST_EMAIL]: Yup.string().required(
+        "form.validator.email"
+    ),
+    [AccommodationFormFields.HOST_NAME]: Yup.string().required(
+        "form.validator.fullName"
+    ),
+    [AccommodationFormFields.HOST_PHONE]: Yup.string().required(
+        "form.validator.phoneNumber"
+    ),
     [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
-        .integer(t.integer)
-        .moreThan(0, t.positiveNumber)
-        .min(1, `${t.numberMin} 1 osoba`)
-        .required(t.numberOfPeople),
+        .integer("form.validator.integer")
+        .moreThan(0, "form.validator.positiveNumber")
+        .min(1, `form.validator.numberMin`)
+        .required("form.validator.numberOfPeople"),
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
-        .integer(t.integer)
-        .moreThan(-1, t.positiveNumber)
-        .required(t.numberOfPeople),
-    [AccommodationFormFields.VOLUNTEER_NAME]: Yup.string().required(t.fullName),
+        .integer("form.validator.integer")
+        .moreThan(-1, "form.validator.positiveNumber")
+        .required("form.validator.numberOfPeople"),
+    [AccommodationFormFields.VOLUNTEER_NAME]: Yup.string().required(
+        "form.validator.fullName"
+    ),
     // [ AccommodationFormFields.UPDATED_AT ]: dateAsYMDValidator(),
 });
 
@@ -49,7 +64,9 @@ const accommodationFormCreateSchema = Yup.object().concat(commonSchema);
 
 const accommodationFormUpdateSchema = Yup.object()
     .shape({
-        [AccommodationFormFields.ID]: Yup.string().required(t.missingId),
+        [AccommodationFormFields.ID]: Yup.string().required(
+            "form.validator.missingId"
+        ),
     })
     .concat(commonSchema);
 

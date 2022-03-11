@@ -30,6 +30,8 @@
             "remove": "Remove Accommodation"
         },
         "label": {
+            "volunteerName": "Volunteer",
+            "host": "Host",
             "addressLine": "Address",
             "addressCity": "City",
             "addressVoivodeship": "Voivodeship",

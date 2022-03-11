@@ -13,7 +13,7 @@ const AccommodationFormVolunteerName = (props) => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation:form.volunteer_name")}
+                {t("accommodation:form.label.volunteerName")}
             </Label>
             <Field
                 component={FormInput}

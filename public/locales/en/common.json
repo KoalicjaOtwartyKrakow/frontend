@@ -17,6 +17,20 @@
         "button": {
             "reset": "Reset changes",
             "backToList": "Back to the list"
+        },
+        "validator": {
+            "integer": "Podaj liczbę całkowitą",
+            "positiveNumber": "Wartości ujemne są niepoprawne",
+            "numberMin": "Musi być co najmniej 1 osoba",
+            "email": "E-mail is required",
+            "fullName": "Name is required",
+            "phoneNumber": "Phone number is required",
+            "streetName": "Wpisz nazwę ulicy",
+            "streetNumber": "Wpisz numer lokalu",
+            "cityName": "Wpisz miejscowość",
+            "voivodeshipName": "Wpisz województwo",
+            "missingId": "Missing ID value, something is wrong…",
+            "numberOfPeople": "Wpisz liczbę osób"
         }
     },
     "data": {
