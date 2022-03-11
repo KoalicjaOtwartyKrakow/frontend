@@ -13,7 +13,7 @@ const t = {
     streetName: "Wpisz nazwę ulicy",
     streetNumber: "Wpisz numer lokalu",
     cityName: "Wpisz miejscowość",
-    stateName: "Wpisz województwo",
+    voivodeshipName: "Wpisz województwo",
 
     // Development / debug
     missingId: "Missing ID value, something is wrong…",

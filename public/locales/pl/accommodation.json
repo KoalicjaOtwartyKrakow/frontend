@@ -30,17 +30,27 @@
         },
         "label": {
             "addressLine": "Address",
-            "addressProvince": "State / province",
+            "addressVoivodeship": "Voivodeship",
             "addressZip": "Zip code",
+            "comments": "Host comments",
+            "description": "Volunteer notes",
             "pets": "Pets acceptance and presence",
             "petsAllowed": "Pets allowed",
             "petsPresent": "Pets present",
+            "status": "Accommodation unit status",
             "vacanciesTaken": "Vacancies taken",
             "vacanciesTotal": "Vacancies total"
         },
         "message": {
             "updateSuccess": "Successfully updated Accommodation Unit",
             "updateFailure": "Failed to update Accommodation Unit"
+        },
+        "value": {
+            "status": {
+                "created": "Awaits verification",
+                "verified": "Verified",
+                "rejected": "Rejected"
+            }
         }
     },
     "status": {

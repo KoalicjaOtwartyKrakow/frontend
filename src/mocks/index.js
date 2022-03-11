@@ -7,7 +7,7 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 
 export function generateAllMocks() {
-    const chance = new Chance();
+    const chance = new Chance(0xdeadbeef);
 
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
@@ -47,7 +47,9 @@ export function generateAllMocks() {
                 chance.natural({ min: 0, max: polishVoivodeships.length - 1 })
             ].id;
         accommodation.addressCity = chance.city();
-        accommodation.addressZip = chance.zip();
+        const zip = chance.zip().split("");
+        zip.splice(2, 0, "-");
+        accommodation.addressZip = zip.join("");
 
         accommodation.status = chance.pickone(
             Object.values(AccommodationStatus)
