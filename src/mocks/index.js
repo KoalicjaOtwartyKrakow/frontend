@@ -5,6 +5,7 @@ import Host from "models/Host";
 import { polishVoivodeships } from "models/constants/Address";
 import { AccommodationStatus } from "models/constants/AccomodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
+import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
 export function generateAllMocks() {
     const chance = new Chance(0xdeadbeef);
@@ -12,7 +13,7 @@ export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
         guest.id = chance.guid({ version: 5 });
-        guest.status = chance.pickone(Object.values(HostStatus));
+        guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
         guest.children = [
@@ -24,6 +25,15 @@ export function generateAllMocks() {
         guest.financialStatus = chance.sentence();
         guest.petsPresent = chance.bool();
         guest.petsDescription = "3";
+        guest.foodAllergies = "Chocolate";
+        guest.meatFreeDiet = chance.bool();
+        guest.glutenFreeDiet = chance.bool();
+        guest.lactoseFreeDiet = chance.bool();
+        guest.desiredDestination = chance.addressLine();
+        guest.priorityStatus = chance.pickone(
+            Object.values(GuestPriorityStatus)
+        );
+
         return guest;
     });
 
