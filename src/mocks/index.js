@@ -29,7 +29,7 @@ export function generateAllMocks() {
         guest.meatFreeDiet = chance.bool();
         guest.glutenFreeDiet = chance.bool();
         guest.lactoseFreeDiet = chance.bool();
-        guest.desiredDestination = chance.addressLine();
+        guest.desiredDestination = chance.address();
         guest.priorityStatus = chance.pickone(
             Object.values(GuestPriorityStatus)
         );
