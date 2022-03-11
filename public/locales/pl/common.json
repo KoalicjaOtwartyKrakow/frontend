@@ -37,7 +37,8 @@
             "positiveNumber": "Wartości ujemne są niepoprawne",
             "streetName": "Wpisz nazwę ulicy",
             "streetNumber": "Wpisz numer lokalu",
-            "voivodeshipName": "Wpisz województwo"
+            "voivodeshipName": "Wpisz województwo",
+            "tooManyPeople": "Liczba osób nie może przekraczać liczby miejsc"
         }
     }
 }

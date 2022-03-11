@@ -53,6 +53,10 @@ const commonSchema = Yup.object().shape({
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("form.validator.integer")
         .moreThan(-1, "form.validator.positiveNumber")
+        .max(
+            Yup.ref(AccommodationFormFields.VACANCIES_TOTAL),
+            "form.validator.tooManyPeople"
+        )
         .required("form.validator.numberOfPeople"),
     [AccommodationFormFields.VOLUNTEER_NAME]: Yup.string().required(
         "form.validator.fullName"
