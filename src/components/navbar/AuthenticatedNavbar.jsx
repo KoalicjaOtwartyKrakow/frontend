@@ -18,7 +18,6 @@ import navbarItems from "components/navbar/constants/NavbarItems";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "components/molecules/LanguageSwitcher";
-import { isMobile } from "shared/utils";
 
 const AuthenticatedNavbar = ({ onLogout }) => {
     const { t } = useTranslation(["navbar"]);
@@ -27,8 +26,6 @@ const AuthenticatedNavbar = ({ onLogout }) => {
     const toggle = () => {
         setIsOpen(!isOpen);
     };
-
-    const mobile = isMobile();
 
     return (
         <Navbar color="dark" dark expand="md">
@@ -45,12 +42,12 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                 </Nav>
                 <LanguageSwitcher className="me-3" />
                 <Nav navbar>
-                    <UncontrolledDropdown nav>
+                    <UncontrolledDropdown navbarItem>
                         <DropdownToggle nav caret>
                             <FontAwesomeIcon icon={faUser} />{" "}
                             {t("navbar:account")}
                         </DropdownToggle>
-                        <DropdownMenu end={!mobile}>
+                        <DropdownMenu>
                             <DropdownItem>
                                 <FontAwesomeIcon icon={faCog} />{" "}
                                 {t("navbar:applicationSettings")}

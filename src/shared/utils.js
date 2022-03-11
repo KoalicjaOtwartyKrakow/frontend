@@ -5,4 +5,3 @@ export const sleep = (ms) => {
     return Promise.resolve();
 };
 export const emptyFn = () => {};
-export const isMobile = () => /Mobi|Android/i.test(navigator.userAgent);
