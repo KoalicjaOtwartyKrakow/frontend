@@ -4,13 +4,14 @@ import { withRouter } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
-
+import { useHistory } from "react-router-dom";
 import { Routes } from "constants/Routes";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
 
-const AuthenticatedContainer = ({ children, history }) => {
+const AuthenticatedContainer = ({ children }) => {
+    const history = useHistory();
     const onJumbotronClick = () => {
         const path = Routes.ROOT;
         history.push(path);
@@ -31,7 +32,7 @@ const AuthenticatedContainer = ({ children, history }) => {
             </Jumbotron>
             <Container>
                 <div className="mt-3 mb-3 text-muted">
-                    Dashboard > Breadcrumbs here...
+                    Dashboard {">"} Breadcrumbs here...
                 </div>
                 {children}
             </Container>
