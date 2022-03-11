@@ -22,7 +22,7 @@ const AuthenticatedContainer = ({ children }) => {
     return (
         <ToastProvider autoDismiss={Notifications.toastAutoDismiss}>
             <AuthenticatedNavbar onLogout={emptyFn} />
-            <Jumbotron onClick={onJumbotronClick} className="pointer">
+            <Jumbotron onClick={onJumbotronClick}>
                 <Container>
                     <h1 className="display-6">#KoalicjaOtwartyKraków</h1>
                     <p className="lead">
