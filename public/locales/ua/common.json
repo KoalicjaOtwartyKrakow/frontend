@@ -4,7 +4,18 @@
             "subtitle": "KOK:on – we help people find a safe harbor!"
         }
     },
+    "data": {
+        "loading": "Loading data…",
+        "updateSuccess": "Changes saved successfully"
+    },
+    "errors": {
+        "apiFailure": "API communication error:"
+    },
     "form": {
+        "button": {
+            "reset": "Reset changes",
+            "backToList": "Back to the list"
+        },
         "label": {
             "email": "E-mail",
             "phone": "Phone"
@@ -14,16 +25,19 @@
             "phone": "+1 (123) 4567890"
         },
         "pleaseSelect": "Please select…",
-        "button": {
-            "reset": "Reset changes",
-            "backToList": "Back to the list"
+        "validator": {
+            "cityName": "Wpisz miejscowość",
+            "email": "E-mail is required",
+            "fullName": "Name is required",
+            "integer": "Podaj liczbę całkowitą",
+            "missingId": "Missing ID value, something is wrong…",
+            "numberMin": "Musi być co najmniej",
+            "numberOfPeople": "Wpisz liczbę osób",
+            "phoneNumber": "Phone number is required",
+            "positiveNumber": "Wartości ujemne są niepoprawne",
+            "streetName": "Wpisz nazwę ulicy",
+            "streetNumber": "Wpisz numer lokalu",
+            "voivodeshipName": "Wpisz województwo"
         }
-    },
-    "data": {
-        "loading": "Loading data…",
-        "updateSuccess": "Changes saved successfully"
-    },
-    "errors": {
-        "apiFailure": "API communication error:"
     }
 }
