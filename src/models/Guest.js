@@ -10,6 +10,7 @@ import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import GuestChild from "models/guest/GuestChild";
 import { GuestStatus } from "models/constants/GuestStatus";
+import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 
 @JsonObject()
 class Guest {
@@ -24,6 +25,10 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
+    desiredDestination = "";
+
+    @JsonProperty()
+    @JsonType(String)
     email = "";
 
     @JsonProperty("financeStatus")
@@ -32,7 +37,15 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
+    foodAllergies = "";
+
+    @JsonProperty()
+    @JsonType(String)
     fullName = "";
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    glutenFreeDiet = false;
 
     @JsonProperty()
     @JsonType(String)
@@ -41,6 +54,14 @@ class Guest {
     @JsonProperty()
     @JsonType(String)
     id = undefined;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    lactoseFreeDiet = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    meatFreeDiet = false;
 
     @JsonProperty("peopleInGroup")
     @JsonType(Number)
@@ -73,6 +94,10 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
+    priorityStatus = GuestPriorityStatus.IN_CRISIS_POINT;
+
+    @JsonProperty()
+    @JsonType(String)
     specialNeeds = "";
 
     @JsonConverter(new MomentSerializer())
@@ -82,7 +107,7 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
-    status = GuestStatus.CREATED;
+    verificationStatus = GuestStatus.CREATED;
 
     // constructor() {
     //     this.uuidRegenerate();
