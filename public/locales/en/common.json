@@ -35,8 +35,8 @@
             "numberOfPeople": "Enter number of people",
             "phoneNumber": "Phone number is required",
             "positiveNumber": "Negative values are not accepted",
-            "voivodeshipName": "Enter voivodeship name",
-            "tooManyPeople": "Vacancies cannot exceed total vacancies"
+            "tooManyPeople": "Vacancies cannot exceed total vacancies",
+            "voivodeshipName": "Enter voivodeship name"
         }
     }
 }
