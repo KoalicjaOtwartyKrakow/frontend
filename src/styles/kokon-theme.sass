@@ -17,6 +17,8 @@ $bg-person-color-individual: $gray-500
 $bg-person-color-total: mix($gray-600, $blue-500, 70%)
 
 $bg-person-color-adult: mix($gray-300, $blue-500, 70%)
+$bg-person-color-male: mix($bg-person-color-adult, $green-500, 70%)
+$bg-person-color-female: mix($bg-person-color-adult, $cyan-500, 70%)
 $bg-person-color-child: mix($gray-300, $purple-500, 70%)
 
 $bg-color-guest-priority-done: mix($gray-300, $teal-500, 70%)
@@ -52,9 +54,9 @@ $bg-color-guest-priority-highest: mix($gray-100, $red-500, 5%)
     &-child
       background-color: $bg-person-color-child
     &-female
-      background-color: $bg-person-color-adult
+      background-color: $bg-person-color-female
     &-male
-      background-color: $bg-person-color-adult
+      background-color: $bg-person-color-male
     &-total
       background-color: $bg-person-color-total
 
