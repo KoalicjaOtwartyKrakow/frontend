@@ -39,7 +39,7 @@ const GuestList = ({ guests, history, toastManager }) => {
         "priorityStatus",
         "priorityDate",
         "totalPeople",
-        "duration",
+        "durationOfStay",
         "information",
     ];
 

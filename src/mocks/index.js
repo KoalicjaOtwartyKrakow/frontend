@@ -7,6 +7,7 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
+import GuestChild from "models/guest/GuestChild";
 
 const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -22,14 +23,19 @@ export function generateAllMocks() {
         guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
-        guest.children = [
-            // TODO
-        ];
+        guest.children = Array.from(
+            { length: chance.natural({ min: 0, max: 3 }) },
+            () => {
+                const guestChild = new GuestChild();
+                guestChild.age = chance.age({ type: "child" });
+                return guestChild;
+            }
+        );
         const stayDuration = moment.duration({
             months: chance.natural({ min: 0, max: 3 }),
             days: chance.natural({ min: 1, max: 28 }),
         });
-        guest.stayDuration = stayDuration.humanize();
+        guest.durationOfStay = stayDuration.humanize();
         guest.peopleFemaleCount = chance.natural({ min: 1, max: 2 });
         guest.peopleMaleCount = chance.natural({ min: 0, max: 3 });
         guest.peopleTotalCount =

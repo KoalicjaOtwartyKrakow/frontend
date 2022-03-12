@@ -1,0 +1,15 @@
+{
+    "status": {
+        "created": "New",
+        "verified": "Verified",
+        "rejected": "Rejected"
+    },
+    "priorityStatus": {
+        "accommodationFound": "Assigned",
+        "accommodationNotRequired": "Not required",
+        "enRoutePoland": "In Poland",
+        "enRouteUkraine": "In Ukraine",
+        "inCrisisPoint": "In Crisis Point",
+        "inCracow": "In Cracow"
+    }
+}

@@ -3,6 +3,7 @@ import moment from "moment-es6";
 import { appConfig } from "constants/AppConfig";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
+import { getFormattedDate } from "shared/datetime";
 
 class AccommodationFormFields {
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
@@ -49,7 +50,7 @@ class AccommodationFormFields {
     }
 
     getDateAsYMD(value) {
-        return moment.isMoment(value) ? value.format(appConfig.dateFormat) : "";
+        return getFormattedDate(value);
     }
 
     /**

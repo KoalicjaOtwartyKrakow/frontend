@@ -49,7 +49,7 @@ class Guest {
 
     @JsonProperty("howLongToStay")
     @JsonType(String)
-    stayDuration = "";
+    durationOfStay = "";
 
     @JsonProperty()
     @JsonType(String)
@@ -87,6 +87,9 @@ class Guest {
     @JsonType(String)
     phoneNumber = "";
 
+    /**
+     * @type {moment.Moment}
+     */
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)

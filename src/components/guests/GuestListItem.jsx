@@ -1,9 +1,15 @@
 import React from "react";
-import { Button, ButtonGroup } from "reactstrap";
-import { useTranslation } from "react-i18next";
 
 import "components/guests/GuestListItem.sass";
 
+import { GuestContext } from "components/guest/GuestContext";
+import GuestItemFullName from "components/guests/item/GuestItemFullName";
+import GuestItemPhone from "components/guests/item/GuestItemPhone";
+import GuestItemPriorityStatus from "components/guests/item/GuestItemPriorityStatus";
+import GuestItemPriorityDate from "components/guests/item/GuestItemPriorityDate";
+import GuestItemPeople from "components/guests/item/GuestItemPeople";
+import GuestItemInfo from "components/guests/item/GuestItemInfo";
+import GuestItemDurationOfStay from "components/guests/item/GuestItemDurationOfStay";
 /**
  *
  * @param {Guest} guest
@@ -13,21 +19,35 @@ import "components/guests/GuestListItem.sass";
  * @constructor
  */
 const GuestListItem = ({ guest, onEdit, onRemove }) => {
-    const { t } = useTranslation(["guests"]);
-
     const { id } = guest;
     const handleEdit = () => onEdit(id);
 
     return (
-        <tr onClick={handleEdit} className="pointer">
-            <td>{guest.fullName}</td>
-            <td>{guest.phoneNumber}</td>
-            <td>{guest.priorityStatus}</td>
-            <td>{guest.priorityDate}</td>
-            <td>{guest.peopleTotalCount}</td>
-            <td>{guest.stayDuration}</td>
-            <td></td>
-        </tr>
+        <GuestContext.Provider value={guest}>
+            <tr onClick={handleEdit} className="pointer">
+                <td className="guest__cell-full-name">
+                    <GuestItemFullName />
+                </td>
+                <td className="guest__cell-phone">
+                    <GuestItemPhone />
+                </td>
+                <td className="guest__cell-priority-status">
+                    <GuestItemPriorityStatus />
+                </td>
+                <td className="guest__cell-priority-date">
+                    <GuestItemPriorityDate />
+                </td>
+                <td className="guest__cell-people">
+                    <GuestItemPeople />
+                </td>
+                <td className="guest__cell-duration">
+                    <GuestItemDurationOfStay />
+                </td>
+                <td className="guest__cell-info">
+                    <GuestItemInfo />
+                </td>
+            </tr>
+        </GuestContext.Provider>
     );
 };
 
