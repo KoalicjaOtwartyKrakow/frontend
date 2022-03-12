@@ -7,12 +7,14 @@ import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
+import RefreshButton from "components/atoms/RefreshButton";
 
 const HostsPage = ({
     hosts,
     hostsErrorMessage,
     hostsInProgress,
     hostsSuccess,
+    fetchHosts,
 }) => {
     const { t } = useTranslation(["host"]);
 
@@ -23,6 +25,11 @@ const HostsPage = ({
 
     return (
         <PageCard header={pageHeader}>
+            <RefreshButton
+                className="mb-3"
+                disabled={hostsInProgress}
+                onClick={() => fetchHosts()}
+            />
             <InProgress inProgress={hostsInProgress} />
             <PageErrorMessage isError={hostsErrorMessage}>
                 {hostsErrorMessage}

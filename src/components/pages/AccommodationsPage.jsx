@@ -8,12 +8,14 @@ import PageCard from "components/atoms/PageCard";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import AccommodationListDescription from "components/accommodations/AccommodationListDescription";
+import RefreshButton from "components/atoms/RefreshButton";
 
 const AccommodationsPage = ({
     accommodations,
     accommodationsErrorMessage,
     accommodationsInProgress,
     accommodationsSuccess,
+    fetchAccommodations,
 }) => {
     const { t } = useTranslation(["accommodations"]);
 
@@ -27,6 +29,11 @@ const AccommodationsPage = ({
 
     return (
         <PageCard header={pageHeader}>
+            <RefreshButton
+                className="mb-3"
+                disabled={accommodationsInProgress}
+                onClick={() => fetchAccommodations()}
+            />
             <InProgress inProgress={accommodationsInProgress} />
             <PageErrorMessage isError={accommodationsErrorMessage}>
                 {accommodationsErrorMessage}
