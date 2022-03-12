@@ -15,8 +15,6 @@ const AccommodationFormAddressStatus = (props) => {
         AccommodationStatus
     ).map((item) => ({ id: item[0], name: item[1] }));
 
-    console.log(accommodationStatusDropdownItems);
-
     const FormSelectStatus = (props) => (
         <FormSelect {...props} items={accommodationStatusDropdownItems}>
             <FormOptionPleaseSelect />

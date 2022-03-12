@@ -6,6 +6,8 @@ import { polishVoivodeships } from "models/constants/Address";
 import { AccommodationStatus } from "models/constants/AccomodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
+import moment from "moment-es6";
+import GuestChild from "models/guest/GuestChild";
 
 const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -17,25 +19,55 @@ export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
         guest.id = chance.guid({ version: 5 });
+        guest.fullName = chance.name();
         guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
-        guest.children = [
-            // TODO
-        ];
-        guest.howLongToStay = chance.sentence();
-        guest.peopleFemaleCount = chance.natural({ min: 0, max: 4 });
-        guest.peopleMaleCount = chance.natural({ min: 0, max: 4 });
+        guest.children = Array.from(
+            { length: chance.natural({ min: 0, max: 3 }) },
+            () => {
+                const guestChild = new GuestChild();
+                guestChild.age = chance.age({ type: "child" });
+                return guestChild;
+            }
+        );
+        const stayDuration = moment.duration({
+            months: chance.natural({ min: 0, max: 3 }),
+            days: chance.natural({ min: 1, max: 28 }),
+        });
+        guest.durationOfStay = stayDuration.humanize();
+        guest.peopleFemaleCount = chance.natural({ min: 1, max: 2 });
+        guest.peopleMaleCount = chance.natural({ min: 0, max: 3 });
+        guest.peopleTotalCount =
+            guest.peopleFemaleCount +
+            guest.peopleMaleCount +
+            guest.children.length;
         guest.financialStatus = chance.sentence();
         guest.petsPresent = chance.bool();
         guest.petsDescription = "3";
-        guest.foodAllergies = "Chocolate";
+
+        const foodAllergies = ["Chocolate", "Nuts", "Strawberry"];
+        const foodAllergiesQuantity = chance.natural({
+            min: 0,
+            max: Math.min(foodAllergies.length, 2),
+        });
+
+        guest.foodAllergies = chance
+            .pickset(foodAllergies, foodAllergiesQuantity)
+            .join(", ");
+
         guest.meatFreeDiet = chance.bool();
         guest.glutenFreeDiet = chance.bool();
         guest.lactoseFreeDiet = chance.bool();
         guest.desiredDestination = chance.address();
         guest.priorityStatus = chance.pickone(
             Object.values(GuestPriorityStatus)
+        );
+
+        const daysFromStartOfWar = moment().diff(moment("2022-02-24"), "days");
+        guest.priorityDate = moment().subtract(
+            chance.natural({ min: 0, max: daysFromStartOfWar }),
+            "days"
         );
 
         return guest;

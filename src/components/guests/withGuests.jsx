@@ -64,6 +64,14 @@ const withGuests = (WrappedComponent) => {
             this.setState({ guestsInProgress });
         };
 
+        fetchGuests = async () =>
+            await fetchGuests(
+                this.fetchGuestsBefore,
+                this.fetchGuestsSuccess,
+                this.fetchGuestsFailure,
+                this.fetchGuestsFinally
+            );
+
         render() {
             return (
                 <WrappedComponent

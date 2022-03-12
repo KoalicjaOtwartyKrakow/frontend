@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
  * @constructor
  */
 const PageErrorMessage = ({ children, isError }) => {
-    const { t } = useTranslation("common");
+    const { t } = useTranslation(["common"]);
 
     if (!isError) {
         return null;

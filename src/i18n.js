@@ -8,10 +8,6 @@ const translationsPath = "../locales";
 const fallbackLanguage = "en";
 const language = localStorage.getItem("language") || fallbackLanguage;
 
-// don't want to use this?
-// have a look at the Quick start guide
-// for passing in lng and translations on init
-
 i18next
     // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
     // learn more: https://github.com/i18next/i18next-http-backend
@@ -27,37 +23,11 @@ i18next
     .init({
         fallbackLng: "en",
         debug: true,
+        defaultNS: "common",
 
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },
     });
 
-// i18next
-//     .use(
-//         resourcesToBackend((language, namespace, callback) => {
-//             import(`${translationsPath}/${language}/${namespace}.json`)
-//                 .then((resources) => {
-//                     callback(null, resources);
-//                 })
-//                 .catch((error) => {
-//                     callback(error, null);
-//                 });
-//         })
-//     )
-//     .use(initReactI18next) // passes i18n down to react-i18next
-//     .init({
-//         fallbackLng: fallbackLanguage,
-//         interpolation: {
-//             escapeValue: false, // react already safes from xss
-//         },
-//         lng: language,
-//         resources: {},
-//     })
-//     .then(() => {
-//         console.log("[Translations] Initialized");
-//     });
-//
-// i18next.addResourceBundle("en", "accommodations", translations);
-//
 export default i18next;

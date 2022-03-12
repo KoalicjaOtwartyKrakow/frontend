@@ -13,21 +13,64 @@ $bg-color-guests-primary: shade-color($bg-color-guests, 10%)
 $bg-color-hosts: $teal-500
 $bg-color-hosts-primary: $teal-300
 
+$bg-person-color-individual: $gray-500
+$bg-person-color-total: mix($gray-600, $blue-500, 70%)
 
-.bg-accommodations
-  background-color: $bg-color-accommodations
+$bg-person-color-adult: mix($gray-300, $blue-500, 70%)
+$bg-person-color-male: mix($bg-person-color-adult, $green-500, 70%)
+$bg-person-color-female: mix($bg-person-color-adult, $cyan-500, 70%)
+$bg-person-color-child: mix($gray-300, $purple-500, 70%)
 
-.btn-accommodations
-  @include button-variant($bg-color-accommodations-primary, $bg-color-accommodations-primary, $color-contrast-light)
+$bg-color-guest-priority-done: mix($gray-300, $teal-500, 70%)
 
-.bg-guests
-  background-color: $bg-color-guests
+$bg-color-guest-priority-lowest: mix($gray-300, $cyan-500, 70%)
+$bg-color-guest-priority-low: mix($gray-300, $red-500, 80%)
+$bg-color-guest-priority-medium: mix($gray-400, $red-500, 50%)
+$bg-color-guest-priority-high: mix($gray-200, $red-600, 20%)
+$bg-color-guest-priority-highest: mix($gray-100, $red-500, 5%)
 
-.btn-guests
-  @include button-variant($bg-color-guests-primary, $bg-color-guests-primary, $color-contrast-light)
+$text-guest-trait: $gray-500
 
-.bg-hosts
-  background-color: $bg-color-hosts
+.bg
+  &-accommodations
+    background-color: $bg-color-accommodations
+  &-guest-priority-status
+    &-accommodation-found
+      background-color: $bg-color-guest-priority-lowest
+    &-accommodation-not-needed
+      background-color: $bg-color-guest-priority-done
+    &-en-route-poland
+      background-color: $bg-color-guest-priority-medium
+    &-en-route-ukraine
+      background-color: $bg-color-guest-priority-low
+    &-in-crisis-point
+      background-color: $bg-color-guest-priority-highest
+    &-in-krakow
+      background-color: $bg-color-guest-priority-high
 
-.btn-hosts
-  @include button-variant($bg-color-hosts-primary, $bg-color-hosts-primary, $color-contrast-light)
+  &-guests
+    background-color: $bg-color-guests
+  &-hosts
+    background-color: $bg-color-hosts
+  &-person-color
+    &-child
+      background-color: $bg-person-color-child
+    &-female
+      background-color: $bg-person-color-female
+    &-male
+      background-color: $bg-person-color-male
+    &-total
+      background-color: $bg-person-color-total
+
+.btn
+  &-accommodations
+    @include button-variant($bg-color-accommodations-primary, $bg-color-accommodations-primary, $color-contrast-light)
+  &-guests
+    @include button-variant($bg-color-guests-primary, $bg-color-guests-primary, $color-contrast-light)
+  &-hosts
+    @include button-variant($bg-color-hosts-primary, $bg-color-hosts-primary, $color-contrast-light)
+
+.text
+  &-guest
+    &-trait
+      color: $text-guest-trait

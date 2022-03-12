@@ -1,14 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faDog, faHandDots } from "@fortawesome/free-solid-svg-icons";
 import { faDog as faDogNotPresent } from "@fortawesome/pro-light-svg-icons";
 import React from "react";
 import { nanoid } from "nanoid";
 import { UncontrolledTooltip } from "reactstrap";
 import { useTranslation } from "react-i18next";
+import {
+    faBaguette,
+    faCheeseSwiss,
+    faTurkey,
+} from "@fortawesome/pro-solid-svg-icons";
+import classNames from "classnames";
 
 const getDomId = () => `icon-${nanoid(10)}`;
 
 const IconContainer = ({ children }) => <span>{children}</span>;
+
+const IconStackWrapper = ({ children, className, id }) => {
+    const iconStackWrapperClassName = classNames(
+        "fa-layers fa-fw fa-lg",
+        className
+    );
+    return (
+        <span className={iconStackWrapperClassName} id={id}>
+            {children}
+        </span>
+    );
+};
 
 const IconTooltip = ({ label, target }) => {
     return (
@@ -27,9 +45,9 @@ const IconPetsPresent = () => {
                 target={id}
                 label={t("accommodation:common.pets.present")}
             />
-            <span className="fa-layers fa-fw fa-lg" id={id}>
+            <IconStackWrapper id={id}>
                 <FontAwesomeIcon icon={faDog} />
-            </span>
+            </IconStackWrapper>
         </IconContainer>
     );
 };
@@ -43,12 +61,12 @@ const IconPetsNotPresent = () => {
                 target={id}
                 label={t("accommodation:common.pets.notPresent")}
             />
-            <span className="fa-layers fa-fw fa-lg" id={id}>
+            <IconStackWrapper id={id}>
                 <FontAwesomeIcon
                     icon={faDogNotPresent}
                     className="text-muted"
                 />
-            </span>
+            </IconStackWrapper>
         </IconContainer>
     );
 };
@@ -62,9 +80,9 @@ const IconPetsAllowed = () => {
                 target={id}
                 label={t("accommodation:common.pets.allowed")}
             />
-            <span className="fa-layers fa-fw fa-lg" id={id}>
+            <IconStackWrapper id={id}>
                 <FontAwesomeIcon icon={faDog} className="text-success" />
-            </span>
+            </IconStackWrapper>
         </IconContainer>
     );
 };
@@ -78,16 +96,83 @@ const IconPetsNotAllowed = () => {
                 target={id}
                 label={t("accommodation:common.pets.notAllowed")}
             />
-            <span className="fa-layers fa-fw fa-lg fa-sr-only" id={id}>
+            <IconStackWrapper className="fa-sr-only" id={id}>
                 <FontAwesomeIcon icon={faDog} className="text-danger" />
-            </span>
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+
+const iconFoodColor = "text-guest-trait";
+
+const IconFoodAllergy = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["guest"]);
+    return (
+        <IconContainer>
+            <IconTooltip target={id} label={t("guest:traits.food.allergy")} />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon icon={faHandDots} className={iconFoodColor} />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+
+const IconFoodMeatFree = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["guest"]);
+    return (
+        <IconContainer>
+            <IconTooltip target={id} label={t("guest:traits.food.meatFree")} />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon icon={faTurkey} className={iconFoodColor} />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+
+const IconFoodLactoseFree = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["guest"]);
+    return (
+        <IconContainer>
+            <IconTooltip
+                target={id}
+                label={t("guest:traits.food.lactoseFree")}
+            />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon
+                    icon={faCheeseSwiss}
+                    className={iconFoodColor}
+                />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+
+const IconFoodGlutenFree = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["guest"]);
+    return (
+        <IconContainer>
+            <IconTooltip
+                target={id}
+                label={t("guest:traits.food.glutenFree")}
+            />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon icon={faBaguette} className={iconFoodColor} />
+            </IconStackWrapper>
         </IconContainer>
     );
 };
 
 export {
+    IconFoodAllergy,
+    IconFoodGlutenFree,
+    IconFoodLactoseFree,
+    IconFoodMeatFree,
     IconPetsAllowed,
     IconPetsNotAllowed,
-    IconPetsPresent,
     IconPetsNotPresent,
+    IconPetsPresent,
 };

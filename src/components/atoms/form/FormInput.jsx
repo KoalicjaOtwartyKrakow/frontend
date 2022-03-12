@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const FormInput = React.memo(({ field, form, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
-    const { t } = useTranslation("common");
+    const { t } = useTranslation(["common"]);
     const invalid = !!error;
     return (
         <React.Fragment>

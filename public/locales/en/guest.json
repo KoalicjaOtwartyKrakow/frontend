@@ -1,0 +1,31 @@
+{
+    "peopleCount": {
+        "children": "Children",
+        "label": "Number of Guests",
+        "men": "Men",
+        "total": "Total",
+        "women": "Women"
+    },
+    "priorityStatus": {
+        "accommodationFound": "Assigned",
+        "accommodationNotRequired": "Not required",
+        "enRoutePoland": "In Poland",
+        "enRouteUkraine": "In Ukraine",
+        "inCrisisPoint": "In Crisis Point",
+        "inCracow": "In Cracow"
+    },
+    "status": {
+        "created": "New",
+        "verified": "Verified",
+        "rejected": "Rejected"
+    },
+    "traits": {
+        "food": {
+            "allergy": "Food allergies",
+            "glutenFree": "Gluten free diet",
+            "label": "Dietary requirements",
+            "lactoseFree": "Lactose free diet",
+            "meatFree": "Meat free diet"
+        }
+    }
+}

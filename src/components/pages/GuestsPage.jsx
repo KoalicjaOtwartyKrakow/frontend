@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
+import GuestListDescription from "components/guests/GuestListDescription";
 
 const GuestsPage = ({
     guests,
@@ -14,12 +15,12 @@ const GuestsPage = ({
     guestsInProgress,
     guestsSuccess,
 }) => {
-    const { t } = useTranslation(["accommodation"]);
+    const { t } = useTranslation(["guests"]);
 
     const guestCount = guestsSuccess
-        ? `(${t("guests.found")}: ${guests.length})`
+        ? `(${t("guests:card.found")}: ${guests.length})`
         : "";
-    const pageHeader = `${t("guests.list")} ${guestCount}`;
+    const pageHeader = `${t("guests:card.title")} ${guestCount}`;
 
     return (
         <PageCard header={pageHeader}>
@@ -29,9 +30,12 @@ const GuestsPage = ({
             </PageErrorMessage>
             {guestsSuccess && (
                 <>
+                    <GuestListDescription />
                     {guests.length && <GuestList guests={guests} />}
                     {!guests.length && (
-                        <Alert color="warning">{t("guests.not_found")}</Alert>
+                        <Alert color="warning">
+                            {t("guests:card.notAvailable")}
+                        </Alert>
                     )}
                 </>
             )}

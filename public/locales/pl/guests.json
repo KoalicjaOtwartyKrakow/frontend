@@ -1,0 +1,17 @@
+{
+    "card": {
+        "title": "Guests",
+        "found": "Found",
+        "notAvailable": "No guests found."
+    },
+    "list": {
+        "columnHeader": {
+            "fullName": "Full name",
+            "phoneNumber": "Phone number",
+            "status": "Status",
+            "priority": "Priority",
+            "totalPeople": "How many",
+            "duration": "Duration of stay"
+        }
+    }
+}

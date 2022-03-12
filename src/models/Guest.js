@@ -47,9 +47,9 @@ class Guest {
     @JsonType(Boolean)
     glutenFreeDiet = false;
 
-    @JsonProperty()
+    @JsonProperty("howLongToStay")
     @JsonType(String)
-    howLongToStay = "";
+    durationOfStay = "";
 
     @JsonProperty()
     @JsonType(String)
@@ -87,6 +87,9 @@ class Guest {
     @JsonType(String)
     phoneNumber = "";
 
+    /**
+     * @type {moment.Moment}
+     */
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
@@ -109,9 +112,9 @@ class Guest {
     @JsonType(String)
     verificationStatus = GuestStatus.CREATED;
 
-    // constructor() {
-    //     this.uuidRegenerate();
-    // }
+    constructor() {
+        this.uuidRegenerate();
+    }
 
     @OnDeserialized()
     uuidRegenerate() {
