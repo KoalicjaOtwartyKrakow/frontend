@@ -9,19 +9,31 @@ import {
     getPolishVoivodeshipById,
 } from "models/constants/Address";
 
+const objectAssignMapped = (object, source, map) => {
+    for (const [objectKey, sourceKey] of Object.entries(map)) {
+        object[objectKey] = source[sourceKey];
+    }
+    return object;
+};
+
 class AccommodationFormFields {
+    static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_LINE = "addressLine";
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_ZIP = "addressZip";
     static COMMENTS = "comments";
     static DESCRIPTION = "description";
+    static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
+    static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static HOST_EMAIL = "hostEmail";
     static HOST_NAME = "hostName";
     static HOST_PHONE = "hostPhone";
     static HOST_STATUS = "hostStatus";
     static ID = "id";
     static IS_VERIFIED = "isVerified";
+    static LGBT_FRIENDLY = "lgbtFriendly";
+    static PARKING_PLACE = "parkingPlaceAvailable";
     static PETS_ALLOWED = "petsAllowed";
     static PETS_PRESENT = "petsPresent";
     static STATUS = "status";
@@ -31,11 +43,27 @@ class AccommodationFormFields {
     static VOLUNTEER_NAME = "volunteerName";
 
     /**
-     *
+     * Transform object from model to form object.
      * @param {Accommodation} accommodation
      * @return {*}
      */
     static getInitialValues(accommodation) {
+
+        if (!accommodation.id) {
+            console.log(
+                "computing initial values, can't do it! no id, so returning empty object"
+            );
+            return {};
+        }
+
+        const FormObject = objectAssignMapped(
+            {},
+            accommodation,
+            AccommodationFormFields.modelToFormMap
+        );
+
+        return FormObject;
+
         const fieldNames = Object.values(AccommodationFormFields);
         const initialValues = pick(accommodation, fieldNames);
 
@@ -80,16 +108,21 @@ class AccommodationFormFields {
             [AccommodationFormFields.ADDRESS_CITY],
             [AccommodationFormFields.ADDRESS_LINE],
             [AccommodationFormFields.ADDRESS_ZIP],
-            [AccommodationFormFields.DESCRIPTION],
-            [AccommodationFormFields.ID],
-            [AccommodationFormFields.IS_VERIFIED],
-            [AccommodationFormFields.HOST_EMAIL],
-            [AccommodationFormFields.HOST_NAME],
-            [AccommodationFormFields.HOST_PHONE],
+            [AccommodationFormFields.COMMENTS],
             [AccommodationFormFields.VACANCIES_TOTAL],
             [AccommodationFormFields.VACANCIES_TAKEN],
-            [AccommodationFormFields.UUID],
-            [AccommodationFormFields.VOLUNTEER_NAME],
+            [AccommodationFormFields.PETS_ALLOWED],
+            [AccommodationFormFields.PETS_PRESENT],
+            [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY],
+            [AccommodationFormFields.LGBT_FRIENDLY],
+            [AccommodationFormFields.PARKING_PLACE],
+            [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
+            // [AccommodationFormFields.DESCRIPTION],
+            // [AccommodationFormFields.IS_VERIFIED],
+            // [AccommodationFormFields.HOST_EMAIL],
+            // [AccommodationFormFields.HOST_NAME],
+            // [AccommodationFormFields.HOST_PHONE],
+            //[AccommodationFormFields.VOLUNTEER_NAME],
         ];
 
         const simpleTypeDiff = (key) => prev[key] !== next[key];
@@ -118,8 +151,23 @@ class AccommodationFormFields {
      * @returns {Accommodation}
      */
     toModel(values) {
-        const accommodation = new Accommodation();
-        return Object.assign(accommodation, values);
+        return AccommodationFormFields.formToModel(values);
+    }
+
+    static formToModel(formValues) {
+        // Invert map
+        const formToModelMap = Object.fromEntries(
+            Object.entries(AccommodationFormFields.modelToFormMap).map(
+                ([k, v]) => [v, k]
+            )
+        );
+
+        const model = objectAssignMapped(
+            new Accommodation(),
+            formValues,
+            formToModelMap
+        );
+        return model;
     }
 }
 

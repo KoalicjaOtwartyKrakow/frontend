@@ -20,47 +20,64 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 //     );
 
 const commonSchema = Yup.object().shape({
-    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required(
-        "form.validator.voivodeshipName"
-    ),
+    // Address
     [AccommodationFormFields.ADDRESS_CITY]: Yup.string().required(
         "form.validator.cityName"
     ),
-    [AccommodationFormFields.ADDRESS_FLAT_NUMBER]: Yup.string(),
-    [AccommodationFormFields.ADDRESS_STREET_NUMBER]: Yup.string().required(
-        "form.validator.streetNumber"
+    [AccommodationFormFields.ADDRESS_LINE]: Yup.string().required(
+        "form.validator.address"
     ),
-    [AccommodationFormFields.ADDRESS_STREET_NAME]: Yup.string().required(
-        "form.validator.streetName"
+    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required(
+        "form.validator.voivodeshipName"
     ),
-    [AccommodationFormFields.ADDRESS_ZIP]: Yup.string(),
-    [AccommodationFormFields.DESCRIPTION]: Yup.string(),
-    [AccommodationFormFields.IS_VERIFIED]: Yup.boolean(),
-    [AccommodationFormFields.HOST_EMAIL]: Yup.string().required(
-        "form.validator.email"
-    ),
-    [AccommodationFormFields.HOST_NAME]: Yup.string().required(
-        "form.validator.fullName"
-    ),
-    [AccommodationFormFields.HOST_PHONE]: Yup.string().required(
-        "form.validator.phoneNumber"
-    ),
+    [AccommodationFormFields.ADDRESS_ZIP]:
+        Yup.string().required("form.validator.zip"),
+    // Vacancies
     [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
         .integer("form.validator.integer")
         .moreThan(0, "form.validator.positiveNumber")
         .min(1, `form.validator.numberMin`)
-        .required("form.validator.numberOfPeople"),
-    [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
+        .required("form.validator.vacanciesTotal"),
+    [AccommodationFormFields.VACANCIES_FREE]: Yup.number()
         .integer("form.validator.integer")
         .moreThan(-1, "form.validator.positiveNumber")
         .max(
             Yup.ref(AccommodationFormFields.VACANCIES_TOTAL),
-            "form.validator.tooManyPeople"
+            "form.validator.notEnoughTotalVacancies"
         )
-        .required("form.validator.numberOfPeople"),
-    [AccommodationFormFields.VOLUNTEER_NAME]: Yup.string().required(
-        "form.validator.fullName"
-    ),
+        .required("form.validator.vacanciesFree"),
+    // Info
+    [AccommodationFormFields.COMMENTS]: Yup.string(),
+    // Pets
+    [AccommodationFormFields.PETS_ALLOWED]: Yup.bool(),
+    [AccommodationFormFields.PETS_PRESENT]: Yup.bool(),
+    // Accessibility
+    [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY]: Yup.bool(),
+    [AccommodationFormFields.LGBT_FRIENDLY]: Yup.bool(),
+    [AccommodationFormFields.PARKING_PLACE]: Yup.bool(),
+    [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: Yup.bool(),
+    // ---
+    // [AccommodationFormFields.DESCRIPTION]: Yup.string(),
+    // [AccommodationFormFields.ADDRESS_FLAT_NUMBER]: Yup.string(),
+    // [AccommodationFormFields.ADDRESS_STREET_NUMBER]: Yup.string().required(
+    //     "form.validator.streetNumber"
+    // ),
+    // [AccommodationFormFields.ADDRESS_STREET_NAME]: Yup.string().required(
+    //     "form.validator.streetName"
+    // ),
+    // [AccommodationFormFields.IS_VERIFIED]: Yup.boolean(),
+    // [AccommodationFormFields.HOST_EMAIL]: Yup.string().required(
+    //     "form.validator.email"
+    // ),
+    // [AccommodationFormFields.HOST_NAME]: Yup.string().required(
+    //     "form.validator.fullName"
+    // ),
+    // [AccommodationFormFields.HOST_PHONE]: Yup.string().required(
+    //     "form.validator.phoneNumber"
+    // ),
+    // [AccommodationFormFields.VOLUNTEER_NAME]: Yup.string().required(
+    //     "form.validator.fullName"
+    // ),
     // [ AccommodationFormFields.UPDATED_AT ]: dateAsYMDValidator(),
 });
 

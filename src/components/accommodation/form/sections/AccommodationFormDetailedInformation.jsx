@@ -6,6 +6,7 @@ import AccommodationFormSectionHeader from "components/accommodation/form/Accomm
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
 import AccommodationFormVolunteerName from "components/accommodation/form/fields/AccommodationFormVolunteerName";
 import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
+import AccommodationFormAccessibility from "../fields/AccommodationFormAccessibility";
 
 const AccommodationFormDetailedInformation = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -15,8 +16,11 @@ const AccommodationFormDetailedInformation = () => {
                 {t("accommodation:form.section.detailedInfo")}
             </AccommodationFormSectionHeader>
             <Row>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={4}>
                     <AccommodationFormPets />
+                </Col>
+                <Col xs={12} md={8}>
+                    <AccommodationFormAccessibility />
                 </Col>
             </Row>
         </AccommodationFormSection>

@@ -30,16 +30,16 @@ class Accommodation {
 
     @JsonProperty()
     @JsonType(String)
-    comments = "";
+    staffComments = "";
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
 
-    @JsonProperty()
-    @JsonType(String)
-    description = "";
+    // @JsonProperty()
+    // @JsonType(String)
+    // description = "";
 
     @JsonProperty()
     @JsonType(Host)
@@ -53,13 +53,17 @@ class Accommodation {
     @JsonType(String)
     id = undefined;
 
-    @JsonProperty("acceptsPets")
-    @JsonType(String)
+    //@JsonProperty("acceptsPets")
+    //@JsonType(String)
+    @JsonProperty()
+    @JsonType(Boolean)
     petsAllowed = true;
 
-    @JsonProperty("havePets")
-    @JsonType(String)
-    petsPresent = false;
+    //@JsonProperty("havePets")
+    //@JsonType(String)
+    @JsonProperty()
+    @JsonType(Boolean)
+    petsPresent = true;
 
     @JsonProperty()
     @JsonType(String)
@@ -81,6 +85,22 @@ class Accommodation {
     get vacanciesTaken() {
         return this.vacanciesTotal - this.vacanciesFree;
     }
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    lgbtFriendly = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    disabledPeopleFriendly = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    parkingPlaceAvailable = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    easyAmbulanceAccess = false;
 
     @OnDeserialized()
     uuidRegenerate() {

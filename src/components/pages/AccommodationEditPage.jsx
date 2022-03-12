@@ -15,18 +15,27 @@ import AccommodationForm from "components/accommodation/AccommodationForm";
 import { Routes } from "constants/Routes";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import Accommodation from "models/Accommodation";
-import { classToPlain } from "serializers/Serializer";
+// import { classToPlain } from "serializers/Serializer";
 import { Toast } from "components/atoms/Toast";
-import { updateAccommodation } from "services/Api";
+import { updateAccommodation, fetchAccommodation } from "services/Api";
 
 const EDITING = 0;
 const SENDING = 1;
 const SENT = 2;
+const FETCHING = 3;
+const FETCH_DONE = 4;
+const FETCH_FAILED = 5;
 
+// TODO: refactor to functional component, the use effects
 class AccommodationEditPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { status: EDITING };
+        this.state = {
+            status: EDITING,
+            fetchCalled: false,
+            fetchFinished: false,
+            fetchedAccommodation: {},
+        };
     }
 
     beforeSubmit = () => {
@@ -49,8 +58,8 @@ class AccommodationEditPage extends React.Component {
         toast.info(this.props.t("accommodation:form.message.updateFailure"));
     };
 
-    onSubmit = (accommodation, onSubmitApiErrors) => {
-        const data = classToPlain(accommodation);
+    onSubmit = (formValues, onSubmitApiErrors) => {
+        const data = AccommodationFormFields.formToModel(formValues);
 
         updateAccommodation(
             data,
@@ -60,6 +69,23 @@ class AccommodationEditPage extends React.Component {
         );
     };
 
+    fetchAccommodationBefore = () => {
+        this.setState({ status: FETCHING });
+    };
+    fetchAccommodationSuccess = ({ data }) => {
+        this.setState({
+            status: FETCH_DONE,
+            fetchFinished: true,
+            fetchedAccommodation: data,
+        });
+    };
+    fetchAccommodationFailure = () => {
+        this.setState({ status: FETCH_FAILED });
+    };
+    fetchAccommodationFinally = () => {};
+
+    // TODO: get accomodation from API, add my own effect: https://reactjs.org/docs/hooks-effect.html
+    // get initial values from id (id is read from url)
     initialValuesFromLocation = () => {
         const { accommodations, location } = this.props;
 
@@ -79,18 +105,42 @@ class AccommodationEditPage extends React.Component {
             path: Routes.ACCOMMODATIONS_CREATE,
         });
 
-        const getInitialValues = memoize(
-            AccommodationFormFields.getInitialValues
-        );
+        // What does this do?
+        const getInitialValues = memoize(AccommodationFormFields.toForm);
 
+        // Update
         if (editPath !== null && this.isRouteAccommodationPresent()) {
             const accommodationId = editPath.params.accommodationId;
-            const accommodation = accommodations.find(
-                (item) => item.id === accommodationId
-            );
-            return getInitialValues(accommodation);
+
+            // Call fetch
+            if (!this.state.fetchCalled) {
+                const fetchPromise = fetchAccommodation(
+                    accommodationId,
+                    this.fetchAccommodationBefore,
+                    this.fetchAccommodationSuccess,
+                    this.fetchAccommodationFailure,
+                    this.fetchAccommodationFinally
+                );
+                this.setState({ fetchCalled: true });
+            }
+
+            if (this.state.fetchFinished) {
+                console.log(
+                    "AccomodationEditPage, accommodation model = ",
+                    this.state.fetchedAccommodation
+                );
+                return getInitialValues(this.state.fetchedAccommodation);
+            }
+
+            // const accommodation = accommodations.find(
+            //     (item) => item.id === accommodationId
+            // );
+
+            // Waiting for fetch...
+            return {};
         }
 
+        // Create
         if (createPath !== null) {
             const accommodation = new Accommodation();
             return getInitialValues(accommodation);
@@ -114,6 +164,10 @@ class AccommodationEditPage extends React.Component {
 
         if (this.isRouteAccommodationPresent()) {
             const initialValues = this.initialValuesFromLocation();
+            console.log(
+                "AccommodationEditPage - accommodation from values = ",
+                initialValues
+            );
             return (
                 <AccommodationForm
                     accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
@@ -136,6 +190,14 @@ class AccommodationEditPage extends React.Component {
 
         if (this.state.status === SENT) {
             return <Redirect to="/accommodations" />;
+        }
+
+        if (this.state.status === FETCHING) {
+            return <p>Fetching accommodation...</p>;
+        }
+
+        if (this.state.status === FETCH_FAILED) {
+            return <p>Accommondation not found!</p>;
         }
 
         return (
