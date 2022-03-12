@@ -7,6 +7,10 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
+const onlyUnique = (value, index, self) => {
+    return self.indexOf(value) === index;
+};
+
 export function generateAllMocks() {
     const chance = new Chance(0xdeadbeef);
 
@@ -45,6 +49,12 @@ export function generateAllMocks() {
         host.phoneNumber = chance.phone();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
+        host.languagesSpoken = Array.from(
+            { length: chance.integer({ min: 0, max: 2 }) },
+            () => chance.locale()
+        )
+            .concat(["pl"])
+            .filter(onlyUnique);
         return host;
     });
 

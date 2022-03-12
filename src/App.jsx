@@ -5,6 +5,7 @@ import AuthenticatedContainer from "components/AuthenticatedContainer";
 import AccommodationEdit from "components/pages/AccommodationEditPage";
 import { Routes } from "constants/Routes";
 import AccommodationsPage from "components/pages/AccommodationsPage";
+import HostsPage from "components/pages/HostsPage";
 import DashboardPage from "components/pages/DashboardPage";
 import GuestsPage from "components/pages/GuestsPage";
 import LoadingPage from "components/pages/LoadingPage";
@@ -29,12 +30,15 @@ function App() {
                             path={Routes.ACCOMMODATION_EDIT}
                             component={AccommodationEdit}
                         />
-                    </Switch>
-                    <Switch>
                         <Route
                             path={Routes.GUESTS}
                             exact
                             render={() => <GuestsPage />}
+                        />
+                        <Route
+                            path={Routes.HOSTS}
+                            exact
+                            render={() => <HostsPage />}
                         />
                     </Switch>
                 </Switch>

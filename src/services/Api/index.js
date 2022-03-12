@@ -74,3 +74,18 @@ export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
+
+export const fetchHosts = async (before, onSuccess, onFailure, onFinish) => {
+    console.log("[HOSTS] Fetch in progress");
+    before && before();
+
+    await sleep(DEBUG_API_FETCH_DELAY);
+
+    const url = utils.getPath(constants.Paths.HOSTS);
+
+    const promise = constants.useMocks
+        ? Promise.resolve({ data: mockedHosts })
+        : axios.get(url);
+
+    return promise.then(onSuccess).catch(onFailure).finally(onFinish);
+};
