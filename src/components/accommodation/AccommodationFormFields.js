@@ -10,24 +10,24 @@ import {
 } from "models/constants/Address";
 
 class AccommodationFormFields {
-    static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_LINE = "addressLine";
+    static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_ZIP = "addressZip";
-    // static CREATED_AT = 'createdAt';
     static COMMENTS = "comments";
     static DESCRIPTION = "description";
-    static ID = "id";
-    static IS_VERIFIED = "isVerified";
     static HOST_EMAIL = "hostEmail";
     static HOST_NAME = "hostName";
     static HOST_PHONE = "hostPhone";
-    static PETS_PRESENT = "petsPresent";
+    static HOST_STATUS = "hostStatus";
+    static ID = "id";
+    static IS_VERIFIED = "isVerified";
     static PETS_ALLOWED = "petsAllowed";
+    static PETS_PRESENT = "petsPresent";
     static STATUS = "status";
-    static VACANCIES_TOTAL = "vacanciesTotal";
-    static VACANCIES_TAKEN = "vacanciesTaken";
     static UUID = "uuid";
+    static VACANCIES_TAKEN = "vacanciesTaken";
+    static VACANCIES_TOTAL = "vacanciesTotal";
     static VOLUNTEER_NAME = "volunteerName";
 
     /**
