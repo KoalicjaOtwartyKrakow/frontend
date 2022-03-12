@@ -23,6 +23,7 @@ const AccommodationForm = (props) => {
 
     const initialStatus = formFields.getInitialStatus();
 
+    // what is uuid??
     const key = initialValues.uuid;
 
     const isCreateMode = !initialValues.id;
@@ -51,6 +52,7 @@ const AccommodationForm = (props) => {
     };
 
     const onSubmit = async (values, formikBag) => {
+        console.log("On submit - Accomodation Form");
         const transformPromise = yupTransform(
             values,
             formikBag,
@@ -84,11 +86,13 @@ const AccommodationForm = (props) => {
         ? t("accommodation:form.button.create")
         : t("accommodation:form.button.update");
 
+    console.log("Submit label = " + submitLabel);
+
     return (
         <Formik {...formikProps}>
-            {({ isValid, isSubmitting }) => (
+            {(info) => (
                 <Form noValidate>
-                    {/*<Effect onChange={ onChange } />*/}
+                    {/*<Effect onChange={ osnChange } />*/}
                     <Row>
                         <Col xs={12} lg={6}>
                             <AccommodationFormAddress />
@@ -99,10 +103,17 @@ const AccommodationForm = (props) => {
                         </Col>
                     </Row>
 
+                    <p style={{ color: "red" }}>
+                        {JSON.stringify(info.errors)}
+                    </p>
+
                     <AccommodationFormDetailedInformation />
                     <AccommodationFormButtons
-                        isSubmitting={isSubmitting}
-                        submitDisabled={submitDisabled(isValid, isSubmitting)}
+                        isSubmitting={info.isSubmitting}
+                        submitDisabled={submitDisabled(
+                            info.isValid,
+                            info.isSubmitting
+                        )}
                         submitLabel={submitLabel}
                         onRemove={onRemove}
                         inProgress={accommodationInProgress}

@@ -92,7 +92,10 @@ export function generateAllMocks() {
 
     const mockedAccommodations = Array.from({ length: 15 }, () => {
         const accommodation = new Accommodation();
+        // Id
         accommodation.id = chance.guid({ version: 5 });
+
+        // Vacancies
         accommodation.addressLine = chance.address();
         accommodation.addressVoivodeship =
             polishVoivodeships[
@@ -103,10 +106,13 @@ export function generateAllMocks() {
         zip.splice(2, 0, "-");
         accommodation.addressZip = zip.join("");
 
+        // Info
+        accommodation.staffComments = chance.paragraph();
         accommodation.status = chance.pickone(
             Object.values(AccommodationStatus)
         );
 
+        // Vacancies
         accommodation.vacanciesTotal = chance.natural({ min: 1, max: 8 });
         switch (accommodation.status) {
             case AccommodationStatus.CREATED:
@@ -123,16 +129,23 @@ export function generateAllMocks() {
                 break;
         }
 
-        accommodation.comments = chance.paragraph();
-        accommodation.description = chance.paragraph({ sentences: 2 });
+        // Pets
+        accommodation.petsAllowed = chance.bool();
+        accommodation.petsPresent = chance.bool();
 
+        // Accessibility
+        accommodation.lgbtFriendly = chance.bool();
+        accommodation.disabledPeopleFriendly = chance.bool();
+        accommodation.parkingPlaceAvailable = chance.bool();
+        accommodation.easyAmbulanceAccess = chance.bool();
+
+        // Relations
         accommodation.hostId =
             mockedHosts[
                 chance.natural({ min: 0, max: mockedHosts.length - 1 })
             ].id;
 
-        accommodation.petsAllowed = chance.bool();
-        accommodation.petsPresent = chance.bool();
+        // accommodation.description = chance.paragraph({ sentences: 2 });
 
         return accommodation;
     });

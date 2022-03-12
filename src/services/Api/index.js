@@ -21,6 +21,29 @@ if (constants.useMocks) {
     mockedHosts = allMocks.mockedHosts.map((item) => classToPlain(item));
 }
 
+export const fetchAccommodation = async (
+    id,
+    before,
+    onSuccess,
+    onFailure,
+    onFinish
+) => {
+    console.log("[ACCOMMODATION] Fetch in progress");
+    before && before();
+
+    await sleep(DEBUG_API_FETCH_DELAY);
+
+    const url = utils.getPath(constants.Paths.ACCOMMODATION) + "/" + id;
+
+    const promise = constants.useMocks
+        ? Promise.resolve({
+              data: mockedAccommodations.find((mock) => mock.id == id),
+          })
+        : axios.get(url);
+
+    return promise.then(onSuccess).catch(onFailure).finally(onFinish);
+};
+
 export const fetchAccommodations = async (
     before,
     onSuccess,
@@ -53,11 +76,11 @@ export const updateAccommodation = (
 
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
 
-    return axios
-        .put(url, data)
-        .then(onSuccess)
-        .catch(onFailure)
-        .finally(onFinish);
+    const promise = constants.useMocks
+        ? Promise.resolve({ data: mockedHosts[0] })
+        : axios.put(url, data);
+
+    return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
 
 export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
