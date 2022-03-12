@@ -22,9 +22,10 @@
     "traits": {
         "food": {
             "allergy": "Food allergies",
-            "meatFree": "Meat free diet",
+            "glutenFree": "Gluten free diet",
+            "label": "Dietary requirements",
             "lactoseFree": "Lactose free diet",
-            "glutenFree": "Gluten free diet"
+            "meatFree": "Meat free diet"
         }
     }
 }

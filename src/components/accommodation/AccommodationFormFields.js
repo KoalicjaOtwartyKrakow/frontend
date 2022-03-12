@@ -34,7 +34,6 @@ class AccommodationFormFields {
     static getInitialValues(accommodation) {
         const fieldNames = Object.values(AccommodationFormFields);
         const initialValues = pick(accommodation, fieldNames);
-        console.log(accommodation, initialValues);
 
         return accommodation.id
             ? initialValues

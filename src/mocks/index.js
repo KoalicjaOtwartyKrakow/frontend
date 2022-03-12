@@ -56,8 +56,6 @@ export function generateAllMocks() {
             .pickset(foodAllergies, foodAllergiesQuantity)
             .join(", ");
 
-        console.log(foodAllergiesQuantity, guest.foodAllergies);
-
         guest.meatFreeDiet = chance.bool();
         guest.glutenFreeDiet = chance.bool();
         guest.lactoseFreeDiet = chance.bool();
