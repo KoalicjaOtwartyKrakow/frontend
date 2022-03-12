@@ -11,7 +11,7 @@ import {
     accommodationFormUpdateSchema,
 } from "components/accommodation/AccommodationFormSchemas";
 import AccommodationFormAddress from "components/accommodation/form/sections/AccommodationFormAddress";
-import AccommodationFormHost from "components/accommodation/form/sections/AccommodationFormHost";
+// import AccommodationFormHost from "components/accommodation/form/sections/AccommodationFormHost";
 import AccommodationFormAdditional from "components/accommodation/form/sections/AccommodationFormAdditional";
 import AccommodationFormButtons from "components/accommodation/form/sections/AccommodationFormButtons";
 import { Col, Row } from "reactstrap";

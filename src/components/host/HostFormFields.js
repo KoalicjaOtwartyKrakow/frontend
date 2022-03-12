@@ -11,6 +11,7 @@ class HostFormFields {
     static COMMENTS = "comments";
     static LANGUAGES_SPOKEN = "languagesSpoken";
     static STATUS = "status";
+    static ID = "id";
     // TODO: to be aligned with API later
     static LGBT_FRIENDLY = "lgbtFriendly";
     static ACCEPTS_FROM_ANY_COUNTRY = "acceptsFromAnyCountry";

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 import { HostFormFields } from "components/host/HostFormFields";
 
-const additionalInformationsCheckbox = ({ name, label }) => {
+const extendedInformationsCheckbox = ({ name, label }) => {
     return (
         <Field
             id={name}
@@ -19,7 +19,7 @@ const additionalInformationsCheckbox = ({ name, label }) => {
     );
 };
 
-const HostFormAdditionalInformation = () => {
+const HostFormExtendedInformation = () => {
     const { t } = useTranslation(["host"]);
 
     const additionalInformationsCheckboxes = [
@@ -42,13 +42,11 @@ const HostFormAdditionalInformation = () => {
             <legend className="form-label">
                 {t("host:form.label.hostAdditionalInformations")}
             </legend>
-            {additionalInformationsCheckboxes.map(
-                additionalInformationsCheckbox
-            )}
+            {additionalInformationsCheckboxes.map(extendedInformationsCheckbox)}
         </FormGroup>
     );
 };
 
-HostFormAdditionalInformation.propTypes = {};
+HostFormExtendedInformation.propTypes = {};
 
-export default HostFormAdditionalInformation;
+export default HostFormExtendedInformation;

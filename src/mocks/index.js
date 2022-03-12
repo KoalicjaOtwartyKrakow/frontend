@@ -79,6 +79,8 @@ export function generateAllMocks() {
         host.fullName = chance.name();
         host.email = chance.email();
         host.phoneNumber = chance.phone();
+        host.callAfter = chance.hour({ twentyfour: true });
+        host.callBefore = chance.hour({ twentyfour: true });
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
         host.languagesSpoken = Array.from(

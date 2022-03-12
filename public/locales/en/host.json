@@ -16,12 +16,21 @@
         "label": {
             "acceptsFromAnyCountry": "Accepts Guests from any country",
             "acceptsGuestWithDisabilities": "Accepts Guests with disabilities",
+            "callAfter": "Call after",
+            "callBefore": "Call before",
+            "comments": "Comments",
+            "fullName": "Full name",
             "hostAdditionalInformations": "Host additional informations",
             "lgbtFriendly": "LGBT friendly"
         },
         "message": {
             "updateFailure": "Failed to update Accommodation Unit",
             "updateSuccess": "Successfully updated Accommodation Unit"
+        },
+        "section": {
+            "additionalInformation": "Additional information",
+            "contact": "Contact",
+            "detailedInformation": "Detailed information"
         }
     },
     "hosts": {
