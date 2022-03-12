@@ -29,6 +29,8 @@ $bg-color-guest-priority-medium: mix($gray-400, $red-500, 50%)
 $bg-color-guest-priority-high: mix($gray-200, $red-600, 20%)
 $bg-color-guest-priority-highest: mix($gray-100, $red-500, 5%)
 
+$text-guest-trait: $gray-500
+
 .bg
   &-accommodations
     background-color: $bg-color-accommodations
@@ -67,3 +69,8 @@ $bg-color-guest-priority-highest: mix($gray-100, $red-500, 5%)
     @include button-variant($bg-color-guests-primary, $bg-color-guests-primary, $color-contrast-light)
   &-hosts
     @include button-variant($bg-color-hosts-primary, $bg-color-hosts-primary, $color-contrast-light)
+
+.text
+  &-guest
+    &-trait
+      color: $text-guest-trait

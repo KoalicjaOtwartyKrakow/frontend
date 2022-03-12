@@ -45,7 +45,19 @@ export function generateAllMocks() {
         guest.financialStatus = chance.sentence();
         guest.petsPresent = chance.bool();
         guest.petsDescription = "3";
-        guest.foodAllergies = "Chocolate";
+
+        const foodAllergies = ["Chocolate", "Nuts", "Strawberry"];
+        const foodAllergiesQuantity = chance.natural({
+            min: 0,
+            max: Math.min(foodAllergies.length, 2),
+        });
+
+        guest.foodAllergies = chance
+            .pickset(foodAllergies, foodAllergiesQuantity)
+            .join(", ");
+
+        console.log(foodAllergiesQuantity, guest.foodAllergies);
+
         guest.meatFreeDiet = chance.bool();
         guest.glutenFreeDiet = chance.bool();
         guest.lactoseFreeDiet = chance.bool();

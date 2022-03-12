@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import { GuestContext } from "components/guest/GuestContext";
 import { useTranslation } from "react-i18next";
+import {
+    IconFoodAllergy,
+    IconFoodGlutenFree,
+    IconFoodLactoseFree,
+    IconFoodMeatFree,
+} from "components/shared/Icons";
 
 /**
  *
@@ -12,7 +18,6 @@ const GuestItemInfo = () => {
      * @type {Guest}
      */
     const guest = useContext(GuestContext);
-    const { t } = useTranslation(["guest"]);
 
     const {
         foodAllergies,
@@ -23,27 +28,24 @@ const GuestItemInfo = () => {
     } = guest;
 
     return (
-        <p className="h5">
-            <span className="guest__col-needs">
-                <span className="guest__col-needs__special">
+        <p className="mb-0 guest__col-info__needs">
+            <span className="guest__col-info__needs">
+                <span className="guest__col-info__needs-special">
                     {specialNeeds && specialNeeds.toString()}
                 </span>
             </span>
-            <span className="guest__col-diet">
-                <span className="guest__col-diet__food-allergies">
-                    {foodAllergies && foodAllergies.toString()}
+            <span className="h5 guest__col-info__diet">
+                <span className="guest__col-info__diet__food-meat-free">
+                    {meatFreeDiet && <IconFoodMeatFree />}
                 </span>
-                <span className="guest__col-diet__food-gluten-free">
-                    {glutenFreeDiet && glutenFreeDiet.toString()}
+                <span className="guest__col-info__diet__food-allergies">
+                    {foodAllergies && <IconFoodAllergy />}
                 </span>
-                <span className="guest__col-diet__food-lactose-free">
-                    {lactoseFreeDiet && lactoseFreeDiet.toString()}
+                <span className="guest__col-info__diet__food-gluten-free">
+                    {glutenFreeDiet && <IconFoodGlutenFree />}
                 </span>
-                <span className="guest__col-diet__food-lactose-free">
-                    {meatFreeDiet && meatFreeDiet.toString()}
-                </span>
-                <span className="guest__col-diet__food-lactose-free">
-                    {meatFreeDiet && meatFreeDiet.toString()}
+                <span className="guest__col-info__diet__food-lactose-free">
+                    {lactoseFreeDiet && <IconFoodLactoseFree />}
                 </span>
             </span>
         </p>

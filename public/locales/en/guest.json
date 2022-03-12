@@ -18,5 +18,13 @@
         "created": "New",
         "verified": "Verified",
         "rejected": "Rejected"
+    },
+    "traits": {
+        "food": {
+            "allergy": "Food allergies",
+            "meatFree": "Meat free diet",
+            "lactoseFree": "Lactose free diet",
+            "glutenFree": "Gluten free diet"
+        }
     }
 }
