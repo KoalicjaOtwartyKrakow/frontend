@@ -1,0 +1,21 @@
+{
+    "card": {
+        "title": "Accommodation Units",
+        "found": "Found",
+        "notAvailable": "No accommodations found."
+    },
+    "list": {
+        "columnHeader": {
+            "fullName": "Full Name",
+            "status": "Status",
+            "email": "Email",
+            "phoneNumber": "Phone Number",
+            "status": "Status",
+            "comments": "Comments",
+            "languagesSpoken": "Languages Spoken"
+        },
+        "item": {
+            "capacityNone": "None"
+        }
+    }
+}
