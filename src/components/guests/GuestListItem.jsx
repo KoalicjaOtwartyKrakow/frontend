@@ -6,36 +6,27 @@ import "components/guests/GuestListItem.sass";
 
 /**
  *
- * @param {Accommodation} accommodation
+ * @param {Guest} guest
  * @param {function} onEdit
  * @param {function} onRemove
  * @returns {JSX.Element}
  * @constructor
  */
 const GuestListItem = ({ guest, onEdit, onRemove }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["guests"]);
 
     const { id } = guest;
     const handleEdit = () => onEdit(id);
 
     return (
-        <tr key={id} onClick={handleEdit} className="pointer">
+        <tr onClick={handleEdit} className="pointer">
             <td>{guest.fullName}</td>
             <td>{guest.phoneNumber}</td>
-            <td> {guest.status}</td>
-            <td>{guest.priority}</td>
-            <td>{guest.number}</td>
-            <td>
-                <ButtonGroup>
-                    <Button
-                        color="danger"
-                        outline
-                        onClick={(event) => onRemove(id, event)}
-                    >
-                        {t("guests.delete")}
-                    </Button>
-                </ButtonGroup>
-            </td>
+            <td>{guest.priorityStatus}</td>
+            <td>{guest.priorityDate}</td>
+            <td>{guest.peopleTotalCount}</td>
+            <td>{guest.stayDuration}</td>
+            <td></td>
         </tr>
     );
 };

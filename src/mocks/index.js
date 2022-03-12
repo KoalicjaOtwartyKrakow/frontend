@@ -17,13 +17,14 @@ export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
         guest.id = chance.guid({ version: 5 });
+        guest.fullName = chance.name();
         guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
         guest.children = [
             // TODO
         ];
-        guest.howLongToStay = chance.sentence();
+        guest.stayDuration = chance.sentence();
         guest.peopleFemaleCount = chance.natural({ min: 0, max: 4 });
         guest.peopleMaleCount = chance.natural({ min: 0, max: 4 });
         guest.financialStatus = chance.sentence();

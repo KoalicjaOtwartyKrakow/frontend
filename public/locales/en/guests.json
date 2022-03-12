@@ -6,12 +6,13 @@
     },
     "list": {
         "columnHeader": {
+            "duration": "Duration of stay",
             "fullName": "Full name",
+            "information": "Remarks",
             "phoneNumber": "Phone number",
-            "status": "Status",
-            "priority": "Priority",
-            "totalPeople": "How many",
-            "duration": "Duration of stay"
+            "priorityDate": "Priority",
+            "priorityStatus": "Status",
+            "totalPeople": "How many"
         }
     }
 }

@@ -33,16 +33,33 @@ const GuestList = ({ guests, history, toastManager }) => {
         event.stopPropagation();
     };
 
+    const columnNames = [
+        "fullName",
+        "phoneNumber",
+        "priorityStatus",
+        "priorityDate",
+        "totalPeople",
+        "duration",
+        "information",
+    ];
+
     return (
         <Table hover striped responsive>
+            <colgroup>
+                {columnNames.map((columnName) => (
+                    <col
+                        className={`accommodation__col-${columnName}`}
+                        key={columnName}
+                    />
+                ))}
+            </colgroup>
             <thead className="thead-dark">
                 <tr>
-                    <th>{t("guests:host")}</th>
-                    <th>{t("guests:address")}</th>
-                    <th>{t("guests:availability")}</th>
-                    <th>{t("guests:volunteer")}</th>
-                    <th>{t("guests:description")}</th>
-                    <th>{t("guests:actions")}</th>
+                    {columnNames.map((columnName) => (
+                        <th key={columnName}>
+                            {t(`guests:list.columnHeader:${columnName}`)}
+                        </th>
+                    ))}
                 </tr>
             </thead>
             <tbody>
