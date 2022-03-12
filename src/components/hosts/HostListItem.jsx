@@ -17,14 +17,6 @@ const HostLanguageSpokenItem = (languages) => {
     );
 };
 
-const HostCommentsItem = (comment) => {
-    let shorterString = comment.slice(0, 255);
-    if (comment.length > shorterString.length) {
-        shorterString = shorterString.concat(" (...)");
-    }
-    return <p>{shorterString}</p>;
-};
-
 /**
  *
  * @param {Host} host
@@ -45,7 +37,7 @@ const HostListItem = ({ host, onEdit, onRemove }) => {
                 <td>{host.phoneNumber}</td>
                 <td>{HostStatusItem(host.status)}</td>
                 <td>{HostLanguageSpokenItem(host.languagesSpoken)}</td>
-                <td>{HostCommentsItem(host.comments)}</td>
+                <td>{host.comments}</td>
             </tr>
         </HostContext.Provider>
     );

@@ -43,8 +43,6 @@ const HostList = ({ hosts, history, toastManager }) => {
         "comments",
     ];
 
-    console.log("HELLO FROM HostList");
-
     return (
         <Table hover striped responsive>
             <colgroup>
@@ -66,10 +64,10 @@ const HostList = ({ hosts, history, toastManager }) => {
             </thead>
             <tbody>
                 {hosts.map((host) => {
-                    const { uuid } = host;
+                    const { id } = host;
                     return (
                         <HostListItem
-                            key={uuid}
+                            key={id}
                             host={host}
                             onEdit={onEdit}
                             onRemove={onRemove}

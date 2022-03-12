@@ -1,8 +1,8 @@
 {
     "card": {
-        "title": "Accommodation Units",
+        "title": "Hosts",
         "found": "Found",
-        "notAvailable": "No accommodations found."
+        "notAvailable": "No hosts found."
     },
     "list": {
         "columnHeader": {
@@ -13,9 +13,6 @@
             "status": "Status",
             "comments": "Comments",
             "languagesSpoken": "Languages Spoken"
-        },
-        "item": {
-            "capacityNone": "None"
         }
     }
 }
