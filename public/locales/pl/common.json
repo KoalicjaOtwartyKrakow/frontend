@@ -6,7 +6,8 @@
     },
     "data": {
         "loading": "Loading data…",
-        "updateSuccess": "Changes saved successfully"
+        "updateSuccess": "Changes saved successfully",
+        "refresh": "Odśwież"
     },
     "errors": {
         "apiFailure": "API communication error:"

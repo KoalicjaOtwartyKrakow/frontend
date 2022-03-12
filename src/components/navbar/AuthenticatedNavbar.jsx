@@ -42,7 +42,7 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                 </Nav>
                 <LanguageSwitcher className="me-3" />
                 <Nav navbar>
-                    <UncontrolledDropdown navbarItem>
+                    <UncontrolledDropdown navbaritem="true">
                         <DropdownToggle nav caret>
                             <FontAwesomeIcon icon={faUser} />{" "}
                             {t("navbar:account")}

@@ -9,7 +9,6 @@ import "components/accommodations/AccommodationList.sass";
 import { Routes } from "constants/Routes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
 import { Toast } from "components/atoms/Toast";
-import withAccommodations from "components/accommodations/withAccommodations";
 
 const AccommodationList = ({ accommodations, history, toastManager }) => {
     const { t } = useTranslation(["accommodations"]);
@@ -81,8 +80,4 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
     );
 };
 
-export default compose(
-    withAccommodations,
-    withToastManager,
-    withRouter
-)(AccommodationList);
+export default compose(withToastManager, withRouter)(AccommodationList);
