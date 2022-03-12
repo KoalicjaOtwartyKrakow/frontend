@@ -1,21 +1,7 @@
 import React from "react";
-import { Badge } from "reactstrap";
-import { useTranslation } from "react-i18next";
 import { HostContext } from "components/host/HostContext";
-
-const HostStatusItem = (status) => {
-    return <Badge>status</Badge>;
-};
-
-const HostLanguageSpokenItem = (languages) => {
-    return (
-        <div>
-            {languages.map((language, index) => (
-                <Badge>{language}</Badge>
-            ))}
-        </div>
-    );
-};
+import HostItemStatus from "components/hosts/item/HostItemStatus";
+import HostItemLanguagesSpoken from "components/hosts/item/HostItemLanguagesSpoken";
 
 /**
  *
@@ -35,8 +21,12 @@ const HostListItem = ({ host, onEdit, onRemove }) => {
                 <td>{host.fullName}</td>
                 <td>{host.email}</td>
                 <td>{host.phoneNumber}</td>
-                <td>{HostStatusItem(host.status)}</td>
-                <td>{HostLanguageSpokenItem(host.languagesSpoken)}</td>
+                <td>
+                    <HostItemStatus />
+                </td>
+                <td>
+                    <HostItemLanguagesSpoken />
+                </td>
                 <td>{host.comments}</td>
             </tr>
         </HostContext.Provider>
