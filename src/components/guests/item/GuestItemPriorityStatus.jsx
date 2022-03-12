@@ -52,7 +52,6 @@ const GuestItemPriorityStatus = () => {
 
     const statusBadgeColor = colorFromStatus[priorityStatus];
     const statusLabel = labelFromStatus[priorityStatus];
-    console.log(statusLabel, statusBadgeColor, priorityStatus);
 
     return (
         <Badge color={statusBadgeColor} className="guest-status w-75">
