@@ -10,7 +10,7 @@ import { withToastManager } from "react-toast-notifications";
 
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-import PageNavigationAccommodationList from "components/atoms/PageNavHome";
+import PageNavigationBackToList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
 import { Routes } from "constants/Routes";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
@@ -145,7 +145,7 @@ class AccommodationEditPage extends React.Component {
                     {accommodationsErrorMessage}
                 </PageErrorMessage>
                 {this.renderForm()}
-                <PageNavigationAccommodationList />
+                <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
             </PageCard>
         );
     }
