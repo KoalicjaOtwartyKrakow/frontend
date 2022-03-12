@@ -67,6 +67,16 @@ const AccommodationForm = (props) => {
         return props.onSubmit(accommodation, onSubmitApiErrors);
     };
 
+    if (
+        !(
+            initialValues.hasOwnProperty("addressVoivodeship") &&
+            initialValues.addressVoivodeship !== null &&
+            initialValues.addressVoivodeship !== ""
+        )
+    ) {
+        initialValues.addressVoivodeship = "MALOPOLSKIE";
+    }
+
     const formikProps = {
         key,
         initialValues,
