@@ -35,6 +35,21 @@ class AccommodationFormFields {
         const fieldNames = Object.values(AccommodationFormFields);
         const initialValues = pick(accommodation, fieldNames);
 
+        if (
+            !(
+                initialValues.hasOwnProperty(
+                    AccommodationFormFields.ADDRESS_VOIVODESHIP
+                ) &&
+                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] !==
+                    null &&
+                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] !==
+                    ""
+            )
+        ) {
+            initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
+                "MALOPOLSKIE";
+        }
+
         return accommodation.id
             ? initialValues
             : Object.assign(initialValues, {
