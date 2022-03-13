@@ -21,6 +21,7 @@
             "comments": "Comments",
             "fullName": "Full name",
             "hostAdditionalInformations": "Host additional informations",
+            "languagesSpoken": "Languages Spoken",
             "lgbtFriendly": "LGBT friendly"
         },
         "message": {
@@ -29,8 +30,9 @@
         },
         "section": {
             "additionalInformation": "Additional information",
-            "contact": "Contact",
-            "detailedInformation": "Detailed information"
+            "contact": "Contact information",
+            "detailedInformation": "Detailed information",
+            "hostInformation": "Host information"
         }
     },
     "hosts": {

@@ -3,7 +3,6 @@ import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import HostFormSection from "../HostFormSection";
 import HostFormSectionHeader from "../HostFormSectionHeader";
-import HostFormFullName from "../fields/HostFormFullName";
 import HostFormEmail from "../fields/HostFormEmail";
 import HostFormPhoneNumber from "../fields/HostFormPhoneNumber";
 import HostFormCallAfter from "../fields/HostFormCallAfter";
@@ -21,7 +20,6 @@ const HostFormContact = () => {
             </HostFormSectionHeader>
             <Row>
                 <Col>
-                    <HostFormFullName />
                     <HostFormEmail />
                     <HostFormPhoneNumber />
                     <Row>

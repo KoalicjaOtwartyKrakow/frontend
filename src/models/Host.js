@@ -46,7 +46,7 @@ class Host {
     createdAt = undefined;
 
     @JsonProperty()
-    @JsonElementType(String)
+    @JsonElementType(Array)
     languagesSpoken = [];
 
     @JsonProperty()

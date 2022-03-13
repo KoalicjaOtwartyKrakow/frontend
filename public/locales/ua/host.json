@@ -1,14 +1,42 @@
 {
-    "hosts": {
-        "list": "Hosts",
-        "found": "found"
+    "card": {
+        "title": {
+            "update": "Edit Host Unit"
+        }
+    },
+    "errors": {
+        "notFound": "Accommodation Unit not found"
     },
     "form": {
+        "button": {
+            "create": "Add new host",
+            "update": "Save changes",
+            "remove": "Remove Host"
+        },
         "label": {
             "acceptsFromAnyCountry": "Accepts Guests from any country",
             "acceptsGuestWithDisabilities": "Accepts Guests with disabilities",
+            "callAfter": "Call after",
+            "callBefore": "Call before",
+            "comments": "Comments",
+            "fullName": "Full name",
             "hostAdditionalInformations": "Host additional informations",
+            "languagesSpoken": "Languages Spoken",
             "lgbtFriendly": "LGBT friendly"
+        },
+        "message": {
+            "updateFailure": "Failed to update Accommodation Unit",
+            "updateSuccess": "Successfully updated Accommodation Unit"
+        },
+        "section": {
+            "additionalInformation": "Additional information",
+            "contact": "Contact information",
+            "detailedInformation": "Detailed information",
+            "hostInformation": "Host information"
         }
+    },
+    "hosts": {
+        "found": "found",
+        "list": "Hosts"
     }
 }

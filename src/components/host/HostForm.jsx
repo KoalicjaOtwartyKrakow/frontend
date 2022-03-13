@@ -14,6 +14,7 @@ import HostFormContact from "./form/sections/HostFormContact";
 import { Col, Row } from "reactstrap";
 import HostFormAdditionalInformation from "./form/sections/HostFormAdditionalInformation";
 import HostFormDetailedInformation from "./form/sections/HostFormDetailedInformation";
+import HostFormHostInformation from "./form/sections/HostFormHostInformation";
 
 const HostForm = (props) => {
     const { initialValues, onRemove, hostInProgress } = props;
@@ -88,6 +89,7 @@ const HostForm = (props) => {
                     {/*<Effect onChange={ onChange } />*/}
                     <Row>
                         <Col xs={12} lg={6}>
+                            <HostFormHostInformation />
                             <HostFormContact />
                             <HostFormDetailedInformation />
                         </Col>

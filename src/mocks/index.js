@@ -8,6 +8,7 @@ import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import GuestChild from "models/guest/GuestChild";
+import { languages } from "models/constants/Languages";
 
 const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -83,11 +84,9 @@ export function generateAllMocks() {
         host.callBefore = chance.hour({ twentyfour: true });
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
-        host.languagesSpoken = Array.from(
-            { length: chance.integer({ min: 0, max: 2 }) },
-            () => chance.locale()
-        )
-            .concat(["pl"])
+        host.languagesSpoken = chance
+            .pickset(languages, chance.integer({ min: 0, max: 2 }))
+            .concat("Pl")
             .filter(onlyUnique);
         return host;
     });
