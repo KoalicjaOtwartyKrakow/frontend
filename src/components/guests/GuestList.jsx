@@ -6,52 +6,69 @@ import compose from "just-compose";
 import { withToastManager } from "react-toast-notifications";
 
 import { Routes } from "constants/Routes";
-import AccommodationListItem from "components/accommodations/AccommodationListItem";
+import GuestListItem from "components/guests/GuestListItem";
 import { Toast } from "components/atoms/Toast";
-import withAccommodations from "components/accommodations/withAccommodations";
+import withGuests from "components/guests/withGuests";
 
-const AccommodationList = ({ accommodations, history, toastManager }) => {
-    const { t } = useTranslation();
+const GuestList = ({ guests, history, toastManager }) => {
+    const { t } = useTranslation(["guests"]);
 
     const toast = new Toast(toastManager);
 
-    const getEditRoute = (accommodationId) => {
-        return generatePath(Routes.ACCOMMODATION_EDIT, { accommodationId });
+    const getEditRoute = (guestId) => {
+        return generatePath(Routes.GUEST_EDIT, { guestId });
     };
 
-    const onEdit = (accommodationId) => {
-        const path = getEditRoute(accommodationId);
+    const onEdit = (guestId) => {
+        const path = getEditRoute(guestId);
         history.push(path);
     };
 
-    const onRemove = (accommodationId, event) => {
+    const onRemove = (guestId, event) => {
         toast.info(
-            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia lokalu " +
-                accommodationId,
+            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia " +
+                guestId,
             "Jeszcze nie działa :("
         );
         event.stopPropagation();
     };
 
+    const columnNames = [
+        "fullName",
+        "phoneNumber",
+        "priorityStatus",
+        "priorityDate",
+        "totalPeople",
+        "durationOfStay",
+        "information",
+    ];
+
     return (
         <Table hover striped responsive>
+            <colgroup>
+                {columnNames.map((columnName) => (
+                    <col
+                        className={`accommodation__col-${columnName}`}
+                        key={columnName}
+                    />
+                ))}
+            </colgroup>
             <thead className="thead-dark">
                 <tr>
-                    <th>{t("accommodations.host")}</th>
-                    <th>{t("accommodations.address")}</th>
-                    <th>{t("accommodations.availability")}</th>
-                    <th>{t("accommodations.volunteer")}</th>
-                    <th>{t("accommodations.description")}</th>
-                    <th>{t("accommodations.actions")}</th>
+                    {columnNames.map((columnName) => (
+                        <th key={columnName}>
+                            {t(`guests:list.columnHeader:${columnName}`)}
+                        </th>
+                    ))}
                 </tr>
             </thead>
             <tbody>
-                {accommodations.map((accommodation) => {
-                    const { id } = accommodation;
+                {guests.map((guest) => {
+                    const { id } = guest;
                     return (
-                        <AccommodationListItem
+                        <GuestListItem
                             key={id}
-                            accommodation={accommodation}
+                            guest={guest}
                             onEdit={onEdit}
                             onRemove={onRemove}
                         />
@@ -62,8 +79,4 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
     );
 };
 
-export default compose(
-    withAccommodations,
-    withToastManager,
-    withRouter
-)(AccommodationList);
+export default compose(withGuests, withToastManager, withRouter)(GuestList);

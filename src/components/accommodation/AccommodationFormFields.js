@@ -3,15 +3,15 @@ import moment from "moment-es6";
 import { appConfig } from "constants/AppConfig";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
+import { getFormattedDate } from "shared/datetime";
 
 class AccommodationFormFields {
-    static ADDRESS_STATE_NAME = "addressStateName";
+    static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_CITY = "addressCity";
-    static ADDRESS_FLAT_NUMBER = "addressFlatNumber";
-    static ADDRESS_STREET_NUMBER = "addressStreetNumber";
-    static ADDRESS_STREET_NAME = "addressStreetName";
+    static ADDRESS_LINE = "addressLine";
     static ADDRESS_ZIP = "addressZip";
     // static CREATED_AT = 'createdAt';
+    static COMMENTS = "comments";
     static DESCRIPTION = "description";
     static ID = "id";
     static IS_VERIFIED = "isVerified";
@@ -20,6 +20,7 @@ class AccommodationFormFields {
     static HOST_PHONE = "hostPhone";
     static PETS_PRESENT = "petsPresent";
     static PETS_ALLOWED = "petsAllowed";
+    static STATUS = "status";
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VACANCIES_TAKEN = "vacanciesTaken";
     static UUID = "uuid";
@@ -48,7 +49,7 @@ class AccommodationFormFields {
     }
 
     getDateAsYMD(value) {
-        return moment.isMoment(value) ? value.format(appConfig.dateFormat) : "";
+        return getFormattedDate(value);
     }
 
     /**
@@ -66,11 +67,9 @@ class AccommodationFormFields {
         const next = nextValues || {};
 
         const simpleTypeFields = [
-            [AccommodationFormFields.ADDRESS_STATE_NAME],
+            [AccommodationFormFields.ADDRESS_VOIVODESHIP],
             [AccommodationFormFields.ADDRESS_CITY],
-            [AccommodationFormFields.ADDRESS_FLAT_NUMBER],
-            [AccommodationFormFields.ADDRESS_STREET_NUMBER],
-            [AccommodationFormFields.ADDRESS_STREET_NAME],
+            [AccommodationFormFields.ADDRESS_LINE],
             [AccommodationFormFields.ADDRESS_ZIP],
             [AccommodationFormFields.DESCRIPTION],
             [AccommodationFormFields.ID],

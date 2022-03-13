@@ -17,10 +17,10 @@ import React, { useState } from "react";
 import navbarItems from "components/navbar/constants/NavbarItems";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "components/atoms/LanguageSwitcher";
+import LanguageSwitcher from "components/molecules/LanguageSwitcher";
 
 const AuthenticatedNavbar = ({ onLogout }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["navbar"]);
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -42,19 +42,19 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                 </Nav>
                 <LanguageSwitcher className="me-3" />
                 <Nav navbar>
-                    <UncontrolledDropdown nav inNavbar>
+                    <UncontrolledDropdown navbaritem="true">
                         <DropdownToggle nav caret>
                             <FontAwesomeIcon icon={faUser} />{" "}
-                            {t("navbar.account")}
+                            {t("navbar:account")}
                         </DropdownToggle>
-                        <DropdownMenu end>
+                        <DropdownMenu>
                             <DropdownItem>
                                 <FontAwesomeIcon icon={faCog} />{" "}
-                                {t("navbar.settings")}
+                                {t("navbar:applicationSettings")}
                             </DropdownItem>
                             <DropdownItem divider />
                             <DropdownItem onClick={onLogout}>
-                                {t("navbar.signOut")}
+                                {t("navbar:signOut")}
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>

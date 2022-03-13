@@ -7,38 +7,38 @@ import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
 const DashboardPage = ({}) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["dashboard"]);
 
     const homePageCards = [
         {
-            body: t("homepage.accommodations.description"),
+            body: t("dashboard:accommodations.description"),
             color: "accommodations",
-            header: t("homepage.accommodations.header"),
+            header: t("dashboard:accommodations.header"),
             icon: getRouteIcon(Routes.ACCOMMODATIONS),
             navigationButtonLabel: t(
-                "homepage.accommodations.navigateButtonLabel"
+                "dashboard:accommodations.navigateButtonLabel"
             ),
             navigationRoute: Routes.ACCOMMODATIONS,
         },
         {
-            body: t("homepage.guests.description"),
+            body: t("dashboard:guests.description"),
             color: "guests",
-            header: t("homepage.guests.header"),
+            header: t("dashboard:guests.header"),
             icon: getRouteIcon(Routes.GUESTS),
-            navigationButtonLabel: t("homepage.guests.navigateButtonLabel"),
+            navigationButtonLabel: t("dashboard:guests.navigateButtonLabel"),
             navigationRoute: Routes.GUESTS,
         },
         {
-            body: t("homepage.hosts.description"),
+            body: t("dashboard:hosts.description"),
             color: "hosts",
-            header: t("homepage.hosts.header"),
+            header: t("dashboard:hosts.header"),
             icon: getRouteIcon(Routes.HOSTS),
-            navigationButtonLabel: t("homepage.hosts.navigateButtonLabel"),
+            navigationButtonLabel: t("dashboard:hosts.navigateButtonLabel"),
             navigationRoute: Routes.HOSTS,
         },
     ];
 
-    const pageHeader = `${t("homepage.header")}`;
+    const pageHeader = `${t("dashboard:card.title")}`;
 
     return (
         <PageCard header={pageHeader}>

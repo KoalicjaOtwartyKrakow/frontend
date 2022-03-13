@@ -12,7 +12,7 @@ const AccommodationFormSubmitButton = ({ disabled, isSubmitting, label }) => {
                 icon={faCheck}
                 inProgress={isSubmitting}
             />
-            <span className="font-weight-semibold">{label}</span>
+            <span className="fw-semibold">{label}</span>
         </Button>
     );
 };

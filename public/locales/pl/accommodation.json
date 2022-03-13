@@ -1,0 +1,63 @@
+{
+    "card": {
+        "title": {
+            "update": "Edit Accommodation Unit"
+        }
+    },
+    "common": {
+        "pets": {
+            "allowed": "Pets allowed",
+            "label": "Pets presence and approval",
+            "present": "Pets present",
+            "notAllowed": "Pets not allowed",
+            "notPresent": "Pets not present"
+        }
+    },
+    "errors": {
+        "notFound": "Accommodation Unit not found"
+    },
+    "form": {
+        "section": {
+            "addressData": "Address data",
+            "additionalInfo": "Additional information",
+            "availability": "Availability",
+            "host": "Host data"
+        },
+        "button": {
+            "create": "Add new accommodation",
+            "update": "Save changes",
+            "remove": "Remove Accommodation"
+        },
+        "label": {
+            "volunteerName": "Volunteer",
+            "host": "Host",
+            "addressLine": "Address",
+            "addressVoivodeship": "Voivodeship",
+            "addressZip": "Zip code",
+            "comments": "Host comments",
+            "description": "Volunteer notes",
+            "pets": "Pets acceptance and presence",
+            "petsAllowed": "Pets allowed",
+            "petsPresent": "Pets present",
+            "status": "Accommodation unit status",
+            "vacanciesTaken": "Vacancies taken",
+            "vacanciesTotal": "Vacancies total"
+        },
+        "message": {
+            "updateSuccess": "Successfully updated Accommodation Unit",
+            "updateFailure": "Failed to update Accommodation Unit"
+        },
+        "value": {
+            "status": {
+                "created": "Awaits verification",
+                "verified": "Verified",
+                "rejected": "Rejected"
+            }
+        }
+    },
+    "status": {
+        "created": "New",
+        "verified": "Verified",
+        "rejected": "Rejected"
+    }
+}

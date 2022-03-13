@@ -5,7 +5,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const PageNavigationAccommodationList = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["common"]);
 
     return (
         <p className="text-center mb-0">
@@ -15,7 +15,7 @@ const PageNavigationAccommodationList = () => {
                 tag={Link}
                 to={Routes.ACCOMMODATIONS}
             >
-                {t("accommodation.back_to_list")}
+                {t("common:form.button.backToList")}
             </Button>
         </p>
     );

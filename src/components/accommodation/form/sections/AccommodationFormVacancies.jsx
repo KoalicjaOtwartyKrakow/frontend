@@ -8,11 +8,11 @@ import AccommodationFormVacanciesTaken from "components/accommodation/form/field
 import AccommodationFormVacanciesTotal from "components/accommodation/form/fields/AccommodationFormVacanciesTotal";
 
 const AccommodationFormVacancies = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <AccommodationFormSection className="mb-0">
             <AccommodationFormSectionHeader>
-                {t("accommodation.availability")}
+                {t("accommodation:form.section.availability")}
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={6} md={6}>

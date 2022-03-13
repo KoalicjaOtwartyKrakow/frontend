@@ -1,6 +1,6 @@
 import {
-    BeforeDeserialized,
     JsonConverter,
+    JsonElementType,
     JsonObject,
     JsonProperty,
     JsonType,
@@ -8,25 +8,112 @@ import {
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
+import GuestChild from "models/guest/GuestChild";
+import { GuestStatus } from "models/constants/GuestStatus";
+import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 
 @JsonObject()
 class Guest {
-    @JsonProperty("created_at")
+    @JsonProperty()
+    @JsonElementType(GuestChild)
+    children = [];
+
     @JsonConverter(new MomentSerializer())
+    @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
 
+    @JsonProperty()
     @JsonType(String)
-    @JsonProperty("id")
+    desiredDestination = "";
+
+    @JsonProperty()
+    @JsonType(String)
+    email = "";
+
+    @JsonProperty("financeStatus")
+    @JsonType(String)
+    financialStatus = "";
+
+    @JsonProperty()
+    @JsonType(String)
+    foodAllergies = "";
+
+    @JsonProperty()
+    @JsonType(String)
+    fullName = "";
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    glutenFreeDiet = false;
+
+    @JsonProperty("howLongToStay")
+    @JsonType(String)
+    durationOfStay = "";
+
+    @JsonProperty()
+    @JsonType(String)
     id = undefined;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    lactoseFreeDiet = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    meatFreeDiet = false;
+
+    @JsonProperty("peopleInGroup")
+    @JsonType(Number)
+    peopleTotalCount = 1;
+
+    @JsonProperty("adultFemaleCount")
+    @JsonType(Number)
+    peopleFemaleCount = 1;
+
+    @JsonProperty("adultMaleCount")
+    @JsonType(Number)
+    peopleMaleCount = 0;
+
+    @JsonProperty()
+    @JsonType(String)
+    petsDescription = "";
+
+    @JsonProperty("havePets")
+    @JsonType(Number)
+    petsPresent = false;
+
+    @JsonProperty()
+    @JsonType(String)
+    phoneNumber = "";
+
+    /**
+     * @type {moment.Moment}
+     */
+    @JsonConverter(new MomentSerializer())
+    @JsonProperty()
+    @JsonType(String)
+    priorityDate = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    priorityStatus = GuestPriorityStatus.IN_CRISIS_POINT;
+
+    @JsonProperty()
+    @JsonType(String)
+    specialNeeds = "";
+
+    @JsonConverter(new MomentSerializer())
+    @JsonProperty()
+    @JsonType(String)
+    updatedAt = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    verificationStatus = GuestStatus.CREATED;
 
     constructor() {
         this.uuidRegenerate();
-    }
-
-    @BeforeDeserialized()
-    setDefaults() {
-        this.vacanciesTaken = 0;
     }
 
     @OnDeserialized()

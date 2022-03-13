@@ -6,20 +6,20 @@ import AccommodationFormSectionHeader from "components/accommodation/form/Accomm
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
 import AccommodationFormVolunteerName from "components/accommodation/form/fields/AccommodationFormVolunteerName";
 import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
+import AccommodationFormDescription from "components/accommodation/form/fields/AccommodationFormDescription";
+import AccommodationFormComments from "components/accommodation/form/fields/AccommodationFormComments";
 
 const AccommodationFormAdditional = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
     return (
         <AccommodationFormSection className="mb-0">
             <AccommodationFormSectionHeader>
-                {t("accommodation.additional_info")}
+                {t("accommodation:form.section.additionalInfo")}
             </AccommodationFormSectionHeader>
             <Row>
-                <Col xs={12} md={6}>
-                    <AccommodationFormVolunteerName />
-                </Col>
-                <Col xs={12} md={6}>
-                    <AccommodationFormPets />
+                <Col xs={12}>
+                    <AccommodationFormDescription />
+                    <AccommodationFormComments />
                 </Col>
             </Row>
         </AccommodationFormSection>

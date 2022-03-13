@@ -1,0 +1,14 @@
+{
+    "hosts": {
+        "list": "Hosts",
+        "found": "found"
+    },
+    "form": {
+        "label": {
+            "acceptsFromAnyCountry": "Accepts Guests from any country",
+            "acceptsGuestWithDisabilities": "Accepts Guests with disabilities",
+            "hostAdditionalInformations": "Host additional informations",
+            "lgbtFriendly": "LGBT friendly"
+        }
+    }
+}

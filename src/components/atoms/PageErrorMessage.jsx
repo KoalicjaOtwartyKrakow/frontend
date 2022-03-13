@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Alert } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 /**
  *
@@ -10,13 +11,15 @@ import { Alert } from "reactstrap";
  * @constructor
  */
 const PageErrorMessage = ({ children, isError }) => {
+    const { t } = useTranslation(["common"]);
+
     if (!isError) {
         return null;
     }
 
     return (
         <Alert color="danger">
-            <p>Błąd komunikacji z API. Szczegóły: </p>
+            <p>{t("common:errors:apiFailure")} </p>
             <p>{children}</p>
         </Alert>
     );

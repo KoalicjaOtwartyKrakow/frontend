@@ -20,24 +20,24 @@ const petCheckbox = ({ name, label }) => {
 };
 
 const AccommodationFormPets = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation(["accommodation"]);
 
     const petsCheckboxes = [
         {
             name: AccommodationFormFields.PETS_PRESENT,
-            label: t("accommodation.pets.present"),
+            label: t("accommodation:form.label.petsPresent"),
             value: true,
         },
         {
             name: AccommodationFormFields.PETS_ALLOWED,
-            label: t("accommodation.pets.allowed"),
+            label: t("accommodation:form.label.petsAllowed"),
         },
     ];
 
     return (
         <FormGroup tag="fieldset">
             <legend className="form-label">
-                {t("accommodation.pets.label")}
+                {t("accommodation:form.label.pets")}
             </legend>
             {petsCheckboxes.map(petCheckbox)}
         </FormGroup>

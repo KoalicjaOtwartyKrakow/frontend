@@ -1,0 +1,45 @@
+{
+    "application": {
+        "header": {
+            "subtitle": "KOK:on – we help people find a safe harbor!"
+        }
+    },
+    "data": {
+        "loading": "Loading data…",
+        "updateSuccess": "Changes saved successfully",
+        "refresh": "Odśwież"
+    },
+    "errors": {
+        "apiFailure": "API communication error:"
+    },
+    "form": {
+        "label": {
+            "email": "E-mail",
+            "phone": "Phone"
+        },
+        "placeholder": {
+            "email": "username@hostname.tld",
+            "phone": "+1 (123) 4567890"
+        },
+        "pleaseSelect": "Please select…",
+        "button": {
+            "reset": "Reset changes",
+            "backToList": "Back to the list"
+        },
+        "validator": {
+            "cityName": "Wpisz miejscowość",
+            "email": "E-mail is required",
+            "fullName": "Name is required",
+            "integer": "Podaj liczbę całkowitą",
+            "missingId": "Missing ID value, something is wrong…",
+            "numberMin": "Musi być co najmniej",
+            "numberOfPeople": "Wpisz liczbę osób",
+            "phoneNumber": "Phone number is required",
+            "positiveNumber": "Wartości ujemne są niepoprawne",
+            "streetName": "Wpisz nazwę ulicy",
+            "streetNumber": "Wpisz numer lokalu",
+            "tooManyPeople": "Liczba osób nie może przekraczać liczby miejsc",
+            "voivodeshipName": "Wpisz województwo"
+        }
+    }
+}
