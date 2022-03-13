@@ -77,13 +77,19 @@ class AccommodationFormFields {
         [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: "easyAmbulanceAccess",
     };
 
+    static formToModelMap = Object.fromEntries(
+        Object.entries(AccommodationFormFields.modelToFormMap).map(([k, v]) => [
+            v,
+            k,
+        ])
+    );
+
     /**
-     * Transform object from model to form object.
+     * Transform object from model to form values.
      * @param {Accommodation} accommodation
      * @return {*}
      */
     static getInitialValues(accommodation) {
-
         if (!accommodation.id) {
             console.log(
                 "computing initial values, can't do it! no id, so returning empty object"
@@ -91,7 +97,9 @@ class AccommodationFormFields {
             return {};
         }
 
-        const FormObject = objectAssignMapped(
+        const FormObject = objectAssignMapped();
+
+        return objectAssignMapped(
             {},
             accommodation,
             AccommodationFormFields.modelToFormMap
@@ -190,17 +198,10 @@ class AccommodationFormFields {
     }
 
     static formToModel(formValues) {
-        // Invert map
-        const formToModelMap = Object.fromEntries(
-            Object.entries(AccommodationFormFields.modelToFormMap).map(
-                ([k, v]) => [v, k]
-            )
-        );
-
-        const model = objectAssignMapped(
+        return objectAssignMapped(
             new Accommodation(),
             formValues,
-            formToModelMap
+            AccommodationFormFields.formToModelMap
         );
         return model;
     }

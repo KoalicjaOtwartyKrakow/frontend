@@ -19,7 +19,7 @@ const checkboxField = ({ name, label }) => {
     );
 };
 
-const AccommodationFormPets = () => {
+const AccommodationFormAccessibility = () => {
     const { t } = useTranslation(["accommodation"]);
 
     const accessibilityCheckboxes = [
@@ -51,6 +51,6 @@ const AccommodationFormPets = () => {
     );
 };
 
-AccommodationFormPets.propTypes = {};
+AccommodationFormAccessibility.propTypes = {};
 
-export default AccommodationFormPets;
+export default AccommodationFormAccessibility;

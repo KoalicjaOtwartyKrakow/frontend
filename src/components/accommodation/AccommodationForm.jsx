@@ -91,7 +91,7 @@ const AccommodationForm = (props) => {
         <Formik {...formikProps}>
             {(info) => (
                 <Form noValidate>
-                    {/*<Effect onChange={ osnChange } />*/}
+                    {/*<Effect onChange={ onChange } />*/}
                     <Row>
                         <Col xs={12} lg={6}>
                             <AccommodationFormAddress />
