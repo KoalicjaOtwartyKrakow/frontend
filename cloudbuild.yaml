@@ -15,7 +15,7 @@ steps:
       - config
       - set
       - "//npm.fontawesome.com/:_authToken"
-      - $FONTAWESOME_TOKEN
+      - $$FONTAWESOME_TOKEN
     entrypoint: npm
     secretEnv: ['FONTAWESOME_TOKEN']
   - name: 'node:14-alpine'
