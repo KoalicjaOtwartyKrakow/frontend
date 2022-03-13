@@ -17,9 +17,19 @@ const polishVoivodeships = Object.freeze([
     { id: "ZACHODNIOPOMORSKIE", name: "zachodniopomorskie" },
 ]);
 
-const getPolishVoivodeshipNameById = (id) => {
-    const name = polishVoivodeships.find((item) => item.id === id)?.name || "-";
-    return name;
+const defaultPolishVoivodeshipId = "MALOPOLSKIE";
+
+const getPolishVoivodeshipById = (id) => {
+    return polishVoivodeships.find((item) => item.id === id);
 };
 
-export { getPolishVoivodeshipNameById, polishVoivodeships };
+const getPolishVoivodeshipNameById = (id) => {
+    return getPolishVoivodeshipById(id)?.name || "-";
+};
+
+export {
+    defaultPolishVoivodeshipId,
+    getPolishVoivodeshipById,
+    getPolishVoivodeshipNameById,
+    polishVoivodeships,
+};
