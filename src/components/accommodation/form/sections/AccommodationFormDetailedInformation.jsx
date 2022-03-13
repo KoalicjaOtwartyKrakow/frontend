@@ -2,18 +2,18 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
-import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
-import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
+import FormSection from "components/molecules/form/FormSection";
+import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
 import AccommodationFormAccessibility from "../fields/AccommodationFormAccessibility";
 
 const AccommodationFormDetailedInformation = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
-        <AccommodationFormSection className="mb-0">
-            <AccommodationFormSectionHeader>
+        <FormSection className="mb-0">
+            <FormSectionHeader>
                 {t("accommodation:form.section.detailedInfo")}
-            </AccommodationFormSectionHeader>
+            </FormSectionHeader>
             <Row>
                 <Col xs={12} md={4}>
                     <AccommodationFormPets />
@@ -22,7 +22,7 @@ const AccommodationFormDetailedInformation = () => {
                     <AccommodationFormAccessibility />
                 </Col>
             </Row>
-        </AccommodationFormSection>
+        </FormSection>
     );
 };
 

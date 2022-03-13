@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
-import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect";
 import { AccommodationStatus } from "models/constants/AccomodationStatus";
 
 const AccommodationFormAddressStatus = (props) => {
@@ -19,12 +18,12 @@ const AccommodationFormAddressStatus = (props) => {
             name: t("accommodation:form.value.status.created"),
         },
         {
-            id: [AccommodationStatus.REJECTED],
-            name: t("accommodation:form.value.status.rejected"),
-        },
-        {
             id: [AccommodationStatus.VERIFIED],
             name: t("accommodation:form.value.status.verified"),
+        },
+        {
+            id: [AccommodationStatus.REJECTED],
+            name: t("accommodation:form.value.status.rejected"),
         },
     ];
 

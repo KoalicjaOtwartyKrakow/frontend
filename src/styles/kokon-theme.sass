@@ -13,6 +13,8 @@ $bg-color-guests-primary: shade-color($bg-color-guests, 10%)
 $bg-color-hosts: $teal-500
 $bg-color-hosts-primary: $teal-300
 
+$bg-color-form-card-section: $color-form-card-section
+
 $bg-person-color-individual: $gray-500
 $bg-person-color-total: mix($gray-600, $blue-500, 70%)
 
@@ -34,6 +36,8 @@ $text-guest-trait: $gray-500
 .bg
   &-accommodations
     background-color: $bg-color-accommodations
+  &-form-card-section
+    background-color: $bg-color-form-card-section
   &-guest-priority-status
     &-accommodation-found
       background-color: $bg-color-guest-priority-lowest
@@ -47,7 +51,6 @@ $text-guest-trait: $gray-500
       background-color: $bg-color-guest-priority-highest
     &-in-krakow
       background-color: $bg-color-guest-priority-high
-
   &-guests
     background-color: $bg-color-guests
   &-hosts
