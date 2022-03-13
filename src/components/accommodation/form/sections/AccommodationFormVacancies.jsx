@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
-import AccommodationFormVacanciesFree from "components/accommodation/form/fields/AccommodationFormVacanciesFree";
 import AccommodationFormVacanciesTotal from "components/accommodation/form/fields/AccommodationFormVacanciesTotal";
+import AccommodationFormVacanciesTaken from "components/accommodation/form/fields/AccommodationFormVacanciesTaken";
 import AccommodationFormStatus from "../fields/AccommodationFormStatus";
 
 const AccommodationFormVacancies = () => {
@@ -17,13 +17,13 @@ const AccommodationFormVacancies = () => {
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12} md={4}>
-                    <AccommodationFormVacanciesFree />
+                    <AccommodationFormStatus />
+                </Col>
+                <Col xs={12} md={4}>
+                    <AccommodationFormVacanciesTaken />
                 </Col>
                 <Col xs={12} md={4}>
                     <AccommodationFormVacanciesTotal />
-                </Col>
-                <Col xs={12} md={4}>
-                    <AccommodationFormStatus />
                 </Col>
             </Row>
         </AccommodationFormSection>

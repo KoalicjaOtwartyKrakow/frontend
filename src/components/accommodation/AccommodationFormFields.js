@@ -25,7 +25,7 @@ class AccommodationFormFields {
     static PETS_PRESENT = "petsPresent";
     static PETS_ALLOWED = "petsAllowed";
     static VACANCIES_TOTAL = "vacanciesTotal";
-    static VACANCIES_FREE = "vacanciesFree";
+    static VACANCIES_TAKEN = "vacanciesTaken";
     static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
     static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static HOST_EMAIL = "hostEmail";
@@ -56,7 +56,7 @@ class AccommodationFormFields {
         id: "id",
         // Vacancies
         [AccommodationFormFields.VACANCIES_TOTAL]: "vacanciesTotal",
-        [AccommodationFormFields.VACANCIES_FREE]: "vacanciesFree",
+        // [AccommodationFormFields.VACANCIES_TAKEN]: "vacanciesTaken",
         // Info
         [AccommodationFormFields.STATUS]: "status",
         [AccommodationFormFields.COMMENTS]: "ownerComments",
@@ -89,6 +89,8 @@ class AccommodationFormFields {
      * @param {Accommodation} accommodation
      * @return {*}
      */
+    static toForm(accommodation) {
+        let formValues = objectAssignMapped(
     static getInitialValues(accommodation) {
         if (!accommodation.id) {
             console.log(
@@ -104,6 +106,18 @@ class AccommodationFormFields {
             accommodation,
             AccommodationFormFields.modelToFormMap
         );
+
+        // Convert vacanciesFree to vacanciesTaken
+        const vacanciesTotal = accommodation.vacanciesTotal
+            ? accommodation.vacanciesTotal
+            : 0;
+        const vacanciesFree = accommodation.vacanciesFree
+            ? accommodation.vacanciesFree
+            : 0;
+        formValues[AccommodationFormFields.VACANCIES_TAKEN] =
+            vacanciesTotal - vacanciesFree;
+
+        return formValues;
 
         return FormObject;
 
@@ -198,12 +212,26 @@ class AccommodationFormFields {
     }
 
     static formToModel(formValues) {
-        return objectAssignMapped(
+        let accomodation = objectAssignMapped(
             new Accommodation(),
             formValues,
             AccommodationFormFields.formToModelMap
         );
-        return model;
+
+        // Convert vacanciesTaken to vacanciesFree
+        const vacanciesTotal = formValues[
+            AccommodationFormFields.VACANCIES_TOTAL
+        ]
+            ? formValues[AccommodationFormFields.VACANCIES_TOTAL]
+            : 0;
+        const vacanciesTaken = formValues[
+            AccommodationFormFields.VACANCIES_TAKEN
+        ]
+            ? formValues[AccommodationFormFields.VACANCIES_TAKEN]
+            : 0;
+        accomodation.vacanciesFree = vacanciesTotal - vacanciesTaken;
+
+        return accomodation;
     }
 }
 

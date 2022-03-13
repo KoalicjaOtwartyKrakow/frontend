@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
-import AccommodationFormVolunteerName from "components/accommodation/form/fields/AccommodationFormVolunteerName";
 import AccommodationFormPets from "components/accommodation/form/fields/AccommodationFormPets";
 import AccommodationFormAccessibility from "../fields/AccommodationFormAccessibility";
 

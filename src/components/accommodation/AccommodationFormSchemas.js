@@ -38,14 +38,14 @@ const commonSchema = Yup.object().shape({
         .moreThan(0, "form.validator.positiveNumber")
         .min(1, `form.validator.numberMin`)
         .required("form.validator.vacanciesTotal"),
-    [AccommodationFormFields.VACANCIES_FREE]: Yup.number()
+    [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("form.validator.integer")
         .moreThan(-1, "form.validator.positiveNumber")
         .max(
             Yup.ref(AccommodationFormFields.VACANCIES_TOTAL),
             "form.validator.notEnoughTotalVacancies"
         )
-        .required("form.validator.vacanciesFree"),
+        .required("form.validator.vacanciesTaken"),
     // Info
     [AccommodationFormFields.COMMENTS]: Yup.string(),
     // Pets

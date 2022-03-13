@@ -85,11 +85,9 @@ const AccommodationForm = (props) => {
         ? t("accommodation:form.button.create")
         : t("accommodation:form.button.update");
 
-    console.log("Submit label = " + submitLabel);
-
     return (
         <Formik {...formikProps}>
-            {(info) => (
+            {({ isSubmitting, isValid }) => (
                 <Form noValidate>
                     {/*<Effect onChange={ onChange } />*/}
                     <Row>
@@ -101,18 +99,10 @@ const AccommodationForm = (props) => {
                             <AccommodationFormAdditional />
                         </Col>
                     </Row>
-
-                    <p style={{ color: "red" }}>
-                        {JSON.stringify(info.errors)}
-                    </p>
-
                     <AccommodationFormDetailedInformation />
                     <AccommodationFormButtons
-                        isSubmitting={info.isSubmitting}
-                        submitDisabled={submitDisabled(
-                            info.isValid,
-                            info.isSubmitting
-                        )}
+                        isSubmitting={isSubmitting}
+                        submitDisabled={submitDisabled(isValid, isSubmitting)}
                         submitLabel={submitLabel}
                         onRemove={onRemove}
                         inProgress={accommodationInProgress}

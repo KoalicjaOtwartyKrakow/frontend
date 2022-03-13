@@ -133,13 +133,13 @@ class AccommodationEditPage extends React.Component {
     };
 
     initialFormValues = () => {
-        if (this.state.form == FORM_UPDATE) {
-            if (this.state.status == FETCH_OK) {
+        if (this.state.form === FORM_UPDATE) {
+            if (this.state.status === FETCH_OK) {
                 return toForm(this.state.fetchedAccommodation);
             }
         }
 
-        // Return empty on initiliazed or on create form case
+        // Return empty on initialized or on create form case
         return toForm(new Accommodation());
     };
 
