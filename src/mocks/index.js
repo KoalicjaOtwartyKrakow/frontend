@@ -108,6 +108,7 @@ export function generateAllMocks() {
 
         // Info
         accommodation.staffComments = chance.paragraph();
+        accommodation.ownerComments = chance.paragraph();
         accommodation.status = chance.pickone(
             Object.values(AccommodationStatus)
         );

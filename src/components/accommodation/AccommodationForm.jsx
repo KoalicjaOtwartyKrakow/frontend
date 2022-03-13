@@ -23,7 +23,6 @@ const AccommodationForm = (props) => {
 
     const initialStatus = formFields.getInitialStatus();
 
-    // what is uuid??
     const key = initialValues.uuid;
 
     const isCreateMode = !initialValues.id;

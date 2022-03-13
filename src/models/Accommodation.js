@@ -32,14 +32,14 @@ class Accommodation {
     @JsonType(String)
     staffComments = "";
 
+    @JsonProperty()
+    @JsonType(String)
+    ownerComments = "";
+
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
-
-    // @JsonProperty()
-    // @JsonType(String)
-    // description = "";
 
     @JsonProperty()
     @JsonType(Host)

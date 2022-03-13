@@ -15,16 +15,20 @@ import AccommodationForm from "components/accommodation/AccommodationForm";
 import { Routes } from "constants/Routes";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import Accommodation from "models/Accommodation";
-// import { classToPlain } from "serializers/Serializer";
 import { Toast } from "components/atoms/Toast";
 import { updateAccommodation, fetchAccommodation } from "services/Api";
+
+const toForm = memoize(AccommodationFormFields.toForm);
 
 const EDITING = 0;
 const SENDING = 1;
 const SENT = 2;
 const FETCHING = 3;
-const FETCH_DONE = 4;
-const FETCH_FAILED = 5;
+const FETCH_OK = 4;
+const FETCH_ERR = 5;
+
+const FORM_UPDATE = 0;
+const FORM_CREATE = 1;
 
 // TODO: refactor to functional component, the use effects
 class AccommodationEditPage extends React.Component {
@@ -32,11 +36,56 @@ class AccommodationEditPage extends React.Component {
         super(props);
         this.state = {
             status: EDITING,
+            form: null,
             fetchCalled: false,
             fetchFinished: false,
             fetchedAccommodation: {},
         };
     }
+
+    initializeUpdateForm = (accommodationId) => {
+        this.setState({ form: FORM_UPDATE });
+
+        // Call fetch
+        if (!this.state.status !== FETCHING) {
+            fetchAccommodation(
+                accommodationId,
+                () => {},
+                this.fetchAccommodationSuccess,
+                this.fetchAccommodationFailure,
+                () => {}
+            );
+            this.setState({ status: FETCHING });
+        }
+    };
+
+    initializeCreateForm = () => {
+        this.setState({ form: FORM_CREATE });
+    };
+
+    componentDidMount = () => {
+        const { location } = this.props;
+
+        const options = {
+            exact: false,
+            strict: false,
+        };
+        const { pathname } = location;
+        const editPath = matchPath(pathname, {
+            ...options,
+            path: Routes.ACCOMMODATION_EDIT,
+        });
+        const createPath = matchPath(pathname, {
+            ...options,
+            path: Routes.ACCOMMODATIONS_CREATE,
+        });
+
+        if (editPath !== null && editPath.params.accommodationId) {
+            this.initializeUpdateForm(editPath.params.accommodationId);
+        } else if (createPath !== null) {
+            this.initializeCreateForm();
+        }
+    };
 
     beforeSubmit = () => {
         this.setState({ status: SENDING });
@@ -69,118 +118,40 @@ class AccommodationEditPage extends React.Component {
         );
     };
 
-    fetchAccommodationBefore = () => {
-        this.setState({ status: FETCHING });
-    };
     fetchAccommodationSuccess = ({ data }) => {
         this.setState({
-            status: FETCH_DONE,
-            fetchFinished: true,
+            status: FETCH_OK,
             fetchedAccommodation: data,
         });
+        console.log(
+            "AccommodationEditPage fetched accommodation model = ",
+            this.state.fetchedAccommodation
+        );
     };
     fetchAccommodationFailure = () => {
-        this.setState({ status: FETCH_FAILED });
-    };
-    fetchAccommodationFinally = () => {};
-
-    // TODO: get accomodation from API, add my own effect: https://reactjs.org/docs/hooks-effect.html
-    // get initial values from id (id is read from url)
-    initialValuesFromLocation = () => {
-        const { accommodations, location } = this.props;
-
-        const options = {
-            exact: false,
-            strict: false,
-        };
-
-        const { pathname } = location;
-
-        const editPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATION_EDIT,
-        });
-        const createPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATIONS_CREATE,
-        });
-
-        // What does this do?
-        const getInitialValues = memoize(AccommodationFormFields.toForm);
-
-        // Update
-        if (editPath !== null && this.isRouteAccommodationPresent()) {
-            const accommodationId = editPath.params.accommodationId;
-
-            // Call fetch
-            if (!this.state.fetchCalled) {
-                const fetchPromise = fetchAccommodation(
-                    accommodationId,
-                    this.fetchAccommodationBefore,
-                    this.fetchAccommodationSuccess,
-                    this.fetchAccommodationFailure,
-                    this.fetchAccommodationFinally
-                );
-                this.setState({ fetchCalled: true });
-            }
-
-            if (this.state.fetchFinished) {
-                console.log(
-                    "AccomodationEditPage, accommodation model = ",
-                    this.state.fetchedAccommodation
-                );
-                return getInitialValues(this.state.fetchedAccommodation);
-            }
-
-            // const accommodation = accommodations.find(
-            //     (item) => item.id === accommodationId
-            // );
-
-            // Waiting for fetch...
-            return {};
-        }
-
-        // Create
-        if (createPath !== null) {
-            const accommodation = new Accommodation();
-            return getInitialValues(accommodation);
-        }
+        this.setState({ status: FETCH_ERR });
     };
 
-    hasAccommodations = () =>
-        this.props.accommodationsSuccess &&
-        this.props.accommodations.length > 0;
+    initialFormValues = () => {
+        if (this.state.form == FORM_UPDATE) {
+            if (this.state.status == FETCH_OK) {
+                return toForm(this.state.fetchedAccommodation);
+            }
+        }
 
-    isRouteAccommodationPresent = () =>
-        this.props.accommodations.some(
-            (accommodation) =>
-                accommodation.id === this.props.match.params.accommodationId
-        );
+        // Return empty on initiliazed or on create form case
+        return toForm(new Accommodation());
+    };
 
     renderForm = () => {
-        if (!this.hasAccommodations()) {
-            return null;
-        }
-
-        if (this.isRouteAccommodationPresent()) {
-            const initialValues = this.initialValuesFromLocation();
-            console.log(
-                "AccommodationEditPage - accommodation from values = ",
-                initialValues
-            );
-            return (
-                <AccommodationForm
-                    accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
-                    initialValues={initialValues}
-                    onSubmit={this.onSubmit}
-                />
-            );
-        }
-
+        const initialValues = this.initialFormValues();
+        console.log("AccommodationEditPage form values", initialValues);
         return (
-            <Alert color="warning">
-                {this.props.t("accommodation:errors.notFound")}
-            </Alert>
+            <AccommodationForm
+                accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+                initialValues={initialValues}
+                onSubmit={this.onSubmit}
+            />
         );
     };
 
@@ -196,8 +167,8 @@ class AccommodationEditPage extends React.Component {
             return <p>Fetching accommodation...</p>;
         }
 
-        if (this.state.status === FETCH_FAILED) {
-            return <p>Accommondation not found!</p>;
+        if (this.state.status === FETCH_ERR) {
+            return <p>Accommodation not found!</p>;
         }
 
         return (

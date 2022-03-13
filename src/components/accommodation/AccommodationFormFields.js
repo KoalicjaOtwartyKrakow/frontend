@@ -1,6 +1,3 @@
-import pick from "lodash-es/pick";
-import moment from "moment-es6";
-import { appConfig } from "constants/AppConfig";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
 import { getFormattedDate } from "shared/datetime";
@@ -24,6 +21,11 @@ class AccommodationFormFields {
     static ADDRESS_ZIP = "addressZip";
     static COMMENTS = "comments";
     static DESCRIPTION = "description";
+    static DESCRIPTION = "description";
+    static PETS_PRESENT = "petsPresent";
+    static PETS_ALLOWED = "petsAllowed";
+    static VACANCIES_TOTAL = "vacanciesTotal";
+    static VACANCIES_FREE = "vacanciesFree";
     static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
     static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static HOST_EMAIL = "hostEmail";
@@ -41,6 +43,39 @@ class AccommodationFormFields {
     static VACANCIES_TAKEN = "vacanciesTaken";
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VOLUNTEER_NAME = "volunteerName";
+    static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
+    // static IS_VERIFIED = "isVerified";
+    // static HOST_EMAIL = "hostEmail";
+    // static HOST_NAME = "hostName";
+    // static HOST_PHONE = "hostPhone";
+    // static VOLUNTEER_NAME = "volunteerName";
+    // static CREATED_AT = 'createdAt';
+
+    static modelToFormMap = {
+        // Id
+        id: "id",
+        // Vacancies
+        [AccommodationFormFields.VACANCIES_TOTAL]: "vacanciesTotal",
+        [AccommodationFormFields.VACANCIES_FREE]: "vacanciesFree",
+        // Info
+        [AccommodationFormFields.STATUS]: "status",
+        [AccommodationFormFields.COMMENTS]: "ownerComments",
+        [AccommodationFormFields.DESCRIPTION]: "staffComments",
+        // Address
+        [AccommodationFormFields.ADDRESS_CITY]: "city",
+        [AccommodationFormFields.ADDRESS_LINE]: "addressLine",
+        [AccommodationFormFields.ADDRESS_ZIP]: "zip",
+        [AccommodationFormFields.ADDRESS_VOIVODESHIP]: "voivodeship",
+        // Pets
+        [AccommodationFormFields.PETS_ALLOWED]: "petsAccepted",
+        [AccommodationFormFields.PETS_PRESENT]: "petsPresent",
+        // Accessibility
+        [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY]:
+            "disabledPeopleFriendly",
+        [AccommodationFormFields.LGBT_FRIENDLY]: "lgbtFriendly",
+        [AccommodationFormFields.PARKING_PLACE]: "parkingPlaceAvailable",
+        [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: "easyAmbulanceAccess",
+    };
 
     /**
      * Transform object from model to form object.
@@ -109,6 +144,7 @@ class AccommodationFormFields {
             [AccommodationFormFields.ADDRESS_LINE],
             [AccommodationFormFields.ADDRESS_ZIP],
             [AccommodationFormFields.COMMENTS],
+            [AccommodationFormFields.DESCRIPTION],
             [AccommodationFormFields.VACANCIES_TOTAL],
             [AccommodationFormFields.VACANCIES_TAKEN],
             [AccommodationFormFields.PETS_ALLOWED],
@@ -117,7 +153,6 @@ class AccommodationFormFields {
             [AccommodationFormFields.LGBT_FRIENDLY],
             [AccommodationFormFields.PARKING_PLACE],
             [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
-            // [AccommodationFormFields.DESCRIPTION],
             // [AccommodationFormFields.IS_VERIFIED],
             // [AccommodationFormFields.HOST_EMAIL],
             // [AccommodationFormFields.HOST_NAME],

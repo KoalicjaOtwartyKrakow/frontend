@@ -28,11 +28,10 @@ export const fetchAccommodation = async (
     onFailure,
     onFinish
 ) => {
-    console.log("[ACCOMMODATION] Fetch in progress");
     before && before();
 
+    console.log("[ACCOMMODATION] Fetch in progress");
     await sleep(DEBUG_API_FETCH_DELAY);
-
     const url = utils.getPath(constants.Paths.ACCOMMODATION) + "/" + id;
 
     const promise = constants.useMocks
@@ -50,8 +49,8 @@ export const fetchAccommodations = async (
     onFailure,
     onFinish
 ) => {
-    console.log("[ACCOMMODATIONS] Fetch in progress");
     before && before();
+    console.log("[ACCOMMODATIONS] Fetch in progress");
 
     await sleep(DEBUG_API_FETCH_DELAY);
 
@@ -71,7 +70,7 @@ export const updateAccommodation = (
     onFailure,
     onFinish
 ) => {
-    console.log("[ACCOMMODATIONS] update fired");
+    console.log("[ACCOMMODATIONS] update fired", data);
     before && before();
 
     const url = utils.getPath(constants.Paths.ACCOMMODATIONS);

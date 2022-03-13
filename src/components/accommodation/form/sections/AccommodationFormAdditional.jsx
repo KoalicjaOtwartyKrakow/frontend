@@ -18,7 +18,7 @@ const AccommodationFormAdditional = () => {
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12}>
-                    {/*<AccommodationFormDescription />*/}
+                    <AccommodationFormDescription />
                     <AccommodationFormComments />
                 </Col>
             </Row>
