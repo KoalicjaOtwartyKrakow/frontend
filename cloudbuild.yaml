@@ -1,23 +1,14 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: "Install"
+    name: 'node:14-alpine'
+    entrypoint: /bin/sh
     args:
-      - config
-      - set
-      - "@fortawesome:registry"
-      - https://npm.fontawesome.com/
-    entrypoint: npm
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - config
-      - set
-      - "//npm.fontawesome.com/:_authToken"
-      - $$FONTAWESOME_TOKEN
-    entrypoint: npm
+      - -c
+      - |
+        npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+        npm config set "//npm.fontawesome.com/:_authToken=$$FONTAWESOME_TOKEN"
+        yarn install
     secretEnv: ['FONTAWESOME_TOKEN']
-  - name: 'node:14-alpine'
-    args:
-      - install
-    entrypoint: yarn
   - name: 'node:14-alpine'
     env:
       - REACT_APP_KOKON_API_URL=https://europe-central2-salamlab-aparatments.cloudfunctions.net/
