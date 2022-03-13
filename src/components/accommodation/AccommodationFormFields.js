@@ -5,27 +5,23 @@ import {
     defaultPolishVoivodeshipId,
     getPolishVoivodeshipById,
 } from "models/constants/Address";
+import { pick } from "lodash-es";
 
-const objectAssignMapped = (object, source, map) => {
-    for (const [objectKey, sourceKey] of Object.entries(map)) {
+const objectAssignMapped = (source, mappings) => {
+    const object = {};
+    for (const [objectKey, sourceKey] of Object.entries(mappings)) {
         object[objectKey] = source[sourceKey];
     }
     return object;
 };
 
 class AccommodationFormFields {
-    static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_LINE = "addressLine";
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_ZIP = "addressZip";
     static COMMENTS = "comments";
     static DESCRIPTION = "description";
-    static DESCRIPTION = "description";
-    static PETS_PRESENT = "petsPresent";
-    static PETS_ALLOWED = "petsAllowed";
-    static VACANCIES_TOTAL = "vacanciesTotal";
-    static VACANCIES_TAKEN = "vacanciesTaken";
     static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
     static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static HOST_EMAIL = "hostEmail";
@@ -43,38 +39,25 @@ class AccommodationFormFields {
     static VACANCIES_TAKEN = "vacanciesTaken";
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VOLUNTEER_NAME = "volunteerName";
-    static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
-    // static IS_VERIFIED = "isVerified";
-    // static HOST_EMAIL = "hostEmail";
-    // static HOST_NAME = "hostName";
-    // static HOST_PHONE = "hostPhone";
-    // static VOLUNTEER_NAME = "volunteerName";
-    // static CREATED_AT = 'createdAt';
 
     static modelToFormMap = {
-        // Id
         id: "id",
-        // Vacancies
-        [AccommodationFormFields.VACANCIES_TOTAL]: "vacanciesTotal",
-        // [AccommodationFormFields.VACANCIES_TAKEN]: "vacanciesTaken",
-        // Info
-        [AccommodationFormFields.STATUS]: "status",
-        [AccommodationFormFields.COMMENTS]: "ownerComments",
-        [AccommodationFormFields.DESCRIPTION]: "staffComments",
-        // Address
         [AccommodationFormFields.ADDRESS_CITY]: "city",
         [AccommodationFormFields.ADDRESS_LINE]: "addressLine",
-        [AccommodationFormFields.ADDRESS_ZIP]: "zip",
         [AccommodationFormFields.ADDRESS_VOIVODESHIP]: "voivodeship",
-        // Pets
-        [AccommodationFormFields.PETS_ALLOWED]: "petsAccepted",
-        [AccommodationFormFields.PETS_PRESENT]: "petsPresent",
-        // Accessibility
+        [AccommodationFormFields.ADDRESS_ZIP]: "zip",
+        [AccommodationFormFields.COMMENTS]: "ownerComments",
+        [AccommodationFormFields.DESCRIPTION]: "staffComments",
         [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY]:
             "disabledPeopleFriendly",
+        [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: "easyAmbulanceAccess",
         [AccommodationFormFields.LGBT_FRIENDLY]: "lgbtFriendly",
         [AccommodationFormFields.PARKING_PLACE]: "parkingPlaceAvailable",
-        [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: "easyAmbulanceAccess",
+        [AccommodationFormFields.PETS_ALLOWED]: "petsAccepted",
+        [AccommodationFormFields.PETS_PRESENT]: "petsPresent",
+        [AccommodationFormFields.STATUS]: "status",
+        [AccommodationFormFields.VACANCIES_TAKEN]: "vacanciesTaken",
+        [AccommodationFormFields.VACANCIES_TOTAL]: "vacanciesTotal",
     };
 
     static formToModelMap = Object.fromEntries(
@@ -87,21 +70,14 @@ class AccommodationFormFields {
     /**
      * Transform object from model to form values.
      * @param {Accommodation} accommodation
-     * @return {*}
+     * @return {Object}
      */
-    static toForm(accommodation) {
-        let formValues = objectAssignMapped(
-    static getInitialValues(accommodation) {
-        if (!accommodation.id) {
-            console.log(
-                "computing initial values, can't do it! no id, so returning empty object"
-            );
-            return {};
+    static modelToForm(accommodation) {
+        if (!(accommodation instanceof Accommodation)) {
+            return undefined;
         }
 
-        const FormObject = objectAssignMapped();
-
-        return objectAssignMapped(
+        const formValues = objectAssignMapped(
             {},
             accommodation,
             AccommodationFormFields.modelToFormMap
@@ -117,25 +93,24 @@ class AccommodationFormFields {
         formValues[AccommodationFormFields.VACANCIES_TAKEN] =
             vacanciesTotal - vacanciesFree;
 
-        return formValues;
-
-        return FormObject;
-
-        const fieldNames = Object.values(AccommodationFormFields);
-        const initialValues = pick(accommodation, fieldNames);
-
-        initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
+        formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
             getPolishVoivodeshipById(
-                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
+                formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
             ) || defaultPolishVoivodeshipId;
 
         return accommodation.id
-            ? initialValues
-            : Object.assign(initialValues, {
+            ? formValues
+            : Object.assign(formValues, {
                   [AccommodationFormFields.VACANCIES_TOTAL]: 1,
                   [AccommodationFormFields.VACANCIES_TAKEN]: 0,
-                  [AccommodationFormFields.IS_VERIFIED]: false,
               });
+
+        // return formValues;
+        // //
+        // // return FormObject;
+        // //
+        // const fieldNames = Object.values(AccommodationFormFields);
+        // const initialValues = pick(accommodation, fieldNames);
     }
 
     getInitialStatus() {
@@ -175,11 +150,6 @@ class AccommodationFormFields {
             [AccommodationFormFields.LGBT_FRIENDLY],
             [AccommodationFormFields.PARKING_PLACE],
             [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
-            // [AccommodationFormFields.IS_VERIFIED],
-            // [AccommodationFormFields.HOST_EMAIL],
-            // [AccommodationFormFields.HOST_NAME],
-            // [AccommodationFormFields.HOST_PHONE],
-            //[AccommodationFormFields.VOLUNTEER_NAME],
         ];
 
         const simpleTypeDiff = (key) => prev[key] !== next[key];

@@ -83,12 +83,11 @@ const commonSchema = Yup.object().shape({
 
 const accommodationFormCreateSchema = Yup.object().concat(commonSchema);
 
-const accommodationFormUpdateSchema = Yup.object()
-    .shape({
-        [AccommodationFormFields.ID]: Yup.string().required(
-            "form.validator.missingId"
-        ),
-    })
-    .concat(commonSchema);
+const accommodationFormUpdateSchema = Yup.object().shape({
+    [AccommodationFormFields.ID]: Yup.string().required(
+        "form.validator.missingId"
+    ),
+});
+// .concat(commonSchema);
 
 export { accommodationFormCreateSchema, accommodationFormUpdateSchema };

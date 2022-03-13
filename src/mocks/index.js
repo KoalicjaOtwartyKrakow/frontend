@@ -8,6 +8,13 @@ import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import GuestChild from "models/guest/GuestChild";
+import * as constants from "services/Api/constants";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import { getPath } from "services/Api/utils";
+import { Paths } from "services/Api/constants";
+import { matchPath } from "react-router-dom";
+import { classToPlain } from "serializers/Serializer";
 
 const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -152,4 +159,34 @@ export function generateAllMocks() {
     });
 
     return { mockedAccommodations, mockedGuests, mockedHosts };
+}
+
+if (false && constants.useMocks) {
+    const mockAdapter = new MockAdapter(axios);
+    const { mockedAccommodations } = generateAllMocks();
+
+    mockAdapter
+        .onGet(new RegExp(getPath(Paths.ACCOMMODATION) + "/*"))
+        .reply((config) => {
+            const { url } = config;
+            const matchedPath = matchPath(url, {
+                path: getPath(Paths.ACCOMMODATION) + "/:accommodationId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { accommodationId },
+            } = matchedPath;
+
+            const accommodation = mockedAccommodations.find(
+                (mock) => mock.id === accommodationId
+            );
+            const plain = classToPlain(accommodation);
+
+            console.log(
+                `[useGetAccommodation] Mocked response for ${url}: `,
+                accommodation
+            );
+            return [200, plain];
+        });
 }

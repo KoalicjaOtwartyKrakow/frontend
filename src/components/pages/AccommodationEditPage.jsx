@@ -1,12 +1,12 @@
-import React from "react";
-import { matchPath, Redirect } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { matchPath, Redirect, useLocation, useParams } from "react-router-dom";
 import withAccommodations from "components/accommodations/withAccommodations";
 import PageCard from "components/atoms/PageCard";
 import compose from "just-compose";
 import { Alert } from "reactstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 import memoize from "lodash-es/memoize";
-import { withToastManager } from "react-toast-notifications";
+import { useToasts } from "react-toast-notifications";
 
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
@@ -17,175 +17,249 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 import Accommodation from "models/Accommodation";
 import { Toast } from "components/atoms/Toast";
 import { updateAccommodation, fetchAccommodation } from "services/Api";
+import { useGetAccommodation } from "hooks/api/accommodationHooks";
 
-const toForm = memoize(AccommodationFormFields.toForm);
+// const toForm = memoize(AccommodationFormFields.modelToForm);
+//
+// const EDITING = 0;
+// const SENDING = 1;
+// const SENT = 2;
+// const FETCHING = 3;
+// const FETCH_OK = 4;
+// const FETCH_ERR = 5;
+//
+// const FORM_UPDATE = 0;
+// const FORM_CREATE = 1;
+//
+// class AccommodationEditPage extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             status: EDITING,
+//             form: null,
+//             fetchCalled: false,
+//             fetchFinished: false,
+//             fetchedAccommodation: {},
+//         };
+//     }
+//
+//     initializeUpdateForm = (accommodationId) => {
+//         this.setState({ form: FORM_UPDATE });
+//
+//         // Call fetch
+//         if (!this.state.status !== FETCHING) {
+//             fetchAccommodation(
+//                 accommodationId,
+//                 () => {},
+//                 this.fetchAccommodationSuccess,
+//                 this.fetchAccommodationFailure,
+//                 () => {}
+//             );
+//             this.setState({ status: FETCHING });
+//         }
+//     };
+//
+//     initializeCreateForm = () => {
+//         this.setState({ form: FORM_CREATE });
+//     };
+//
+//     componentDidMount = () => {
+//         const { location } = this.props;
+//
+//         const options = {
+//             exact: false,
+//             strict: false,
+//         };
+//         const { pathname } = location;
+//         const editPath = matchPath(pathname, {
+//             ...options,
+//             path: Routes.ACCOMMODATION_EDIT,
+//         });
+//
+//         const createPath = matchPath(pathname, {
+//             ...options,
+//             path: Routes.ACCOMMODATIONS_CREATE,
+//         });
+//
+//         const accommodationId = editPath?.params?.accommodationId;
+//
+//         if (accommodationId) {
+//             this.initializeUpdateForm(accommodationId);
+//         } else if (createPath !== null) {
+//             this.initializeCreateForm();
+//         }
+//     };
+//
+//     beforeSubmit = () => {
+//         this.setState({ status: SENDING });
+//     };
+//
+//     onSubmitSuccess = () => {
+//         console.log("[ACCOMMODATIONS] update success");
+//         this.setState({ status: SENT });
+//
+//         const toast = new Toast(this.props.toastManager);
+//         toast.info(this.props.t("accommodation:form.message.updateSuccess"));
+//     };
+//
+//     onSubmitFailure = (onSubmitApiErrors) => (error) => {
+//         console.log("[ACCOMMODATIONS] update failure: ", error);
+//         this.setState({ status: EDITING });
+//         const toast = new Toast(this.props.toastManager);
+//         onSubmitApiErrors(error, error.response.status);
+//         toast.info(this.props.t("accommodation:form.message.updateFailure"));
+//     };
+//
+//     onSubmit = (formValues, onSubmitApiErrors) => {
+//         const data = AccommodationFormFields.formToModel(formValues);
+//
+//         updateAccommodation(
+//             data,
+//             this.beforeSubmit,
+//             this.onSubmitSuccess,
+//             this.onSubmitFailure(onSubmitApiErrors)
+//         );
+//     };
+//
+//     fetchAccommodationSuccess = ({ data }) => {
+//         this.setState({
+//             status: FETCH_OK,
+//             fetchedAccommodation: data,
+//         });
+//         console.log(
+//             "AccommodationEditPage fetched accommodation model = ",
+//             this.state.fetchedAccommodation
+//         );
+//     };
+//     fetchAccommodationFailure = () => {
+//         this.setState({ status: FETCH_ERR });
+//     };
+//
+//     initialFormValues = () => {
+//         if (this.state.form === FORM_UPDATE) {
+//             if (this.state.status === FETCH_OK) {
+//                 return toForm(this.state.fetchedAccommodation);
+//             }
+//         }
+//
+//         // Return empty on initialized or on create form case
+//         return toForm(new Accommodation());
+//     };
+//
+//     renderForm = () => {
+//         const initialValues = this.initialFormValues();
+//         console.log("AccommodationEditPage form values", initialValues);
+//         return (
+//             <AccommodationForm
+//                 accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+//                 initialValues={initialValues}
+//                 onSubmit={this.onSubmit}
+//             />
+//         );
+//     };
+//
+//     render() {
+//         const { accommodationsErrorMessage, accommodationsInProgress, t } =
+//             this.props;
+//
+//         if (this.state.status === SENT) {
+//             return <Redirect to="/accommodations" />;
+//         }
+//
+//         if (this.state.status === FETCHING) {
+//             return <p>Fetching accommodation...</p>;
+//         }
+//
+//         if (this.state.status === FETCH_ERR) {
+//             return <p>Accommodation not found!</p>;
+//         }
+//
+//         return (
+//             <PageCard header={t("accommodation:card.title.update")}>
+//                 <InProgress inProgress={accommodationsInProgress} />
+//                 <PageErrorMessage isError={accommodationsErrorMessage}>
+//                     {accommodationsErrorMessage}
+//                 </PageErrorMessage>
+//                 {this.renderForm()}
+//                 <PageNavigationAccommodationList />
+//             </PageCard>
+//         );
+//     }
+// }
+//
+// export default compose(
+//     withToastManager,
+//     withTranslation(["accommodation"])
+// )(AccommodationEditPage);
 
-const EDITING = 0;
-const SENDING = 1;
-const SENT = 2;
-const FETCHING = 3;
-const FETCH_OK = 4;
-const FETCH_ERR = 5;
+const AccommodationEditPage = () => {
+    const { t } = useTranslation(["accommodation"]);
+    const location = useLocation();
+    const toasts = useToasts();
+    const params = useParams();
 
-const FORM_UPDATE = 0;
-const FORM_CREATE = 1;
+    const {
+        accommodation,
+        accommodationGetInProgress,
+        accommodationGetError,
+        fetchAccommodation,
+    } = useGetAccommodation();
 
-// TODO: refactor to functional component, the use effects
-class AccommodationEditPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            status: EDITING,
-            form: null,
-            fetchCalled: false,
-            fetchFinished: false,
-            fetchedAccommodation: {},
-        };
-    }
+    const initialValuesRef = useRef(undefined);
+    const initialValues = initialValuesRef.current;
 
-    initializeUpdateForm = (accommodationId) => {
-        this.setState({ form: FORM_UPDATE });
+    const accommodationErrorMessage = accommodationGetError?.toString();
+    const inProgress = accommodationGetInProgress;
 
-        // Call fetch
-        if (!this.state.status !== FETCHING) {
-            fetchAccommodation(
-                accommodationId,
-                () => {},
-                this.fetchAccommodationSuccess,
-                this.fetchAccommodationFailure,
-                () => {}
-            );
-            this.setState({ status: FETCHING });
-        }
-    };
-
-    initializeCreateForm = () => {
-        this.setState({ form: FORM_CREATE });
-    };
-
-    componentDidMount = () => {
-        const { location } = this.props;
-
-        const options = {
-            exact: false,
-            strict: false,
-        };
-        const { pathname } = location;
-        const editPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATION_EDIT,
-        });
-        const createPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATIONS_CREATE,
-        });
-
-        if (editPath !== null && editPath.params.accommodationId) {
-            this.initializeUpdateForm(editPath.params.accommodationId);
-        } else if (createPath !== null) {
-            this.initializeCreateForm();
-        }
-    };
-
-    beforeSubmit = () => {
-        this.setState({ status: SENDING });
-    };
-
-    onSubmitSuccess = () => {
-        console.log("[ACCOMMODATIONS] update success");
-        this.setState({ status: SENT });
-
-        const toast = new Toast(this.props.toastManager);
-        toast.info(this.props.t("accommodation:form.message.updateSuccess"));
-    };
-
-    onSubmitFailure = (onSubmitApiErrors) => (error) => {
-        console.log("[ACCOMMODATIONS] update failure: ", error);
-        this.setState({ status: EDITING });
-        const toast = new Toast(this.props.toastManager);
-        onSubmitApiErrors(error, error.response.status);
-        toast.info(this.props.t("accommodation:form.message.updateFailure"));
-    };
-
-    onSubmit = (formValues, onSubmitApiErrors) => {
-        const data = AccommodationFormFields.formToModel(formValues);
-
-        updateAccommodation(
-            data,
-            this.beforeSubmit,
-            this.onSubmitSuccess,
-            this.onSubmitFailure(onSubmitApiErrors)
-        );
-    };
-
-    fetchAccommodationSuccess = ({ data }) => {
-        this.setState({
-            status: FETCH_OK,
-            fetchedAccommodation: data,
-        });
-        console.log(
-            "AccommodationEditPage fetched accommodation model = ",
-            this.state.fetchedAccommodation
-        );
-    };
-    fetchAccommodationFailure = () => {
-        this.setState({ status: FETCH_ERR });
-    };
-
-    initialFormValues = () => {
-        if (this.state.form === FORM_UPDATE) {
-            if (this.state.status === FETCH_OK) {
-                return toForm(this.state.fetchedAccommodation);
+    useEffect(() => {
+        const { accommodationId } = params;
+        const fetchData = async () => {
+            try {
+                await fetchAccommodation({ accommodationId });
+            } catch (error) {
+                console.error(
+                    "[AccommodationEditPage] Error on fetchAccommodation(): ",
+                    error
+                );
+                // const toast = new Toast()
+                // toast.info(this.props.t("accommodation:form.message.updateFailure"));
+                // toasts.addToast()
             }
-        }
+        };
+        fetchData();
+    }, [location]);
 
-        // Return empty on initialized or on create form case
-        return toForm(new Accommodation());
-    };
+    useEffect(() => {
+        initialValuesRef.current =
+            AccommodationFormFields.modelToForm(accommodation);
+    }, [accommodation]);
 
-    renderForm = () => {
-        const initialValues = this.initialFormValues();
-        console.log("AccommodationEditPage form values", initialValues);
-        return (
-            <AccommodationForm
-                accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
-                initialValues={initialValues}
-                onSubmit={this.onSubmit}
-            />
+    const onSubmit = (values) => {
+        console.log(
+            "[AccommodationEditPage] Invoked onSubmit() with values:",
+            values
         );
     };
 
-    render() {
-        const { accommodationsErrorMessage, accommodationsInProgress, t } =
-            this.props;
+    console.log("[AccommodationEditPage] Invoked render():", accommodation);
 
-        if (this.state.status === SENT) {
-            return <Redirect to="/accommodations" />;
-        }
+    return (
+        <PageCard header={t("accommodation:card.title.update")}>
+            <InProgress inProgress={inProgress} />
+            <PageErrorMessage isError={!!accommodationGetError}>
+                {accommodationErrorMessage}
+            </PageErrorMessage>
+            {initialValues && (
+                <AccommodationForm
+                    accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+                    initialValues={initialValues}
+                    onSubmit={onSubmit}
+                />
+            )}
 
-        if (this.state.status === FETCHING) {
-            return <p>Fetching accommodation...</p>;
-        }
+            <PageNavigationAccommodationList />
+        </PageCard>
+    );
+};
 
-        if (this.state.status === FETCH_ERR) {
-            return <p>Accommodation not found!</p>;
-        }
-
-        return (
-            <PageCard header={t("accommodation:card.title.update")}>
-                <InProgress inProgress={accommodationsInProgress} />
-                <PageErrorMessage isError={accommodationsErrorMessage}>
-                    {accommodationsErrorMessage}
-                </PageErrorMessage>
-                {this.renderForm()}
-                <PageNavigationAccommodationList />
-            </PageCard>
-        );
-    }
-}
-
-export default compose(
-    withAccommodations,
-    withToastManager,
-    withTranslation(["accommodation"])
-)(AccommodationEditPage);
+export default AccommodationEditPage;

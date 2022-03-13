@@ -10,7 +10,7 @@
         "refresh": "Refresh"
     },
     "errors": {
-        "apiFailure": "API communication error:"
+        "apiFailure": "API communication error"
     },
     "form": {
         "button": {

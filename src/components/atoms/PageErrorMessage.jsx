@@ -19,7 +19,7 @@ const PageErrorMessage = ({ children, isError }) => {
 
     return (
         <Alert color="danger">
-            <p>{t("common:errors:apiFailure")} </p>
+            <h5>{t("common:errors:apiFailure")} </h5>
             <p>{children}</p>
         </Alert>
     );

@@ -8,7 +8,7 @@ const accommodationFormInitialValuesPropTypes = PropTypes.shape({
     [AccommodationFormFields.ADDRESS_ZIP]: PropTypes.string,
     // [AccommodationFormFields.CREATED_AT]: PropTypes.number,
     [AccommodationFormFields.DESCRIPTION]: PropTypes.string,
-    [AccommodationFormFields.ID]: PropTypes.number,
+    [AccommodationFormFields.ID]: PropTypes.string,
     [AccommodationFormFields.IS_VERIFIED]: PropTypes.bool,
     [AccommodationFormFields.HOST_EMAIL]: PropTypes.string,
     [AccommodationFormFields.HOST_NAME]: PropTypes.string,

@@ -28,14 +28,6 @@ class Accommodation {
     @JsonProperty("zip")
     addressZip = "";
 
-    @JsonProperty()
-    @JsonType(String)
-    staffComments = "";
-
-    @JsonProperty()
-    @JsonType(String)
-    ownerComments = "";
-
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
@@ -53,14 +45,10 @@ class Accommodation {
     @JsonType(String)
     id = undefined;
 
-    //@JsonProperty("acceptsPets")
-    //@JsonType(String)
     @JsonProperty()
     @JsonType(Boolean)
     petsAllowed = true;
 
-    //@JsonProperty("havePets")
-    //@JsonType(String)
     @JsonProperty()
     @JsonType(Boolean)
     petsPresent = true;
@@ -84,6 +72,10 @@ class Accommodation {
 
     get vacanciesTaken() {
         return this.vacanciesTotal - this.vacanciesFree;
+    }
+
+    set vacanciesTaken(value) {
+        this.vacanciesFree = this.vacanciesTotal - value;
     }
 
     @JsonProperty()
