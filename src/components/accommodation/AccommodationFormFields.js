@@ -5,7 +5,7 @@ import {
     defaultPolishVoivodeshipId,
     getPolishVoivodeshipById,
 } from "models/constants/Address";
-import { pick } from "lodash-es";
+import { pick, merge } from "lodash-es";
 
 const objectAssignMapped = (source, mappings) => {
     const object = {};
@@ -20,14 +20,11 @@ class AccommodationFormFields {
     static ADDRESS_LINE = "addressLine";
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_ZIP = "addressZip";
-    static COMMENTS = "comments";
+    static STAFF_COMMENTS = "staffComments";
+    static OWNER_COMMENTS = "ownerComments";
     static DESCRIPTION = "description";
     static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
     static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
-    static HOST_EMAIL = "hostEmail";
-    static HOST_NAME = "hostName";
-    static HOST_PHONE = "hostPhone";
-    static HOST_STATUS = "hostStatus";
     static ID = "id";
     static IS_VERIFIED = "isVerified";
     static LGBT_FRIENDLY = "lgbtFriendly";
@@ -40,77 +37,39 @@ class AccommodationFormFields {
     static VACANCIES_TOTAL = "vacanciesTotal";
     static VOLUNTEER_NAME = "volunteerName";
 
-    static modelToFormMap = {
-        id: "id",
-        [AccommodationFormFields.ADDRESS_CITY]: "city",
-        [AccommodationFormFields.ADDRESS_LINE]: "addressLine",
-        [AccommodationFormFields.ADDRESS_VOIVODESHIP]: "voivodeship",
-        [AccommodationFormFields.ADDRESS_ZIP]: "zip",
-        [AccommodationFormFields.COMMENTS]: "ownerComments",
-        [AccommodationFormFields.DESCRIPTION]: "staffComments",
-        [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY]:
-            "disabledPeopleFriendly",
-        [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: "easyAmbulanceAccess",
-        [AccommodationFormFields.LGBT_FRIENDLY]: "lgbtFriendly",
-        [AccommodationFormFields.PARKING_PLACE]: "parkingPlaceAvailable",
-        [AccommodationFormFields.PETS_ALLOWED]: "petsAccepted",
-        [AccommodationFormFields.PETS_PRESENT]: "petsPresent",
-        [AccommodationFormFields.STATUS]: "status",
-        [AccommodationFormFields.VACANCIES_TAKEN]: "vacanciesTaken",
-        [AccommodationFormFields.VACANCIES_TOTAL]: "vacanciesTotal",
-    };
-
-    static formToModelMap = Object.fromEntries(
-        Object.entries(AccommodationFormFields.modelToFormMap).map(([k, v]) => [
-            v,
-            k,
-        ])
-    );
-
     /**
      * Transform object from model to form values.
      * @param {Accommodation} accommodation
      * @return {Object}
      */
-    static modelToForm(accommodation) {
+    modelToForm(accommodation) {
         if (!(accommodation instanceof Accommodation)) {
             return undefined;
         }
 
-        const formValues = objectAssignMapped(
-            {},
-            accommodation,
-            AccommodationFormFields.modelToFormMap
-        );
-
-        // Convert vacanciesFree to vacanciesTaken
-        const vacanciesTotal = accommodation.vacanciesTotal
-            ? accommodation.vacanciesTotal
-            : 0;
-        const vacanciesFree = accommodation.vacanciesFree
-            ? accommodation.vacanciesFree
-            : 0;
-        formValues[AccommodationFormFields.VACANCIES_TAKEN] =
-            vacanciesTotal - vacanciesFree;
+        const fieldNames = Object.values(AccommodationFormFields);
+        const formValues = pick(accommodation, fieldNames);
 
         formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
             getPolishVoivodeshipById(
                 formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
-            ) || defaultPolishVoivodeshipId;
+            ).id || defaultPolishVoivodeshipId;
 
-        return accommodation.id
-            ? formValues
-            : Object.assign(formValues, {
-                  [AccommodationFormFields.VACANCIES_TOTAL]: 1,
-                  [AccommodationFormFields.VACANCIES_TAKEN]: 0,
-              });
+        if (accommodation.id) {
+            return formValues;
+        }
 
-        // return formValues;
-        // //
-        // // return FormObject;
-        // //
-        // const fieldNames = Object.values(AccommodationFormFields);
-        // const initialValues = pick(accommodation, fieldNames);
+        const createFormValues = {
+            [AccommodationFormFields.VACANCIES_TOTAL]: 1,
+            [AccommodationFormFields.VACANCIES_TAKEN]: 0,
+        };
+
+        return { ...formValues, ...createFormValues };
+    }
+
+    formToModel(formValues) {
+        const accommodation = new Accommodation();
+        return merge(accommodation, formValues);
     }
 
     getInitialStatus() {
@@ -170,38 +129,6 @@ class AccommodationFormFields {
         };
 
         return !dateTimeFields.some(dateDiff);
-    }
-
-    /**
-     *
-     * @param {Object} values
-     * @returns {Accommodation}
-     */
-    toModel(values) {
-        return AccommodationFormFields.formToModel(values);
-    }
-
-    static formToModel(formValues) {
-        let accomodation = objectAssignMapped(
-            new Accommodation(),
-            formValues,
-            AccommodationFormFields.formToModelMap
-        );
-
-        // Convert vacanciesTaken to vacanciesFree
-        const vacanciesTotal = formValues[
-            AccommodationFormFields.VACANCIES_TOTAL
-        ]
-            ? formValues[AccommodationFormFields.VACANCIES_TOTAL]
-            : 0;
-        const vacanciesTaken = formValues[
-            AccommodationFormFields.VACANCIES_TAKEN
-        ]
-            ? formValues[AccommodationFormFields.VACANCIES_TAKEN]
-            : 0;
-        accomodation.vacanciesFree = vacanciesTotal - vacanciesTaken;
-
-        return accomodation;
     }
 }
 

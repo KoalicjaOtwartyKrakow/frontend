@@ -11,23 +11,34 @@ import { AccommodationStatus } from "models/constants/AccomodationStatus";
 const AccommodationFormAddressStatus = (props) => {
     const fieldId = AccommodationFormFields.STATUS;
 
-    const accommodationStatusDropdownItems = Object.entries(
-        AccommodationStatus
-    ).map((item) => ({ id: item[1], name: item[1] }));
-
-    const FormSelectStatus = (props) => (
-        <FormSelect {...props} items={accommodationStatusDropdownItems}>
-            <FormOptionPleaseSelect />
-        </FormSelect>
-    );
-
     const { t } = useTranslation(["accommodation"]);
+
+    const items = [
+        {
+            id: [AccommodationStatus.CREATED],
+            name: t("accommodation:form.value.status.created"),
+        },
+        {
+            id: [AccommodationStatus.REJECTED],
+            name: t("accommodation:form.value.status.rejected"),
+        },
+        {
+            id: [AccommodationStatus.VERIFIED],
+            name: t("accommodation:form.value.status.verified"),
+        },
+    ];
+
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
                 {t("accommodation:form.label.status")}
             </Label>
-            <Field component={FormSelectStatus} id={fieldId} name={fieldId} />
+            <Field
+                component={FormSelect}
+                id={fieldId}
+                name={fieldId}
+                items={items}
+            />
         </FormGroup>
     );
 };

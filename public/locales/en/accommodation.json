@@ -20,7 +20,7 @@
         "section": {
             "addressData": "Address data",
             "additionalInfo": "Additional information",
-            "availability": "Availability",
+            "availability": "Vacancies availability",
             "detailedInfo": "Detailed information",
             "host": "Host data"
         },
@@ -42,14 +42,14 @@
             "petsAllowed": "Pets allowed",
             "petsPresent": "Pets present",
             "vacanciesFree": "Vacancies free",
-            "vacanciesTaken": "Vacancies taken",
-            "vacanciesTotal": "Vacancies total",
+            "vacanciesTaken": "Taken",
+            "vacanciesTotal": "Total",
             "disabledPeopleFriendly": "Disabled people friendly",
             "lgbtFriendly": "LGBTQ+ people friendly",
             "parkingPlace": "Has a parking place",
             "easyAmbulanceAccess": "Easy ambulance access",
             "accessibility": "Accessibility features",
-            "status": "Status"
+            "status": "Verification status"
         },
         "message": {
             "updateSuccess": "Successfully updated Accommodation Unit",

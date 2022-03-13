@@ -23,28 +23,16 @@ const useGetAccommodation = () => {
             try {
                 await fetch(config);
             } catch (error) {
+                console.error(
+                    "[useGetAccommodation] Error on fetchAccommodation(): ",
+                    error
+                );
                 return error;
-                // console.error(
-                //     "[AccommodationEditPage] Error on fetchAccommodation(): ",
-                //     error
-                // );
-                // const toast = new Toast()
-                // toast.info(this.props.t("accommodation:form.message.updateFailure"));
-                // toasts.addToast()
             }
         };
 
         return fetchData();
-
-        // await fetch(config);
     };
-
-    console.log("[useGetAccommodation] invoked: ", {
-        accommodation,
-        accommodationGetInProgress,
-        accommodationGetError,
-        fetchAccommodation,
-    });
 
     return {
         accommodation,

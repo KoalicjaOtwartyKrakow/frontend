@@ -68,7 +68,7 @@ const AccommodationForm = (props) => {
         if (hasErrors) {
             return;
         }
-        const accommodation = formFields.toModel(formattedValues);
+        const accommodation = formFields.formToModel(formattedValues);
         const { resetForm } = formikBag;
 
         const onSubmitApiErrors = (apiErrors, httpStatusCode) =>

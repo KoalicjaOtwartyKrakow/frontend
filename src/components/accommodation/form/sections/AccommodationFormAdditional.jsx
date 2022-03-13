@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
 import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
-import AccommodationFormDescription from "components/accommodation/form/fields/AccommodationFormDescription";
-import AccommodationFormComments from "components/accommodation/form/fields/AccommodationFormComments";
+import AccommodationFormStaffComments from "components/accommodation/form/fields/AccommodationFormStaffComments";
+import AccommodationFormOwnerComments from "components/accommodation/form/fields/AccommodationFormOwnerComments";
 
 const AccommodationFormAdditional = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -16,8 +16,8 @@ const AccommodationFormAdditional = () => {
             </AccommodationFormSectionHeader>
             <Row>
                 <Col xs={12}>
-                    <AccommodationFormDescription />
-                    <AccommodationFormComments />
+                    <AccommodationFormStaffComments />
+                    <AccommodationFormOwnerComments />
                 </Col>
             </Row>
         </AccommodationFormSection>

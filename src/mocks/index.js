@@ -161,7 +161,7 @@ export function generateAllMocks() {
     return { mockedAccommodations, mockedGuests, mockedHosts };
 }
 
-if (false && constants.useMocks) {
+if (constants.useMocks) {
     const mockAdapter = new MockAdapter(axios);
     const { mockedAccommodations } = generateAllMocks();
 

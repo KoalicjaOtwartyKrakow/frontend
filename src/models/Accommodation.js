@@ -45,13 +45,21 @@ class Accommodation {
     @JsonType(String)
     id = undefined;
 
+    @JsonType(String)
     @JsonProperty()
+    ownerComments = "";
+
+    @JsonProperty("petsAccepted")
     @JsonType(Boolean)
     petsAllowed = true;
 
     @JsonProperty()
     @JsonType(Boolean)
     petsPresent = true;
+
+    @JsonType(String)
+    @JsonProperty()
+    staffComments = "";
 
     @JsonProperty()
     @JsonType(String)
@@ -102,3 +110,25 @@ class Accommodation {
 }
 
 export default Accommodation;
+
+// const a = {
+//     addressLine: "string",
+//     city: "string",
+//     createdAt: "2022-03-13T20:23:45.485Z",
+//     disabledPeopleFriendly: true,
+//     easyAmbulanceAccess: true,
+//     hostId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     lgbtFriendly: true,
+//     ownerComments: "string",
+//     parkingPlaceAvailable: true,
+//     petsAccepted: true,
+//     petsPresent: true,
+//     staffComments: "string",
+//     status: "created",
+//     updatedAt: "2022-03-13T20:23:45.485Z",
+//     vacanciesFree: 0,
+//     vacanciesTotal: 0,
+//     voivodeship: "DOLNOŚLĄSKIE",
+//     zip: "string",
+// };
