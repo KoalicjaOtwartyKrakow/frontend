@@ -38,8 +38,8 @@ const HostList = ({ hosts, history, toastManager }) => {
         "fullName",
         "email",
         "phoneNumber",
-        "status",
         "languagesSpoken",
+        "status",
         "comments",
     ];
 

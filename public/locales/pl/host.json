@@ -1,14 +1,16 @@
 {
-    "hosts": {
-        "list": "Hosts",
-        "found": "found"
-    },
     "form": {
         "label": {
             "acceptsFromAnyCountry": "Akceptuje Gości ze wszystkich krajów",
             "acceptsGuestWithDisabilities": "Akceptuje Gości niepełnosprawnych",
             "hostAdditionalInformations": "Dodatkowe informacje Gospodarza",
+            "hostStatus": "Host status",
             "lgbtFriendly": "Przyjazne LGBT"
         }
+    },
+    "status": {
+        "created": "Verification pending",
+        "rejected": "Rejected",
+        "verified": "Trusted"
     }
 }

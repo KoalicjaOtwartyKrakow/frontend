@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 import { HostFormFields } from "components/host/HostFormFields";
 
-const additionalInformationsCheckbox = ({ name, label }) => {
+const additionalInformationCheckbox = ({ name, label }) => {
     return (
         <Field
             id={name}
@@ -22,7 +22,7 @@ const additionalInformationsCheckbox = ({ name, label }) => {
 const HostFormAdditionalInformation = () => {
     const { t } = useTranslation(["host"]);
 
-    const additionalInformationsCheckboxes = [
+    const additionalInformationCheckboxes = [
         {
             name: HostFormFields.LGBT_FRIENDLY,
             label: t("host:form.label.lgbtFriendly"),
@@ -40,11 +40,9 @@ const HostFormAdditionalInformation = () => {
     return (
         <FormGroup tag="fieldset">
             <legend className="form-label">
-                {t("host:form.label.hostAdditionalInformations")}
+                {t("host:form.label.hostAdditionalInformation")}
             </legend>
-            {additionalInformationsCheckboxes.map(
-                additionalInformationsCheckbox
-            )}
+            {additionalInformationCheckboxes.map(additionalInformationCheckbox)}
         </FormGroup>
     );
 };
