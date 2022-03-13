@@ -1,8 +1,4 @@
 steps:
-  - name: 'node:14-alpine'
-    args:
-      - install
-    entrypoint: yarn
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - config
@@ -18,6 +14,10 @@ steps:
       - $$FONTAWESOME_TOKEN
     entrypoint: npm
     secretEnv: ['FONTAWESOME_TOKEN']
+  - name: 'node:14-alpine'
+    args:
+      - install
+    entrypoint: yarn
   - name: 'node:14-alpine'
     env:
       - REACT_APP_KOKON_API_URL=https://europe-central2-salamlab-aparatments.cloudfunctions.net/
