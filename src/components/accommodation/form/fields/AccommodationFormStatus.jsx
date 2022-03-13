@@ -13,7 +13,7 @@ const AccommodationFormAddressStatus = (props) => {
 
     const accommodationStatusDropdownItems = Object.entries(
         AccommodationStatus
-    ).map((item) => ({ id: item[0], name: item[1] }));
+    ).map((item) => ({ id: item[1], name: item[1] }));
 
     const FormSelectStatus = (props) => (
         <FormSelect {...props} items={accommodationStatusDropdownItems}>
