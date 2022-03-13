@@ -4,6 +4,10 @@ import { appConfig } from "constants/AppConfig";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
 import { getFormattedDate } from "shared/datetime";
+import {
+    defaultPolishVoivodeshipId,
+    getPolishVoivodeshipById,
+} from "models/constants/Address";
 
 class AccommodationFormFields {
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
@@ -35,20 +39,10 @@ class AccommodationFormFields {
         const fieldNames = Object.values(AccommodationFormFields);
         const initialValues = pick(accommodation, fieldNames);
 
-        if (
-            !(
-                initialValues.hasOwnProperty(
-                    AccommodationFormFields.ADDRESS_VOIVODESHIP
-                ) &&
-                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] !==
-                    null &&
-                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] !==
-                    ""
-            )
-        ) {
-            initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
-                "MALOPOLSKIE";
-        }
+        initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
+            getPolishVoivodeshipById(
+                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
+            ) || defaultPolishVoivodeshipId;
 
         return accommodation.id
             ? initialValues
