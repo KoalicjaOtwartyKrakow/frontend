@@ -27,16 +27,13 @@
         },
         "pleaseSelect": "Please select…",
         "validator": {
-            "cityName": "Enter a city name",
             "email": "E-mail is required",
             "fullName": "Name is required",
             "integer": "Integer is required",
             "missingId": "Missing ID value, something is wrong…",
-            "numberMin": "At least 1 person required",
-            "numberOfPeople": "Enter number of people",
+            "numberMin": "Minimum value is too small",
             "phoneNumber": "Phone number is required",
             "positiveNumber": "Negative values are not accepted",
-            "tooManyPeople": "Vacancies cannot exceed total vacancies",
             "voivodeshipName": "Enter voivodeship name"
         }
     }

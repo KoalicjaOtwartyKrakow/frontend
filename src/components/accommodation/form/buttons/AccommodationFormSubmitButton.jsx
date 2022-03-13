@@ -6,9 +6,14 @@ import ProgressIcon from "components/atoms/ProgressIcon";
 
 const AccommodationFormSubmitButton = ({ disabled, isSubmitting, label }) => {
     return (
-        <Button color="primary" type="submit" disabled={disabled}>
+        <Button
+            color="primary"
+            type="submit"
+            disabled={disabled}
+            className="ms-2"
+        >
             <ProgressIcon
-                className="mr-2"
+                className="me-2"
                 icon={faCheck}
                 inProgress={isSubmitting}
             />

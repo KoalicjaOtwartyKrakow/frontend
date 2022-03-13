@@ -55,6 +55,15 @@
             "updateSuccess": "Successfully updated Accommodation Unit",
             "updateFailure": "Failed to update Accommodation Unit"
         },
+        "validator": {
+            "address": "Enter address",
+            "cityName": "Enter a city name",
+            "numberMin": "At least 1 person required",
+            "numberOfPeople": "Enter number of people",
+            "tooManyPeople": "Vacancies cannot exceed total vacancies",
+            "vacanciesTaken": "Occupied places missing",
+            "vacanciesTotal": "Total number of people missing"
+        },
         "value": {
             "status": {
                 "created": "Awaits verification",

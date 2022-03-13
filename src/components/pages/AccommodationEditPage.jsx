@@ -159,7 +159,7 @@ const AccommodationEditPage = () => {
                 />
             )}
 
-            <PageNavigationAccommodationList />
+            {!initialValues && <PageNavigationAccommodationList />}
         </PageCard>
     );
 };
