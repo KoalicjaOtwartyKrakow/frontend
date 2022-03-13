@@ -1,22 +1,13 @@
 steps:
-  - name: 'node:14-alpine'
+  - id: "Install"
+    name: 'node:14-alpine'
+    entrypoint: /bin/sh
     args:
-      - install
-    entrypoint: yarn
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - config
-      - set
-      - "@fortawesome:registry"
-      - https://npm.fontawesome.com/
-    entrypoint: npm
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - config
-      - set
-      - "//npm.fontawesome.com/:_authToken"
-      - $$FONTAWESOME_TOKEN
-    entrypoint: npm
+      - -c
+      - |
+        npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+        npm config set "//npm.fontawesome.com/:_authToken=$$FONTAWESOME_TOKEN"
+        yarn install
     secretEnv: ['FONTAWESOME_TOKEN']
   - name: 'node:14-alpine'
     env:
