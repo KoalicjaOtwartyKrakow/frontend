@@ -32,6 +32,8 @@
             "email": "E-mail is required",
             "fullName": "Name is required",
             "integer": "Integer is required",
+            "invalidEmailFormat": "Invalid e-mail format",
+            "invalidPhoneFormat": "Invald phone format",
             "missingId": "Missing ID value, something is wrong…",
             "numberMin": "Minimum value is too small",
             "phoneNumber": "Phone number is required",
