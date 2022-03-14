@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AccommodationFormSectionHeader = ({ children }) => (
+const FormSectionHeader = ({ children }) => (
     <React.Fragment>
         <h5 className="mb-3">{children}</h5>
     </React.Fragment>
 );
 
-AccommodationFormSectionHeader.propTypes = {
+FormSectionHeader.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default AccommodationFormSectionHeader;
+export default FormSectionHeader;

@@ -19,8 +19,8 @@ const HostItemStatus = () => {
 
     return (
         <div>
-            {languagesSpoken.map((language, index) => (
-                <Badge>{language}</Badge>
+            {languagesSpoken.map((language) => (
+                <Badge key={language}>{language}</Badge>
             ))}
         </div>
     );

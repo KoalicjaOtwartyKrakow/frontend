@@ -25,7 +25,7 @@ const GuestsPage = ({
     return (
         <PageCard header={pageHeader}>
             <InProgress inProgress={guestsInProgress} />
-            <PageErrorMessage isError={guestsErrorMessage}>
+            <PageErrorMessage error={guestsErrorMessage}>
                 {guestsErrorMessage}
             </PageErrorMessage>
             {guestsSuccess && (

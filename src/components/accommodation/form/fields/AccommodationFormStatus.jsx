@@ -5,29 +5,39 @@ import { useTranslation } from "react-i18next";
 
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
-import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect";
 import { AccommodationStatus } from "models/constants/AccomodationStatus";
 
 const AccommodationFormAddressStatus = (props) => {
     const fieldId = AccommodationFormFields.STATUS;
 
-    const accommodationStatusDropdownItems = Object.entries(
-        AccommodationStatus
-    ).map((item) => ({ id: item[0], name: item[1] }));
-
-    const FormSelectStatus = (props) => (
-        <FormSelect {...props} items={accommodationStatusDropdownItems}>
-            <FormOptionPleaseSelect />
-        </FormSelect>
-    );
-
     const { t } = useTranslation(["accommodation"]);
+
+    const items = [
+        {
+            id: [AccommodationStatus.CREATED],
+            name: t("accommodation:form.value.status.created"),
+        },
+        {
+            id: [AccommodationStatus.VERIFIED],
+            name: t("accommodation:form.value.status.verified"),
+        },
+        {
+            id: [AccommodationStatus.REJECTED],
+            name: t("accommodation:form.value.status.rejected"),
+        },
+    ];
+
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
                 {t("accommodation:form.label.status")}
             </Label>
-            <Field component={FormSelectStatus} id={fieldId} name={fieldId} />
+            <Field
+                component={FormSelect}
+                id={fieldId}
+                name={fieldId}
+                items={items}
+            />
         </FormGroup>
     );
 };

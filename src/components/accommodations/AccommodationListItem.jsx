@@ -35,7 +35,7 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
                 <td>
                     <AccommodationItemAvailability />
                 </td>
-                <td>{accommodation.description}</td>
+                <td>{accommodation.staffComments}</td>
                 <td>
                     <AccommodationItemInfo />
                 </td>

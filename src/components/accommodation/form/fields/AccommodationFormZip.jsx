@@ -19,7 +19,7 @@ const AccommodationFormZip = (props) => {
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="XX-XXX"
+                placeholder="00-000"
                 type="text"
             />
         </FormGroup>

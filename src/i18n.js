@@ -22,7 +22,7 @@ i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
         fallbackLng: "en",
-        debug: true,
+        debug: false,
         defaultNS: "common",
 
         interpolation: {

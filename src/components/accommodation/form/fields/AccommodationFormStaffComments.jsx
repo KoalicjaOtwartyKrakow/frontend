@@ -5,19 +5,18 @@ import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-import FormTextArea from "components/atoms/form/FormTextArea";
 
-const AccommodationFormComments = (props) => {
-    const fieldId = AccommodationFormFields.COMMENTS;
+const AccommodationFormStaffComments = (props) => {
+    const fieldId = AccommodationFormFields.STAFF_COMMENTS;
 
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation:form.label.comments")}
+                {t("accommodation:form.label.description")}
             </Label>
             <Field
-                component={FormTextArea}
+                component={FormInput}
                 id={fieldId}
                 name={fieldId}
                 type="textarea"
@@ -27,6 +26,6 @@ const AccommodationFormComments = (props) => {
     );
 };
 
-AccommodationFormComments.propTypes = {};
+AccommodationFormStaffComments.propTypes = {};
 
-export default AccommodationFormComments;
+export default AccommodationFormStaffComments;

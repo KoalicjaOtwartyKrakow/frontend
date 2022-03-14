@@ -2,8 +2,8 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
-import AccommodationFormSection from "components/accommodation/form/AccommodationFormSection";
-import AccommodationFormSectionHeader from "components/accommodation/form/AccommodationFormSectionHeader";
+import FormSection from "components/molecules/form/FormSection";
+import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import AccommodationFormAddressLine from "components/accommodation/form/fields/AccommodationFormAddressLine";
 import AccommodationFormZip from "components/accommodation/form/fields/AccommodationFormZip";
 import AccommodationFormVoivodeship from "components/accommodation/form/fields/AccommodationFormVoivodeship";
@@ -15,10 +15,10 @@ import AccommodationFormCity from "components/accommodation/form/fields/Accommod
 const AccommodationFormAddress = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
-        <AccommodationFormSection>
-            <AccommodationFormSectionHeader>
+        <FormSection>
+            <FormSectionHeader>
                 {t("accommodation:form.section.addressData")}
-            </AccommodationFormSectionHeader>
+            </FormSectionHeader>
             <Row>
                 <Col xs={12} md={8}>
                     <AccommodationFormAddressLine />
@@ -35,7 +35,7 @@ const AccommodationFormAddress = () => {
                     </Row>
                 </Col>
             </Row>
-        </AccommodationFormSection>
+        </FormSection>
     );
 };
 

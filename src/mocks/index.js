@@ -8,10 +8,14 @@ import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import GuestChild from "models/guest/GuestChild";
-
-const onlyUnique = (value, index, self) => {
-    return self.indexOf(value) === index;
-};
+import * as constants from "services/Api/constants";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import { getPath } from "services/Api/utils";
+import { Paths } from "services/Api/constants";
+import { matchPath } from "react-router-dom";
+import { classToPlain, plainToClass } from "serializers/Serializer";
+import { uniq } from "lodash-es";
 
 export function generateAllMocks() {
     const chance = new Chance(0xdeadbeef);
@@ -81,18 +85,20 @@ export function generateAllMocks() {
         host.phoneNumber = chance.phone();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
-        host.languagesSpoken = Array.from(
-            { length: chance.integer({ min: 0, max: 2 }) },
-            () => chance.locale()
-        )
-            .concat(["pl"])
-            .filter(onlyUnique);
+        host.languagesSpoken = uniq(
+            Array.from({ length: chance.integer({ min: 0, max: 2 }) }, () =>
+                chance.locale()
+            ).concat(["pl"])
+        );
         return host;
     });
 
     const mockedAccommodations = Array.from({ length: 15 }, () => {
         const accommodation = new Accommodation();
+        // Id
         accommodation.id = chance.guid({ version: 5 });
+
+        // Vacancies
         accommodation.addressLine = chance.address();
         accommodation.addressVoivodeship =
             polishVoivodeships[
@@ -103,10 +109,14 @@ export function generateAllMocks() {
         zip.splice(2, 0, "-");
         accommodation.addressZip = zip.join("");
 
+        // Info
+        accommodation.staffComments = chance.paragraph();
+        accommodation.ownerComments = chance.paragraph();
         accommodation.status = chance.pickone(
             Object.values(AccommodationStatus)
         );
 
+        // Vacancies
         accommodation.vacanciesTotal = chance.natural({ min: 1, max: 8 });
         switch (accommodation.status) {
             case AccommodationStatus.CREATED:
@@ -121,21 +131,83 @@ export function generateAllMocks() {
                     max: accommodation.vacanciesTotal,
                 });
                 break;
+            default:
+                break;
         }
 
-        accommodation.comments = chance.paragraph();
-        accommodation.description = chance.paragraph({ sentences: 2 });
+        // Pets
+        accommodation.petsAllowed = chance.bool();
+        accommodation.petsPresent = chance.bool();
 
+        // Accessibility
+        accommodation.lgbtFriendly = chance.bool();
+        accommodation.disabledPeopleFriendly = chance.bool();
+        accommodation.parkingPlaceAvailable = chance.bool();
+        accommodation.easyAmbulanceAccess = chance.bool();
+
+        // Relations
         accommodation.hostId =
             mockedHosts[
                 chance.natural({ min: 0, max: mockedHosts.length - 1 })
             ].id;
 
-        accommodation.petsAllowed = chance.bool();
-        accommodation.petsPresent = chance.bool();
+        // accommodation.description = chance.paragraph({ sentences: 2 });
 
         return accommodation;
     });
 
     return { mockedAccommodations, mockedGuests, mockedHosts };
+}
+
+if (constants.useMocks) {
+    const mockAdapter = new MockAdapter(axios);
+    const { mockedAccommodations } = generateAllMocks();
+
+    mockAdapter
+        .onGet(new RegExp(getPath(Paths.ACCOMMODATION) + "/*"))
+        .reply((config) => {
+            const { url } = config;
+            const matchedPath = matchPath(url, {
+                path: getPath(Paths.ACCOMMODATION) + "/:accommodationId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { accommodationId },
+            } = matchedPath;
+
+            const accommodation = mockedAccommodations.find(
+                (mock) => mock.id === accommodationId
+            );
+            const plain = classToPlain(accommodation);
+
+            console.log(
+                `[useGetAccommodation] Mocked response for ${url}: `,
+                accommodation
+            );
+            return [200, plain];
+        });
+
+    mockAdapter
+        .onPut(new RegExp(getPath(Paths.ACCOMMODATION)))
+        .reply((config) => {
+            const { url, data } = config;
+            const json = JSON.parse(data);
+            const updatedAccommodation = plainToClass(Accommodation, json);
+
+            const accommodationIndex = mockedAccommodations.findIndex(
+                (mock) => mock.id === updatedAccommodation.id
+            );
+            debugger;
+
+            mockedAccommodations[accommodationIndex] = updatedAccommodation;
+
+            const plain = data;
+
+            console.log(
+                `[useUpdateAccommodation] Mocked response for ${url}: `,
+                updatedAccommodation
+            );
+            return [200, plain];
+        });
 }
