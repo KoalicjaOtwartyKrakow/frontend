@@ -166,6 +166,16 @@ if (constants.useMocks) {
     const mockAdapter = new MockAdapter(axios);
     const { mockedAccommodations } = generateAllMocks();
 
+    mockAdapter.onGet(Paths.ACCOMMODATIONS).reply((config) => {
+        const { url } = config;
+        const plainAccommodations = mockedAccommodations.map((accommodation) =>
+            classToPlain(accommodation)
+        );
+
+        console.log(`[useGetAccommodation] Mocked response for ${url}: `);
+        return [200, plainAccommodations];
+    });
+
     mockAdapter
         .onGet(new RegExp(getPath(Paths.ACCOMMODATION) + "/*"))
         .reply((config) => {

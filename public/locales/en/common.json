@@ -7,7 +7,7 @@
     "data": {
         "loading": "Loading data…",
         "updateSuccess": "Changes saved successfully",
-        "refresh": "Refresh"
+        "refresh": "Refresh data"
     },
     "errors": {
         "apiFailure": "API call resulted in error",

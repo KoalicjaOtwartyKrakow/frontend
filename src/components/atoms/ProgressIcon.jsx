@@ -19,7 +19,7 @@ ProgressIcon.propTypes = {
         PropTypes.array,
         PropTypes.string,
     ]),
-    inProgress: PropTypes.bool.isRequired,
+    inProgress: PropTypes.bool,
 };
 
 export default ProgressIcon;
