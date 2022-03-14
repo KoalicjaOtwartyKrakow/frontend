@@ -1,7 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
-const ToastContent = ({ title, children }) => {
+const CustomToast = ({ appearance, children }) => {
+    const { t } = useTranslation(["common"]);
+
+    const appearanceTitles = {
+        success: t("common:toast.success"),
+        info: t("common:toast.info"),
+        error: t("common:toast.error"),
+    };
+
+    const title = appearanceTitles[appearance] || t("common:toast.unknown");
+
     return (
         <div className="toast-content">
             <h6 className="pb-2 font-weight-bold">{title}</h6>
@@ -10,36 +20,14 @@ const ToastContent = ({ title, children }) => {
     );
 };
 
-ToastContent.propTypes = {
-    title: PropTypes.string.isRequired,
+const toastError = { appearance: "error" };
+const toastInfo = { appearance: "info" };
+const toastSuccess = { appearance: "info" };
+
+const toastStyle = {
+    toastError,
+    toastInfo,
+    toastSuccess,
 };
 
-class Toast {
-    constructor(toastManager) {
-        this.toastManager = toastManager;
-    }
-
-    _toastContent(message, title) {
-        return <ToastContent title={title}>{message}</ToastContent>;
-    }
-
-    success(message, title = "Success!") {
-        this.toastManager.add(this._toastContent(message, title), {
-            appearance: "success",
-        });
-    }
-
-    info(message, title = "Notice") {
-        this.toastManager.add(this._toastContent(message, title), {
-            appearance: "info",
-        });
-    }
-
-    error(message, title = "Success!") {
-        this.toastManager.add(this._toastContent(message, title), {
-            appearance: "error",
-        });
-    }
-}
-
-export { ToastContent, Toast };
+export { CustomToast, toastStyle };

@@ -1,19 +1,15 @@
 import React from "react";
-import { generatePath, withRouter } from "react-router-dom";
+import { generatePath, useHistory, withRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
-import compose from "just-compose";
-import { withToastManager } from "react-toast-notifications";
 import "components/accommodations/AccommodationList.sass";
 
 import { Routes } from "constants/Routes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
-import { Toast } from "components/atoms/Toast";
 
-const AccommodationList = ({ accommodations, history, toastManager }) => {
+const AccommodationList = ({ accommodations }) => {
     const { t } = useTranslation(["accommodations"]);
-
-    const toast = new Toast(toastManager);
+    const history = useHistory();
 
     const getEditRoute = (accommodationId) => {
         return generatePath(Routes.ACCOMMODATION_EDIT, { accommodationId });
@@ -24,14 +20,7 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
         history.push(path);
     };
 
-    const onRemove = (accommodationId, event) => {
-        toast.info(
-            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia lokalu " +
-                accommodationId,
-            "Jeszcze nie działa :("
-        );
-        event.stopPropagation();
-    };
+    const onRemove = () => {};
 
     const columnNames = [
         "city",
@@ -80,4 +69,4 @@ const AccommodationList = ({ accommodations, history, toastManager }) => {
     );
 };
 
-export default compose(withToastManager, withRouter)(AccommodationList);
+export default AccommodationList;

@@ -9,6 +9,7 @@ import { Routes } from "constants/Routes";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
+import { CustomToast } from "components/atoms/Toast";
 
 const AuthenticatedContainer = ({ children }) => {
     const history = useHistory();
@@ -20,7 +21,10 @@ const AuthenticatedContainer = ({ children }) => {
     const { t } = useTranslation(["common"]);
 
     return (
-        <ToastProvider autoDismiss={Notifications.toastAutoDismiss}>
+        <ToastProvider
+            autoDismiss={Notifications.toastAutoDismiss}
+            components={{ Toast: CustomToast }}
+        >
             <AuthenticatedNavbar onLogout={emptyFn} />
             <Jumbotron onClick={onJumbotronClick}>
                 <Container>

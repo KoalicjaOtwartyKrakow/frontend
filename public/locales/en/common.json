@@ -37,5 +37,11 @@
             "positiveNumber": "Negative values are not accepted",
             "voivodeshipName": "Enter voivodeship name"
         }
+    },
+    "toast": {
+        "error": "Error",
+        "info": "Notice",
+        "success": "Success",
+        "unknown": "Unknown"
     }
 }

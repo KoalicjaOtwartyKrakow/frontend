@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
-import { useToasts, withToastManager } from "react-toast-notifications";
+import { useToasts } from "react-toast-notifications";
 
 // import { Toast } from "components/atoms/Toast";
 import InProgress from "components/atoms/InProgress";
