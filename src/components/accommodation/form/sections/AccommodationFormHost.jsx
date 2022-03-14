@@ -8,6 +8,7 @@ import { accommodationFormHostPropTypes } from "proptypes/AccommodationFormPropT
 import AccommodationFormHostName from "components/host/form/fields/AccommodationFormHostName";
 import AccommodationFormHostEmail from "components/host/form/fields/AccommodationFormHostEmail";
 import AccommodationFormHostPhone from "components/host/form/fields/AccommodationFormHostPhone";
+import AccommodationFormHostStatus from "components/host/form/fields/AccommodationFormHostStatus";
 
 const AccommodationFormHost = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -26,6 +27,9 @@ const AccommodationFormHost = () => {
                 </Col>
                 <Col xs={12} lg={3}>
                     <AccommodationFormHostPhone />
+                </Col>
+                <Col xs={12} lg={3}>
+                    <AccommodationFormHostStatus />
                 </Col>
             </Row>
         </AccommodationFormSection>

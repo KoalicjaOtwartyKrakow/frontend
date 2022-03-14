@@ -22,6 +22,7 @@
             "fullName": "Imię i nazwisko",
             "hostAdditionalInformations": "Dodatkowe informacje Gospodarza",
             "languagesSpoken": "Używne języki",
+            "hostStatus": "Host status",
             "lgbtFriendly": "Przyjazne LGBT"
         },
         "message": {
@@ -38,5 +39,10 @@
     "hosts": {
         "found": "found",
         "list": "Hosts"
+    },
+    "status": {
+        "created": "Verification pending",
+        "rejected": "Rejected",
+        "verified": "Trusted"
     }
 }
