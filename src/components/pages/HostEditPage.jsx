@@ -5,19 +5,19 @@ import compose from "just-compose";
 import { Alert } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import memoize from "lodash-es/memoize";
-import { withToastManager } from "react-toast-notifications";
 
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import PageNavigationBackToList from "components/atoms/PageNavHome";
 import { Routes } from "constants/Routes";
 import { classToPlain } from "serializers/Serializer";
-import { Toast } from "components/atoms/Toast";
 import withHosts from "components/hosts/withHosts";
 import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
 import Host from "models/Host";
 import { updateHost } from "services/Api";
+import { toastStyle } from "components/atoms/Toast";
+import { withToastManager } from "react-toast-notifications";
 
 const EDITING = 0;
 const SENDING = 1;
@@ -37,16 +37,20 @@ class HostEditPage extends React.Component {
         console.log("[HOSTS] update success");
         this.setState({ status: SENT });
 
-        const toast = new Toast(this.props.toastManager);
-        toast.info(this.props.t("host:form.message.updateSuccess"));
+        this.props.toastManager.add(
+            this.props.t("host:form.message.updateSuccess"),
+            toastStyle.toastSuccess
+        );
     };
 
     onSubmitFailure = (onSubmitApiErrors) => (error) => {
         console.log("[HOSTS] update failure: ", error);
         this.setState({ status: EDITING });
-        const toast = new Toast(this.props.toastManager);
         onSubmitApiErrors(error, error.response.status);
-        toast.info(this.props.t("host:form.message.updateFailure"));
+        this.props.toastManager.add(
+            this.props.t("host:form.message.updateFailure"),
+            toastStyle.toastError
+        );
     };
 
     onSubmit = (host, onSubmitApiErrors) => {

@@ -1,20 +1,16 @@
 import React from "react";
-import { generatePath, withRouter } from "react-router-dom";
+import { generatePath, useHistory, withRouter } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
-import compose from "just-compose";
-import { withToastManager } from "react-toast-notifications";
 // import "components/hosts/HostList.sass";
 
 import { Routes } from "constants/Routes";
 import HostListItem from "components/hosts/HostListItem";
-import { Toast } from "components/atoms/Toast";
 import withHosts from "components/hosts/withHosts";
 
-const HostList = ({ hosts, history, toastManager }) => {
+const HostList = ({ hosts }) => {
     const { t } = useTranslation(["hosts"]);
-
-    const toast = new Toast(toastManager);
+    const history = useHistory();
 
     const getEditRoute = (hostId) => {
         return generatePath(Routes.HOST_EDIT, { hostId });
@@ -25,14 +21,7 @@ const HostList = ({ hosts, history, toastManager }) => {
         history.push(path);
     };
 
-    const onRemove = (hostId, event) => {
-        toast.info(
-            "Ta akcja będzie otwierać okno modalne z potwierdzeniem usunięcia lokalu " +
-                hostId,
-            "Jeszcze nie działa :("
-        );
-        event.stopPropagation();
-    };
+    const onRemove = () => {};
 
     const columnNames = [
         "fullName",
@@ -79,4 +68,4 @@ const HostList = ({ hosts, history, toastManager }) => {
     );
 };
 
-export default compose(withHosts, withToastManager, withRouter)(HostList);
+export default withHosts(HostList);
