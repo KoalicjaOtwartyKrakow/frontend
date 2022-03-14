@@ -5,7 +5,6 @@ import { Table } from "reactstrap";
 
 import { Routes } from "constants/Routes";
 import GuestListItem from "components/guests/GuestListItem";
-import withGuests from "components/guests/withGuests";
 
 const GuestList = ({ guests }) => {
     const { t } = useTranslation(["guests"]);
@@ -68,4 +67,4 @@ const GuestList = ({ guests }) => {
     );
 };
 
-export default withGuests(GuestList);
+export default GuestList;

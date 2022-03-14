@@ -1,34 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GuestList from "components/guests/GuestList";
-import withGuests from "components/guests/withGuests";
-import { Alert } from "reactstrap";
+import { Alert, Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
 import PageCard from "components/atoms/PageCard";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import GuestListDescription from "components/guests/GuestListDescription";
+import RefreshButton from "components/atoms/RefreshButton";
+import { useGetGuests } from "hooks/api/guestsHooks";
+import HorizontalLine from "components/atoms/HorizontalLine";
 
-const GuestsPage = ({
-    guests,
-    guestsErrorMessage,
-    guestsInProgress,
-    guestsSuccess,
-}) => {
+const GuestsPage = () => {
+    const { guests, guestsGetInProgress, guestsGetError, retrieveGuests } =
+        useGetGuests();
     const { t } = useTranslation(["guests"]);
 
-    const guestCount = guestsSuccess
+    const guestCount = guests
         ? `(${t("guests:card.found")}: ${guests.length})`
         : "";
+
     const pageHeader = `${t("guests:card.title")} ${guestCount}`;
+
+    useEffect(() => {
+        if (!guests) {
+            retrieveGuests();
+        }
+    }, [retrieveGuests, guests]);
 
     return (
         <PageCard header={pageHeader}>
-            <InProgress inProgress={guestsInProgress} />
-            <PageErrorMessage error={guestsErrorMessage}>
-                {guestsErrorMessage}
-            </PageErrorMessage>
-            {guestsSuccess && (
+            <Row>
+                <Col className="d-flex flex-row-reverse">
+                    <RefreshButton
+                        disabled={guestsGetInProgress}
+                        onClick={() => retrieveGuests()}
+                    />
+                </Col>
+            </Row>
+            <HorizontalLine />
+            <InProgress inProgress={guestsGetInProgress} />
+            <PageErrorMessage error={guestsGetError} />
+            {guests && (
                 <>
                     <GuestListDescription />
                     {guests.length && <GuestList guests={guests} />}
@@ -43,4 +56,4 @@ const GuestsPage = ({
     );
 };
 
-export default withGuests(GuestsPage);
+export default GuestsPage;

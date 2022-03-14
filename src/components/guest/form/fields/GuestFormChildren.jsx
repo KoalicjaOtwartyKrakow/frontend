@@ -26,7 +26,7 @@ const GuestFormChildren = (props) => {
             <>
                 {items?.length > 0 ? (
                     items.map((child, index) => {
-                        const id = `${fieldId}.${index}`;
+                        const id = `${fieldId}_${index}`;
                         return (
                             <FormGroup
                                 key={index}
