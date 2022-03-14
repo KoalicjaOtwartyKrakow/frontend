@@ -4,28 +4,28 @@ import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
-import { HostFormFields } from "components/host/HostFormFields";
+import { GuestFormFields } from "components/guest/GuestFormFields";
 
-const HostFormFullName = () => {
-    const fieldId = HostFormFields.FULL_NAME;
+const GuestFormPhoneNumber = () => {
+    const fieldId = GuestFormFields.PHONE_NUMBER;
 
     const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.fullName")}
+                {t("common:form.label.phone")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="Janina Nowak"
+                placeholder={t("common:form.placeholder.phone")}
                 type="text"
             />
         </FormGroup>
     );
 };
 
-HostFormFullName.propTypes = {};
+GuestFormPhoneNumber.propTypes = {};
 
-export default HostFormFullName;
+export default GuestFormPhoneNumber;

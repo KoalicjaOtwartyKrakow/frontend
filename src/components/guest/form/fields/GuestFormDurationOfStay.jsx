@@ -4,10 +4,10 @@ import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
-import { HostFormFields } from "components/host/HostFormFields";
+import { GuestFormFields } from "components/guest/GuestFormFields";
 
-const HostFormFullName = () => {
-    const fieldId = HostFormFields.FULL_NAME;
+const GuestFormFullName = () => {
+    const fieldId = GuestFormFields.FULL_NAME;
 
     const { t } = useTranslation(["common"]);
     return (
@@ -19,13 +19,13 @@ const HostFormFullName = () => {
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="Janina Nowak"
+                placeholder="Alexandra Bondarenko"
                 type="text"
             />
         </FormGroup>
     );
 };
 
-HostFormFullName.propTypes = {};
+GuestFormFullName.propTypes = {};
 
-export default HostFormFullName;
+export default GuestFormFullName;

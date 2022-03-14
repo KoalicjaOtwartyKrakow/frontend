@@ -63,7 +63,7 @@ class HostFormFields {
         const prev = prevValues || {};
         const next = nextValues || {};
 
-        return isEqual(prevValues, nextValues);
+        return isEqual(prev, next);
     }
 }
 

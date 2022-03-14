@@ -3,29 +3,27 @@ import { FormGroup, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
+import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
-import { HostFormFields } from "components/host/HostFormFields";
 
-const HostFormFullName = () => {
-    const fieldId = HostFormFields.FULL_NAME;
+const GuestFormChildren = (props) => {
+    const fieldId = GuestFormFields.CHILDREN;
 
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.fullName")}
+                {t("guest:form.label.children")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="Janina Nowak"
+                placeholder="0"
                 type="text"
             />
         </FormGroup>
     );
 };
 
-HostFormFullName.propTypes = {};
-
-export default HostFormFullName;
+export default GuestFormChildren;
