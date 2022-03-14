@@ -1,1 +1,1 @@
-export const languages = Object.freeze(["En", "Pl", "Uk", "Ru"]);
+export const languages = Object.freeze(["en", "pl", "uk", "ru"]);

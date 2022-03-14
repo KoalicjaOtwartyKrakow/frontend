@@ -91,7 +91,7 @@ export function generateAllMocks() {
         host.languagesSpoken = uniq(
             chance
                 .pickset(languages, chance.integer({ min: 0, max: 4 }))
-                .concat("Pl")
+                .concat("pl")
         );
         return host;
     });
@@ -211,7 +211,6 @@ if (constants.useMocks) {
             const accommodationIndex = mockedAccommodations.findIndex(
                 (mock) => mock.id === updatedAccommodation.id
             );
-            debugger;
 
             mockedAccommodations[accommodationIndex] = updatedAccommodation;
 
@@ -233,7 +232,7 @@ if (constants.useMocks) {
     });
 
     mockAdapter
-        .onGet(new RegExp(getPath(Paths.HOST) + "/*"))
+        .onGet(new RegExp(getPath(Paths.HOST) + "/.+"))
         .reply((config) => {
             const { url } = config;
             const matchedPath = matchPath(url, {
@@ -251,4 +250,24 @@ if (constants.useMocks) {
             console.log(`[useGetHost] Mocked response for ${url}: `, host);
             return [200, plain];
         });
+
+    mockAdapter.onPut(new RegExp(getPath(Paths.HOST))).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        const updatedHost = plainToClass(Host, json);
+
+        const hostIndex = mockedHosts.findIndex(
+            (mock) => mock.id === updatedHost.id
+        );
+
+        mockedHosts[hostIndex] = updatedHost;
+
+        const plain = data;
+
+        console.log(
+            `[useUpdateHost] Mocked response for ${url}: `,
+            updatedHost
+        );
+        return [200, plain];
+    });
 }

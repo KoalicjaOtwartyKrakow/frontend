@@ -42,7 +42,7 @@ const AccommodationEditPage = () => {
     } = useUpdateAccommodation();
 
     const accommodationInProgress = getCrudInProgressState({
-        createInProgress: accommodationGetInProgress,
+        retrieveInProgress: accommodationGetInProgress,
         updateInProgress: accommodationUpdateInProgress,
     });
 

@@ -26,7 +26,7 @@ const HostsPage = () => {
         if (!hosts) {
             retrieveHosts();
         }
-    }, []);
+    }, [hosts, retrieveHosts]);
 
     return (
         <PageCard header={pageHeader}>

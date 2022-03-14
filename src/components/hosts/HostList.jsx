@@ -2,7 +2,7 @@ import React from "react";
 import { generatePath, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
-// import "components/hosts/HostList.sass";
+import "components/hosts/HostList.sass";
 import { Routes } from "constants/Routes";
 import HostListItem from "components/hosts/HostListItem";
 import withHosts from "components/hosts/withHosts";

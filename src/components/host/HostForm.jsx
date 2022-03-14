@@ -84,8 +84,6 @@ const HostForm = (props) => {
         ? t("host:form.button.create")
         : t("host:form.button.update");
 
-    console.warn({ hostInProgress });
-
     return (
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (

@@ -30,7 +30,7 @@ const HostEditPage = () => {
         useUpdateHost();
 
     const hostInProgress = getCrudInProgressState({
-        createInProgress: hostGetInProgress,
+        retrieveInProgress: hostGetInProgress,
         updateInProgress: hostUpdateInProgress,
     });
 
