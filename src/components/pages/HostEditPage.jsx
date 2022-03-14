@@ -11,8 +11,8 @@ import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
 import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
 import {
-    getCrudInProgressState,
     crudInProgressStates,
+    getCrudInProgressState,
 } from "constants/CrudProgress";
 import Host from "models/Host";
 import { Routes } from "constants/Routes";

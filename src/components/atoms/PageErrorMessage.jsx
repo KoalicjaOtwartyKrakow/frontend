@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { ApiErrorStatus, ApiErrorTypes } from "services/Api/constants";
-import HttpStatus, { NOT_FOUND } from "http-status-codes";
+import { ApiErrorTypes } from "services/Api/constants";
+import HttpStatus from "http-status-codes";
 
 /**
  *

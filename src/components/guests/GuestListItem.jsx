@@ -10,6 +10,7 @@ import GuestItemPriorityDate from "components/guests/item/GuestItemPriorityDate"
 import GuestItemPeople from "components/guests/item/GuestItemPeople";
 import GuestItemInfo from "components/guests/item/GuestItemInfo";
 import GuestItemDurationOfStay from "components/guests/item/GuestItemDurationOfStay";
+
 /**
  *
  * @param {Guest} guest

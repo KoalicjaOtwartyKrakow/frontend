@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import HostFormExtendedInformation from "../fields/HostFormExtendedInformation";
 import HostFormSection from "../HostFormSection";
 import HostFormSectionHeader from "../HostFormSectionHeader";
 

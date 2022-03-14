@@ -1,7 +1,7 @@
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Host from "models/Host";
 import { getFormattedDate } from "shared/datetime";
-import { pick, merge, isEqual } from "lodash-es";
+import { isEqual, merge, pick } from "lodash-es";
 
 class HostFormFields {
     static CALL_AFTER = "callAfter";

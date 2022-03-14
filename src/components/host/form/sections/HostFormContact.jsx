@@ -8,7 +8,6 @@ import HostFormPhoneNumber from "../fields/HostFormPhoneNumber";
 import HostFormCallAfter from "../fields/HostFormCallAfter";
 import HostFormCallBefore from "../fields/HostFormCallBefore";
 import HostFormFullName from "components/host/form/fields/HostFormFullName";
-import HostFormLanguagesSpoken from "components/host/form/fields/HostFormLanguagesSpoken";
 
 /**
  * @component

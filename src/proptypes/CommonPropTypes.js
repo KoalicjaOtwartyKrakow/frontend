@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const fasIconPropType = PropTypes.shape({
     icon: PropTypes.arrayOf(PropTypes.any).isRequired,

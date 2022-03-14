@@ -1,6 +1,4 @@
 import React from "react";
-import { Badge, Button, ButtonGroup } from "reactstrap";
-import { useTranslation } from "react-i18next";
 
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import AccommodationItemAddress from "components/accommodations/item/AccommodationItemAddress";
@@ -8,6 +6,7 @@ import AccommodationItemAvailability from "components/accommodations/item/Accomm
 import AccommodationItemStatus from "components/accommodations/item/AccommodationItemStatus";
 import AccommodationItemCity from "components/accommodations/item/AccommodationItemCity";
 import AccommodationItemInfo from "components/accommodations/item/AccommodationItemInfo";
+
 /**
  *
  * @param {Accommodation} accommodation

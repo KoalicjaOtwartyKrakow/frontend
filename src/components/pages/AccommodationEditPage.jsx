@@ -15,8 +15,8 @@ import {
     useUpdateAccommodation,
 } from "hooks/api/accommodationHooks";
 import {
-    getCrudInProgressState,
     crudInProgressStates,
+    getCrudInProgressState,
 } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
 import { Routes } from "constants/Routes";
