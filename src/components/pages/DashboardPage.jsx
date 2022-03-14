@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
+import SearchInput from "components/atoms/SearchInput";
 import PageCard from "components/atoms/PageCard";
 import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
@@ -42,6 +42,7 @@ const DashboardPage = ({}) => {
 
     return (
         <PageCard header={pageHeader}>
+        <SearchInput onSearch={(re)=> {console.log(re)}}></SearchInput>
             <Row>
                 <Col lg={{ size: 10, offset: 1 }} xl={{ size: 8, offset: 2 }}>
                     {homePageCards.map((item, index) => (
