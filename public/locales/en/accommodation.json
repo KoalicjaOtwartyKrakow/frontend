@@ -20,7 +20,7 @@
         "section": {
             "addressData": "Address data",
             "additionalInfo": "Additional information",
-            "availability": "Availability",
+            "availability": "Vacancies availability",
             "detailedInfo": "Detailed information",
             "host": "Host data"
         },
@@ -36,17 +36,33 @@
             "addressCity": "City",
             "addressVoivodeship": "Voivodeship",
             "addressZip": "Zip code",
-            "comments": "Host comments",
+            "comments": "Host comments about the place",
             "description": "Volunteer notes",
             "pets": "Pets acceptance and presence",
             "petsAllowed": "Pets allowed",
             "petsPresent": "Pets present",
-            "vacanciesTaken": "Vacancies taken",
-            "vacanciesTotal": "Vacancies total"
+            "vacanciesFree": "Vacancies free",
+            "vacanciesTaken": "Taken",
+            "vacanciesTotal": "Total",
+            "disabledPeopleFriendly": "Disabled people friendly",
+            "lgbtFriendly": "LGBTQ+ people friendly",
+            "parkingPlace": "Has a parking place",
+            "easyAmbulanceAccess": "Easy ambulance access",
+            "accessibility": "Accessibility features",
+            "status": "Verification status"
         },
         "message": {
             "updateSuccess": "Successfully updated Accommodation Unit",
             "updateFailure": "Failed to update Accommodation Unit"
+        },
+        "validator": {
+            "address": "Enter address",
+            "cityName": "Enter a city name",
+            "numberMin": "At least 1 person required",
+            "numberOfPeople": "Enter number of people",
+            "tooManyPeople": "Vacancies cannot exceed total vacancies",
+            "vacanciesTaken": "Occupied places missing",
+            "vacanciesTotal": "Total number of people missing"
         },
         "value": {
             "status": {

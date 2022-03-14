@@ -31,7 +31,7 @@ const HostsPage = ({
                 onClick={() => fetchHosts()}
             />
             <InProgress inProgress={hostsInProgress} />
-            <PageErrorMessage isError={hostsErrorMessage}>
+            <PageErrorMessage error={hostsErrorMessage}>
                 {hostsErrorMessage}
             </PageErrorMessage>
             {hostsSuccess && (

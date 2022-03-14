@@ -28,18 +28,10 @@ class Accommodation {
     @JsonProperty("zip")
     addressZip = "";
 
-    @JsonProperty()
-    @JsonType(String)
-    comments = "";
-
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    description = "";
 
     @JsonProperty()
     @JsonType(Host)
@@ -53,13 +45,21 @@ class Accommodation {
     @JsonType(String)
     id = undefined;
 
-    @JsonProperty("acceptsPets")
     @JsonType(String)
+    @JsonProperty()
+    ownerComments = "";
+
+    @JsonProperty("petsAccepted")
+    @JsonType(Boolean)
     petsAllowed = true;
 
-    @JsonProperty("havePets")
+    @JsonProperty()
+    @JsonType(Boolean)
+    petsPresent = true;
+
     @JsonType(String)
-    petsPresent = false;
+    @JsonProperty()
+    staffComments = "";
 
     @JsonProperty()
     @JsonType(String)
@@ -82,11 +82,53 @@ class Accommodation {
         return this.vacanciesTotal - this.vacanciesFree;
     }
 
+    set vacanciesTaken(value) {
+        this.vacanciesFree = this.vacanciesTotal - value;
+    }
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    lgbtFriendly = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    disabledPeopleFriendly = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    parkingPlaceAvailable = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    easyAmbulanceAccess = false;
+
     @OnDeserialized()
     uuidRegenerate() {
         this.uuid = nanoid();
-        this.host.id = this.hostId;
+        // this.host.id = this.hostId;
     }
 }
 
 export default Accommodation;
+
+// const a = {
+//     addressLine: "string",
+//     city: "string",
+//     createdAt: "2022-03-13T20:23:45.485Z",
+//     disabledPeopleFriendly: true,
+//     easyAmbulanceAccess: true,
+//     hostId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     lgbtFriendly: true,
+//     ownerComments: "string",
+//     parkingPlaceAvailable: true,
+//     petsAccepted: true,
+//     petsPresent: true,
+//     staffComments: "string",
+//     status: "created",
+//     updatedAt: "2022-03-13T20:23:45.485Z",
+//     vacanciesFree: 0,
+//     vacanciesTotal: 0,
+//     voivodeship: "DOLNOŚLĄSKIE",
+//     zip: "string",
+// };

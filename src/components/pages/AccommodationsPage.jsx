@@ -35,7 +35,7 @@ const AccommodationsPage = ({
                 onClick={() => fetchAccommodations()}
             />
             <InProgress inProgress={accommodationsInProgress} />
-            <PageErrorMessage isError={accommodationsErrorMessage}>
+            <PageErrorMessage error={accommodationsErrorMessage}>
                 {accommodationsErrorMessage}
             </PageErrorMessage>
             {accommodationsSuccess && (

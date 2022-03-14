@@ -11,7 +11,6 @@ import {
     accommodationFormUpdateSchema,
 } from "components/accommodation/AccommodationFormSchemas";
 import AccommodationFormAddress from "components/accommodation/form/sections/AccommodationFormAddress";
-// import AccommodationFormHost from "components/accommodation/form/sections/AccommodationFormHost";
 import AccommodationFormAdditional from "components/accommodation/form/sections/AccommodationFormAdditional";
 import AccommodationFormButtons from "components/accommodation/form/sections/AccommodationFormButtons";
 import { Col, Row } from "reactstrap";
@@ -29,6 +28,7 @@ const AccommodationForm = (props) => {
     const isUpdateMode = !!initialValues.id;
 
     const validateOnMount = isCreateMode;
+
     const validationSchema = isUpdateMode
         ? accommodationFormUpdateSchema
         : accommodationFormCreateSchema;
@@ -38,33 +38,35 @@ const AccommodationForm = (props) => {
     //   props.onHostNameChange(name);
     // };
 
-    /**
-     *
-     * @param {ApiErrors} apiErrors
-     * @param {ApiErrorStatus} httpStatusCode
-     * @param {FormikValues} values
-     * @param {function} resetForm
-     */
-    const onSubmitError = (apiErrors, httpStatusCode, values, resetForm) => {
-        const status = formFields.getStatusFromApi(apiErrors, httpStatusCode);
+    const onSubmitError = (response, values, resetForm) => {
+        const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
 
+    /**
+     *
+     * @param values
+     * @param formikBag
+     * @returns {Promise<*>}
+     */
     const onSubmit = async (values, formikBag) => {
-        const transformPromise = yupTransform(
+        console.log("[Accommodation] AccommodationForm onSubmit()");
+
+        const [formattedValues, hasErrors] = await yupTransform(
             values,
             formikBag,
             validationSchema
         );
-        const [formattedValues, hasErrors] = await transformPromise;
+
         if (hasErrors) {
             return;
         }
-        const accommodation = formFields.toModel(formattedValues);
         const { resetForm } = formikBag;
-        const onSubmitApiErrors = (apiErrors, httpStatusCode) =>
-            onSubmitError(apiErrors, httpStatusCode, values, resetForm);
-        return props.onSubmit(accommodation, onSubmitApiErrors);
+
+        const onSubmitApiErrors = (response) =>
+            onSubmitError(response, values, resetForm);
+
+        return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
 
     const formikProps = {
@@ -86,7 +88,7 @@ const AccommodationForm = (props) => {
 
     return (
         <Formik {...formikProps}>
-            {({ isValid, isSubmitting }) => (
+            {({ isSubmitting, isValid }) => (
                 <Form noValidate>
                     {/*<Effect onChange={ onChange } />*/}
                     <Row>
@@ -98,7 +100,6 @@ const AccommodationForm = (props) => {
                             <AccommodationFormAdditional />
                         </Col>
                     </Row>
-
                     <AccommodationFormDetailedInformation />
                     <AccommodationFormButtons
                         isSubmitting={isSubmitting}

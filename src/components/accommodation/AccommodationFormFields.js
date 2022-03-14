@@ -1,6 +1,3 @@
-import pick from "lodash-es/pick";
-import moment from "moment-es6";
-import { appConfig } from "constants/AppConfig";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
 import { getFormattedDate } from "shared/datetime";
@@ -8,20 +5,22 @@ import {
     defaultPolishVoivodeshipId,
     getPolishVoivodeshipById,
 } from "models/constants/Address";
+import { pick, merge } from "lodash-es";
 
 class AccommodationFormFields {
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_LINE = "addressLine";
     static ADDRESS_VOIVODESHIP = "addressVoivodeship";
     static ADDRESS_ZIP = "addressZip";
-    static COMMENTS = "comments";
+    static STAFF_COMMENTS = "staffComments";
+    static OWNER_COMMENTS = "ownerComments";
     static DESCRIPTION = "description";
-    static HOST_EMAIL = "hostEmail";
-    static HOST_NAME = "hostName";
-    static HOST_PHONE = "hostPhone";
-    static HOST_STATUS = "hostStatus";
+    static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
+    static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static ID = "id";
     static IS_VERIFIED = "isVerified";
+    static LGBT_FRIENDLY = "lgbtFriendly";
+    static PARKING_PLACE = "parkingPlaceAvailable";
     static PETS_ALLOWED = "petsAllowed";
     static PETS_PRESENT = "petsPresent";
     static STATUS = "status";
@@ -31,26 +30,38 @@ class AccommodationFormFields {
     static VOLUNTEER_NAME = "volunteerName";
 
     /**
-     *
+     * Transform object from model to form values.
      * @param {Accommodation} accommodation
-     * @return {*}
+     * @return {Object}
      */
-    static getInitialValues(accommodation) {
+    modelToForm(accommodation) {
+        if (!(accommodation instanceof Accommodation)) {
+            return undefined;
+        }
+
         const fieldNames = Object.values(AccommodationFormFields);
-        const initialValues = pick(accommodation, fieldNames);
+        const formValues = pick(accommodation, fieldNames);
 
-        initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
+        formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
             getPolishVoivodeshipById(
-                initialValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
-            ) || defaultPolishVoivodeshipId;
+                formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
+            ).id || defaultPolishVoivodeshipId;
 
-        return accommodation.id
-            ? initialValues
-            : Object.assign(initialValues, {
-                  [AccommodationFormFields.VACANCIES_TOTAL]: 1,
-                  [AccommodationFormFields.VACANCIES_TAKEN]: 0,
-                  [AccommodationFormFields.IS_VERIFIED]: false,
-              });
+        if (accommodation.id) {
+            return formValues;
+        }
+
+        const createFormValues = {
+            [AccommodationFormFields.VACANCIES_TOTAL]: 1,
+            [AccommodationFormFields.VACANCIES_TAKEN]: 0,
+        };
+
+        return { ...formValues, ...createFormValues };
+    }
+
+    formToModel(formValues) {
+        const accommodation = new Accommodation();
+        return merge(accommodation, formValues);
     }
 
     getInitialStatus() {
@@ -63,12 +74,12 @@ class AccommodationFormFields {
 
     /**
      *
-     * @param {object} apiErrors
-     * @param {ApiErrorStatus} status
-     * @return {ApiErrors}
+     * @param {{errors: object, status: ApiErrorStatus }} response
+     * @returns {ApiErrors}
      */
-    getStatusFromApi(apiErrors, status) {
-        return FormikApiErrors.getStatusFromApi(apiErrors, status);
+    getStatusFromApi(response) {
+        const { errors, status } = response;
+        return FormikApiErrors.getStatusFromApi(errors, status);
     }
 
     areValuesEqual(prevValues, nextValues) {
@@ -80,16 +91,16 @@ class AccommodationFormFields {
             [AccommodationFormFields.ADDRESS_CITY],
             [AccommodationFormFields.ADDRESS_LINE],
             [AccommodationFormFields.ADDRESS_ZIP],
+            [AccommodationFormFields.COMMENTS],
             [AccommodationFormFields.DESCRIPTION],
-            [AccommodationFormFields.ID],
-            [AccommodationFormFields.IS_VERIFIED],
-            [AccommodationFormFields.HOST_EMAIL],
-            [AccommodationFormFields.HOST_NAME],
-            [AccommodationFormFields.HOST_PHONE],
             [AccommodationFormFields.VACANCIES_TOTAL],
             [AccommodationFormFields.VACANCIES_TAKEN],
-            [AccommodationFormFields.UUID],
-            [AccommodationFormFields.VOLUNTEER_NAME],
+            [AccommodationFormFields.PETS_ALLOWED],
+            [AccommodationFormFields.PETS_PRESENT],
+            [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY],
+            [AccommodationFormFields.LGBT_FRIENDLY],
+            [AccommodationFormFields.PARKING_PLACE],
+            [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
         ];
 
         const simpleTypeDiff = (key) => prev[key] !== next[key];
@@ -110,16 +121,6 @@ class AccommodationFormFields {
         };
 
         return !dateTimeFields.some(dateDiff);
-    }
-
-    /**
-     *
-     * @param {Object} values
-     * @returns {Accommodation}
-     */
-    toModel(values) {
-        const accommodation = new Accommodation();
-        return Object.assign(accommodation, values);
     }
 }
 

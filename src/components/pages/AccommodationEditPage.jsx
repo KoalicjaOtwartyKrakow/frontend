@@ -1,158 +1,105 @@
-import React from "react";
-import { matchPath, Redirect } from "react-router-dom";
-import withAccommodations from "components/accommodations/withAccommodations";
+import React, { useEffect, useLayoutEffect } from "react";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
-import compose from "just-compose";
-import { Alert } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import memoize from "lodash-es/memoize";
-import { withToastManager } from "react-toast-notifications";
+import { useTranslation } from "react-i18next";
+import { useToasts, withToastManager } from "react-toast-notifications";
 
+// import { Toast } from "components/atoms/Toast";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import PageNavigationBackToList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
-import { Routes } from "constants/Routes";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import {
+    useGetAccommodation,
+    useUpdateAccommodation,
+} from "hooks/api/accommodationHooks";
+import { getInProgressState, inProgressStates } from "constants/Progress";
 import Accommodation from "models/Accommodation";
-import { classToPlain } from "serializers/Serializer";
-import { Toast } from "components/atoms/Toast";
-import { updateAccommodation } from "services/Api";
+import { Routes } from "constants/Routes";
 
-const EDITING = 0;
-const SENDING = 1;
-const SENT = 2;
+const AccommodationEditPage = () => {
+    const { t } = useTranslation(["accommodation"]);
+    const { addToast } = useToasts();
+    const params = useParams();
+    const history = useHistory();
 
-class AccommodationEditPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { status: EDITING };
-    }
+    const {
+        accommodation,
+        accommodationGetInProgress,
+        accommodationGetError,
+        retrieveAccommodation,
+    } = useGetAccommodation();
 
-    beforeSubmit = () => {
-        this.setState({ status: SENDING });
-    };
+    const {
+        updatedAccommodation,
+        accommodationUpdateInProgress,
+        accommodationUpdateError,
+        updateAccommodation,
+    } = useUpdateAccommodation();
 
-    onSubmitSuccess = () => {
-        console.log("[ACCOMMODATIONS] update success");
-        this.setState({ status: SENT });
+    const accommodationInProgress = getInProgressState({
+        createInProgress: accommodationGetInProgress,
+        updateInProgress: accommodationUpdateInProgress,
+    });
 
-        const toast = new Toast(this.props.toastManager);
-        toast.info(this.props.t("accommodation:form.message.updateSuccess"));
-    };
+    const formFields = new AccommodationFormFields();
+    const initialValues = formFields.modelToForm(accommodation);
 
-    onSubmitFailure = (onSubmitApiErrors) => (error) => {
-        console.log("[ACCOMMODATIONS] update failure: ", error);
-        this.setState({ status: EDITING });
-        const toast = new Toast(this.props.toastManager);
-        onSubmitApiErrors(error, error.response.status);
-        toast.info(this.props.t("accommodation:form.message.updateFailure"));
-    };
+    useEffect(() => {
+        const { accommodationId } = params;
+        retrieveAccommodation({ accommodationId });
+    }, [params]);
 
-    onSubmit = (accommodation, onSubmitApiErrors) => {
-        const data = classToPlain(accommodation);
+    useLayoutEffect(() => {
+        if (updatedAccommodation instanceof Accommodation) {
+            addToast(t("accommodation:form.message.updateSuccess"), {
+                appearance: "success",
+            });
 
-        updateAccommodation(
-            data,
-            this.beforeSubmit,
-            this.onSubmitSuccess,
-            this.onSubmitFailure(onSubmitApiErrors)
-        );
-    };
+            history.push(Routes.ACCOMMODATIONS);
+        }
+    }, [updatedAccommodation]);
 
-    initialValuesFromLocation = () => {
-        const { accommodations, location } = this.props;
-
-        const options = {
-            exact: false,
-            strict: false,
-        };
-
-        const { pathname } = location;
-
-        const editPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATION_EDIT,
-        });
-        const createPath = matchPath(pathname, {
-            ...options,
-            path: Routes.ACCOMMODATIONS_CREATE,
-        });
-
-        const getInitialValues = memoize(
-            AccommodationFormFields.getInitialValues
+    const onSubmit = async (values, onSubmitError) => {
+        const accommodation = formFields.formToModel(values);
+        console.log(
+            "[AccommodationEditPage] Invoked onSubmit() with values:",
+            values
         );
 
-        if (editPath !== null && this.isRouteAccommodationPresent()) {
-            const accommodationId = editPath.params.accommodationId;
-            const accommodation = accommodations.find(
-                (item) => item.id === accommodationId
-            );
-            return getInitialValues(accommodation);
+        const response = await updateAccommodation({ accommodation });
+        if (response?.errors) {
+            onSubmitError(response);
+            addToast(t("accommodation:form.message.updateFailure"), {
+                appearance: "error",
+            });
         }
 
-        if (createPath !== null) {
-            const accommodation = new Accommodation();
-            return getInitialValues(accommodation);
-        }
+        console.log("[AccommodationEditPage] Updated accommodation:", values);
     };
 
-    hasAccommodations = () =>
-        this.props.accommodationsSuccess &&
-        this.props.accommodations.length > 0;
+    return (
+        <PageCard header={t("accommodation:card.title.update")}>
+            <InProgress
+                inProgress={accommodationInProgress !== inProgressStates.NONE}
+            />
+            <PageErrorMessage error={accommodationGetError} />
+            <PageErrorMessage error={accommodationUpdateError} />
 
-    isRouteAccommodationPresent = () =>
-        this.props.accommodations.some(
-            (accommodation) =>
-                accommodation.id === this.props.match.params.accommodationId
-        );
-
-    renderForm = () => {
-        if (!this.hasAccommodations()) {
-            return null;
-        }
-
-        if (this.isRouteAccommodationPresent()) {
-            const initialValues = this.initialValuesFromLocation();
-            return (
+            {initialValues && (
                 <AccommodationForm
-                    accommodationInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+                    accommodationInProgress={accommodationInProgress}
                     initialValues={initialValues}
-                    onSubmit={this.onSubmit}
+                    onSubmit={onSubmit}
                 />
-            );
-        }
+            )}
 
-        return (
-            <Alert color="warning">
-                {this.props.t("accommodation:errors.notFound")}
-            </Alert>
-        );
-    };
-
-    render() {
-        const { accommodationsErrorMessage, accommodationsInProgress, t } =
-            this.props;
-
-        if (this.state.status === SENT) {
-            return <Redirect to="/accommodations" />;
-        }
-
-        return (
-            <PageCard header={t("accommodation:card.title.update")}>
-                <InProgress inProgress={accommodationsInProgress} />
-                <PageErrorMessage isError={accommodationsErrorMessage}>
-                    {accommodationsErrorMessage}
-                </PageErrorMessage>
-                {this.renderForm()}
+            {!initialValues && (
                 <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
-            </PageCard>
-        );
-    }
-}
+            )}
+        </PageCard>
+    );
+};
 
-export default compose(
-    withAccommodations,
-    withToastManager,
-    withTranslation(["accommodation"])
-)(AccommodationEditPage);
+export default AccommodationEditPage;
