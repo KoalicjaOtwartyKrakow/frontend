@@ -2,20 +2,20 @@ import PropTypes from "prop-types";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 
 const accommodationFormInitialValuesPropTypes = PropTypes.shape({
-    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_CITY]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_LINE]: PropTypes.string,
+    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: PropTypes.string,
     [AccommodationFormFields.ADDRESS_ZIP]: PropTypes.string,
-    // [AccommodationFormFields.CREATED_AT]: PropTypes.number,
     [AccommodationFormFields.DESCRIPTION]: PropTypes.string,
     [AccommodationFormFields.ID]: PropTypes.string,
     [AccommodationFormFields.IS_VERIFIED]: PropTypes.bool,
-    [AccommodationFormFields.HOST_EMAIL]: PropTypes.string,
-    [AccommodationFormFields.HOST_NAME]: PropTypes.string,
-    [AccommodationFormFields.HOST_PHONE]: PropTypes.string,
-    [AccommodationFormFields.VACANCIES_TOTAL]: PropTypes.number,
-    [AccommodationFormFields.VACANCIES_TAKEN]: PropTypes.number,
+    [AccommodationFormFields.OWNER_COMMENTS]: PropTypes.string,
+    [AccommodationFormFields.PETS_ALLOWED]: PropTypes.bool,
+    [AccommodationFormFields.PETS_PRESENT]: PropTypes.bool,
+    [AccommodationFormFields.STAFF_COMMENTS]: PropTypes.string,
     [AccommodationFormFields.UUID]: PropTypes.string,
+    [AccommodationFormFields.VACANCIES_TAKEN]: PropTypes.number,
+    [AccommodationFormFields.VACANCIES_TOTAL]: PropTypes.number,
     [AccommodationFormFields.VOLUNTEER_NAME]: PropTypes.string,
 });
 

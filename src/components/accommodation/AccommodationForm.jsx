@@ -38,15 +38,8 @@ const AccommodationForm = (props) => {
     //   props.onHostNameChange(name);
     // };
 
-    /**
-     *
-     * @param {ApiErrors} apiErrors
-     * @param {ApiErrorStatus} httpStatusCode
-     * @param {FormikValues} values
-     * @param {function} resetForm
-     */
-    const onSubmitError = (apiErrors, httpStatusCode, values, resetForm) => {
-        const status = formFields.getStatusFromApi(apiErrors, httpStatusCode);
+    const onSubmitError = (response, values, resetForm) => {
+        const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
 
@@ -68,13 +61,12 @@ const AccommodationForm = (props) => {
         if (hasErrors) {
             return;
         }
-        const accommodation = formFields.formToModel(formattedValues);
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (apiErrors, httpStatusCode) =>
-            onSubmitError(apiErrors, httpStatusCode, values, resetForm);
+        const onSubmitApiErrors = (response) =>
+            onSubmitError(response, values, resetForm);
 
-        return props.onSubmit(accommodation, onSubmitApiErrors);
+        return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
 
     const formikProps = {

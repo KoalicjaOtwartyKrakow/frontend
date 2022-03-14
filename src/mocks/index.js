@@ -14,11 +14,8 @@ import axios from "axios";
 import { getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { matchPath } from "react-router-dom";
-import { classToPlain } from "serializers/Serializer";
-
-const onlyUnique = (value, index, self) => {
-    return self.indexOf(value) === index;
-};
+import { classToPlain, plainToClass } from "serializers/Serializer";
+import { uniq } from "lodash-es";
 
 export function generateAllMocks() {
     const chance = new Chance(0xdeadbeef);
@@ -88,12 +85,11 @@ export function generateAllMocks() {
         host.phoneNumber = chance.phone();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
-        host.languagesSpoken = Array.from(
-            { length: chance.integer({ min: 0, max: 2 }) },
-            () => chance.locale()
-        )
-            .concat(["pl"])
-            .filter(onlyUnique);
+        host.languagesSpoken = uniq(
+            Array.from({ length: chance.integer({ min: 0, max: 2 }) }, () =>
+                chance.locale()
+            ).concat(["pl"])
+        );
         return host;
     });
 
@@ -134,6 +130,8 @@ export function generateAllMocks() {
                     min: 0,
                     max: accommodation.vacanciesTotal,
                 });
+                break;
+            default:
                 break;
         }
 
@@ -186,6 +184,29 @@ if (constants.useMocks) {
             console.log(
                 `[useGetAccommodation] Mocked response for ${url}: `,
                 accommodation
+            );
+            return [200, plain];
+        });
+
+    mockAdapter
+        .onPut(new RegExp(getPath(Paths.ACCOMMODATION)))
+        .reply((config) => {
+            const { url, data } = config;
+            const json = JSON.parse(data);
+            const updatedAccommodation = plainToClass(Accommodation, json);
+
+            const accommodationIndex = mockedAccommodations.findIndex(
+                (mock) => mock.id === updatedAccommodation.id
+            );
+            debugger;
+
+            mockedAccommodations[accommodationIndex] = updatedAccommodation;
+
+            const plain = data;
+
+            console.log(
+                `[useUpdateAccommodation] Mocked response for ${url}: `,
+                updatedAccommodation
             );
             return [200, plain];
         });

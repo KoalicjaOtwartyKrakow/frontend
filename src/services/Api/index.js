@@ -63,25 +63,6 @@ export const fetchAccommodations = async (
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
 
-export const updateAccommodation = (
-    data,
-    before,
-    onSuccess,
-    onFailure,
-    onFinish
-) => {
-    console.log("[ACCOMMODATIONS] update fired", data);
-    before && before();
-
-    const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
-
-    const promise = constants.useMocks
-        ? Promise.resolve({ data: mockedHosts[0] })
-        : axios.put(url, data);
-
-    return promise.then(onSuccess).catch(onFailure).finally(onFinish);
-};
-
 export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
     console.log("[GUESTS] Fetch in progress");
     before && before();

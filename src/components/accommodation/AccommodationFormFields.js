@@ -7,14 +7,6 @@ import {
 } from "models/constants/Address";
 import { pick, merge } from "lodash-es";
 
-const objectAssignMapped = (source, mappings) => {
-    const object = {};
-    for (const [objectKey, sourceKey] of Object.entries(mappings)) {
-        object[objectKey] = source[sourceKey];
-    }
-    return object;
-};
-
 class AccommodationFormFields {
     static ADDRESS_CITY = "addressCity";
     static ADDRESS_LINE = "addressLine";
@@ -82,12 +74,12 @@ class AccommodationFormFields {
 
     /**
      *
-     * @param {object} apiErrors
-     * @param {ApiErrorStatus} status
-     * @return {ApiErrors}
+     * @param {{errors: object, status: ApiErrorStatus }} response
+     * @returns {ApiErrors}
      */
-    getStatusFromApi(apiErrors, status) {
-        return FormikApiErrors.getStatusFromApi(apiErrors, status);
+    getStatusFromApi(response) {
+        const { errors, status } = response;
+        return FormikApiErrors.getStatusFromApi(errors, status);
     }
 
     areValuesEqual(prevValues, nextValues) {

@@ -10,7 +10,8 @@
         "refresh": "Refresh"
     },
     "errors": {
-        "apiFailure": "API communication error"
+        "apiFailure": "API call resulted in error",
+        "notFound": "Endpoint not found"
     },
     "form": {
         "button": {

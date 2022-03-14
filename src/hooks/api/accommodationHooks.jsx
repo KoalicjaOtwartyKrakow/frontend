@@ -1,7 +1,7 @@
 import useAxios from "axios-hooks";
-import { getPath } from "services/Api/utils";
+import { getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
-import { plainToClass } from "serializers/Serializer";
+import { classToPlain, plainToClass } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useGetAccommodation = () => {
@@ -24,10 +24,10 @@ const useGetAccommodation = () => {
                 await fetch(config);
             } catch (error) {
                 console.error(
-                    "[useGetAccommodation] Error on fetchAccommodation(): ",
+                    "[useGetAccommodation] Error on retrieveAccommodation(): ",
                     error
                 );
-                return error;
+                return getErrorsFromApi(error);
             }
         };
 
@@ -38,8 +38,54 @@ const useGetAccommodation = () => {
         accommodation,
         accommodationGetInProgress,
         accommodationGetError,
-        fetchAccommodation,
+        retrieveAccommodation: fetchAccommodation,
     };
 };
 
-export { useGetAccommodation };
+const useUpdateAccommodation = () => {
+    const [{ data, loading, error }, fetch] = useAxios(
+        { method: "PUT" },
+        { manual: true }
+    );
+
+    const updatedAccommodation = data;
+    const accommodationUpdateInProgress = loading;
+    const accommodationUpdateError = getErrorsFromApi(error);
+
+    /**
+     *
+     * @param {Accommodation} accommodation
+     * @returns {Promise<*|undefined>}
+     */
+    const updateAccommodation = ({ accommodation }) => {
+        const url = getPath(Paths.ACCOMMODATION) + "/" + accommodation.id;
+        const transformResponse = (data) => {
+            return data && plainToClass(Accommodation, data);
+        };
+        const data = classToPlain(accommodation);
+        const config = { data, url, transformResponse };
+
+        const updateData = async () => {
+            try {
+                await fetch(config);
+            } catch (error) {
+                console.error(
+                    "[useGetAccommodation] Error on updateAccommodation(): ",
+                    error
+                );
+                return getErrorsFromApi(error);
+            }
+        };
+
+        return updateData();
+    };
+
+    return {
+        updatedAccommodation,
+        accommodationUpdateInProgress,
+        accommodationUpdateError,
+        updateAccommodation,
+    };
+};
+
+export { useGetAccommodation, useUpdateAccommodation };

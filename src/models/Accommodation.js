@@ -105,7 +105,7 @@ class Accommodation {
     @OnDeserialized()
     uuidRegenerate() {
         this.uuid = nanoid();
-        this.host.id = this.hostId;
+        // this.host.id = this.hostId;
     }
 }
 

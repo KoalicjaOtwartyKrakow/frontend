@@ -45,6 +45,9 @@ const _getStatus = (error) => {
  * @return {{errors: object, status: ApiErrorStatus}}
  */
 export const getErrorsFromApi = (error) => {
+    if (!error) {
+        return undefined;
+    }
     const { response } = error;
     const errors = camelcaseKeys(get(response, "data", {}));
     const status = _getStatus(error);
