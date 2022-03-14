@@ -8,6 +8,7 @@ import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import GuestChild from "models/guest/GuestChild";
+import { languages } from "models/constants/Languages";
 import * as constants from "services/Api/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -83,12 +84,14 @@ export function generateAllMocks() {
         host.fullName = chance.name();
         host.email = chance.email();
         host.phoneNumber = chance.phone();
+        host.callAfter = chance.hour({ twentyfour: true });
+        host.callBefore = chance.hour({ twentyfour: true });
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
         host.languagesSpoken = uniq(
-            Array.from({ length: chance.integer({ min: 0, max: 2 }) }, () =>
-                chance.locale()
-            ).concat(["pl"])
+            chance
+                .pickset(languages, chance.integer({ min: 0, max: 4 }))
+                .concat("Pl")
         );
         return host;
     });

@@ -7,7 +7,7 @@ import { useToasts, withToastManager } from "react-toast-notifications";
 // import { Toast } from "components/atoms/Toast";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-import PageNavigationAccommodationList from "components/atoms/PageNavHome";
+import PageNavigationBackToList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import {
@@ -95,7 +95,9 @@ const AccommodationEditPage = () => {
                 />
             )}
 
-            {!initialValues && <PageNavigationAccommodationList />}
+            {!initialValues && (
+                <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
+            )}
         </PageCard>
     );
 };

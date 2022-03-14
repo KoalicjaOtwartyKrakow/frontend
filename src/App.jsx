@@ -9,6 +9,7 @@ import HostsPage from "components/pages/HostsPage";
 import DashboardPage from "components/pages/DashboardPage";
 import GuestsPage from "components/pages/GuestsPage";
 import LoadingPage from "components/pages/LoadingPage";
+import HostEditPage from "components/pages/HostEditPage";
 
 function App() {
     return (
@@ -39,6 +40,10 @@ function App() {
                             path={Routes.HOSTS}
                             exact
                             render={() => <HostsPage />}
+                        />
+                        <Route
+                            path={Routes.HOST_EDIT}
+                            component={HostEditPage}
                         />
                     </Switch>
                 </Switch>

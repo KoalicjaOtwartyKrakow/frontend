@@ -4,28 +4,27 @@ import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
-import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import { HostFormFields } from "components/host/HostFormFields";
 
-const AccommodationFormHostName = (props) => {
-    const fieldId = AccommodationFormFields.HOST_NAME;
+const HostFormCallBefore = () => {
+    const fieldId = HostFormFields.CALL_BEFORE;
 
-    const { t } = useTranslation(["accommodation"]);
+    const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("accommodation:form.label.host")}
+                {t("host:form.label.callBefore")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="Janina Nowak"
                 type="text"
             />
         </FormGroup>
     );
 };
 
-AccommodationFormHostName.propTypes = {};
+HostFormCallBefore.propTypes = {};
 
-export default AccommodationFormHostName;
+export default HostFormCallBefore;

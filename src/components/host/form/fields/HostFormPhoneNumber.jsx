@@ -4,28 +4,28 @@ import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
-import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import { HostFormFields } from "components/host/HostFormFields";
 
-const AccommodationFormHostEmail = (props) => {
-    const fieldId = AccommodationFormFields.HOST_EMAIL;
+const HostFormPhoneNumber = () => {
+    const fieldId = HostFormFields.PHONE_NUMBER;
 
     const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.email")}
+                {t("common:form.label.phone")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder={t("common:form.placeholder.email")}
+                placeholder={t("common:form.placeholder.phone")}
                 type="text"
             />
         </FormGroup>
     );
 };
 
-AccommodationFormHostEmail.propTypes = {};
+HostFormPhoneNumber.propTypes = {};
 
-export default AccommodationFormHostEmail;
+export default HostFormPhoneNumber;

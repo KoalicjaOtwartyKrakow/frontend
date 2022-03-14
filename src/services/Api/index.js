@@ -92,3 +92,16 @@ export const fetchHosts = async (before, onSuccess, onFailure, onFinish) => {
 
     return promise.then(onSuccess).catch(onFailure).finally(onFinish);
 };
+
+export const updateHost = (data, before, onSuccess, onFailure, onFinish) => {
+    console.log("[HOSTS] update fired");
+    before && before();
+
+    const url = utils.getPath(constants.Paths.HOSTS);
+
+    return axios
+        .put(url, data)
+        .then(onSuccess)
+        .catch(onFailure)
+        .finally(onFinish);
+};
