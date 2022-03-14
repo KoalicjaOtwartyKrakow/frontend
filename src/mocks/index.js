@@ -49,7 +49,8 @@ export function generateAllMocks() {
             guest.children.length;
         guest.financialStatus = chance.sentence();
         guest.petsPresent = chance.bool();
-        guest.petsDescription = "3";
+        guest.petsDescription =
+            "Dog, cat and a squirrel. Also " + chance.sentence({ words: 5 });
 
         const foodAllergies = ["Chocolate", "Nuts", "Strawberry"];
         const foodAllergiesQuantity = chance.natural({
@@ -164,7 +165,8 @@ export function generateAllMocks() {
 
 if (constants.useMocks) {
     const mockAdapter = new MockAdapter(axios);
-    const { mockedAccommodations, mockedHosts } = generateAllMocks();
+    const { mockedAccommodations, mockedHosts, mockedGuests } =
+        generateAllMocks();
 
     mockAdapter.onGet(Paths.ACCOMMODATION).reply((config) => {
         const { url } = config;
@@ -267,6 +269,54 @@ if (constants.useMocks) {
         console.log(
             `[useUpdateHost] Mocked response for ${url}: `,
             updatedHost
+        );
+        return [200, plain];
+    });
+
+    mockAdapter.onGet(Paths.GUEST).reply((config) => {
+        const { url } = config;
+        const plainGuests = mockedGuests.map((guest) => classToPlain(guest));
+
+        console.log(`[useGetGuest] Mocked response for ${url}: `);
+        return [200, plainGuests];
+    });
+
+    mockAdapter
+        .onGet(new RegExp(getPath(Paths.GUEST) + "/.+"))
+        .reply((config) => {
+            const { url } = config;
+            const matchedPath = matchPath(url, {
+                path: getPath(Paths.GUEST) + "/:guestId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { guestId },
+            } = matchedPath;
+
+            const guest = mockedGuests.find((mock) => mock.id === guestId);
+            const plain = classToPlain(guest);
+
+            console.log(`[useGetGuest] Mocked response for ${url}: `, guest);
+            return [200, plain];
+        });
+
+    mockAdapter.onPut(new RegExp(getPath(Paths.GUEST))).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        const updatedGuest = plainToClass(Guest, json);
+
+        const guestIndex = mockedGuests.findIndex(
+            (mock) => mock.id === updatedGuest.id
+        );
+
+        mockedGuests[guestIndex] = updatedGuest;
+
+        const plain = data;
+
+        console.log(
+            `[useUpdateGuest] Mocked response for ${url}: `,
+            updatedGuest
         );
         return [200, plain];
     });
