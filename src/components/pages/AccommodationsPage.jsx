@@ -32,7 +32,7 @@ const AccommodationsPage = () => {
         if (!accommodations) {
             retrieveAccommodations();
         }
-    }, []);
+    }, [retrieveAccommodations, accommodations]);
 
     return (
         <PageCard header={pageHeader}>
