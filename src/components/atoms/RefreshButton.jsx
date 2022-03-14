@@ -1,32 +1,41 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faRotate } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
+import ProgressIcon from "components/atoms/ProgressIcon";
+import classNames from "classnames";
 
-const RefreshButton = ({ className, disabled, onClick }) => {
+const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
     const { t } = useTranslation(["common"]);
     const label = t("common:data.refresh");
+    const buttonClassName = classNames(className);
 
     return (
         <Button
-            className={className}
             color="primary"
+            outline
+            type="submit"
             disabled={disabled}
+            className={buttonClassName}
             onClick={onClick}
         >
-            <span>
-                {label} <FontAwesomeIcon icon={faRotate} />
-            </span>
+            <ProgressIcon
+                className="me-2"
+                icon={faRotate}
+                inProgress={inProgress}
+            />
+            <span className="fw-semibold">{label}</span>
         </Button>
     );
 };
 
 RefreshButton.propTypes = {
     className: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
+    inProgress: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default RefreshButton;
