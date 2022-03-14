@@ -1,40 +1,69 @@
-import pick from "lodash-es/pick";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Host from "models/Host";
+import { getFormattedDate } from "shared/datetime";
+import { pick, merge, isEqual } from "lodash-es";
 
 class HostFormFields {
-    static FULL_NAME = "fullName";
-    static EMAIL = "email";
-    static PHONE_NUMBER = "phoneNumber";
     static CALL_AFTER = "callAfter";
     static CALL_BEFORE = "callBefore";
     static COMMENTS = "comments";
-    static LANGUAGES_SPOKEN = "languagesSpoken";
-    static STATUS = "status";
+    static EMAIL = "email";
+    static FULL_NAME = "fullName";
     static ID = "id";
-    // TODO: to be aligned with API later
-    static LGBT_FRIENDLY = "lgbtFriendly";
-    static ACCEPTS_FROM_ANY_COUNTRY = "acceptsFromAnyCountry";
-    static ACCEPTS_GUEST_WITH_DISABILITIES = "acceptsGuestWithDisabilities";
+    static LANGUAGES_SPOKEN = "languagesSpoken";
+    static PHONE_NUMBER = "phoneNumber";
+    static STATUS = "status";
 
-    static getInitialValues(host) {
+    /**
+     * Transform object from model to form values.
+     * @param {Host} host
+     * @return {Object}
+     */
+    modelToForm(host) {
+        if (!(host instanceof Host)) {
+            return undefined;
+        }
+
         const fieldNames = Object.values(HostFormFields);
-        const initialValues = pick(host, fieldNames);
+        const formValues = pick(host, fieldNames);
 
-        return initialValues;
+        if (host.id) {
+            return formValues;
+        }
+
+        const createFormValues = {};
+
+        return { ...formValues, ...createFormValues };
+    }
+
+    formToModel(formValues) {
+        const host = new Host();
+        return merge(host, formValues);
     }
 
     getInitialStatus() {
         return FormikApiErrors.getInitialStatus();
     }
 
-    getStatusFromApi(apiErrors, status) {
-        return FormikApiErrors.getStatusFromApi(apiErrors, status);
+    getDateAsYMD(value) {
+        return getFormattedDate(value);
     }
 
-    toModel(values) {
-        const host = new Host();
-        return Object.assign(host, values);
+    /**
+     *
+     * @param {{errors: object, status: ApiErrorStatus }} response
+     * @returns {ApiErrors}
+     */
+    getStatusFromApi(response) {
+        const { errors, status } = response;
+        return FormikApiErrors.getStatusFromApi(errors, status);
+    }
+
+    areValuesEqual(prevValues, nextValues) {
+        const prev = prevValues || {};
+        const next = nextValues || {};
+
+        return isEqual(prevValues, nextValues);
     }
 }
 

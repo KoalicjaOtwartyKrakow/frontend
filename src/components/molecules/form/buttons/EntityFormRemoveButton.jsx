@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import ProgressIcon from "components/atoms/ProgressIcon";
 
-const AccommodationFormRemoveButton = ({ label, onClick, inProgress }) => {
+const EntityFormRemoveButton = ({ label, onClick, inProgress }) => {
     return (
         <Button
             color="danger"
@@ -19,10 +19,10 @@ const AccommodationFormRemoveButton = ({ label, onClick, inProgress }) => {
     );
 };
 
-AccommodationFormRemoveButton.propTypes = {
+EntityFormRemoveButton.propTypes = {
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     inProgress: PropTypes.bool.isRequired,
 };
 
-export default AccommodationFormRemoveButton;
+export default EntityFormRemoveButton;

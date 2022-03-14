@@ -14,7 +14,6 @@ const HostFormDetailedInformation = () => {
             <HostFormSectionHeader>
                 {t("host:form.section.detailedInformation")}
             </HostFormSectionHeader>
-            <HostFormExtendedInformation />
         </HostFormSection>
     );
 };

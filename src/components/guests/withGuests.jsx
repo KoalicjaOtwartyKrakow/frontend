@@ -25,12 +25,12 @@ const withGuests = (WrappedComponent) => {
         };
 
         fetchGuestsFailure = (error) => {
-            console.log("[GUESTS] Fetch guests failure: ");
+            console.log("[GUEST] Fetch guests failure: ");
 
             if (error instanceof TypeError) {
                 console.error(error);
             } else {
-                console.log("[GUESTS] Error:", error);
+                console.log("[GUEST] Error:", error);
             }
 
             const guestsSuccess = false;
@@ -55,11 +55,11 @@ const withGuests = (WrappedComponent) => {
                 guestsSuccess,
             });
 
-            console.log("[GUESTS] Fetch success");
+            console.log("[GUEST] Fetch success");
         };
 
         fetchGuestsFinally = () => {
-            console.log("[GUESTS] Fetch finalized");
+            console.log("[GUEST] Fetch finalized");
             const guestsInProgress = false;
             this.setState({ guestsInProgress });
         };

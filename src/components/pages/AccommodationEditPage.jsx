@@ -14,7 +14,10 @@ import {
     useGetAccommodation,
     useUpdateAccommodation,
 } from "hooks/api/accommodationHooks";
-import { getInProgressState, inProgressStates } from "constants/Progress";
+import {
+    getCrudInProgressState,
+    crudInProgressStates,
+} from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
 import { Routes } from "constants/Routes";
 
@@ -38,7 +41,7 @@ const AccommodationEditPage = () => {
         updateAccommodation,
     } = useUpdateAccommodation();
 
-    const accommodationInProgress = getInProgressState({
+    const accommodationInProgress = getCrudInProgressState({
         createInProgress: accommodationGetInProgress,
         updateInProgress: accommodationUpdateInProgress,
     });
@@ -82,7 +85,9 @@ const AccommodationEditPage = () => {
     return (
         <PageCard header={t("accommodation:card.title.update")}>
             <InProgress
-                inProgress={accommodationInProgress !== inProgressStates.NONE}
+                inProgress={
+                    accommodationInProgress !== crudInProgressStates.NONE
+                }
             />
             <PageErrorMessage error={accommodationGetError} />
             <PageErrorMessage error={accommodationUpdateError} />

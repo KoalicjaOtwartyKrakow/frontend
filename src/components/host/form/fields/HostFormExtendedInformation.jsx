@@ -29,11 +29,11 @@ const HostFormExtendedInformation = () => {
         },
         {
             name: HostFormFields.ACCEPTS_FROM_ANY_COUNTRY,
-            label: t("host:form.label.acceptsFromAnyCountry"),
+            label: t("host:form.label.acceptsGuestsFromAnyCountry"),
         },
         {
             name: HostFormFields.ACCEPTS_GUEST_WITH_DISABILITIES,
-            label: t("host:form.label.acceptsGuestWithDisabilities"),
+            label: t("host:form.label.acceptsGuestsWithDisabilities"),
         },
     ];
 

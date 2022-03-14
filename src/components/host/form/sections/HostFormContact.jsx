@@ -7,6 +7,8 @@ import HostFormEmail from "../fields/HostFormEmail";
 import HostFormPhoneNumber from "../fields/HostFormPhoneNumber";
 import HostFormCallAfter from "../fields/HostFormCallAfter";
 import HostFormCallBefore from "../fields/HostFormCallBefore";
+import HostFormFullName from "components/host/form/fields/HostFormFullName";
+import HostFormLanguagesSpoken from "components/host/form/fields/HostFormLanguagesSpoken";
 
 /**
  * @component
@@ -20,6 +22,8 @@ const HostFormContact = () => {
             </HostFormSectionHeader>
             <Row>
                 <Col>
+                    <HostFormFullName />
+
                     <HostFormEmail />
                     <HostFormPhoneNumber />
                     <Row>

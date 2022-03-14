@@ -1,4 +1,4 @@
-const inProgressStates = Object.freeze({
+const crudInProgressStates = Object.freeze({
     CREATE: "create",
     DELETE: "delete",
     NONE: "none",
@@ -6,25 +6,25 @@ const inProgressStates = Object.freeze({
     UPDATE: "update",
 });
 
-const getInProgressState = ({
+const getCrudInProgressState = ({
     createInProgress = false,
     deleteInProgress = false,
     retrieveInProgress = false,
     updateInProgress = false,
 }) => {
     if (createInProgress) {
-        return inProgressStates.CREATE;
+        return crudInProgressStates.CREATE;
     }
     if (deleteInProgress) {
-        return inProgressStates.DELETE;
+        return crudInProgressStates.DELETE;
     }
     if (retrieveInProgress) {
-        return inProgressStates.RETRIEVE;
+        return crudInProgressStates.RETRIEVE;
     }
     if (updateInProgress) {
-        return inProgressStates.UPDATE;
+        return crudInProgressStates.UPDATE;
     }
-    return inProgressStates.NONE;
+    return crudInProgressStates.NONE;
 };
 
-export { getInProgressState, inProgressStates };
+export { getCrudInProgressState, crudInProgressStates };

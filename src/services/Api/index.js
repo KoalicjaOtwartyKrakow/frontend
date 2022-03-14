@@ -54,7 +54,7 @@ export const fetchAccommodations = async (
 
     await sleep(DEBUG_API_FETCH_DELAY);
 
-    const url = utils.getPath(constants.Paths.ACCOMMODATIONS);
+    const url = utils.getPath(constants.Paths.ACCOMMODATION);
 
     const promise = constants.useMocks
         ? Promise.resolve({ data: mockedAccommodations })
@@ -64,12 +64,12 @@ export const fetchAccommodations = async (
 };
 
 export const fetchGuests = async (before, onSuccess, onFailure, onFinish) => {
-    console.log("[GUESTS] Fetch in progress");
+    console.log("[GUEST] Fetch in progress");
     before && before();
 
     await sleep(DEBUG_API_FETCH_DELAY);
 
-    const url = utils.getPath(constants.Paths.GUESTS);
+    const url = utils.getPath(constants.Paths.GUEST);
 
     const promise = constants.useMocks
         ? Promise.resolve({ data: mockedGuests })
@@ -84,7 +84,7 @@ export const fetchHosts = async (before, onSuccess, onFailure, onFinish) => {
 
     await sleep(DEBUG_API_FETCH_DELAY);
 
-    const url = utils.getPath(constants.Paths.HOSTS);
+    const url = utils.getPath(constants.Paths.HOST);
 
     const promise = constants.useMocks
         ? Promise.resolve({ data: mockedHosts })
@@ -97,7 +97,7 @@ export const updateHost = (data, before, onSuccess, onFailure, onFinish) => {
     console.log("[HOSTS] update fired");
     before && before();
 
-    const url = utils.getPath(constants.Paths.HOSTS);
+    const url = utils.getPath(constants.Paths.HOST);
 
     return axios
         .put(url, data)

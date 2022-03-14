@@ -4,17 +4,16 @@ import React from "react";
 import { Form, Formik } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
+
+import { hostFormPropTypes } from "proptypes/HostFormPropTypes";
 import {
     hostFormCreateSchema,
     hostFormUpdateSchema,
 } from "components/host/HostFormSchemas";
 import HostFormButtons from "components/host/form/sections/HostFormButtons";
-import { hostFormHostPropTypes } from "proptypes/HostFormPropTypes";
-import HostFormContact from "./form/sections/HostFormContact";
 import { Col, Row } from "reactstrap";
-import HostFormAdditionalInformation from "./form/sections/HostFormAdditionalInformation";
-import HostFormDetailedInformation from "./form/sections/HostFormDetailedInformation";
-import HostFormHostInformation from "./form/sections/HostFormHostInformation";
+import HostFormContact from "components/host/form/sections/HostFormContact";
+import HostFormAdditionalInformation from "components/host/form/sections/HostFormAdditionalInformation";
 
 const HostForm = (props) => {
     const { initialValues, onRemove, hostInProgress } = props;
@@ -27,6 +26,7 @@ const HostForm = (props) => {
     const isUpdateMode = !!initialValues.id;
 
     const validateOnMount = isCreateMode;
+
     const validationSchema = isUpdateMode
         ? hostFormUpdateSchema
         : hostFormCreateSchema;
@@ -36,33 +36,35 @@ const HostForm = (props) => {
     //   props.onHostNameChange(name);
     // };
 
-    /**
-     *
-     * @param {ApiErrors} apiErrors
-     * @param {ApiErrorStatus} httpStatusCode
-     * @param {FormikValues} values
-     * @param {function} resetForm
-     */
-    const onSubmitError = (apiErrors, httpStatusCode, values, resetForm) => {
-        const status = formFields.getStatusFromApi(apiErrors, httpStatusCode);
+    const onSubmitError = (response, values, resetForm) => {
+        const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
 
+    /**
+     *
+     * @param values
+     * @param formikBag
+     * @returns {Promise<*>}
+     */
     const onSubmit = async (values, formikBag) => {
-        const transformPromise = yupTransform(
+        console.log("[Host] HostForm onSubmit()");
+
+        const [formattedValues, hasErrors] = await yupTransform(
             values,
             formikBag,
             validationSchema
         );
-        const [formattedValues, hasErrors] = await transformPromise;
+
         if (hasErrors) {
             return;
         }
-        const host = formFields.toModel(formattedValues);
         const { resetForm } = formikBag;
-        const onSubmitApiErrors = (apiErrors, httpStatusCode) =>
-            onSubmitError(apiErrors, httpStatusCode, values, resetForm);
-        return props.onSubmit(host, onSubmitApiErrors);
+
+        const onSubmitApiErrors = (response) =>
+            onSubmitError(response, values, resetForm);
+
+        return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
 
     const formikProps = {
@@ -82,16 +84,15 @@ const HostForm = (props) => {
         ? t("host:form.button.create")
         : t("host:form.button.update");
 
+    console.warn({ hostInProgress });
+
     return (
         <Formik {...formikProps}>
-            {({ isValid, isSubmitting }) => (
+            {({ isSubmitting, isValid }) => (
                 <Form noValidate>
-                    {/*<Effect onChange={ onChange } />*/}
                     <Row>
                         <Col xs={12} lg={6}>
-                            <HostFormHostInformation />
                             <HostFormContact />
-                            <HostFormDetailedInformation />
                         </Col>
                         <Col xs={12} lg={6}>
                             <HostFormAdditionalInformation />
@@ -110,6 +111,6 @@ const HostForm = (props) => {
     );
 };
 
-HostForm.propTypes = hostFormHostPropTypes;
+HostForm.propTypes = hostFormPropTypes;
 
 export default HostForm;

@@ -1,23 +1,5 @@
 import * as Yup from "yup";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-// import isSafeInteger from "lodash-es/isSafeInteger";
-// import { appConfig } from "constants/AppConfig";
-// import moment from "moment-es6";
-
-// const toSafeIntegerWithUndefined = (value) => {
-//   const safeInteger = isSafeInteger(+value) ? +value : value;
-//   console.log(value, +value, isSafeInteger(+value), safeInteger)
-//   return safeInteger;
-// };
-
-// const dateAsYMDValidator = () =>
-//     Yup.mixed().test(
-//         "is-date-yyyy-mm-dd",
-//         `Proszę użyć formatu ${appConfig.dateFormat}`,
-//         (value) =>
-//             value === undefined ||
-//             moment(value, appConfig.dateFormat, true).isValid()
-//     );
 
 const commonSchema = Yup.object().shape({
     // Address

@@ -7,7 +7,7 @@ import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import withHistoryBackButtonOptions from "components/atoms/WithHistoryBackButtonOptions";
 
-const AccommodationFormBackToListButton = ({ label, mobileLabel, ...rest }) => {
+const EntityFormBackToListButton = ({ label, mobileLabel, ...rest }) => {
     return (
         <Button
             color="secondary"
@@ -22,12 +22,12 @@ const AccommodationFormBackToListButton = ({ label, mobileLabel, ...rest }) => {
     );
 };
 
-AccommodationFormBackToListButton.propTypes = {
+EntityFormBackToListButton.propTypes = {
     label: PropTypes.string.isRequired,
     mobileLabel: PropTypes.string.isRequired,
 };
 
 export default compose(withHistoryBackButtonOptions)(
-    AccommodationFormBackToListButton,
+    EntityFormBackToListButton,
     { to: Routes.ACCOMMODATIONS }
 );

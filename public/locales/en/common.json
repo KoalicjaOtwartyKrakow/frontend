@@ -15,6 +15,7 @@
     },
     "form": {
         "button": {
+            "remove": "Remove",
             "reset": "Reset changes",
             "backToList": "Back to the list"
         },

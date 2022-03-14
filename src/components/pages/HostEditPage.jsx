@@ -1,154 +1,91 @@
-import React from "react";
-import { matchPath, Redirect } from "react-router-dom";
+import React, { useEffect, useLayoutEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
-import compose from "just-compose";
-import { Alert } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import memoize from "lodash-es/memoize";
+import { useTranslation } from "react-i18next";
+import { useToasts } from "react-toast-notifications";
 
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-import { Routes } from "constants/Routes";
-import { classToPlain } from "serializers/Serializer";
-import withHosts from "components/hosts/withHosts";
 import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
+import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
+import {
+    getCrudInProgressState,
+    crudInProgressStates,
+} from "constants/CrudProgress";
 import Host from "models/Host";
-import { updateHost } from "services/Api";
-import { toastStyle } from "components/atoms/Toast";
-import { withToastManager } from "react-toast-notifications";
+import { Routes } from "constants/Routes";
 
-const EDITING = 0;
-const SENDING = 1;
-const SENT = 2;
+const HostEditPage = () => {
+    const { t } = useTranslation(["host"]);
+    const { addToast } = useToasts();
+    const params = useParams();
+    const history = useHistory();
 
-class HostEditPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { status: EDITING };
-    }
+    const { host, hostGetInProgress, hostGetError, retrieveHost } =
+        useGetHost();
 
-    beforeSubmit = () => {
-        this.setState({ status: SENDING });
-    };
+    const { updatedHost, hostUpdateInProgress, hostUpdateError, updateHost } =
+        useUpdateHost();
 
-    onSubmitSuccess = () => {
-        console.log("[HOSTS] update success");
-        this.setState({ status: SENT });
+    const hostInProgress = getCrudInProgressState({
+        createInProgress: hostGetInProgress,
+        updateInProgress: hostUpdateInProgress,
+    });
 
-        this.props.toastManager.add(
-            this.props.t("host:form.message.updateSuccess"),
-            toastStyle.toastSuccess
-        );
-    };
+    const formFields = new HostFormFields();
+    const initialValues = formFields.modelToForm(host);
 
-    onSubmitFailure = (onSubmitApiErrors) => (error) => {
-        console.log("[HOSTS] update failure: ", error);
-        this.setState({ status: EDITING });
-        onSubmitApiErrors(error, error.response.status);
-        this.props.toastManager.add(
-            this.props.t("host:form.message.updateFailure"),
-            toastStyle.toastError
-        );
-    };
+    useEffect(() => {
+        const { hostId } = params;
+        retrieveHost({ hostId });
+    }, [params]);
 
-    onSubmit = (host, onSubmitApiErrors) => {
-        const data = classToPlain(host);
+    useLayoutEffect(() => {
+        if (updatedHost instanceof Host) {
+            addToast(t("host:form.message.updateSuccess"), {
+                appearance: "success",
+            });
 
-        updateHost(
-            data,
-            this.beforeSubmit,
-            this.onSubmitSuccess,
-            this.onSubmitFailure(onSubmitApiErrors)
-        );
-    };
+            history.push(Routes.HOSTS);
+        }
+    }, [updatedHost]);
 
-    initialValuesFromLocation = () => {
-        const { hosts, location } = this.props;
+    const onSubmit = async (values, onSubmitError) => {
+        const host = formFields.formToModel(values);
+        console.log("[HostEditPage] Invoked onSubmit() with values:", values);
 
-        const options = {
-            exact: false,
-            strict: false,
-        };
-
-        const { pathname } = location;
-
-        const editPath = matchPath(pathname, {
-            ...options,
-            path: Routes.HOST_EDIT,
-        });
-        const createPath = matchPath(pathname, {
-            ...options,
-            path: Routes.HOSTS_CREATE,
-        });
-
-        const getInitialValues = memoize(HostFormFields.getInitialValues);
-
-        if (editPath !== null && this.isRouteHostPresent()) {
-            const hostId = editPath.params.hostId;
-            const host = hosts.find((item) => item.id === hostId);
-            return getInitialValues(host);
+        const response = await updateHost({ host });
+        if (response?.errors) {
+            onSubmitError(response);
+            addToast(t("host:form.message.updateFailure"), {
+                appearance: "error",
+            });
         }
 
-        if (createPath !== null) {
-            const host = new Host();
-            return getInitialValues(host);
-        }
+        console.log("[HostEditPage] Updated host:", values);
     };
 
-    hasHosts = () => this.props.hostsSuccess && this.props.hosts.length > 0;
+    return (
+        <PageCard header={t("host:card.title.update")}>
+            <InProgress
+                inProgress={hostInProgress !== crudInProgressStates.NONE}
+            />
+            <PageErrorMessage error={hostGetError} />
+            <PageErrorMessage error={hostUpdateError} />
 
-    isRouteHostPresent = () =>
-        this.props.hosts.some(
-            (host) => host.id === this.props.match.params.hostId
-        );
-
-    renderForm = () => {
-        if (!this.hasHosts()) {
-            return null;
-        }
-
-        if (this.isRouteHostPresent()) {
-            const initialValues = this.initialValuesFromLocation();
-            return (
+            {initialValues && (
                 <HostForm
-                    hostInProgress={"FIXME_PUT_PROGRESS_TYPE_HERE"}
+                    hostInProgress={hostInProgress}
                     initialValues={initialValues}
-                    onSubmit={this.onSubmit}
+                    onSubmit={onSubmit}
                 />
-            );
-        }
+            )}
 
-        return (
-            <Alert color="warning">
-                {this.props.t("host:errors.notFound")}
-            </Alert>
-        );
-    };
+            {!initialValues && <PageNavigationBackToList to={Routes.HOSTS} />}
+        </PageCard>
+    );
+};
 
-    render() {
-        const { hostsErrorMessage, hostsInProgress, t } = this.props;
-
-        if (this.state.status === SENT) {
-            return <Redirect to="/hosts" />;
-        }
-
-        return (
-            <PageCard header={t("host:card.title.update")}>
-                <InProgress inProgress={hostsInProgress} />
-                <PageErrorMessage isError={hostsErrorMessage}>
-                    {hostsErrorMessage}
-                </PageErrorMessage>
-                {this.renderForm()}
-                <PageNavigationBackToList to={Routes.HOSTS} />
-            </PageCard>
-        );
-    }
-}
-
-export default compose(
-    withHosts,
-    withToastManager,
-    withTranslation(["host"])
-)(HostEditPage);
+export default HostEditPage;

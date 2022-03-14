@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { AccommodationStatus } from "models/constants/AccomodationStatus";
+import { AccommodationStatus } from "models/constants/AccommodationStatus";
 
 /**
  *

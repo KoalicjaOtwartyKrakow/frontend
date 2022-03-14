@@ -7,7 +7,7 @@ import {
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-import { AccommodationStatus } from "models/constants/AccomodationStatus";
+import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
 
 @JsonObject()
