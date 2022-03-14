@@ -21,6 +21,10 @@ const commonSchema = Yup.object().shape({
         .integer("common:form.validator.integer")
         .moreThan(0, "common:form.validator.positiveNumber")
         .min(1, `common:form.validator.numberMin`)
+        .min(
+            Yup.ref(AccommodationFormFields.VACANCIES_TAKEN),
+            "accommodation:form.validator.tooManyPeople"
+        )
         .required("accommodation:form.validator.vacanciesTotal"),
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("common:form.validator.integer")

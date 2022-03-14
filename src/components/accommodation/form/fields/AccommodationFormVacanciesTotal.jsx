@@ -20,7 +20,7 @@ const AccommodationFormVacanciesTotal = (props) => {
                 id={fieldId}
                 name={fieldId}
                 placeholder="5"
-                type="text"
+                type="number"
             />
         </FormGroup>
     );

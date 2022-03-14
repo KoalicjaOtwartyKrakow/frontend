@@ -78,6 +78,10 @@ class Accommodation {
     @JsonType(Number)
     vacanciesTotal = 1;
 
+    @JsonProperty()
+    @JsonType(Number)
+    vacanciesTaken = 0;
+
     get vacanciesTaken() {
         return this.vacanciesTotal - this.vacanciesFree;
     }
