@@ -1,4 +1,9 @@
 {
+    "form": {
+        "label": {
+            "childAge": "Child age"
+        }
+    },
     "peopleCount": {
         "children": "Children",
         "label": "Number of Guests",

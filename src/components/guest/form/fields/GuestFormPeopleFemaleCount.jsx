@@ -7,13 +7,13 @@ import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
 
 const GuestFormPeopleFemaleCount = (props) => {
-    const fieldId = GuestFormFields.ADULT_FEMALE_COUNT;
+    const fieldId = GuestFormFields.PEOPLE_FEMALE_COUNT;
 
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("guest:form.label.adultFemaleCount")}
+                {t("guest:form.label.peopleFemaleCount")}
             </Label>
             <Field
                 component={FormInput}

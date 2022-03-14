@@ -12,6 +12,9 @@ import GuestFormButtons from "components/guest/form/sections/GuestFormButtons";
 import { Col, Row } from "reactstrap";
 import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
 import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditional";
+import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupAdults";
+import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
+import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
 
 const GuestForm = (props) => {
     const { initialValues, onRemove, guestInProgress } = props;
@@ -89,9 +92,12 @@ const GuestForm = (props) => {
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />
+                            <GuestFormGroupAdults />
+                            <GuestFormGroupChildren />
                         </Col>
                         <Col xs={12} lg={6}>
                             <GuestFormAdditional />
+                            <GuestFormDetailedInformation />
                         </Col>
                     </Row>
                     <GuestFormButtons

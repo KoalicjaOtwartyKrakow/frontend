@@ -22,15 +22,15 @@ const GuestFormPersonalData = () => {
             <Row>
                 <Col xs={12} md={6}>
                     <GuestFormPriorityStatus />
-                    <GuestFormFullName />
-                    <GuestFormEmail />
-                    <GuestFormPhoneNumber />
                 </Col>
-                <Col xs={12} md={4}>
-                    <Row>
-                        <Col xs={6} md={12}></Col>
-                        <Col xs={6} md={12}></Col>
-                    </Row>
+                <Col xs={12} md={6}>
+                    <GuestFormFullName />
+                </Col>
+                <Col xs={12} md={6}>
+                    <GuestFormEmail />
+                </Col>
+                <Col xs={12} md={6}>
+                    <GuestFormPhoneNumber />
                 </Col>
             </Row>
         </FormSection>
