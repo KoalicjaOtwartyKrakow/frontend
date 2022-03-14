@@ -2,22 +2,22 @@ import useAxios from "axios-hooks";
 import { getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
-import Accommodation from "models/Accommodation";
+import Host from "models/Host";
 
-const useGetAccommodations = () => {
+const useGetHosts = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
         { manual: true }
     );
 
-    const accommodations = data;
-    const accommodationsGetInProgress = loading;
-    const accommodationsGetError = error;
+    const hosts = data;
+    const hostsGetInProgress = loading;
+    const hostsGetError = error;
 
-    const retrieveAccommodations = () => {
-        const url = getPath(Paths.ACCOMMODATION);
+    const retrieveHosts = () => {
+        const url = getPath(Paths.HOST);
         const transformResponse = (data) =>
-            data.map((item) => plainToClass(Accommodation, item));
+            data.map((item) => plainToClass(Host, item));
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -25,7 +25,7 @@ const useGetAccommodations = () => {
                 await fetch(config);
             } catch (error) {
                 console.error(
-                    "[useGetAccommodations] Error on retrieveAccommodations(): ",
+                    "[useGetHosts] Error on retrieveHosts(): ",
                     error
                 );
                 return getErrorsFromApi(error);
@@ -36,11 +36,11 @@ const useGetAccommodations = () => {
     };
 
     return {
-        accommodations,
-        accommodationsGetInProgress,
-        accommodationsGetError,
-        retrieveAccommodations,
+        hosts,
+        hostsGetInProgress,
+        hostsGetError,
+        retrieveHosts,
     };
 };
 
-export { useGetAccommodations };
+export { useGetHosts };

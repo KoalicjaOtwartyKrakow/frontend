@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { GuestContext } from "components/guest/GuestContext";
-import { useTranslation } from "react-i18next";
 import {
     IconFoodAllergy,
     IconFoodGlutenFree,

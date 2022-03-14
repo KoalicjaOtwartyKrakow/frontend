@@ -4,9 +4,6 @@ import {
     IconFoodGlutenFree,
     IconFoodLactoseFree,
     IconFoodMeatFree,
-    IconPetsAllowed,
-    IconPetsNotPresent,
-    IconPetsPresent,
 } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
 import GuestPriorityStatusBadge from "components/guest/GuestPriorityStatusBadge";

@@ -2,8 +2,6 @@ import React from "react";
 import { FormGroup, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
-import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormTextArea from "components/atoms/form/FormTextArea";
 

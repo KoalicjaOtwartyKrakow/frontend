@@ -2,11 +2,11 @@ import React from "react";
 import { FormGroup, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import { HostFormFields } from "components/host/HostFormFields";
 import { FormItemsHostStatus } from "components/molecules/form/FormItemsHostStatus";
 
-const AccommodationFormHostStatus = (props) => {
-    const fieldId = AccommodationFormFields.HOST_STATUS;
+const HostFormStatus = (props) => {
+    const fieldId = HostFormFields.STATUS;
     const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
@@ -22,6 +22,6 @@ const AccommodationFormHostStatus = (props) => {
     );
 };
 
-AccommodationFormHostStatus.propTypes = {};
+HostFormStatus.propTypes = {};
 
-export default AccommodationFormHostStatus;
+export default HostFormStatus;

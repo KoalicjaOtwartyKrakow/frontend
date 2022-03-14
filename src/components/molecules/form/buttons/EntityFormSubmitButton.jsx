@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import ProgressIcon from "components/atoms/ProgressIcon";
 
-const AccommodationFormSubmitButton = ({ disabled, isSubmitting, label }) => {
+const EntityFormSubmitButton = ({ disabled, isSubmitting, label }) => {
     return (
         <Button
             color="primary"
@@ -22,10 +22,10 @@ const AccommodationFormSubmitButton = ({ disabled, isSubmitting, label }) => {
     );
 };
 
-AccommodationFormSubmitButton.propTypes = {
+EntityFormSubmitButton.propTypes = {
     disabled: PropTypes.bool.isRequired,
     isSubmitting: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
 };
 
-export default AccommodationFormSubmitButton;
+export default EntityFormSubmitButton;

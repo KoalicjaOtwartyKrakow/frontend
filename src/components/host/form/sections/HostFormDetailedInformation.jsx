@@ -1,8 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import HostFormExtendedInformation from "../fields/HostFormExtendedInformation";
-import HostFormSection from "../HostFormSection";
-import HostFormSectionHeader from "../HostFormSectionHeader";
+import FormSection from "components/molecules/form/FormSection";
+import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 
 /**
  * @component
@@ -10,12 +9,11 @@ import HostFormSectionHeader from "../HostFormSectionHeader";
 const HostFormDetailedInformation = () => {
     const { t } = useTranslation(["host"]);
     return (
-        <HostFormSection>
-            <HostFormSectionHeader>
+        <FormSection>
+            <FormSectionHeader>
                 {t("host:form.section.detailedInformation")}
-            </HostFormSectionHeader>
-            <HostFormExtendedInformation />
-        </HostFormSection>
+            </FormSectionHeader>
+        </FormSection>
     );
 };
 

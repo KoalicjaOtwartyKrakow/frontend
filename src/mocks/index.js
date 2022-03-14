@@ -3,17 +3,17 @@ import Accommodation from "models/Accommodation";
 import Guest from "models/Guest";
 import Host from "models/Host";
 import { polishVoivodeships } from "models/constants/Address";
-import { AccommodationStatus } from "models/constants/AccomodationStatus";
+import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import GuestChild from "models/guest/GuestChild";
 import { languages } from "models/constants/Languages";
 import * as constants from "services/Api/constants";
+import { Paths } from "services/Api/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { getPath } from "services/Api/utils";
-import { Paths } from "services/Api/constants";
 import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { uniq } from "lodash-es";
@@ -84,14 +84,14 @@ export function generateAllMocks() {
         host.fullName = chance.name();
         host.email = chance.email();
         host.phoneNumber = chance.phone();
-        host.callAfter = chance.hour({ twentyfour: true });
-        host.callBefore = chance.hour({ twentyfour: true });
+        host.callAfter = chance.hour({ twentyfour: true }).toString();
+        host.callBefore = chance.hour({ twentyfour: true }).toString();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
         host.languagesSpoken = uniq(
             chance
                 .pickset(languages, chance.integer({ min: 0, max: 4 }))
-                .concat("Pl")
+                .concat("pl")
         );
         return host;
     });
@@ -164,9 +164,9 @@ export function generateAllMocks() {
 
 if (constants.useMocks) {
     const mockAdapter = new MockAdapter(axios);
-    const { mockedAccommodations } = generateAllMocks();
+    const { mockedAccommodations, mockedHosts } = generateAllMocks();
 
-    mockAdapter.onGet(Paths.ACCOMMODATIONS).reply((config) => {
+    mockAdapter.onGet(Paths.ACCOMMODATION).reply((config) => {
         const { url } = config;
         const plainAccommodations = mockedAccommodations.map((accommodation) =>
             classToPlain(accommodation)
@@ -211,7 +211,6 @@ if (constants.useMocks) {
             const accommodationIndex = mockedAccommodations.findIndex(
                 (mock) => mock.id === updatedAccommodation.id
             );
-            debugger;
 
             mockedAccommodations[accommodationIndex] = updatedAccommodation;
 
@@ -223,4 +222,52 @@ if (constants.useMocks) {
             );
             return [200, plain];
         });
+
+    mockAdapter.onGet(Paths.HOST).reply((config) => {
+        const { url } = config;
+        const plainHosts = mockedHosts.map((host) => classToPlain(host));
+
+        console.log(`[useGetHost] Mocked response for ${url}: `);
+        return [200, plainHosts];
+    });
+
+    mockAdapter
+        .onGet(new RegExp(getPath(Paths.HOST) + "/.+"))
+        .reply((config) => {
+            const { url } = config;
+            const matchedPath = matchPath(url, {
+                path: getPath(Paths.HOST) + "/:hostId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { hostId },
+            } = matchedPath;
+
+            const host = mockedHosts.find((mock) => mock.id === hostId);
+            const plain = classToPlain(host);
+
+            console.log(`[useGetHost] Mocked response for ${url}: `, host);
+            return [200, plain];
+        });
+
+    mockAdapter.onPut(new RegExp(getPath(Paths.HOST))).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        const updatedHost = plainToClass(Host, json);
+
+        const hostIndex = mockedHosts.findIndex(
+            (mock) => mock.id === updatedHost.id
+        );
+
+        mockedHosts[hostIndex] = updatedHost;
+
+        const plain = data;
+
+        console.log(
+            `[useUpdateHost] Mocked response for ${url}: `,
+            updatedHost
+        );
+        return [200, plain];
+    });
 }

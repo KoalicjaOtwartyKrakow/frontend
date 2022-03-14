@@ -5,30 +5,29 @@
         }
     },
     "errors": {
-        "notFound": "Accommodation Unit not found"
+        "notFound": "Host not found"
     },
     "form": {
         "button": {
-            "create": "Add new host",
+            "create": "Create new host",
             "update": "Save changes",
             "remove": "Remove Host"
         },
         "label": {
-            "acceptsFromAnyCountry": "Accepts Guests from any country",
-            "acceptsGuestWithDisabilities": "Accepts Guests with disabilities",
+            "acceptsGuestsFromAnyCountry": "Accepts Guests from any country",
+            "acceptsGuestsWithDisabilities": "Accepts Guests with disabilities",
             "callAfter": "Call after",
             "callBefore": "Call before",
             "comments": "Comments",
             "fullName": "Full name",
-            "hostAdditionalInformations": "Host additional informations",
-            "languagesSpoken": "Languages Spoken",
             "hostAdditionalInformation": "Host additional information",
+            "languagesSpoken": "Languages Spoken",
             "hostStatus": "Host status",
             "lgbtFriendly": "LGBT friendly"
         },
         "message": {
-            "updateFailure": "Failed to update Accommodation Unit",
-            "updateSuccess": "Successfully updated Accommodation Unit"
+            "updateFailure": "Failed to update Host",
+            "updateSuccess": "Successfully updated Host data"
         },
         "section": {
             "additionalInformation": "Additional information",

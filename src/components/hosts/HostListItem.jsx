@@ -1,7 +1,7 @@
 import React from "react";
 import { HostContext } from "components/host/HostContext";
-import HostItemStatus from "components/hosts/item/HostItemStatus";
 import HostItemLanguagesSpoken from "components/hosts/item/HostItemLanguagesSpoken";
+import HostItemStatus from "components/hosts/item/HostItemStatus";
 
 /**
  *
@@ -22,10 +22,10 @@ const HostListItem = ({ host, onEdit, onRemove }) => {
                 <td>{host.email}</td>
                 <td>{host.phoneNumber}</td>
                 <td>
-                    <HostItemStatus />
+                    <HostItemLanguagesSpoken />
                 </td>
                 <td>
-                    <HostItemLanguagesSpoken />
+                    <HostItemStatus />
                 </td>
                 <td>{host.comments}</td>
             </tr>

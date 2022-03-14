@@ -1,12 +1,13 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import HostFormSection from "../HostFormSection";
-import HostFormSectionHeader from "../HostFormSectionHeader";
 import HostFormEmail from "../fields/HostFormEmail";
 import HostFormPhoneNumber from "../fields/HostFormPhoneNumber";
 import HostFormCallAfter from "../fields/HostFormCallAfter";
 import HostFormCallBefore from "../fields/HostFormCallBefore";
+import HostFormFullName from "components/host/form/fields/HostFormFullName";
+import FormSection from "components/molecules/form/FormSection";
+import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 
 /**
  * @component
@@ -14,12 +15,14 @@ import HostFormCallBefore from "../fields/HostFormCallBefore";
 const HostFormContact = () => {
     const { t } = useTranslation(["host"]);
     return (
-        <HostFormSection>
-            <HostFormSectionHeader>
+        <FormSection>
+            <FormSectionHeader>
                 {t("host:form.section.contact")}
-            </HostFormSectionHeader>
+            </FormSectionHeader>
             <Row>
                 <Col>
+                    <HostFormFullName />
+
                     <HostFormEmail />
                     <HostFormPhoneNumber />
                     <Row>
@@ -32,7 +35,7 @@ const HostFormContact = () => {
                     </Row>
                 </Col>
             </Row>
-        </HostFormSection>
+        </FormSection>
     );
 };
 

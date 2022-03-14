@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
-import { AccommodationStatus } from "models/constants/AccomodationStatus";
+import { AccommodationStatus } from "models/constants/AccommodationStatus";
 
 const AccommodationFormAddressStatus = (props) => {
     const fieldId = AccommodationFormFields.STATUS;

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 import { languages } from "models/constants/Languages";
 import { HostFormFields } from "components/host/HostFormFields";
+import ISO6391 from "iso-639-1";
 
 const languagesSpokenCheckbox = ({ name, label }) => {
     return (
@@ -26,7 +27,7 @@ const HostFormLanguagesSpoken = () => {
 
     const languagesSpokenCheckboxes = languages.map((language) => ({
         name: language,
-        label: language,
+        label: ISO6391.getName(language),
     }));
 
     return (

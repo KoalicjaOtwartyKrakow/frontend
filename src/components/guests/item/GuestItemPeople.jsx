@@ -10,7 +10,6 @@ import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestCol
  */
 const GuestItemPeople = () => {
     const guest = useContext(GuestContext);
-    const { t } = useTranslation(["guests"]);
 
     const { peopleTotalCount, peopleMaleCount, peopleFemaleCount, children } =
         guest;

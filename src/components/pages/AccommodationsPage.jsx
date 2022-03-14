@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import AccommodationList from "components/accommodations/AccommodationList";
-import withAccommodations from "components/accommodations/withAccommodations";
-import { Alert, Button, Card, CardBody, Col, Row } from "reactstrap";
+import { Alert, Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
 import PageCard from "components/atoms/PageCard";
@@ -9,9 +8,7 @@ import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import AccommodationListDescription from "components/accommodations/AccommodationListDescription";
 import RefreshButton from "components/atoms/RefreshButton";
-import { useGetAccommodation } from "hooks/api/accommodationHooks";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
-import { useLocation } from "react-router-dom";
 import HorizontalLine from "components/atoms/HorizontalLine";
 
 const AccommodationsPage = () => {
@@ -35,7 +32,7 @@ const AccommodationsPage = () => {
         if (!accommodations) {
             retrieveAccommodations();
         }
-    }, []);
+    }, [retrieveAccommodations, accommodations]);
 
     return (
         <PageCard header={pageHeader}>

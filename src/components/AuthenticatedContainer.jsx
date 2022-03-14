@@ -1,10 +1,9 @@
 import React from "react";
 import { Container } from "reactstrap";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
 import { Routes } from "constants/Routes";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";

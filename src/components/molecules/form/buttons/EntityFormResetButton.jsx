@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 
-const AccommodationFormResetButton = ({ label }) => {
+const EntityFormResetButton = ({ label }) => {
     return (
         <Button
             color="secondary"
@@ -15,8 +15,8 @@ const AccommodationFormResetButton = ({ label }) => {
     );
 };
 
-AccommodationFormResetButton.propTypes = {
+EntityFormResetButton.propTypes = {
     label: PropTypes.string.isRequired,
 };
 
-export default AccommodationFormResetButton;
+export default EntityFormResetButton;

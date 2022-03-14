@@ -5,7 +5,7 @@ import {
     defaultPolishVoivodeshipId,
     getPolishVoivodeshipById,
 } from "models/constants/Address";
-import { pick, merge } from "lodash-es";
+import { merge, pick } from "lodash-es";
 
 class AccommodationFormFields {
     static ADDRESS_CITY = "addressCity";
