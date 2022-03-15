@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormFeedback, FormGroup, FormText, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
@@ -13,14 +13,16 @@ const GuestFormDurationToStay = () => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("guest:form.label.durationToStay")}
+                {t("guest:form.label.durationOfStay")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
+                placeholder={t("guest:form.placeholder.durationOfStay")}
                 type="text"
             />
+            <FormText>{t("guest:form.text.durationOfStay")}</FormText>
         </FormGroup>
     );
 };

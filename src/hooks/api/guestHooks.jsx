@@ -69,7 +69,10 @@ const useUpdateGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error("[useGetGuest] Error on updateGuest(): ", error);
+                console.error(
+                    "[useUpdateGuest] Error on updateGuest(): ",
+                    error
+                );
                 return getErrorsFromApi(error);
             }
         };
@@ -85,4 +88,50 @@ const useUpdateGuest = () => {
     };
 };
 
-export { useGetGuest, useUpdateGuest };
+const useCreateGuest = () => {
+    const [{ data, loading, error }, fetch] = useAxios(
+        { method: "POST" },
+        { manual: true, autoCancel: false }
+    );
+
+    const createdGuest = data;
+    const guestCreateInProgress = loading;
+    const guestCreateError = getErrorsFromApi(error);
+
+    /**
+     *
+     * @param {Guest} guest
+     * @returns {Promise<*|undefined>}
+     */
+    const createGuest = ({ guest }) => {
+        const url = getPath(Paths.GUEST);
+        const transformResponse = (data) => {
+            return data && plainToClass(Guest, data);
+        };
+        const data = classToPlain(guest);
+        const config = { data, url, transformResponse };
+
+        const createData = async () => {
+            try {
+                await fetch(config);
+            } catch (error) {
+                console.error(
+                    "[useCreateGuest] Error on createGuest(): ",
+                    error
+                );
+                return getErrorsFromApi(error);
+            }
+        };
+
+        return createData();
+    };
+
+    return {
+        createdGuest,
+        guestCreateInProgress,
+        guestCreateError,
+        createGuest,
+    };
+};
+
+export { useCreateGuest, useGetGuest, useUpdateGuest };

@@ -1,20 +1,26 @@
 import React from "react";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
 import ProgressIcon from "components/atoms/ProgressIcon";
 import classNames from "classnames";
 
-const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
+const EntityCreateButton = ({
+    className,
+    disabled = false,
+    inProgress = false,
+    onClick,
+    label,
+}) => {
     const { t } = useTranslation(["common"]);
-    const label = t("common:buttons.refresh");
     const buttonClassName = classNames(className);
+
+    label = label || t("common:buttons.create");
 
     return (
         <Button
             color="primary"
-            outline
             type="submit"
             disabled={disabled}
             className={buttonClassName}
@@ -22,7 +28,7 @@ const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
         >
             <ProgressIcon
                 className="me-2"
-                icon={faRotate}
+                icon={faPlus}
                 inProgress={inProgress}
             />
             <span className="fw-semibold">{label}</span>
@@ -30,11 +36,11 @@ const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
     );
 };
 
-RefreshButton.propTypes = {
+EntityCreateButton.propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     inProgress: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
 };
 
-export default RefreshButton;
+export default EntityCreateButton;

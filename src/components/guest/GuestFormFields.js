@@ -2,42 +2,6 @@ import { isEqual, merge, pick } from "lodash-es";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { getFormattedDate } from "shared/datetime";
 import Guest from "models/Guest";
-import {
-    JsonConverter,
-    JsonElementType,
-    JsonObject,
-    JsonProperty,
-    JsonType,
-    OnDeserialized,
-} from "ta-json";
-import GuestChild from "models/guest/GuestChild";
-import MomentSerializer from "serializers/MomentSerializer";
-import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
-import { GuestStatus } from "models/constants/GuestStatus";
-import { nanoid } from "nanoid";
-
-class A {
-    durationOfStay = "";
-    email = "";
-    financialStatus = "";
-    foodAllergies = "";
-    fullName = "";
-    glutenFreeDiet = false;
-    id = undefined;
-    lactoseFreeDiet = false;
-    meatFreeDiet = false;
-    peopleFemaleCount = 1;
-    peopleMaleCount = 0;
-    peopleTotalCount = 1;
-    petsDescription = "";
-    petsPresent = false;
-    phoneNumber = "";
-    priorityDate = undefined;
-    priorityStatus = GuestPriorityStatus.IN_CRISIS_POINT;
-    specialNeeds = "";
-    updatedAt = undefined;
-    verificationStatus = GuestStatus.CREATED;
-}
 
 class GuestFormFields {
     static CHILDREN = "children";

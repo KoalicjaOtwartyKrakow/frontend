@@ -31,7 +31,7 @@ const GuestFormVerificationStatus = (props) => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("guest:form.label.priorityStatus")}
+                {t("guest:form.label.status")}
             </Label>
             <Field
                 component={FormSelect}

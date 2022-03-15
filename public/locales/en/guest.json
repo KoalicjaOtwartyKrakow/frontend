@@ -1,43 +1,57 @@
 {
     "card": {
         "title": {
+            "create": "Create a new Guest",
             "update": "Update Guest"
         }
     },
     "form": {
         "button": {
+            "create": "Add a new Guest",
             "update": "Save changes"
         },
         "label": {
-            "addChild": "Add child",
+            "addChild": "Add children data",
             "childAge": "Child age",
             "desiredDestination": "Desired destination",
             "dietaryRequirements": "Dietary requirements",
-            "durationToStay": "Duration to stay",
+            "durationOfStay": "Stay duration",
             "financialStatus": "Financial status",
             "findAccommodation": "Type to search all accommodation units…",
             "foodAllergies": "Food allergies",
             "glutenFreeDiet": "Gluten free diet",
             "lactoseFreeDiet": "Lactose free diet",
             "meatFreeDiet": "Meat free diet",
-            "peopleFemaleCount": "Female count",
-            "peopleMaleCount": "Male count",
-            "peopleTotalCount": "People count",
+            "peopleFemaleCount": "Women",
+            "peopleMaleCount": "Men",
+            "peopleTotalCount": "Total",
             "pets": "Pets",
             "petsDescription": "Pets description",
             "petsPresent": "Pets present",
             "priorityDate": "Priority date",
-            "priorityStatus": "Priority status",
+            "status": "Status",
             "specialNeeds": "Special needs"
+        },
+        "message": {
+            "createFailure": "Guest was not added to the system",
+            "createSuccess": "The new Guest has been added to the system",
+            "updateFailure": "There was an issue updating the Guest",
+            "updateSuccess": "Successful update of Guest data"
+        },
+        "placeholder": {
+            "durationOfStay": "3 months"
         },
         "section": {
             "additionalInfo": "Additional information",
             "assignAccommodation": "Accommodation assignment",
             "detailedInfo": "Detailed information",
-            "groupAdults": "Group adults",
-            "groupChildren": "Group children",
+            "groupAdults": "Number of people",
+            "groupChildren": "Children information",
             "personalData": "Personal data",
             "stayInfo": "Stay information"
+        },
+        "text": {
+            "durationOfStay": "Number and a time unit: '10 days' or '1 week'"
         }
     },
     "peopleCount": {

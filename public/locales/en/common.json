@@ -4,10 +4,13 @@
             "subtitle": "KOK:on – we help people find a safe harbor!"
         }
     },
+    "buttons": {
+        "create": "Create new",
+        "refresh": "Refresh data"
+    },
     "data": {
         "loading": "Loading data…",
-        "updateSuccess": "Changes saved successfully",
-        "refresh": "Refresh data"
+        "updateSuccess": "Changes saved successfully"
     },
     "errors": {
         "apiFailure": "API request failed",
@@ -28,6 +31,7 @@
             "phone": "Phone"
         },
         "placeholder": {
+            "dateFormat": "YYYY-MM-DD",
             "email": "username@hostname.tld",
             "phone": "+1 (123) 4567890"
         },

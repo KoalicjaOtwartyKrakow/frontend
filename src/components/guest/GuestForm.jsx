@@ -101,9 +101,11 @@ const GuestForm = (props) => {
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
-                    <GuestFormAssignment
-                        onAccommodationSelected={onAccommodationSelected}
-                    />
+                    {!isCreateMode && (
+                        <GuestFormAssignment
+                            onAccommodationSelected={onAccommodationSelected}
+                        />
+                    )}
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />

@@ -1,4 +1,7 @@
 {
+    "button": {
+        "create": "Add a new Guest"
+    },
     "card": {
         "title": "Guests",
         "found": "Found",
