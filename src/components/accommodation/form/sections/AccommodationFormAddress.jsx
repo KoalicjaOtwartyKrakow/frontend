@@ -8,6 +8,7 @@ import AccommodationFormAddressLine from "components/accommodation/form/fields/A
 import AccommodationFormZip from "components/accommodation/form/fields/AccommodationFormZip";
 import AccommodationFormVoivodeship from "components/accommodation/form/fields/AccommodationFormVoivodeship";
 import AccommodationFormCity from "components/accommodation/form/fields/AccommodationFormCity";
+import AccommodationFormHost from "components/accommodation/form/fields/AccommodationFormHost";
 
 /**
  * @component
@@ -35,6 +36,7 @@ const AccommodationFormAddress = () => {
                     </Row>
                 </Col>
             </Row>
+            <AccommodationFormHost />
         </FormSection>
     );
 };
