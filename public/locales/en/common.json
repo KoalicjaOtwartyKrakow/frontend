@@ -10,8 +10,11 @@
         "refresh": "Refresh data"
     },
     "errors": {
-        "apiFailure": "API call resulted in error",
-        "notFound": "Endpoint not found"
+        "apiFailure": "API request failed",
+        "notFound": "Endpoint not found",
+        "connectionReset": "Network connection was reset by server",
+        "connectionRefused": "Server refused a network connection",
+        "unhandledApiError": "Unhandled API error"
     },
     "form": {
         "button": {

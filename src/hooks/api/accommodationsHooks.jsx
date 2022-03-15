@@ -7,12 +7,12 @@ import Accommodation from "models/Accommodation";
 const useGetAccommodations = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const accommodations = data;
     const accommodationsGetInProgress = loading;
-    const accommodationsGetError = error;
+    const accommodationsGetError = getErrorsFromApi(error);
 
     const retrieveAccommodations = () => {
         const url = getPath(Paths.ACCOMMODATION);

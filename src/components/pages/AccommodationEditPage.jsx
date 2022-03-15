@@ -49,10 +49,19 @@ const AccommodationEditPage = () => {
     const formFields = new AccommodationFormFields();
     const initialValues = formFields.modelToForm(accommodation);
 
+    const { accommodationId } = params;
+
+    const shouldFetchAccommodation = !(
+        accommodation ||
+        accommodationGetError ||
+        accommodationGetInProgress
+    );
+
     useEffect(() => {
-        const { accommodationId } = params;
-        retrieveAccommodation({ accommodationId });
-    }, [params]);
+        if (shouldFetchAccommodation) {
+            retrieveAccommodation({ accommodationId });
+        }
+    }, [accommodationId, retrieveAccommodation, shouldFetchAccommodation]);
 
     useLayoutEffect(() => {
         if (updatedAccommodation instanceof Accommodation) {

@@ -7,12 +7,12 @@ import Accommodation from "models/Accommodation";
 const useGetAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const accommodation = data;
     const accommodationGetInProgress = loading;
-    const accommodationGetError = error;
+    const accommodationGetError = getErrorsFromApi(error);
 
     const fetchAccommodation = ({ accommodationId }) => {
         const url = getPath(Paths.ACCOMMODATION) + "/" + accommodationId;
@@ -45,7 +45,7 @@ const useGetAccommodation = () => {
 const useUpdateAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "PUT" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const updatedAccommodation = data;

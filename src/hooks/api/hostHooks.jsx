@@ -7,12 +7,12 @@ import Host from "models/Host";
 const useGetHost = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const host = data;
     const hostGetInProgress = loading;
-    const hostGetError = error;
+    const hostGetError = getErrorsFromApi(error);
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(Paths.HOST) + "/" + hostId;
@@ -42,7 +42,7 @@ const useGetHost = () => {
 const useUpdateHost = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "PUT" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const updatedHost = data;

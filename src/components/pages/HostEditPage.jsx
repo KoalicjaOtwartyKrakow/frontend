@@ -22,7 +22,6 @@ const HostEditPage = () => {
     const { addToast } = useToasts();
     const params = useParams();
     const history = useHistory();
-    const { hostId } = params;
 
     const { host, hostGetInProgress, hostGetError, retrieveHost } =
         useGetHost();
@@ -38,9 +37,15 @@ const HostEditPage = () => {
     const formFields = new HostFormFields();
     const initialValues = formFields.modelToForm(host);
 
+    const { hostId } = params;
+
+    const shouldFetchHost = !(host || hostGetError || hostGetInProgress);
+
     useEffect(() => {
-        retrieveHost({ hostId });
-    }, [hostId]);
+        if (shouldFetchHost) {
+            retrieveHost({ hostId });
+        }
+    }, [hostId, retrieveHost, shouldFetchHost]);
 
     useLayoutEffect(() => {
         if (updatedHost instanceof Host) {

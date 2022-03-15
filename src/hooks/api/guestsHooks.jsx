@@ -7,12 +7,12 @@ import Guest from "models/Guest";
 const useGetGuests = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const guests = data;
     const guestsGetInProgress = loading;
-    const guestsGetError = error;
+    const guestsGetError = getErrorsFromApi(error);
 
     const retrieveGuests = () => {
         const url = getPath(Paths.GUEST);
