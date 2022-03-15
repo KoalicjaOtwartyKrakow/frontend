@@ -10,11 +10,15 @@ import GuestListDescription from "components/guests/GuestListDescription";
 import RefreshButton from "components/atoms/RefreshButton";
 import { useGetGuests } from "hooks/api/guestsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
+import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
+import { useHistory } from "react-router-dom";
+import { Routes } from "constants/Routes";
 
 const GuestsPage = () => {
     const { guests, guestsGetInProgress, guestsGetError, retrieveGuests } =
         useGetGuests();
     const { t } = useTranslation(["guests"]);
+    const history = useHistory();
 
     const guestCount = guests
         ? `(${t("guests:card.found")}: ${guests.length})`
@@ -31,10 +35,19 @@ const GuestsPage = () => {
         }
     }, [retrieveGuests, shouldFetchGuests]);
 
+    const navigateToCreatePage = () => {
+        history.push(Routes.GUEST_CREATE);
+    };
+
     return (
         <PageCard header={pageHeader}>
             <Row>
                 <Col className="d-flex flex-row-reverse">
+                    <EntityCreateButton
+                        onClick={navigateToCreatePage}
+                        label={t("guests:button.create")}
+                        className="ms-2"
+                    />
                     <RefreshButton
                         disabled={guestsGetInProgress}
                         onClick={() => retrieveGuests()}

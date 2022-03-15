@@ -19,7 +19,7 @@ const GuestFormDesiredDestination = (props) => {
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="0"
+                placeholder={t("guest:form.placeholder.desiredDestination")}
                 type="text"
             />
         </FormGroup>

@@ -18,7 +18,7 @@ class Routes {
     static HOST_EDIT = Routes.HOSTS + "/:hostId/edit";
 
     static GUESTS = "/guests";
-    static GUESTS_CREATE = Routes.GUESTS + "/create";
+    static GUEST_CREATE = Routes.GUESTS + "/create";
     static GUEST_EDIT = Routes.GUESTS + "/:guestId/edit";
 }
 

@@ -12,6 +12,7 @@ import GuestsPage from "components/pages/GuestsPage";
 import HostEditPage from "components/pages/HostEditPage";
 import HostsPage from "components/pages/HostsPage";
 import LoadingPage from "components/pages/LoadingPage";
+import GuestCreatePage from "components/pages/GuestCreatePage";
 
 function App() {
     return (
@@ -37,6 +38,10 @@ function App() {
                             path={Routes.GUESTS}
                             exact
                             render={() => <GuestsPage />}
+                        />
+                        <Route
+                            path={Routes.GUEST_CREATE}
+                            component={GuestCreatePage}
                         />
                         <Route
                             path={Routes.GUEST_EDIT}

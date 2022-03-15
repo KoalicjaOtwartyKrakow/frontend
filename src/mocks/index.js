@@ -18,9 +18,9 @@ import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { uniq } from "lodash-es";
 
-export function generateAllMocks() {
-    const chance = new Chance(0xdeadbeef);
+const chance = new Chance(0xdeadbeef);
 
+export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
         guest.id = chance.guid({ version: 5 });
@@ -317,6 +317,29 @@ if (constants.useMocks) {
             `[useUpdateGuest] Mocked response for ${url}: `,
             updatedGuest
         );
+        return [200, plain];
+    });
+
+    mockAdapter.onPost(Paths.GUEST).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        /**
+         * @type {Guest}
+         */
+        const createdGuest = plainToClass(Guest, json);
+        createdGuest.id = chance.guid({ version: 5 });
+        createdGuest.createdAt = moment();
+        createdGuest.updatedAt = moment();
+
+        mockedGuests.unshift(createdGuest);
+
+        const plain = classToPlain(createdGuest);
+
+        console.log(
+            `[useUpdateGuest] Mocked response for ${url}: `,
+            createdGuest
+        );
+
         return [200, plain];
     });
 }

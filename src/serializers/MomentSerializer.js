@@ -34,6 +34,14 @@ class MomentSerializer {
     toDate(value, emptyValue = undefined) {
         return moment.isMoment(value) ? value.toDate() : emptyValue;
     }
+
+    fromInputDate(value, emptyValue = undefined) {
+        return value ? moment(value, "YYYY-MM-DD") : emptyValue;
+    }
+
+    toInputDate(value, emptyValue = undefined) {
+        return moment.isMoment(value) ? value.format("YYYY-MM-DD") : emptyValue;
+    }
 }
 
 export default MomentSerializer;
