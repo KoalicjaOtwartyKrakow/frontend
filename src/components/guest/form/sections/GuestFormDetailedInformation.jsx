@@ -7,10 +7,6 @@ import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import GuestFormDietaryRequirements from "components/guest/form/fields/GuestFormDietaryRequirements";
 import GuestFormFoodAllergies from "../fields/GuestFormFoodAllergies";
 import GuestFormSpecialNeeds from "../fields/GuestFormSpecialNeeds";
-import GuestFormFinanceStatus from "../fields/GuestFormFinanceStatus";
-import GuestFormDurationToStay from "../fields/GuestFormDurationToStay";
-import GuestFormDesiredDestination from "../fields/GuestFormDesiredDestination";
-import GuestFormVerificationStatus from "../fields/GuestFormVerificationStatus";
 
 const GuestFormDetailedInformation = () => {
     const { t } = useTranslation(["guest"]);

@@ -9,6 +9,7 @@
             "update": "Save changes"
         },
         "label": {
+            "addChild": "Add child",
             "childAge": "Child age",
             "desiredDestination": "Desired destination",
             "dietaryRequirements": "Dietary requirements",
