@@ -17,15 +17,6 @@ const commonSchema = Yup.object().shape({
         .required("common:form.validator.zip"),
 
     // Vacancies
-    [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
-        .integer("common:form.validator.integer")
-        .moreThan(0, "common:form.validator.positiveNumber")
-        .min(1, `common:form.validator.numberMin`)
-        .min(
-            Yup.ref(AccommodationFormFields.VACANCIES_TAKEN),
-            "accommodation:form.validator.tooManyPeople"
-        )
-        .required("accommodation:form.validator.vacanciesTotal"),
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("common:form.validator.integer")
         .moreThan(-1, "common:form.validator.positiveNumber")
@@ -34,6 +25,11 @@ const commonSchema = Yup.object().shape({
             "accommodation:form.validator.tooManyPeople"
         )
         .required("accommodation:form.validator.vacanciesTaken"),
+    [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
+        .integer("common:form.validator.integer")
+        .moreThan(0, "common:form.validator.positiveNumber")
+        .min(1, `common:form.validator.numberMin`)
+        .required("accommodation:form.validator.vacanciesTotal"),
 
     // Info
     [AccommodationFormFields.OWNER_COMMENTS]: Yup.string().trim(),
