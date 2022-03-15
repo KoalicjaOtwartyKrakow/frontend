@@ -61,6 +61,8 @@ class AccommodationFormFields {
 
     formToModel(formValues) {
         const accommodation = new Accommodation();
+        accommodation[AccommodationFormFields.VACANCIES_TOTAL] =
+            formValues[AccommodationFormFields.VACANCIES_TOTAL];
         return merge(accommodation, formValues);
     }
 
