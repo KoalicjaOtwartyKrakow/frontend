@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
 import PageCard from "components/atoms/PageCard";
 import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
