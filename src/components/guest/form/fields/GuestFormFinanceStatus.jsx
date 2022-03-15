@@ -13,7 +13,7 @@ const GuestFormFinanceStatus = () => {
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("guest:form.label.financeStatus")}
+                {t("guest:form.label.financialStatus")}
             </Label>
             <Field
                 component={FormInput}
