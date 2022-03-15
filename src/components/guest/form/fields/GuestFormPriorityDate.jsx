@@ -10,11 +10,11 @@ import FormDate from "components/atoms/form/FormDate";
 const GuestFormPriorityDate = () => {
     const fieldId = GuestFormFields.PRIORITY_DATE;
 
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(["common", "guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.email")}
+                {t("guest:form.label.priorityDate")}
             </Label>
             <Field
                 component={FormDate}

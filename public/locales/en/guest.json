@@ -28,6 +28,7 @@
             "pets": "Pets",
             "petsDescription": "Pets description",
             "petsPresent": "Pets present",
+            "priorityStatus": "Priority status",
             "priorityDate": "Priority date",
             "status": "Status",
             "specialNeeds": "Special needs"
@@ -39,6 +40,7 @@
             "updateSuccess": "Successful update of Guest data"
         },
         "placeholder": {
+            "desiredDestination": "Where is the Guest headed?",
             "durationOfStay": "3 months"
         },
         "section": {
