@@ -2,30 +2,29 @@ import React from "react";
 import { FormGroup, Label } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
-import FormInput from "components/atoms/form/FormInput";
 import { GuestFormFields } from "components/guest/GuestFormFields";
+import FormTextArea from "components/atoms/form/FormTextArea";
 
-const GuestFormEmail = () => {
-    const fieldId = GuestFormFields.EMAIL;
+const GuestFormSpecialNeeds = (props) => {
+    const fieldId = GuestFormFields.SPECIAL_NEEDS;
 
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.email")}
+                {t("guest:form.label.specialNeeds")}
             </Label>
             <Field
-                component={FormInput}
+                component={FormTextArea}
                 id={fieldId}
                 name={fieldId}
-                placeholder={t("common:form.placeholder.email")}
-                type="text"
+                type="textarea"
+                rows={1}
             />
         </FormGroup>
     );
 };
 
-GuestFormEmail.propTypes = {};
+GuestFormSpecialNeeds.propTypes = {};
 
-export default GuestFormEmail;
+export default GuestFormSpecialNeeds;

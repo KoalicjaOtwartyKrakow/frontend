@@ -15,6 +15,7 @@ import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditio
 import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupAdults";
 import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
 import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
+import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
 
 const GuestForm = (props) => {
     const { initialValues, onRemove, guestInProgress } = props;
@@ -92,6 +93,7 @@ const GuestForm = (props) => {
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />
+                            <GuestFormStayInfo />
                             <GuestFormGroupAdults />
                             <GuestFormGroupChildren />
                         </Col>

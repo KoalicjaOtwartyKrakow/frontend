@@ -10,7 +10,10 @@
         },
         "label": {
             "childAge": "Child age",
+            "desiredDestination": "Desired destination",
             "dietaryRequirements": "Dietary requirements",
+            "durationToStay": "Duration to stay",
+            "financeStatus": "Finance status",
             "foodAllergies": "Food allergies",
             "glutenFreeDiet": "Gluten free diet",
             "lactoseFreeDiet": "Lactose free diet",
@@ -21,14 +24,17 @@
             "pets": "Pets",
             "petsDescription": "Pets description",
             "petsPresent": "Pets present",
-            "priorityStatus": "Priority status"
+            "priorityDate": "Priority date",
+            "priorityStatus": "Priority status",
+            "specialNeeds": "Special needs"
         },
         "section": {
             "additionalInfo": "Additional information",
             "detailedInfo": "Detailed information",
             "groupAdults": "Group adults",
             "groupChildren": "Group children",
-            "personalData": "Personal data"
+            "personalData": "Personal data",
+            "stayInfo": "Stay information"
         }
     },
     "peopleCount": {
