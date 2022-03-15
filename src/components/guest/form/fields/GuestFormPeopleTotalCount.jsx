@@ -21,7 +21,9 @@ const GuestFormPeopleTotalCount = (props) => {
     useEffect(() => {
         setFieldValue(
             field.name,
-            peopleFemaleCount + peopleMaleCount + children.length
+            (peopleFemaleCount || 0) +
+                (peopleMaleCount || 0) +
+                (children.length || 0)
         );
     }, [
         peopleFemaleCount,
