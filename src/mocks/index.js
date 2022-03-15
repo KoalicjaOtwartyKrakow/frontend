@@ -150,12 +150,11 @@ export function generateAllMocks() {
         accommodation.easyAmbulanceAccess = chance.bool();
 
         // Relations
-        accommodation.hostId =
+        accommodation.host =
             mockedHosts[
                 chance.natural({ min: 0, max: mockedHosts.length - 1 })
-            ].id;
-
-        // accommodation.description = chance.paragraph({ sentences: 2 });
+            ];
+        accommodation.hostId = accommodation.host.id;
 
         return accommodation;
     });

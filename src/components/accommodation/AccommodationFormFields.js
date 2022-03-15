@@ -60,8 +60,17 @@ class AccommodationFormFields {
     }
 
     formToModel(formValues) {
-        const accommodation = new Accommodation();
-        return merge(accommodation, formValues);
+        /**
+         * @type {Accommodation}
+         */
+        const accommodation = merge(new Accommodation(), formValues);
+
+        // Required for recalculation, as vacanciesTaken setter is called sooner
+        // than vacanciesFree get upgraded during merge()
+        accommodation.vacanciesTaken =
+            formValues[AccommodationFormFields.VACANCIES_TAKEN];
+
+        return accommodation;
     }
 
     getInitialStatus() {
