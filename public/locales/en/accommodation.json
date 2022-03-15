@@ -11,7 +11,10 @@
             "present": "Pets present",
             "notAllowed": "Pets not allowed",
             "notPresent": "Pets not present"
-        }
+        },
+        "disabledPeopleFriendly": "Disabled people friendly",
+        "parkingPlaceAvailable": "Parking place available",
+        "easyAmbulanceAccess": "Easy ambulance access"
     },
     "errors": {
         "notFound": "Accommodation Unit not found"

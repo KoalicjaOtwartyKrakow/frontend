@@ -1,5 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDog, faHandDots } from "@fortawesome/free-solid-svg-icons";
+import {
+    faDog,
+    faHandDots,
+    faWheelchair,
+    faParking,
+    faAmbulance,
+} from "@fortawesome/free-solid-svg-icons";
 import { faDog as faDogNotPresent } from "@fortawesome/pro-light-svg-icons";
 import React from "react";
 import { nanoid } from "nanoid";
@@ -166,6 +172,60 @@ const IconFoodGlutenFree = () => {
     );
 };
 
+const iconTraitsColor = "text-guest-trait";
+
+const IconDisabledPeopleFriendly = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["accomomdation"]);
+    return (
+        <IconContainer>
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.disabledPeopleFriendly")}
+            />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon
+                    icon={faWheelchair}
+                    className={iconTraitsColor}
+                />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+const IconParkingPlaceAvailable = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["accomomdation"]);
+    return (
+        <IconContainer>
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.parkingPlaceAvailable")}
+            />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon icon={faParking} className={iconTraitsColor} />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+const IconEasyAmbulanceAccess = () => {
+    const id = getDomId();
+    const { t } = useTranslation(["accomomdation"]);
+    return (
+        <IconContainer>
+            <IconTooltip
+                target={id}
+                label={t("accommodation:common.easyAmbulanceAccess")}
+            />
+            <IconStackWrapper id={id}>
+                <FontAwesomeIcon
+                    icon={faAmbulance}
+                    className={iconTraitsColor}
+                />
+            </IconStackWrapper>
+        </IconContainer>
+    );
+};
+
 export {
     IconFoodAllergy,
     IconFoodGlutenFree,
@@ -175,4 +235,7 @@ export {
     IconPetsNotAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
+    IconDisabledPeopleFriendly,
+    IconParkingPlaceAvailable,
+    IconEasyAmbulanceAccess,
 };

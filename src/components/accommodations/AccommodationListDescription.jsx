@@ -3,6 +3,9 @@ import {
     IconPetsAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
+    IconDisabledPeopleFriendly,
+    IconParkingPlaceAvailable,
+    IconEasyAmbulanceAccess,
 } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
 
@@ -22,6 +25,18 @@ const AccommodationListDescription = () => {
                 <span>
                     <IconPetsAllowed /> –{" "}
                     {t("accommodation:common.pets.allowed")};{" "}
+                </span>
+                <span>
+                    <IconDisabledPeopleFriendly /> –{" "}
+                    {t("accommodation:common.disabledPeopleFriendly")};{" "}
+                </span>
+                <span>
+                    <IconParkingPlaceAvailable /> –{" "}
+                    {t("accommodation:common.parkingPlaceAvailable")};{" "}
+                </span>
+                <span>
+                    <IconEasyAmbulanceAccess /> –{" "}
+                    {t("accommodation:common.easyAmbulanceAccess")};{" "}
                 </span>
             </p>
         </article>
