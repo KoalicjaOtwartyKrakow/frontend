@@ -24,7 +24,7 @@ const IconContainer = ({ children }) => <span>{children}</span>;
 
 const IconStackWrapper = ({ children, className, id }) => {
     const iconStackWrapperClassName = classNames(
-        "fa-layers fa-fw fa-lg",
+        "fa-layers fa-fw fa-lg me-1",
         className
     );
     return (
@@ -172,11 +172,11 @@ const IconFoodGlutenFree = () => {
     );
 };
 
-const iconTraitsColor = "text-guest-trait";
+const iconAccommodationTraitsColor = "text-muted";
 
 const IconDisabledPeopleFriendly = () => {
     const id = getDomId();
-    const { t } = useTranslation(["accomomdation"]);
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
             <IconTooltip
@@ -186,7 +186,7 @@ const IconDisabledPeopleFriendly = () => {
             <IconStackWrapper id={id}>
                 <FontAwesomeIcon
                     icon={faWheelchair}
-                    className={iconTraitsColor}
+                    className={iconAccommodationTraitsColor}
                 />
             </IconStackWrapper>
         </IconContainer>
@@ -194,7 +194,7 @@ const IconDisabledPeopleFriendly = () => {
 };
 const IconParkingPlaceAvailable = () => {
     const id = getDomId();
-    const { t } = useTranslation(["accomomdation"]);
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
             <IconTooltip
@@ -202,14 +202,17 @@ const IconParkingPlaceAvailable = () => {
                 label={t("accommodation:common.parkingPlaceAvailable")}
             />
             <IconStackWrapper id={id}>
-                <FontAwesomeIcon icon={faParking} className={iconTraitsColor} />
+                <FontAwesomeIcon
+                    icon={faParking}
+                    className={iconAccommodationTraitsColor}
+                />
             </IconStackWrapper>
         </IconContainer>
     );
 };
 const IconEasyAmbulanceAccess = () => {
     const id = getDomId();
-    const { t } = useTranslation(["accomomdation"]);
+    const { t } = useTranslation(["accommodation"]);
     return (
         <IconContainer>
             <IconTooltip
@@ -219,7 +222,7 @@ const IconEasyAmbulanceAccess = () => {
             <IconStackWrapper id={id}>
                 <FontAwesomeIcon
                     icon={faAmbulance}
-                    className={iconTraitsColor}
+                    className={iconAccommodationTraitsColor}
                 />
             </IconStackWrapper>
         </IconContainer>

@@ -38,18 +38,6 @@ const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
                 <td>
                     <AccommodationItemInfo />
                 </td>
-                {/*<td>*/}
-                {/*    <ButtonGroup>*/}
-                {/*        <Button*/}
-                {/*            color="danger"*/}
-                {/*            className="w-100"*/}
-                {/*            outline*/}
-                {/*            onClick={(event) => onRemove(id, event)}*/}
-                {/*        >*/}
-                {/*            {t("accommodations.delete")}*/}
-                {/*        </Button>*/}
-                {/*    </ButtonGroup>*/}
-                {/*</td>*/}
             </tr>
         </AccommodationContext.Provider>
     );

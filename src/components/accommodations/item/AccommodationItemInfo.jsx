@@ -32,7 +32,7 @@ const AccommodationItemInfo = () => {
     } = accommodation;
 
     return (
-        <p className="h5">
+        <p className="h5 d-flex align-items-center">
             <span className="accommodation__col-pets-presence">
                 {petsPresent && <IconPetsPresent />}
                 {!petsPresent && <IconPetsNotPresent />}
@@ -41,14 +41,14 @@ const AccommodationItemInfo = () => {
                 {petsAllowed && <IconPetsAllowed />}
                 {!petsAllowed && <IconPetsNotAllowed />}
             </span>
+            <span className="accommodation__col-easy-ambulance-access">
+                {easyAmbulanceAccess && <IconEasyAmbulanceAccess />}
+            </span>
             <span className="accommodation__col-disabled-people-friendly">
                 {disabledPeopleFriendly && <IconDisabledPeopleFriendly />}
             </span>
             <span className="accommodation__col-parking-place-available">
                 {parkingPlaceAvailable && <IconParkingPlaceAvailable />}
-            </span>
-            <span className="accommodation__col-easy-ambulance-access">
-                {easyAmbulanceAccess && <IconEasyAmbulanceAccess />}
             </span>
         </p>
     );
