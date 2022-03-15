@@ -16,6 +16,9 @@ import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupA
 import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
 import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
 import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
+import GuestFormAccommodationSearchInput from "components/guest/form/GuestFormAccommodationSearchInput";
+import GuestFormAssignment from "components/guest/form/sections/GuestFormAssignment";
+import accommodation from "models/Accommodation";
 
 const GuestForm = (props) => {
     const { initialValues, onRemove, guestInProgress } = props;
@@ -41,6 +44,14 @@ const GuestForm = (props) => {
     const onSubmitError = (response, values, resetForm) => {
         const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
+    };
+
+    /**
+     *
+     * @param {Accommodation} accommodation
+     */
+    const onAccommodationSelected = (accommodation) => {
+        console.info(accommodation);
     };
 
     /**
@@ -90,6 +101,9 @@ const GuestForm = (props) => {
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
+                    <GuestFormAssignment
+                        onAccommodationSelected={onAccommodationSelected}
+                    />
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />

@@ -15,6 +15,7 @@
             "dietaryRequirements": "Dietary requirements",
             "durationToStay": "Duration to stay",
             "financialStatus": "Financial status",
+            "findAccommodation": "Type to search all accommodation units…",
             "foodAllergies": "Food allergies",
             "glutenFreeDiet": "Gluten free diet",
             "lactoseFreeDiet": "Lactose free diet",
@@ -31,6 +32,7 @@
         },
         "section": {
             "additionalInfo": "Additional information",
+            "assignAccommodation": "Accommodation assignment",
             "detailedInfo": "Detailed information",
             "groupAdults": "Group adults",
             "groupChildren": "Group children",
