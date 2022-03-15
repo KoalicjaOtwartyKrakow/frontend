@@ -22,11 +22,13 @@ const HostsPage = () => {
 
     const pageHeader = `${t("hosts:card.title")} ${hostCount}`;
 
+    const shouldFetchHosts = !hosts && !hostsGetError && !hostsGetInProgress;
+
     useEffect(() => {
-        if (!hosts) {
+        if (shouldFetchHosts) {
             retrieveHosts();
         }
-    }, [hosts, retrieveHosts]);
+    }, [retrieveHosts, shouldFetchHosts]);
 
     return (
         <PageCard header={pageHeader}>

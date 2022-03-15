@@ -22,11 +22,14 @@ const GuestsPage = () => {
 
     const pageHeader = `${t("guests:card.title")} ${guestCount}`;
 
+    const shouldFetchGuests =
+        !guests && !guestsGetError && !guestsGetInProgress;
+
     useEffect(() => {
-        if (!guests) {
+        if (shouldFetchGuests) {
             retrieveGuests();
         }
-    }, [retrieveGuests, guests]);
+    }, [retrieveGuests, shouldFetchGuests]);
 
     return (
         <PageCard header={pageHeader}>

@@ -7,12 +7,12 @@ import Host from "models/Host";
 const useGetHosts = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const hosts = data;
     const hostsGetInProgress = loading;
-    const hostsGetError = error;
+    const hostsGetError = getErrorsFromApi(error);
 
     const retrieveHosts = () => {
         const url = getPath(Paths.HOST);

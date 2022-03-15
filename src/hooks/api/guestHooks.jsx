@@ -7,12 +7,12 @@ import Guest from "models/Guest";
 const useGetGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const guest = data;
     const guestGetInProgress = loading;
-    const guestGetError = error;
+    const guestGetError = getErrorsFromApi(error);
 
     const fetchGuest = ({ guestId }) => {
         const url = getPath(Paths.GUEST) + "/" + guestId;
@@ -45,7 +45,7 @@ const useGetGuest = () => {
 const useUpdateGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "PUT" },
-        { manual: true }
+        { manual: true, autoCancel: false }
     );
 
     const updatedGuest = data;

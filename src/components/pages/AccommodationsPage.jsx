@@ -28,11 +28,17 @@ const AccommodationsPage = () => {
         "accommodations:card.title"
     )} ${accommodationCount}`;
 
+    const shouldFetchAccommodations = !(
+        accommodations ||
+        accommodationsGetError ||
+        accommodationsGetInProgress
+    );
+
     useEffect(() => {
-        if (!accommodations) {
+        if (shouldFetchAccommodations) {
             retrieveAccommodations();
         }
-    }, [retrieveAccommodations, accommodations]);
+    }, [retrieveAccommodations, shouldFetchAccommodations]);
 
     return (
         <PageCard header={pageHeader}>

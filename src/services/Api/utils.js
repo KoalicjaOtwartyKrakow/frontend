@@ -6,9 +6,6 @@ import camelcaseKeys from "camelcase-keys";
 import { ApiClientStatus, ApiErrorStatus, ApiErrorTypes } from "./constants";
 
 const _getStatus = (error) => {
-    /**
-     * @type {AxiosResponse}
-     */
     const response = error.response;
     const request = error.request;
 
@@ -27,13 +24,24 @@ const _getStatus = (error) => {
         // returning ECONNABORTED instead
         const connectionAborted = error.code === ApiClientStatus.ECONNABORTED;
         const messageHasTimeout = error.message.indexOf("timeout") !== -1;
+
+        // Workaround: Connection was made, but no meaningful response was received
+        const errorStatus = error?.toJSON().status;
+        const messageHasNetworkError = errorStatus === null;
+
         if (connectionAborted && messageHasTimeout) {
             status.code = ApiClientStatus.ETIMEDOUT;
+        } else if (messageHasNetworkError) {
+            status.code = ApiClientStatus.ECONNREFUSED;
         } else {
-            status.code = HttpStatus.IM_A_TEAPOT;
+            status.code = errorStatus;
         }
         return status;
     }
+
+    // This denotes unhandled Axios network error
+    status.code = HttpStatus.IM_A_TEAPOT;
+    status.type = ApiErrorTypes.UNKNOWN;
 
     return status;
 };

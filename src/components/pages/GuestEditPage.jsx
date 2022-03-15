@@ -42,6 +42,16 @@ const GuestEditPage = () => {
     const formFields = new GuestFormFields();
     const initialValues = formFields.modelToForm(guest);
 
+    const { guestId } = params;
+
+    const shouldFetchGuest = !(guest || guestGetError || guestGetInProgress);
+
+    useEffect(() => {
+        if (shouldFetchGuest) {
+            retrieveGuest({ guestId });
+        }
+    }, [guestId, retrieveGuest, shouldFetchGuest]);
+
     useEffect(() => {
         const { guestId } = params;
         retrieveGuest({ guestId });

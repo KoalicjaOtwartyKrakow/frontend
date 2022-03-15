@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Alert } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { ApiErrorTypes } from "services/Api/constants";
+import { ApiClientStatus, ApiErrorTypes } from "services/Api/constants";
 import HttpStatus from "http-status-codes";
 
 /**
@@ -23,27 +23,37 @@ const PageErrorMessage = ({ children, error }) => {
         if (!error.status) {
             return null;
         }
+
         const { type, code } = error.status;
+        let message = "";
 
         if (type === ApiErrorTypes.SERVER) {
             const httpStatusToMessageMap = {
                 [HttpStatus.NOT_FOUND]: t("common:errors.notFound"),
             };
-            let message = "" + httpStatusToMessageMap[code];
-            return (
-                <p>
-                    {message} ({code.toString()})
-                </p>
-            );
+            message = "" + httpStatusToMessageMap[code];
         }
-        return null;
+        if (type === ApiErrorTypes.CLIENT) {
+            const clientStatusToMessageMap = {
+                [ApiClientStatus.ECONNREFUSED]: t(
+                    "common:errors.connectionRefused"
+                ),
+            };
+            message = "" + clientStatusToMessageMap[code];
+        }
+        debugger;
+        return (
+            <p className={!children && "mb-0"}>
+                {message} ({code.toString()})
+            </p>
+        );
     };
 
     return (
         <Alert color="danger">
             <h5>{t("common:errors.apiFailure")}</h5>
             {getApiError()}
-            <p>{children}</p>
+            {children && <p>{children}</p>}
         </Alert>
     );
 };
