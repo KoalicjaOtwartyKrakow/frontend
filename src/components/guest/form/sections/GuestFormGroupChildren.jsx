@@ -4,9 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
-import GuestFormPeopleTotalCount from "components/guest/form/fields/GuestFormPeopleTotalCount";
-import GuestFormPeopleFemaleCount from "components/guest/form/fields/GuestFormPeopleFemaleCount";
-import GuestFormPeopleMaleCount from "components/guest/form/fields/GuestFormPeopleMaleCount";
 import GuestFormChildren from "components/guest/form/fields/GuestFormChildren";
 
 const GuestFormGroupChildren = () => {

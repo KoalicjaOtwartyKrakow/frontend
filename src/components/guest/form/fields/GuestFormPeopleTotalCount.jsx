@@ -9,6 +9,33 @@ import FormInput from "components/atoms/form/FormInput";
 const GuestFormPeopleTotalCount = (props) => {
     const fieldId = GuestFormFields.PEOPLE_TOTAL_COUNT;
 
+    // **********************************************
+    // Code for handling automatic total people count
+    // **********************************************
+    // const {
+    //     values: { peopleFemaleCount, peopleMaleCount, children },
+    //     touched,
+    //     setFieldValue,
+    // } = useFormikContext();
+    // const [field] = useField({
+    //     ...props,
+    //     name: GuestFormFields.PEOPLE_TOTAL_COUNT,
+    // });
+    // useEffect(() => {
+    //     setFieldValue(
+    //         field.name,
+    //         (peopleFemaleCount || 0) +
+    //             (peopleMaleCount || 0) +
+    //             (children.length || 0)
+    //     );
+    // }, [
+    //     peopleFemaleCount,
+    //     peopleMaleCount,
+    //     children,
+    //     setFieldValue,
+    //     field.name,
+    // ]);
+
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
@@ -19,8 +46,8 @@ const GuestFormPeopleTotalCount = (props) => {
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="0"
-                type="text"
+                placeholder={0}
+                type="number"
             />
         </FormGroup>
     );

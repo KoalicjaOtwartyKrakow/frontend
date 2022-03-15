@@ -6,26 +6,25 @@ import { useTranslation } from "react-i18next";
 import FormInput from "components/atoms/form/FormInput";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 
-const GuestFormFullName = () => {
-    const fieldId = GuestFormFields.FULL_NAME;
+const GuestFormDurationToStay = () => {
+    const fieldId = GuestFormFields.DURATION_OF_STAY;
 
-    const { t } = useTranslation(["common"]);
+    const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("common:form.label.fullName")}
+                {t("guest:form.label.durationToStay")}
             </Label>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                placeholder="Alexandra Bondarenko"
                 type="text"
             />
         </FormGroup>
     );
 };
 
-GuestFormFullName.propTypes = {};
+GuestFormDurationToStay.propTypes = {};
 
-export default GuestFormFullName;
+export default GuestFormDurationToStay;

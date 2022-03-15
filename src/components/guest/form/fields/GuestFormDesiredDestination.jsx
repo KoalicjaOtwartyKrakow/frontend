@@ -6,14 +6,14 @@ import { useTranslation } from "react-i18next";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
 
-const GuestFormAdultFemaleCount = (props) => {
-    const fieldId = GuestFormFields.ADULT_FEMALE_COUNT;
+const GuestFormDesiredDestination = (props) => {
+    const fieldId = GuestFormFields.DESIRED_DESTINATION;
 
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
             <Label for={fieldId} className="required">
-                {t("guest:form.label.adultFemaleCount")}
+                {t("guest:form.label.desiredDestination")}
             </Label>
             <Field
                 component={FormInput}
@@ -26,6 +26,6 @@ const GuestFormAdultFemaleCount = (props) => {
     );
 };
 
-GuestFormAdultFemaleCount.propTypes = {};
+GuestFormDesiredDestination.propTypes = {};
 
-export default GuestFormAdultFemaleCount;
+export default GuestFormDesiredDestination;

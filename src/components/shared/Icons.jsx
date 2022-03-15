@@ -42,7 +42,7 @@ const IconTooltip = ({ label, target }) => {
     );
 };
 
-const IconPetsPresent = () => {
+const IconPetsPresent = ({ className }) => {
     const id = getDomId();
     const { t } = useTranslation(["accommodation"]);
     return (
@@ -52,7 +52,7 @@ const IconPetsPresent = () => {
                 label={t("accommodation:common.pets.present")}
             />
             <IconStackWrapper id={id}>
-                <FontAwesomeIcon icon={faDog} />
+                <FontAwesomeIcon icon={faDog} className={className} />
             </IconStackWrapper>
         </IconContainer>
     );

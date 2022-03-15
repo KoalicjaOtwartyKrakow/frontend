@@ -20,7 +20,7 @@ const GuestFormPeopleFemaleCount = (props) => {
                 id={fieldId}
                 name={fieldId}
                 placeholder="0"
-                type="text"
+                type="number"
             />
         </FormGroup>
     );

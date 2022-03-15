@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
+import GuestFormDietaryRequirements from "components/guest/form/fields/GuestFormDietaryRequirements";
+import GuestFormFoodAllergies from "../fields/GuestFormFoodAllergies";
+import GuestFormSpecialNeeds from "../fields/GuestFormSpecialNeeds";
 
 const GuestFormDetailedInformation = () => {
     const { t } = useTranslation(["guest"]);
@@ -14,10 +17,11 @@ const GuestFormDetailedInformation = () => {
             </FormSectionHeader>
             <Row>
                 <Col xs={12} md={12}>
-                    Special requirements
+                    <GuestFormSpecialNeeds />
                 </Col>
                 <Col xs={12} md={12}>
-                    Dietary requirements
+                    <GuestFormDietaryRequirements />
+                    <GuestFormFoodAllergies />
                 </Col>
             </Row>
         </FormSection>

@@ -1,7 +1,41 @@
 {
+    "card": {
+        "title": {
+            "update": "Update Guest"
+        }
+    },
     "form": {
+        "button": {
+            "update": "Save changes"
+        },
         "label": {
-            "childAge": "Child age"
+            "addChild": "Add child",
+            "childAge": "Child age",
+            "desiredDestination": "Desired destination",
+            "dietaryRequirements": "Dietary requirements",
+            "durationToStay": "Duration to stay",
+            "financialStatus": "Financial status",
+            "foodAllergies": "Food allergies",
+            "glutenFreeDiet": "Gluten free diet",
+            "lactoseFreeDiet": "Lactose free diet",
+            "meatFreeDiet": "Meat free diet",
+            "peopleFemaleCount": "Female count",
+            "peopleMaleCount": "Male count",
+            "peopleTotalCount": "People count",
+            "pets": "Pets",
+            "petsDescription": "Pets description",
+            "petsPresent": "Pets present",
+            "priorityDate": "Priority date",
+            "priorityStatus": "Priority status",
+            "specialNeeds": "Special needs"
+        },
+        "section": {
+            "additionalInfo": "Additional information",
+            "detailedInfo": "Detailed information",
+            "groupAdults": "Group adults",
+            "groupChildren": "Group children",
+            "personalData": "Personal data",
+            "stayInfo": "Stay information"
         }
     },
     "peopleCount": {

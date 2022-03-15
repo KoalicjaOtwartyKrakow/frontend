@@ -13,12 +13,12 @@ const childrenModelSchema = Yup.object().shape({
 const commonSchema = Yup.object().shape({
     [GuestFormFields.PEOPLE_FEMALE_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
-        .moreThan(0, "common:form.validator.positiveNumber")
-        .min(1, `common:form.validator.numberMin`),
+        .moreThan(-1, "common:form.validator.positiveNumber")
+        .min(0, `common:form.validator.numberMin`),
     [GuestFormFields.PEOPLE_MALE_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
-        .moreThan(0, "common:form.validator.positiveNumber")
-        .min(1, "common:form.validator.numberMin"),
+        .moreThan(-1, "common:form.validator.positiveNumber")
+        .min(0, "common:form.validator.numberMin"),
     [GuestFormFields.CHILDREN]: Yup.array().of(childrenModelSchema),
     [GuestFormFields.DESIRED_DESTINATION]: Yup.string().trim(),
     [GuestFormFields.EMAIL]: Yup.string()
@@ -42,13 +42,13 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.PETS_DESCRIPTION]: Yup.string().trim(),
     [GuestFormFields.PHONE_NUMBER]: Yup.string().trim(),
     [GuestFormFields.PRIORITY_DATE]: Yup.string().trim(),
-    [GuestFormFields.PRIORITY_STATUS]: Yup.string()
-        .trim()
-        .oneOf(Object.values(GuestPriorityStatus)),
+    [GuestFormFields.PRIORITY_STATUS]: Yup.string().oneOf(
+        Object.values(GuestPriorityStatus)
+    ),
     [GuestFormFields.SPECIAL_NEEDS]: Yup.string().trim(),
-    [GuestFormFields.VERIFICATION_STATUS]: Yup.string()
-        .trim()
-        .oneOf(Object.values(GuestStatus)),
+    [GuestFormFields.VERIFICATION_STATUS]: Yup.string().oneOf(
+        Object.values(GuestStatus)
+    ),
 });
 
 const guestFormCreateSchema = Yup.object().concat(commonSchema);
