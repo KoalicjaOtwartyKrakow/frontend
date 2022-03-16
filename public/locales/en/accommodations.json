@@ -1,4 +1,7 @@
 {
+    "button": {
+        "create": "Add new Accommodation"
+    },
     "card": {
         "title": "Accommodation Units",
         "found": "Found",

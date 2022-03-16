@@ -1,6 +1,6 @@
 import React from "react";
 import { FormGroup } from "reactstrap";
-import { Field } from "formik";
+import { Field, useField } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
@@ -9,6 +9,8 @@ import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressVoivodeship = () => {
     const fieldId = AccommodationFormFields.ADDRESS_VOIVODESHIP;
+    const [accommodationField] = useField(AccommodationFormFields.ID);
+    const accommodationId = accommodationField.value;
 
     const { t } = useTranslation(["accommodation"]);
     return (
@@ -20,6 +22,7 @@ const AccommodationFormAddressVoivodeship = () => {
                 component={FormItemsVoivodeships}
                 id={fieldId}
                 name={fieldId}
+                isPleaseSelect={!accommodationId}
             />
         </FormGroup>
     );

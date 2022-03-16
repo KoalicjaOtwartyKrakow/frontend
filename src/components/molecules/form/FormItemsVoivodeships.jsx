@@ -4,11 +4,7 @@ import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect
 import React from "react";
 
 const FormItemsVoivodeships = (props) => {
-    return (
-        <FormSelect {...props} items={polishVoivodeships}>
-            <FormOptionPleaseSelect />
-        </FormSelect>
-    );
+    return <FormSelect {...props} items={polishVoivodeships} />;
 };
 
 export { FormItemsVoivodeships };

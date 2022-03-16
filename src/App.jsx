@@ -14,6 +14,7 @@ import HostsPage from "components/pages/HostsPage";
 import LoadingPage from "components/pages/LoadingPage";
 import GuestCreatePage from "components/pages/GuestCreatePage";
 import HostCreatePage from "components/pages/HostCreatePage";
+import AccommodationCreatePage from "components/pages/AccommodationCreatePage";
 
 function App() {
     return (
@@ -30,6 +31,10 @@ function App() {
                             path={Routes.ACCOMMODATIONS}
                             exact
                             render={() => <AccommodationsPage />}
+                        />
+                        <Route
+                            path={Routes.ACCOMMODATION_CREATE}
+                            component={AccommodationCreatePage}
                         />
                         <Route
                             path={Routes.ACCOMMODATION_EDIT}

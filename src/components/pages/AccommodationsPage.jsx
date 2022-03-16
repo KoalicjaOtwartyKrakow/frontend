@@ -10,6 +10,9 @@ import AccommodationListDescription from "components/accommodations/Accommodatio
 import RefreshButton from "components/atoms/RefreshButton";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
+import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
+import { useHistory } from "react-router-dom";
+import { Routes } from "constants/Routes";
 
 const AccommodationsPage = () => {
     const {
@@ -19,6 +22,7 @@ const AccommodationsPage = () => {
         retrieveAccommodations,
     } = useGetAccommodations();
     const { t } = useTranslation(["accommodations"]);
+    const history = useHistory();
 
     const accommodationCount = accommodations
         ? `(${t("accommodations:card.found")}: ${accommodations.length})`
@@ -28,11 +32,10 @@ const AccommodationsPage = () => {
         "accommodations:card.title"
     )} ${accommodationCount}`;
 
-    const shouldFetchAccommodations = !(
-        accommodations ||
-        accommodationsGetError ||
-        accommodationsGetInProgress
-    );
+    const shouldFetchAccommodations =
+        !accommodations &&
+        !accommodationsGetError &&
+        !accommodationsGetInProgress;
 
     useEffect(() => {
         if (shouldFetchAccommodations) {
@@ -40,10 +43,19 @@ const AccommodationsPage = () => {
         }
     }, [retrieveAccommodations, shouldFetchAccommodations]);
 
+    const navigateToCreatePage = () => {
+        history.push(Routes.ACCOMMODATION_CREATE);
+    };
+
     return (
         <PageCard header={pageHeader}>
             <Row>
                 <Col className="d-flex flex-row-reverse">
+                    <EntityCreateButton
+                        onClick={navigateToCreatePage}
+                        label={t("accommodations:button.create")}
+                        className="ms-2"
+                    />
                     <RefreshButton
                         disabled={accommodationsGetInProgress}
                         onClick={() => retrieveAccommodations()}
