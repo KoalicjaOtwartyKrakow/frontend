@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import AuthenticatedContainer from "components/AuthenticatedContainer";
 import AccommodationEdit from "components/pages/AccommodationEditPage";
+import AccommodationCreate from "components/pages/AccommodationCreatePage";
 import { Routes } from "constants/Routes";
 import AccommodationsPage from "components/pages/AccommodationsPage";
 import HostsPage from "components/pages/HostsPage";
@@ -30,6 +31,10 @@ function App() {
                         <Route
                             path={Routes.ACCOMMODATION_EDIT}
                             component={AccommodationEdit}
+                        />
+                        <Route
+                            path={Routes.ACCOMMODATIONS_CREATE}
+                            component={AccommodationCreate}
                         />
                         <Route
                             path={Routes.GUESTS}

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AccommodationList from "components/accommodations/AccommodationList";
-import { Alert, Col, Row } from "reactstrap";
+import { Alert, Button, Col, Row } from "reactstrap";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import PageCard from "components/atoms/PageCard";
@@ -10,6 +11,7 @@ import AccommodationListDescription from "components/accommodations/Accommodatio
 import RefreshButton from "components/atoms/RefreshButton";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
+import { Routes } from "constants/Routes";
 
 const AccommodationsPage = () => {
     const {
@@ -38,6 +40,13 @@ const AccommodationsPage = () => {
         <PageCard header={pageHeader}>
             <Row>
                 <Col className="d-flex flex-row-reverse">
+                    <Button
+                        size="lg"
+                        tag={Link}
+                        to={Routes.ACCOMMODATIONS_CREATE}
+                    >
+                        {t("accommodations:button.createAccommodation")}
+                    </Button>
                     <RefreshButton
                         disabled={accommodationsGetInProgress}
                         onClick={() => retrieveAccommodations()}

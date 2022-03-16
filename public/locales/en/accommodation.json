@@ -1,7 +1,8 @@
 {
     "card": {
         "title": {
-            "update": "Edit Accommodation Unit"
+            "update": "Edit Accommodation Unit",
+            "create": "Create new Accommodation Unit"
         }
     },
     "common": {
@@ -53,7 +54,9 @@
         },
         "message": {
             "updateSuccess": "Successfully updated Accommodation Unit",
-            "updateFailure": "Failed to update Accommodation Unit"
+            "updateFailure": "Failed to update Accommodation Unit",
+            "createSuccess": "Successfully created new Accommodation Unit",
+            "createFailure": "Failed to create Accommodation Unit"
         },
         "validator": {
             "address": "Enter address",

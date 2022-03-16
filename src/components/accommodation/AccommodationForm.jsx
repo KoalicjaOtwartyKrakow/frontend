@@ -88,7 +88,7 @@ const AccommodationForm = (props) => {
 
     return (
         <Formik {...formikProps}>
-            {({ isSubmitting, isValid }) => (
+            {({ isSubmitting, isValid, errors }) => (
                 <Form noValidate>
                     {/*<Effect onChange={ onChange } />*/}
                     <Row>
@@ -101,6 +101,7 @@ const AccommodationForm = (props) => {
                         </Col>
                     </Row>
                     <AccommodationFormDetailedInformation />
+                    <pre>{JSON.stringify(errors)}</pre>
                     <AccommodationFormButtons
                         isSubmitting={isSubmitting}
                         submitDisabled={submitDisabled(isValid, isSubmitting)}

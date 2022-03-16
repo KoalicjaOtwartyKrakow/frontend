@@ -4,6 +4,9 @@
         "found": "Found",
         "notAvailable": "No accommodations found."
     },
+    "button": {
+        "createAccommodation": "Create new Accommodation"
+    },
     "list": {
         "columnHeader": {
             "address": "Address",
