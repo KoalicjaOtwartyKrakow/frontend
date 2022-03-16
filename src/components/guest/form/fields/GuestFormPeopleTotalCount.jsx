@@ -1,10 +1,11 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormPeopleTotalCount = (props) => {
     const fieldId = GuestFormFields.PEOPLE_TOTAL_COUNT;
@@ -39,9 +40,9 @@ const GuestFormPeopleTotalCount = (props) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("guest:form.label.peopleTotalCount")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}

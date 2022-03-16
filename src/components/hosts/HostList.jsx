@@ -5,7 +5,6 @@ import { Table } from "reactstrap";
 import "components/hosts/HostList.sass";
 import { Routes } from "constants/Routes";
 import HostListItem from "components/hosts/HostListItem";
-import withHosts from "components/hosts/withHosts";
 
 const HostList = ({ hosts }) => {
     const { t } = useTranslation(["hosts"]);
@@ -67,4 +66,4 @@ const HostList = ({ hosts }) => {
     );
 };
 
-export default withHosts(HostList);
+export default HostList;

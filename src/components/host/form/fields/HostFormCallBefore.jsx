@@ -1,10 +1,11 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
 import { HostFormFields } from "components/host/HostFormFields";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const HostFormCallBefore = () => {
     const fieldId = HostFormFields.CALL_BEFORE;
@@ -12,14 +13,14 @@ const HostFormCallBefore = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId}>
                 {t("host:form.label.callBefore")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}
                 name={fieldId}
-                type="text"
+                type="time"
             />
         </FormGroup>
     );

@@ -4,6 +4,49 @@ import { Paths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
 
+const useCreateHost = () => {
+    const [{ data, loading, error }, fetch] = useAxios(
+        { method: "POST" },
+        { manual: true, autoCancel: false }
+    );
+
+    const createdHost = data;
+    const hostCreateInProgress = loading;
+    const hostCreateError = getErrorsFromApi(error);
+
+    /**
+     *
+     * @param {Host} host
+     * @returns {Promise<*|undefined>}
+     */
+    const createHost = ({ host }) => {
+        const url = getPath(Paths.HOST);
+        const transformResponse = (data) => {
+            return data && plainToClass(Host, data);
+        };
+        const data = classToPlain(host);
+        const config = { data, url, transformResponse };
+
+        const createData = async () => {
+            try {
+                await fetch(config);
+            } catch (error) {
+                console.error("[useCreateHost] Error on createHost(): ", error);
+                return getErrorsFromApi(error);
+            }
+        };
+
+        return createData();
+    };
+
+    return {
+        createdHost,
+        hostCreateInProgress,
+        hostCreateError,
+        createHost,
+    };
+};
+
 const useGetHost = () => {
     const [{ data, loading, error }, fetch] = useAxios(
         { method: "GET" },
@@ -82,4 +125,4 @@ const useUpdateHost = () => {
     };
 };
 
-export { useGetHost, useUpdateHost };
+export { useCreateHost, useGetHost, useUpdateHost };

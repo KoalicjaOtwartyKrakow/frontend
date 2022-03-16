@@ -1,10 +1,11 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
 import { HostFormFields } from "components/host/HostFormFields";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const HostFormPhoneNumber = () => {
     const fieldId = HostFormFields.PHONE_NUMBER;
@@ -12,9 +13,9 @@ const HostFormPhoneNumber = () => {
     const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("common:form.label.phone")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}

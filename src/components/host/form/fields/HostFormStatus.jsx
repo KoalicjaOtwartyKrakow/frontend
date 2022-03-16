@@ -1,18 +1,19 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 import { HostFormFields } from "components/host/HostFormFields";
 import { FormItemsHostStatus } from "components/molecules/form/FormItemsHostStatus";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const HostFormStatus = (props) => {
     const fieldId = HostFormFields.STATUS;
     const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("host:form.label.hostStatus")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormItemsHostStatus}
                 id={fieldId}

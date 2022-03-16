@@ -14,6 +14,7 @@ import HostFormButtons from "components/host/form/sections/HostFormButtons";
 import { Col, Row } from "reactstrap";
 import HostFormContact from "components/host/form/sections/HostFormContact";
 import HostFormAdditionalInformation from "components/host/form/sections/HostFormAdditionalInformation";
+import NonFieldErrors from "components/atoms/form/NonFieldErrors";
 
 const HostForm = (props) => {
     const { initialValues, onRemove, hostInProgress } = props;
@@ -88,6 +89,9 @@ const HostForm = (props) => {
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
+                    <NonFieldErrors
+                        label={t("host:form.message.updateFailure")}
+                    />
                     <Row>
                         <Col xs={12} lg={6}>
                             <HostFormContact />

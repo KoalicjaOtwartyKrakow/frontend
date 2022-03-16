@@ -24,7 +24,6 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.EMAIL]: Yup.string()
         .trim()
         .email("common:form.validator.invalidEmailFormat"),
-    // .required("common:form.validator.email"),
     [GuestFormFields.FINANCIAL_STATUS]: Yup.string().trim(),
     [GuestFormFields.FOOD_ALLERGIES]: Yup.string().trim(),
     [GuestFormFields.FULL_NAME]: Yup.string()

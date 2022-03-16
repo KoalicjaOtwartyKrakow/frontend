@@ -10,11 +10,15 @@ import HostListDescription from "components/hosts/HostListDescription";
 import RefreshButton from "components/atoms/RefreshButton";
 import { useGetHosts } from "hooks/api/hostsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
+import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
+import { useHistory } from "react-router-dom";
+import { Routes } from "constants/Routes";
 
 const HostsPage = () => {
     const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } =
         useGetHosts();
     const { t } = useTranslation(["hosts"]);
+    const history = useHistory();
 
     const hostCount = hosts
         ? `(${t("hosts:card.found")}: ${hosts.length})`
@@ -30,10 +34,19 @@ const HostsPage = () => {
         }
     }, [retrieveHosts, shouldFetchHosts]);
 
+    const navigateToCreatePage = () => {
+        history.push(Routes.HOST_CREATE);
+    };
+
     return (
         <PageCard header={pageHeader}>
             <Row>
                 <Col className="d-flex flex-row-reverse">
+                    <EntityCreateButton
+                        onClick={navigateToCreatePage}
+                        label={t("hosts:button.create")}
+                        className="ms-2"
+                    />
                     <RefreshButton
                         disabled={hostsGetInProgress}
                         onClick={() => retrieveHosts()}

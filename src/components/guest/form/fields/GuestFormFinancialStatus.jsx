@@ -1,20 +1,21 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import FormInput from "components/atoms/form/FormInput";
 import { GuestFormFields } from "components/guest/GuestFormFields";
+import FormLabel from "components/atoms/form/FormLabel";
 
-const GuestFormFinanceStatus = () => {
+const GuestFormFinancialStatus = () => {
     const fieldId = GuestFormFields.FINANCIAL_STATUS;
 
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId}>
                 {t("guest:form.label.financialStatus")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}
@@ -25,6 +26,6 @@ const GuestFormFinanceStatus = () => {
     );
 };
 
-GuestFormFinanceStatus.propTypes = {};
+GuestFormFinancialStatus.propTypes = {};
 
-export default GuestFormFinanceStatus;
+export default GuestFormFinancialStatus;

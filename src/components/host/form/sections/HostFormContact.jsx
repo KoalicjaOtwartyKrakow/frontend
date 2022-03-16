@@ -8,6 +8,7 @@ import HostFormCallBefore from "../fields/HostFormCallBefore";
 import HostFormFullName from "components/host/form/fields/HostFormFullName";
 import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
+import HostFormStatus from "components/host/form/fields/HostFormStatus";
 
 /**
  * @component
@@ -19,12 +20,20 @@ const HostFormContact = () => {
             <FormSectionHeader>
                 {t("host:form.section.contact")}
             </FormSectionHeader>
+            <HostFormStatus />
             <Row>
-                <Col>
+                <Col xs={12} lg={6}>
                     <HostFormFullName />
-
+                </Col>
+                <Col xs={12} lg={6}>
                     <HostFormEmail />
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12} lg={6}>
                     <HostFormPhoneNumber />
+                </Col>
+                <Col xs={12} lg={6}>
                     <Row>
                         <Col>
                             <HostFormCallAfter />

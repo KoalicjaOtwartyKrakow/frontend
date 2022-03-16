@@ -1,11 +1,12 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormPriorityStatus = (props) => {
     const fieldId = GuestFormFields.PRIORITY_STATUS;
@@ -41,9 +42,9 @@ const GuestFormPriorityStatus = (props) => {
 
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("guest:form.label.priorityStatus")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormSelect}
                 id={fieldId}

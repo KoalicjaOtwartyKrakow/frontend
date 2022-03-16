@@ -31,7 +31,10 @@ const GuestFormPetsPresence = () => {
 
     return (
         <FormGroup tag="fieldset">
-            <legend className="form-label">{t("guest:form.label.pets")}</legend>
+            <legend className="form-label">
+                {t("guest:form.label.pets")}
+                {":"}
+            </legend>
             {petsCheckboxes.map(petCheckbox)}
         </FormGroup>
     );

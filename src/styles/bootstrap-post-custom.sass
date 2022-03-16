@@ -8,10 +8,8 @@ h3, .h3
 .form-card
   border: $card-border-width solid $color-form-card-section
 
-.form-label:not(.form-check-label)
+.form-label.required:not(.form-check-label)
   font-weight: $font-weight-semibold
-  &:after
-    content: ":"
 
 legend
   font-size: inherit
@@ -30,3 +28,7 @@ legend
 
 .fw-semibold
   font-weight: $font-weight-semibold
+
+.asterisk, .form-label.required, .legend-form-label.required
+  &:after
+    @include asterisk()

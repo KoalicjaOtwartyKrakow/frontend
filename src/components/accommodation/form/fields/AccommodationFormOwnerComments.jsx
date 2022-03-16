@@ -1,19 +1,20 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormTextArea from "components/atoms/form/FormTextArea";
+import FormLabel from "components/atoms/form/FormLabel";
 
-const AccommodationFormOwnerComments = (props) => {
+const AccommodationFormOwnerComments = () => {
     const fieldId = AccommodationFormFields.OWNER_COMMENTS;
 
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId}>
                 {t("accommodation:form.label.comments")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormTextArea}
                 id={fieldId}

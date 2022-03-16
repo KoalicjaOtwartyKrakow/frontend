@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { sortBy } from "lodash-es";
@@ -7,6 +7,7 @@ import { sortBy } from "lodash-es";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
 import { useGetHosts } from "hooks/api/hostsHooks";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormHost = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -48,7 +49,7 @@ const AccommodationFormHost = () => {
     /**
      *
      * @param {Host} host
-     * @returns {{name: boolean, id}}
+     * @returns {{name: string, id: string}}
      */
     const mapHostToItem = (host) => ({
         id: host.id,
@@ -60,9 +61,9 @@ const AccommodationFormHost = () => {
 
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.host")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormSelect}
                 id={fieldId}

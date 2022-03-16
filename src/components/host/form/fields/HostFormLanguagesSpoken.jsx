@@ -34,6 +34,7 @@ const HostFormLanguagesSpoken = () => {
         <FormGroup tag="fieldset">
             <legend className="form-label">
                 {t("host:form.label.languagesSpoken")}
+                {":"}
             </legend>
             {languagesSpokenCheckboxes.map(languagesSpokenCheckbox)}
         </FormGroup>

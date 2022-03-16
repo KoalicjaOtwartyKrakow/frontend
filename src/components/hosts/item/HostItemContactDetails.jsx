@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { HostContext } from "components/host/HostContext";
-import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { HostStatus } from "models/constants/HostStatus";
 
 /**
  *

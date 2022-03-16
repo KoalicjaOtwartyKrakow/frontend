@@ -38,6 +38,7 @@ const AccommodationFormPets = () => {
         <FormGroup tag="fieldset">
             <legend className="form-label">
                 {t("accommodation:form.label.pets")}
+                {":"}
             </legend>
             {petsCheckboxes.map(petCheckbox)}
         </FormGroup>

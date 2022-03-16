@@ -1,12 +1,12 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
-import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import { GuestStatus } from "models/constants/GuestStatus";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormVerificationStatus = (props) => {
     const fieldId = GuestFormFields.VERIFICATION_STATUS;
@@ -30,9 +30,9 @@ const GuestFormVerificationStatus = (props) => {
 
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("guest:form.label.status")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormSelect}
                 id={fieldId}

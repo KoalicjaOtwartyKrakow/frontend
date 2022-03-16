@@ -45,6 +45,7 @@ const AccommodationFormAccessibility = () => {
         <FormGroup tag="fieldset">
             <legend className="form-label">
                 {t("accommodation:form.label.accessibility")}
+                {":"}
             </legend>
             {accessibilityCheckboxes.map(checkboxField)}
         </FormGroup>
