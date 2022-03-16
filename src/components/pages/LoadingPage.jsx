@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,12 @@ const LoadingPage = ({ visible }) => {
         { "d-flex": visible },
         { "d-none": !visible }
     );
+
+    const addBodyClass = (className) => document.body.classList.add(className);
+    const removeBodyClass = (className) =>
+        document.body.classList.remove(className);
+
+    useEffect(() => {});
 
     return (
         <Container className={className}>
