@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, ButtonGroup } from "reactstrap";
+import { fallbackLanguage, supportedLanguages } from "i18n";
 
 const LanguageSwitcher = ({ className }) => {
     const { i18n } = useTranslation(["accommodation"]);
-    const storedLanguage = localStorage.getItem("language") || "en";
+    const storedLanguage =
+        localStorage.getItem("i18nextLng") || fallbackLanguage;
     const [language, setLanguage] = useState(storedLanguage);
 
     const switchLanguage = (i18n, selectedLanguage) => () => {
@@ -14,16 +16,10 @@ const LanguageSwitcher = ({ className }) => {
     };
 
     useEffect(() => {
-        localStorage.setItem("language", language);
+        localStorage.setItem("i18nextLng", language);
     }, [language]);
 
     const isActive = (selectedLanguage) => language === selectedLanguage;
-
-    const supportedLanguages = [
-        { code: "pl", label: "Polski" },
-        { code: "en", label: "English" },
-        { code: "ua", label: "українська" },
-    ];
 
     return (
         <ButtonGroup size="sm" className={className}>
