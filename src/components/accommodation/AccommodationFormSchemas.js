@@ -16,6 +16,11 @@ const commonSchema = Yup.object().shape({
         .trim()
         .required("common:form.validator.zip"),
 
+    // Host
+    [AccommodationFormFields.HOST_ID]: Yup.string().required(
+        "accommodation:form.validator.hostRequired"
+    ),
+
     // Vacancies
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("common:form.validator.integer")

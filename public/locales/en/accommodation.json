@@ -1,6 +1,7 @@
 {
     "card": {
         "title": {
+            "create": "Add new Accommodation Unit",
             "update": "Edit Accommodation Unit"
         }
     },
@@ -55,12 +56,16 @@
             "status": "Verification status"
         },
         "message": {
-            "updateSuccess": "Successfully updated Accommodation Unit",
-            "updateFailure": "Failed to update Accommodation Unit"
+            "createFailure": "Accommodation Unit was not added to the system",
+            "createSuccess": "The new Accommodation Unit has been added to the system",
+            "updateFailure": "There was an issue updating the Accommodation Unit",
+            "updateSuccess": "Successful update of Accommodation Unit data"
         },
+
         "validator": {
             "address": "Enter address",
             "cityName": "Enter a city name",
+            "hostRequired": "Please choose the host",
             "numberMin": "At least 1 person required",
             "numberOfPeople": "Enter number of people",
             "tooManyPeople": "Vacancies cannot exceed total vacancies",

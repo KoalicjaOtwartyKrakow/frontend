@@ -47,7 +47,7 @@ class AccommodationFormFields {
         formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
             getPolishVoivodeshipById(
                 formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
-            ).id || defaultPolishVoivodeshipId;
+            )?.id || defaultPolishVoivodeshipId;
 
         if (accommodation.id) {
             return formValues;

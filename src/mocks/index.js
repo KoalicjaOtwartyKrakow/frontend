@@ -224,6 +224,30 @@ if (constants.useMocks) {
             return [200, plain];
         });
 
+    mockAdapter.onPost(Paths.ACCOMMODATION).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        /**
+         * @type {Accommodation}
+         */
+        const createdAccommodation = plainToClass(Accommodation, json);
+        createdAccommodation.id = chance.guid({ version: 5 });
+        createdAccommodation.createdAt = moment();
+        createdAccommodation.updatedAt = moment();
+        debugger;
+
+        mockedAccommodations.unshift(createdAccommodation);
+
+        const plain = classToPlain(createdAccommodation);
+
+        console.log(
+            `[useUpdateAccommodation] Mocked response for ${url}: `,
+            createdAccommodation
+        );
+
+        return [200, plain];
+    });
+
     mockAdapter.onGet(Paths.HOST).reply((config) => {
         const { url } = config;
         const plainHosts = mockedHosts.map((host) => classToPlain(host));

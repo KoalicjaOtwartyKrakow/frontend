@@ -35,7 +35,7 @@ const AccommodationFormHost = () => {
     }, [retrieveHosts, shouldFetchHosts]);
 
     useEffect(() => {
-        if (retrievedHosts.length === 0) {
+        if (retrievedHosts.length === 0 || !hostId) {
             return;
         }
 
@@ -69,6 +69,7 @@ const AccommodationFormHost = () => {
                 id={fieldId}
                 name={fieldId}
                 items={sortedItems}
+                isPleaseSelect={!hostId}
             />
         </FormGroup>
     );
