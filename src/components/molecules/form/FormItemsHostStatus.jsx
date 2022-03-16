@@ -5,9 +5,10 @@ import { useTranslation } from "react-i18next";
 
 const FormItemsHostStatus = (props) => {
     const { t } = useTranslation("host");
-    const items = Object.values(HostStatus).map((value, index) => {
-        return { name: t(`host:status.${value}`), id: index };
-    });
+    const items = Object.values(HostStatus).map((value) => ({
+        name: t(`host:status.${value}`),
+        id: value,
+    }));
 
     return <FormSelect {...props} items={items} />;
 };
