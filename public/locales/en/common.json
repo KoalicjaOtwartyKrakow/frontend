@@ -50,9 +50,9 @@
         }
     },
     "toast": {
-        "error": "Error",
+        "error": "Action error",
         "info": "Notice",
-        "success": "Success",
+        "success": "Action successful",
         "unknown": "Unknown"
     }
 }

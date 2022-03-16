@@ -1,7 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { DefaultToast } from "react-toast-notifications";
 
-const CustomToast = ({ appearance, children }) => {
+const CustomToast = ({ children, ...props }) => {
     const { t } = useTranslation(["common"]);
 
     const appearanceTitles = {
@@ -10,13 +11,16 @@ const CustomToast = ({ appearance, children }) => {
         error: t("common:toast.error"),
     };
 
-    const title = appearanceTitles[appearance] || t("common:toast.unknown");
+    const title =
+        appearanceTitles[props.appearance] || t("common:toast.unknown");
 
     return (
-        <div className="toast-content">
-            <h6 className="pb-2 font-weight-bold">{title}</h6>
-            <div className="small">{children}</div>
-        </div>
+        <DefaultToast {...props}>
+            <div className="toast-content">
+                <h6 className="pb-2 font-weight-bold">{title}</h6>
+                <div className="small">{children}</div>
+            </div>
+        </DefaultToast>
     );
 };
 

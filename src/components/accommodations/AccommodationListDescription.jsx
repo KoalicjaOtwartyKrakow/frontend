@@ -1,11 +1,11 @@
 import React from "react";
 import {
+    IconDisabledPeopleFriendly,
+    IconEasyAmbulanceAccess,
+    IconParkingPlaceAvailable,
     IconPetsAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
-    IconDisabledPeopleFriendly,
-    IconParkingPlaceAvailable,
-    IconEasyAmbulanceAccess,
 } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
 

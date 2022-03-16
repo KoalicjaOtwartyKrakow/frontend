@@ -52,11 +52,6 @@ const GuestEditPage = () => {
         }
     }, [guestId, retrieveGuest, shouldFetchGuest]);
 
-    useEffect(() => {
-        const { guestId } = params;
-        retrieveGuest({ guestId });
-    }, [params]);
-
     useLayoutEffect(() => {
         if (updatedGuest instanceof Guest) {
             addToast(t("guest:form.message.updateSuccess"), {
@@ -65,7 +60,7 @@ const GuestEditPage = () => {
 
             history.push(Routes.GUESTS);
         }
-    }, [updatedGuest]);
+    }, [addToast, history, t, updatedGuest]);
 
     const onSubmit = async (values, onSubmitError) => {
         const guest = formFields.formToModel(values);

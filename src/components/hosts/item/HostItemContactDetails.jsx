@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { HostContext } from "components/host/HostContext";
-import { useTranslation } from "react-i18next";
 
 /**
  *
@@ -8,7 +7,6 @@ import { useTranslation } from "react-i18next";
  */
 const HostItemContactDetails = () => {
     const host = useContext(HostContext);
-    const { t } = useTranslation(["host"]);
 
     return (
         <address>

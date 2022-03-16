@@ -5,7 +5,7 @@ import PageCard from "components/atoms/PageCard";
 import { getRouteIcon, Routes } from "constants/Routes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
-const DashboardPage = ({}) => {
+const DashboardPage = () => {
     const { t } = useTranslation(["dashboard"]);
 
     const homePageCards = [

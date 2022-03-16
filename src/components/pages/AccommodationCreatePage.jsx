@@ -46,10 +46,9 @@ const AccommodationCreatePage = () => {
 
             history.push(Routes.ACCOMMODATIONS);
         }
-    }, [createAccommodation]);
+    }, [addToast, createdAccommodation, history, t]);
 
     const onSubmit = async (values, onSubmitError) => {
-        debugger;
         const accommodation = formFields.formToModel(values);
         console.log(
             "[AccommodationCreatePage] Invoked onSubmit() with values:",
@@ -57,7 +56,7 @@ const AccommodationCreatePage = () => {
         );
 
         const response = await createAccommodation({ accommodation });
-        debugger;
+
         if (response?.errors) {
             onSubmitError(response);
             addToast(t("accommodation:form.message.createFailure"), {

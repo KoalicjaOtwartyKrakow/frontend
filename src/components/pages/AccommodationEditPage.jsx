@@ -71,7 +71,7 @@ const AccommodationEditPage = () => {
 
             history.push(Routes.ACCOMMODATIONS);
         }
-    }, [updatedAccommodation]);
+    }, [addToast, history, t, updatedAccommodation]);
 
     const onSubmit = async (values, onSubmitError) => {
         const accommodation = formFields.formToModel(values);

@@ -10,8 +10,6 @@ const FormSelect = React.memo(
         const { t } = useTranslation("common");
         const invalid = !!error;
 
-        console.log(field, isPleaseSelect);
-
         return (
             <React.Fragment>
                 <Input {...field} {...props} type="select" invalid={invalid}>

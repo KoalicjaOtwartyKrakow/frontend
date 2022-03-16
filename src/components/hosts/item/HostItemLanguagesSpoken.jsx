@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { HostContext } from "components/host/HostContext";
-import { useTranslation } from "react-i18next";
 import { Badge } from "reactstrap";
 import ISO6391 from "iso-639-1";
 
@@ -14,7 +13,7 @@ const HostItemLanguagesSpoken = () => {
      * @type {Host}
      */
     const host = useContext(HostContext);
-    const { t } = useTranslation(["host"]);
+    // const { t } = useTranslation(["host"]);
 
     const { languagesSpoken } = host;
 

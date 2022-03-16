@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import GuestFormAccommodationSearchItem from "components/guest/form/GuestFormAccommodationSearchItem";

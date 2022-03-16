@@ -46,7 +46,7 @@ const GuestCreatePage = () => {
 
             history.push(Routes.GUESTS);
         }
-    }, [createGuest]);
+    }, [addToast, createdGuest, history, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const guest = formFields.formToModel(values);

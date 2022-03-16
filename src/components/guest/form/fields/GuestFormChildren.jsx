@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    Button,
-    ButtonGroup,
-    FormGroup,
-    InputGroup,
-    InputGroupText,
-} from "reactstrap";
+import { Button, FormGroup, InputGroup, InputGroupText } from "reactstrap";
 import { Field, FieldArray, useField } from "formik";
 import { useTranslation } from "react-i18next";
 import { GuestFormFields } from "components/guest/GuestFormFields";
@@ -22,8 +16,8 @@ const GuestFormChildren = (props) => {
     const childRenderer = (arrayHelpers) => {
         const items = field.value;
         const addChild = () => arrayHelpers.push(new GuestChild());
-        const insertChild = () =>
-            arrayHelpers.insert(field.value.length, new GuestChild());
+        const insertChild = (index) => () =>
+            arrayHelpers.insert(index, new GuestChild());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
         return (
@@ -45,22 +39,20 @@ const GuestFormChildren = (props) => {
                                         value={child.age}
                                         type="number"
                                     />
-                                    <ButtonGroup className="ms-2 ms-lg-2">
-                                        <Button
-                                            color="secondary"
-                                            outline
-                                            onClick={removeChild(index)}
-                                        >
-                                            <FontAwesomeIcon icon={faMinus} />
-                                        </Button>
-                                        <Button
-                                            color="secondary"
-                                            outline
-                                            onClick={insertChild}
-                                        >
-                                            <FontAwesomeIcon icon={faPlus} />
-                                        </Button>
-                                    </ButtonGroup>
+                                    <Button
+                                        color="secondary"
+                                        outline
+                                        onClick={removeChild(index)}
+                                    >
+                                        <FontAwesomeIcon icon={faMinus} />
+                                    </Button>
+                                    <Button
+                                        color="secondary"
+                                        outline
+                                        onClick={insertChild(index + 1)}
+                                    >
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
                                 </InputGroup>
                             </FormGroup>
                         );

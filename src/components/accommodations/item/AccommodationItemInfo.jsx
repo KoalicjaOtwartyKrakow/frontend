@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
-import { useTranslation } from "react-i18next";
 import {
+    IconDisabledPeopleFriendly,
+    IconEasyAmbulanceAccess,
+    IconParkingPlaceAvailable,
     IconPetsAllowed,
     IconPetsNotAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
-    IconDisabledPeopleFriendly,
-    IconParkingPlaceAvailable,
-    IconEasyAmbulanceAccess,
 } from "components/shared/Icons";
 
 /**
@@ -21,7 +20,6 @@ const AccommodationItemInfo = () => {
      * @type {Accommodation}
      */
     const accommodation = useContext(AccommodationContext);
-    const { t } = useTranslation(["accommodation"]);
 
     const {
         petsAllowed,

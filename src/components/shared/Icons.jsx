@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+    faAmbulance,
     faDog,
     faHandDots,
-    faWheelchair,
     faParking,
-    faAmbulance,
+    faWheelchair,
 } from "@fortawesome/free-solid-svg-icons";
 import { faDog as faDogNotPresent } from "@fortawesome/pro-light-svg-icons";
 import React from "react";

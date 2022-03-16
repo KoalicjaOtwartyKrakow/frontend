@@ -42,15 +42,14 @@ const HostCreatePage = () => {
 
             history.push(Routes.HOSTS);
         }
-    }, [createHost]);
+    }, [addToast, createdHost, history, t]);
 
     const onSubmit = async (values, onSubmitError) => {
-        debugger;
         const host = formFields.formToModel(values);
         console.log("[HostCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createHost({ host });
-        debugger;
+
         if (response?.errors) {
             onSubmitError(response);
             addToast(t("host:form.message.createFailure"), {

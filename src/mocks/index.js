@@ -234,7 +234,6 @@ if (constants.useMocks) {
         createdAccommodation.id = chance.guid({ version: 5 });
         createdAccommodation.createdAt = moment();
         createdAccommodation.updatedAt = moment();
-        debugger;
 
         mockedAccommodations.unshift(createdAccommodation);
 
@@ -252,7 +251,7 @@ if (constants.useMocks) {
         const { url } = config;
         const plainHosts = mockedHosts.map((host) => classToPlain(host));
 
-        console.log(`[useGetHost] Mocked response for ${url}: `);
+        console.log(`[useGetHost] Mocked response for ${url}: `, plainHosts);
         return [200, plainHosts];
     });
 
@@ -323,7 +322,7 @@ if (constants.useMocks) {
         const { url } = config;
         const plainGuests = mockedGuests.map((guest) => classToPlain(guest));
 
-        console.log(`[useGetGuest] Mocked response for ${url}: `);
+        console.log(`[useGetGuest] Mocked response for ${url}: `, plainGuests);
         return [200, plainGuests];
     });
 
