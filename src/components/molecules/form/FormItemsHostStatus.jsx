@@ -12,7 +12,7 @@ const FormItemsHostStatus = (props) => {
 
     return (
         <FormSelect {...props} items={items}>
-            <FormOptionPleaseSelect />
+            {/*<FormOptionPleaseSelect />*/}
         </FormSelect>
     );
 };

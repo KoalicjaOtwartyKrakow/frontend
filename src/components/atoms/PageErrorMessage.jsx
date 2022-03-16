@@ -41,7 +41,6 @@ const PageErrorMessage = ({ children, error }) => {
             };
             message = "" + clientStatusToMessageMap[code];
         }
-        debugger;
         return (
             <p className={!children && "mb-0"}>
                 {message} ({code.toString()})

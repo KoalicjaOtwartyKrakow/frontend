@@ -13,6 +13,7 @@ import HostEditPage from "components/pages/HostEditPage";
 import HostsPage from "components/pages/HostsPage";
 import LoadingPage from "components/pages/LoadingPage";
 import GuestCreatePage from "components/pages/GuestCreatePage";
+import HostCreatePage from "components/pages/HostCreatePage";
 
 function App() {
     return (
@@ -51,6 +52,10 @@ function App() {
                             path={Routes.HOSTS}
                             exact
                             render={() => <HostsPage />}
+                        />
+                        <Route
+                            path={Routes.HOST_CREATE}
+                            component={HostCreatePage}
                         />
                         <Route
                             path={Routes.HOST_EDIT}

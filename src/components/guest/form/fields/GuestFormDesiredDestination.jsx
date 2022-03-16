@@ -1,10 +1,11 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormDesiredDestination = (props) => {
     const fieldId = GuestFormFields.DESIRED_DESTINATION;
@@ -12,9 +13,9 @@ const GuestFormDesiredDestination = (props) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId}>
                 {t("guest:form.label.desiredDestination")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}

@@ -12,6 +12,7 @@ import { baseUrl, timeout } from "services/Api/constants";
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
 // import reportWebVitals from './reportWebVitals';
+import "mocks/index";
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.timeout = timeout;

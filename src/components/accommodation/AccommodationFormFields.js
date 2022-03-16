@@ -98,20 +98,21 @@ class AccommodationFormFields {
         const next = nextValues || {};
 
         const simpleTypeFields = [
-            [AccommodationFormFields.ADDRESS_VOIVODESHIP],
             [AccommodationFormFields.ADDRESS_CITY],
             [AccommodationFormFields.ADDRESS_LINE],
+            [AccommodationFormFields.ADDRESS_VOIVODESHIP],
             [AccommodationFormFields.ADDRESS_ZIP],
-            [AccommodationFormFields.COMMENTS],
             [AccommodationFormFields.DESCRIPTION],
-            [AccommodationFormFields.VACANCIES_TOTAL],
-            [AccommodationFormFields.VACANCIES_TAKEN],
+            [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY],
+            [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
+            [AccommodationFormFields.LGBT_FRIENDLY],
+            [AccommodationFormFields.OWNER_COMMENTS],
+            [AccommodationFormFields.PARKING_PLACE],
             [AccommodationFormFields.PETS_ALLOWED],
             [AccommodationFormFields.PETS_PRESENT],
-            [AccommodationFormFields.DISABLED_PEOPLE_FRIENDLY],
-            [AccommodationFormFields.LGBT_FRIENDLY],
-            [AccommodationFormFields.PARKING_PLACE],
-            [AccommodationFormFields.EASY_AMBULANCE_ACCESS],
+            [AccommodationFormFields.STAFF_COMMENTS],
+            [AccommodationFormFields.VACANCIES_TAKEN],
+            [AccommodationFormFields.VACANCIES_TOTAL],
         ];
 
         const simpleTypeDiff = (key) => prev[key] !== next[key];

@@ -1,7 +1,8 @@
 {
     "card": {
         "title": {
-            "update": "Edit Host Unit"
+            "create": "Create a new Host",
+            "update": "Edit Host"
         }
     },
     "errors": {
@@ -26,8 +27,10 @@
             "lgbtFriendly": "LGBT friendly"
         },
         "message": {
-            "updateFailure": "Failed to update Host",
-            "updateSuccess": "Successfully updated Host data"
+            "createFailure": "Host was not added to the system",
+            "createSuccess": "The new Host has been added to the system",
+            "updateFailure": "There was an issue updating the Host",
+            "updateSuccess": "Successful update of Host data"
         },
         "section": {
             "additionalInformation": "Additional information",

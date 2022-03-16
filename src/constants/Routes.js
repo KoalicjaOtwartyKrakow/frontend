@@ -14,7 +14,7 @@ class Routes {
         Routes.ACCOMMODATIONS + "/:accommodationId/edit";
 
     static HOSTS = "/hosts";
-    static HOSTS_CREATE = Routes.HOSTS + "/create";
+    static HOST_CREATE = Routes.HOSTS + "/create";
     static HOST_EDIT = Routes.HOSTS + "/:hostId/edit";
 
     static GUESTS = "/guests";

@@ -1,9 +1,10 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 import { HostFormFields } from "components/host/HostFormFields";
 import FormTextArea from "components/atoms/form/FormTextArea";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const HostFormComments = () => {
     const fieldId = HostFormFields.COMMENTS;
@@ -11,9 +12,7 @@ const HostFormComments = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
-                {t("host:form.label.comments")}
-            </Label>
+            <FormLabel for={fieldId}>{t("host:form.label.comments")}</FormLabel>
             <Field
                 component={FormTextArea}
                 id={fieldId}

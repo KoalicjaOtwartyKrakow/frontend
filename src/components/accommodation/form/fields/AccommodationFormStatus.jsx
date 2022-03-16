@@ -1,13 +1,14 @@
 import React from "react";
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import FormLabel from "components/atoms/form/FormLabel";
 
-const AccommodationFormAddressStatus = (props) => {
+const AccommodationFormAddressStatus = () => {
     const fieldId = AccommodationFormFields.STATUS;
 
     const { t } = useTranslation(["accommodation"]);
@@ -29,9 +30,9 @@ const AccommodationFormAddressStatus = (props) => {
 
     return (
         <FormGroup>
-            <Label for={fieldId} className="required">
+            <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.status")}
-            </Label>
+            </FormLabel>
             <Field
                 component={FormSelect}
                 id={fieldId}
