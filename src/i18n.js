@@ -3,10 +3,14 @@ import I18nextHttpBackend from "i18next-http-backend";
 import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
-const translationsPath = "../locales";
+export const fallbackLanguage = "en";
+export const supportedLanguages = [
+    { code: "pl", label: "Polski" },
+    { code: "en", label: "English" },
+    { code: "uk", label: "українська" },
+];
 
-const fallbackLanguage = "en";
-const language = localStorage.getItem("language") || fallbackLanguage;
+const language = localStorage.getItem("i18nextLng") || fallbackLanguage;
 
 i18next
     // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -21,10 +25,22 @@ i18next
     // init i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        fallbackLng: "en",
+        fallbackLng: language,
+        lng: language,
         debug: false,
         defaultNS: "common",
-
+        supportedLngs: supportedLanguages.map((language) => language.code),
+        ns: [
+            "accommodation",
+            "accommodations",
+            "common",
+            "dashboard",
+            "guest",
+            "guests",
+            "host",
+            "hosts",
+            "navbar",
+        ],
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },
