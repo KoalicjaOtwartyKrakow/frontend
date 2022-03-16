@@ -61,7 +61,9 @@ const useGetAccommodation = () => {
     const accommodationGetError = getErrorsFromApi(error);
 
     const fetchAccommodation = ({ accommodationId }) => {
-        const url = getPath(Paths.ACCOMMODATION) + "/" + accommodationId;
+        const url = getPath(Paths.ACCOMMODATION_BY_ID, {
+            accommodationId,
+        });
         const transformResponse = (data) => plainToClass(Accommodation, data);
         const config = { url, transformResponse };
 
@@ -104,7 +106,9 @@ const useUpdateAccommodation = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateAccommodation = ({ accommodation }) => {
-        const url = getPath(Paths.ACCOMMODATION) + "/" + accommodation.id;
+        const url = getPath(Paths.ACCOMMODATION_BY_ID, {
+            accommodationId: accommodation.id,
+        });
         const transformResponse = (data) => {
             return data && plainToClass(Accommodation, data);
         };
@@ -134,4 +138,61 @@ const useUpdateAccommodation = () => {
     };
 };
 
-export { useCreateAccommodation, useGetAccommodation, useUpdateAccommodation };
+const useAddGuestToAccommodation = () => {
+    const [{ data, loading, error }, fetch] = useAxios(
+        { method: "POST" },
+        { manual: true, autoCancel: false }
+    );
+
+    const accommodationAddGuest = data;
+    const accommodationAddGuestInProgress = loading;
+    const accommodationAddGuestsUpdateError = getErrorsFromApi(error);
+
+    /**
+     *
+     * @param {Accommodation} accommodation
+     * @param {Guest} guest
+     * @returns {Promise<{errors: Object, status: ApiErrorStatus}|undefined>}
+     */
+    const addGuestToAccommodation = ({ accommodation, guest }) => {
+        const url = getPath(Paths.ACCOMMODATION_BY_ID_ADD_GUEST, {
+            accommodationId: accommodation.id,
+            guestId: guest.id,
+        });
+        debugger;
+
+        const transformResponse = (data) => {
+            return data && plainToClass(Accommodation, data);
+        };
+
+        const config = { url, transformResponse };
+
+        const updateData = async () => {
+            try {
+                await fetch(config);
+            } catch (error) {
+                console.error(
+                    "[useAddGuestToAccommodation] Error on addGuestToAccommodation(): ",
+                    error
+                );
+                return getErrorsFromApi(error);
+            }
+        };
+
+        return updateData();
+    };
+
+    return {
+        accommodationAddGuest,
+        accommodationAddGuestInProgress,
+        accommodationAddGuestsUpdateError,
+        addGuestToAccommodation,
+    };
+};
+
+export {
+    useCreateAccommodation,
+    useGetAccommodation,
+    useUpdateAccommodation,
+    useAddGuestToAccommodation,
+};

@@ -19,7 +19,12 @@ import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
 import GuestFormAssignment from "components/guest/form/sections/GuestFormAssignment";
 
 const GuestForm = (props) => {
-    const { initialValues, onRemove, guestInProgress } = props;
+    const {
+        initialValues,
+        onAccommodationSelected,
+        onRemove,
+        guestInProgress,
+    } = props;
 
     const initialStatus = formFields.getInitialStatus();
 
@@ -42,14 +47,6 @@ const GuestForm = (props) => {
     const onSubmitError = (response, values, resetForm) => {
         const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
-    };
-
-    /**
-     *
-     * @param {Accommodation} accommodation
-     */
-    const onAccommodationSelected = (accommodation) => {
-        console.info(accommodation);
     };
 
     /**

@@ -1,10 +1,9 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
 
-// import { Toast } from "components/atoms/Toast";
 import InProgress from "components/atoms/InProgress";
 import PageErrorMessage from "components/atoms/PageErrorMessage";
 import PageNavigationBackToList from "components/atoms/PageNavHome";
@@ -17,12 +16,15 @@ import {
 } from "constants/CrudProgress";
 import Guest from "models/Guest";
 import { Routes } from "constants/Routes";
+import { useAddGuestToAccommodation } from "hooks/api/accommodationHooks";
+import Accommodation from "models/Accommodation";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
     const { addToast } = useToasts();
     const params = useParams();
     const history = useHistory();
+    const selectedAccommodation = useRef(undefined);
 
     const { guest, guestGetInProgress, guestGetError, retrieveGuest } =
         useGetGuest();
@@ -34,9 +36,17 @@ const GuestEditPage = () => {
         updateGuest,
     } = useUpdateGuest();
 
+    const {
+        accommodationAddGuest,
+        accommodationAddGuestInProgress,
+        accommodationAddGuestsUpdateError,
+        addGuestToAccommodation,
+    } = useAddGuestToAccommodation();
+
     const guestInProgress = getCrudInProgressState({
         retrieveInProgress: guestGetInProgress,
-        updateInProgress: guestUpdateInProgress,
+        updateInProgress:
+            guestUpdateInProgress || accommodationAddGuestInProgress,
     });
 
     const formFields = new GuestFormFields();
@@ -62,19 +72,73 @@ const GuestEditPage = () => {
         }
     }, [addToast, history, t, updatedGuest]);
 
-    const onSubmit = async (values, onSubmitError) => {
-        const guest = formFields.formToModel(values);
-        console.log("[GuestEditPage] Invoked onSubmit() with values:", values);
+    useLayoutEffect(() => {
+        if (accommodationAddGuest instanceof Accommodation) {
+            addToast(t("guest:form.message.addGuestToAccommodationSuccess"), {
+                appearance: "info",
+            });
+        }
+    }, [addToast, history, t, updatedGuest]);
 
-        const response = await updateGuest({ guest });
-        if (response?.errors) {
-            onSubmitError(response);
+    /**
+     *
+     * @param {Accommodation} accommodation
+     */
+    const onAccommodationSelected = (accommodation) => {
+        selectedAccommodation.current = accommodation;
+    };
+
+    const guestRequestBindToAccommodation = async (accommodation) => {
+        if (!(accommodation instanceof Accommodation)) {
+            return;
+        }
+        const addGuestResponse = await addGuestToAccommodation({
+            accommodation,
+            guest,
+        });
+
+        if (addGuestResponse?.errors) {
+            addToast(t("guest:form.message.addGuestToAccommodationFailure"), {
+                appearance: "error",
+            });
+        } else {
+            console.log(
+                "[GuestEditPage] Guest bound to accommodation:",
+                accommodation
+            );
+        }
+
+        return addGuestResponse;
+    };
+
+    const guestRequestUpdate = async (accommodation, onSubmitError) => {
+        const updateGuestResponse = await updateGuest({ guest });
+
+        if (updateGuestResponse?.errors) {
+            onSubmitError(updateGuestResponse);
             addToast(t("guest:form.message.updateFailure"), {
                 appearance: "error",
             });
+
+            return;
         }
 
-        console.log("[GuestEditPage] Updated guest:", values);
+        console.log("[GuestEditPage] Updated guest:", guest);
+
+        return updateGuestResponse;
+    };
+
+    const onSubmit = async (values, onSubmitError) => {
+        const guest = formFields.formToModel(values);
+        const accommodation = selectedAccommodation.current;
+
+        console.log("[GuestEditPage] Invoked onSubmit() with:", {
+            values,
+            accommodation,
+        });
+
+        await guestRequestBindToAccommodation(accommodation);
+        await guestRequestUpdate(guest, onSubmitError);
     };
 
     return (
@@ -89,6 +153,7 @@ const GuestEditPage = () => {
                 <GuestForm
                     guestInProgress={guestInProgress}
                     initialValues={initialValues}
+                    onAccommodationSelected={onAccommodationSelected}
                     onSubmit={onSubmit}
                 />
             )}
