@@ -16,7 +16,7 @@ import axios from "axios";
 import { getPath } from "services/Api/utils";
 import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
-import { uniq } from "lodash-es";
+import { times, uniq } from "lodash-es";
 
 const chance = new Chance(0xdeadbeef);
 
@@ -155,6 +155,19 @@ export function generateAllMocks() {
                 chance.natural({ min: 0, max: mockedHosts.length - 1 })
             ];
         accommodation.hostId = accommodation.host.id;
+
+        // Randomly (50%) assign couple of guests to Accommodation.
+        // Notice: this does not check if Guest is already assigned to some
+        // other accommodation, which is not a valid production scenario
+        if (chance.bool()) {
+            times(chance.natural({ min: 1, max: 4 }), () => {
+                const guest =
+                    mockedGuests[
+                        chance.natural({ min: 0, max: mockedGuests.length - 1 })
+                    ];
+                accommodation.guests.push(guest);
+            });
+        }
 
         return accommodation;
     });

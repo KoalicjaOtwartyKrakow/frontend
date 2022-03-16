@@ -20,9 +20,10 @@ import {
 } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
 import { Routes } from "constants/Routes";
+import GuestList from "components/guests/GuestList";
 
 const AccommodationEditPage = () => {
-    const { t } = useTranslation(["accommodation"]);
+    const { t } = useTranslation(["accommodation", "guests"]);
     const { addToast } = useToasts();
     const params = useParams();
     const history = useHistory();
@@ -56,6 +57,16 @@ const AccommodationEditPage = () => {
         accommodationGetError ||
         accommodationGetInProgress
     );
+
+    const guests = accommodation?.guests || [];
+
+    const isAssignedGuestsVisible = initialValues && guests.length > 0;
+
+    const guestCount = guests
+        ? `(${t("guests:card.found")}: ${guests.length})`
+        : "";
+
+    const guestCardHeader = `${t("guests:card.title")} ${guestCount}`;
 
     useEffect(() => {
         if (shouldFetchAccommodation) {
@@ -92,27 +103,34 @@ const AccommodationEditPage = () => {
     };
 
     return (
-        <PageCard header={t("accommodation:card.title.update")}>
-            <InProgress
-                inProgress={
-                    accommodationInProgress !== crudInProgressStates.NONE
-                }
-            />
-            <PageErrorMessage error={accommodationGetError} />
-            <PageErrorMessage error={accommodationUpdateError} />
-
-            {initialValues && (
-                <AccommodationForm
-                    accommodationInProgress={accommodationInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
+        <>
+            <PageCard header={t("accommodation:card.title.update")}>
+                <InProgress
+                    inProgress={
+                        accommodationInProgress !== crudInProgressStates.NONE
+                    }
                 />
-            )}
+                <PageErrorMessage error={accommodationGetError} />
+                <PageErrorMessage error={accommodationUpdateError} />
 
-            {!initialValues && (
-                <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
+                {initialValues && (
+                    <AccommodationForm
+                        accommodationInProgress={accommodationInProgress}
+                        initialValues={initialValues}
+                        onSubmit={onSubmit}
+                    />
+                )}
+
+                {!initialValues && (
+                    <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
+                )}
+            </PageCard>
+            {isAssignedGuestsVisible && (
+                <PageCard header={guestCardHeader} className="mt-3 mb-3">
+                    <GuestList guests={accommodation.guests} />
+                </PageCard>
             )}
-        </PageCard>
+        </>
     );
 };
 
