@@ -55,9 +55,9 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
                 placeholder={t("guest:form.label.findAccommodation")}
                 labelKey={getLabelKey}
                 filterBy={["addressLine", "addressZip", "addressCity"]}
+                onChange={(options) => onAccommodationSelected(options[0])}
                 renderMenuItemChildren={(accommodation) => (
                     <GuestFormAccommodationSearchItem
-                        onClick={() => onAccommodationSelected(accommodation)}
                         accommodation={accommodation}
                     />
                 )}

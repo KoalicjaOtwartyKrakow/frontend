@@ -247,6 +247,37 @@ if (constants.useMocks) {
         return [200, plain];
     });
 
+    mockAdapter
+        .onPost(new RegExp(getPath(Paths.ACCOMMODATION) + "/.+/guest/.+"))
+        .reply((config) => {
+            const { url } = config;
+            const matchedPath = matchPath(url, {
+                path:
+                    getPath(Paths.ACCOMMODATION) +
+                    "/:accommodationId/guest/:guestId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { accommodationId, guestId },
+            } = matchedPath;
+
+            const accommodation = mockedAccommodations.find(
+                (mock) => mock.id === accommodationId
+            );
+
+            const guest = mockedGuests.find((mock) => mock.id === guestId);
+
+            if (!accommodation.guests.some((item) => item.id)) {
+                accommodation.guests.unshift(guest);
+                accommodation.updatedAt = moment();
+            }
+
+            const plain = classToPlain(accommodation);
+
+            return [200, plain];
+        });
+
     mockAdapter.onGet(Paths.HOST).reply((config) => {
         const { url } = config;
         const plainHosts = mockedHosts.map((host) => classToPlain(host));

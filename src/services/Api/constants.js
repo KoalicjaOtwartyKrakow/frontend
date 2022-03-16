@@ -29,6 +29,9 @@ export const useMocks = process.env.REACT_APP_KOKON_API_USE_MOCKS === "true";
 
 export class Paths {
     static ACCOMMODATION = "/accommodation";
+    static ACCOMMODATION_BY_ID = Paths.ACCOMMODATION + "/:accommodationId";
+    static ACCOMMODATION_BY_ID_ADD_GUEST =
+        Paths.ACCOMMODATION_BY_ID + "/guest/:guestId";
     static GUEST = "/guest";
     static HOST = "/host";
 }

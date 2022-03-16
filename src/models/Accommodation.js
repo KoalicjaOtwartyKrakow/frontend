@@ -1,5 +1,6 @@
 import {
     JsonConverter,
+    JsonElementType,
     JsonObject,
     JsonProperty,
     JsonType,
@@ -9,6 +10,8 @@ import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
+import GuestChild from "models/guest/GuestChild";
+import Guest from "models/Guest";
 
 @JsonObject()
 class Accommodation {
@@ -32,6 +35,10 @@ class Accommodation {
     @JsonProperty()
     @JsonType(String)
     createdAt = undefined;
+
+    @JsonProperty()
+    @JsonElementType(Guest)
+    guests = [];
 
     @JsonProperty()
     @JsonType(Host)

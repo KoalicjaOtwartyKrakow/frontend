@@ -34,10 +34,12 @@
             "specialNeeds": "Special needs"
         },
         "message": {
+            "addGuestToAccommodationFailure": "Failed to assign Guest to the Accommodation Unit",
+            "addGuestToAccommodationSuccess": "Guest assigned to Accommodation Unit",
             "createFailure": "Guest was not added to the system",
             "createSuccess": "The new Guest has been added to the system",
             "updateFailure": "There was an issue updating the Guest",
-            "updateSuccess": "Successful update of Guest data"
+            "updateSuccess": "Guest updated successfully"
         },
         "placeholder": {
             "desiredDestination": "Where is the Guest headed?",
