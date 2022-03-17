@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import HttpStatus from "http-status-codes";
 import get from "lodash-es/get";
 import { compile } from "path-to-regexp";
@@ -69,3 +70,11 @@ export const getPath = (url, options) => {
     const toPath = compile(url, { encode: encodeURIComponent });
     return toPath(options);
 };
+
+// TODO(mlazowik): create a hook that wraps `useAxios` and adds the auth header.
+export const getAuthenticationHeaders = () => {
+    // TODO(mlazowik): handle the case where it's expired
+    return {
+        'Authorization': `Bearer ${Cookies.get('jwt')}`
+    };
+}
