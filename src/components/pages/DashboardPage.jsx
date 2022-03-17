@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
-import { getRouteIcon, AppRoutes } from "constants/AppRoutes";
+import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
 const DashboardPage = () => {

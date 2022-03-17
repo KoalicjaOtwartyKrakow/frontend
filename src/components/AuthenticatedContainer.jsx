@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-import { useNavigate, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";

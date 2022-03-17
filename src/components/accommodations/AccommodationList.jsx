@@ -6,6 +6,8 @@ import "components/accommodations/AccommodationList.sass";
 
 import { AppRoutes } from "constants/AppRoutes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
+import { plainToClass } from "serializers/Serializer";
+import Accommodation from "models/Accommodation";
 
 const AccommodationList = ({ accommodations }) => {
     const { t } = useTranslation(["accommodations"]);

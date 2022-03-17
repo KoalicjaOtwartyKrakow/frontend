@@ -33,7 +33,8 @@
 const {
     override,
     addDecoratorsLegacy,
-    disableEsLint,
+    // useBabelRc,
+    // useEslintRc,
 } = require("customize-cra");
 
-module.exports = override(addDecoratorsLegacy(), disableEsLint());
+module.exports = override(addDecoratorsLegacy());

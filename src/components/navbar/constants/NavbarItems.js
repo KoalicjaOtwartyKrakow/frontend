@@ -1,4 +1,4 @@
-import { getRouteIcon, AppRoutes } from "constants/AppRoutes";
+import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const navbarItems = [
