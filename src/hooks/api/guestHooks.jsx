@@ -18,7 +18,7 @@ const useGetGuest = () => {
         const url = getPath(Paths.GUEST) + "/" + guestId;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            plainToClass(Guest, parsed);
+            return plainToClass(Guest, parsed);
         }
         const config = { url, transformResponse };
 
