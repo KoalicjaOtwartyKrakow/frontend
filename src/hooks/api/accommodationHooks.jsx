@@ -22,7 +22,8 @@ const useCreateAccommodation = () => {
     const createAccommodation = ({ accommodation }) => {
         const url = getPath(Paths.ACCOMMODATION);
         const transformResponse = (data) => {
-            return data && plainToClass(Accommodation, data);
+            const parsed = JSON.parse(data)
+            return parsed && plainToClass(Accommodation, parsed);
         };
         const data = classToPlain(accommodation);
         const config = { data, url, transformResponse };
@@ -64,7 +65,7 @@ const useGetAccommodation = () => {
         const url = getPath(Paths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });
-        const transformResponse = (data) => plainToClass(Accommodation, data);
+        const transformResponse = (data) => plainToClass(Accommodation, JSON.parse(data));
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -110,7 +111,8 @@ const useUpdateAccommodation = () => {
             accommodationId: accommodation.id,
         });
         const transformResponse = (data) => {
-            return data && plainToClass(Accommodation, data);
+            const parsed = JSON.parse(data);
+            return parsed && plainToClass(Accommodation, parsed);
         };
         const data = classToPlain(accommodation);
         const config = { data, url, transformResponse };
@@ -162,7 +164,8 @@ const useAddGuestToAccommodation = () => {
         debugger;
 
         const transformResponse = (data) => {
-            return data && plainToClass(Accommodation, data);
+            const parsed = JSON.parse(data);
+            return parsed && plainToClass(Accommodation, parsed);
         };
 
         const config = { url, transformResponse };

@@ -17,7 +17,7 @@ const useGetGuests = () => {
     const retrieveGuests = () => {
         const url = getPath(Paths.GUEST);
         const transformResponse = (data) =>
-            data.map((item) => plainToClass(Guest, item));
+            JSON.parse(data).map((item) => plainToClass(Guest, item));
         const config = { url, transformResponse };
 
         const fetchData = async () => {
