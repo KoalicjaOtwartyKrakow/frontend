@@ -1,6 +1,6 @@
 const polishVoivodeships = Object.freeze([
     { id: "DOLNOSLASKIE", name: "dolnośląskie" },
-    { id: "KUJAWSKO_POMORSKIE", name: "kujawsko-pomorskie" },
+    { id: "KUJAWSKOPOMORSKIE", name: "kujawsko-pomorskie" },
     { id: "LUBELSKIE", name: "lubelskie" },
     { id: "LUBUSKIE", name: "lubuskie" },
     { id: "LODZKIE", name: "łódzkie" },
@@ -12,7 +12,7 @@ const polishVoivodeships = Object.freeze([
     { id: "POMORSKIE", name: "pomorskie" },
     { id: "SLASKIE", name: "śląskie" },
     { id: "SWIETOKRZYSKIE", name: "świętokrzyskie" },
-    { id: "WARMINSKO_MAZURSKIE", name: "warmińsko-mazurskie" },
+    { id: "WARMINSKOMAZURSKIE", name: "warmińsko-mazurskie" },
     { id: "WIELKOPOLSKIE", name: "wielkopolskie" },
     { id: "ZACHODNIOPOMORSKIE", name: "zachodniopomorskie" },
 ]);
