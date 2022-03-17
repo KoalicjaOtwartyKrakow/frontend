@@ -1,12 +1,12 @@
 import useAxios from "axios-hooks";
-import { getErrorsFromApi, getPath } from "services/Api/utils";
+import {getAuthenticationHeaders, getErrorsFromApi, getPath} from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
 
 const useGetHosts = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET" },
+        { method: "GET", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 

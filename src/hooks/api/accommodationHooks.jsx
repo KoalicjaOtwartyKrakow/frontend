@@ -1,12 +1,12 @@
 import useAxios from "axios-hooks";
-import { getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST" },
+        { method: "POST", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
@@ -52,7 +52,7 @@ const useCreateAccommodation = () => {
 
 const useGetAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET" },
+        { method: "GET", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
@@ -92,7 +92,7 @@ const useGetAccommodation = () => {
 
 const useUpdateAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT" },
+        { method: "PUT", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
@@ -140,7 +140,7 @@ const useUpdateAccommodation = () => {
 
 const useAddGuestToAccommodation = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST" },
+        { method: "POST", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 

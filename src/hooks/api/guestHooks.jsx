@@ -1,12 +1,12 @@
 import useAxios from "axios-hooks";
-import { getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET" },
+        { method: "GET", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
@@ -44,7 +44,7 @@ const useGetGuest = () => {
 
 const useUpdateGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT" },
+        { method: "PUT", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
@@ -90,7 +90,7 @@ const useUpdateGuest = () => {
 
 const useCreateGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST" },
+        { method: "POST", headers: getAuthenticationHeaders() },
         { manual: true, autoCancel: false }
     );
 
