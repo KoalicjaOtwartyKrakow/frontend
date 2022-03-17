@@ -1,24 +1,24 @@
 import React from "react";
-import { generatePath, useHistory } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import GuestListItem from "components/guests/GuestListItem";
 
 const GuestList = ({ guests }) => {
     const { t } = useTranslation(["guests"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const getEditRoute = (guestId) => {
-        return generatePath(Routes.GUEST_EDIT, { guestId });
+        return generatePath(AppRoutes.GUEST_EDIT, { guestId });
     };
 
     const onRemove = () => {};
 
     const onEdit = (guestId) => {
         const path = getEditRoute(guestId);
-        history.push(path);
+        navigate(path);
     };
 
     const columnNames = [

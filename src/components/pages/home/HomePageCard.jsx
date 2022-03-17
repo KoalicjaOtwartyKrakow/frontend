@@ -1,4 +1,4 @@
-import { generatePath, Link, useHistory } from "react-router-dom";
+import { generatePath, Link, useNavigate } from "react-router-dom";
 import {
     Button,
     Card,
@@ -20,10 +20,10 @@ const HomePageCard = ({
     navigationButtonLabel,
     navigationRoute,
 }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const onNavigate = (route) => {
         const path = generatePath(route);
-        history.push(path);
+        navigate(path);
     };
 
     return (

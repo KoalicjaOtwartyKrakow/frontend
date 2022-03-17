@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import AuthenticatedContainer from "components/AuthenticatedContainer";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 import AccommodationEditPage from "components/pages/AccommodationEditPage";
 import AccommodationsPage from "components/pages/AccommodationsPage";
@@ -20,54 +20,47 @@ function App() {
     return (
         <Suspense fallback={<LoadingPage visible={true} />}>
             <AuthenticatedContainer>
-                <Switch>
+                <Routes>
+                    <Route path={AppRoutes.ROOT} element={<DashboardPage />} />
                     <Route
-                        path={Routes.ROOT}
-                        render={() => <DashboardPage />}
-                        exact
+                        path={AppRoutes.ACCOMMODATIONS}
+                        element={<AccommodationsPage />}
                     />
-                    <Switch>
-                        <Route
-                            path={Routes.ACCOMMODATIONS}
-                            exact
-                            render={() => <AccommodationsPage />}
-                        />
-                        <Route
-                            path={Routes.ACCOMMODATION_CREATE}
-                            component={AccommodationCreatePage}
-                        />
-                        <Route
-                            path={Routes.ACCOMMODATION_EDIT}
-                            component={AccommodationEditPage}
-                        />
-                        <Route
-                            path={Routes.GUESTS}
-                            exact
-                            render={() => <GuestsPage />}
-                        />
-                        <Route
-                            path={Routes.GUEST_CREATE}
-                            component={GuestCreatePage}
-                        />
-                        <Route
-                            path={Routes.GUEST_EDIT}
-                            component={GuestEditPage}
-                        />
-                        <Route
-                            path={Routes.HOSTS}
-                            exact
-                            render={() => <HostsPage />}
-                        />
-                        <Route
-                            path={Routes.HOST_CREATE}
-                            component={HostCreatePage}
-                        />
-                        <Route
-                            path={Routes.HOST_EDIT}
-                            component={HostEditPage}
-                        />
-                    </Switch>
-                </Switch>
+                    <Route
+                        path={AppRoutes.ACCOMMODATION_CREATE}
+                        element={<AccommodationCreatePage />}
+                    />
+                    <Route
+                        path={AppRoutes.ACCOMMODATION_EDIT}
+                        element={<AccommodationEditPage />}
+                    />
+                    <Route
+                        path={AppRoutes.GUESTS}
+                        exact
+                        element={<GuestsPage />}
+                    />
+                    <Route
+                        path={AppRoutes.GUEST_CREATE}
+                        element={<GuestCreatePage />}
+                    />
+                    <Route
+                        path={AppRoutes.GUEST_EDIT}
+                        element={<GuestEditPage />}
+                    />
+                    <Route
+                        path={AppRoutes.HOSTS}
+                        exact
+                        element={<HostsPage />}
+                    />
+                    <Route
+                        path={AppRoutes.HOST_CREATE}
+                        element={<HostCreatePage />}
+                    />
+                    <Route
+                        path={AppRoutes.HOST_EDIT}
+                        element={<HostEditPage />}
+                    />
+                </Routes>
             </AuthenticatedContainer>
         </Suspense>
     );

@@ -6,27 +6,27 @@ import {
     faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 
-class Routes {
+class AppRoutes {
     static ROOT = "/";
     static ACCOMMODATIONS = "/accommodations";
-    static ACCOMMODATION_CREATE = Routes.ACCOMMODATIONS + "/create";
+    static ACCOMMODATION_CREATE = AppRoutes.ACCOMMODATIONS + "/create";
     static ACCOMMODATION_EDIT =
-        Routes.ACCOMMODATIONS + "/:accommodationId/edit";
+        AppRoutes.ACCOMMODATIONS + "/:accommodationId/edit";
 
     static HOSTS = "/hosts";
-    static HOST_CREATE = Routes.HOSTS + "/create";
-    static HOST_EDIT = Routes.HOSTS + "/:hostId/edit";
+    static HOST_CREATE = AppRoutes.HOSTS + "/create";
+    static HOST_EDIT = AppRoutes.HOSTS + "/:hostId/edit";
 
     static GUESTS = "/guests";
-    static GUEST_CREATE = Routes.GUESTS + "/create";
-    static GUEST_EDIT = Routes.GUESTS + "/:guestId/edit";
+    static GUEST_CREATE = AppRoutes.GUESTS + "/create";
+    static GUEST_EDIT = AppRoutes.GUESTS + "/:guestId/edit";
 }
 
 class RoutesIcons {
-    static [Routes.ROOT] = faHome;
-    static [Routes.ACCOMMODATIONS] = faBed;
-    static [Routes.GUESTS] = faUserFriends;
-    static [Routes.HOSTS] = faHandHoldingHeart;
+    static [AppRoutes.ROOT] = faHome;
+    static [AppRoutes.ACCOMMODATIONS] = faBed;
+    static [AppRoutes.GUESTS] = faUserFriends;
+    static [AppRoutes.HOSTS] = faHandHoldingHeart;
 }
 
 const getRouteIcon = (route) => {
@@ -42,4 +42,4 @@ const getRouteIcon = (route) => {
     return icon;
 };
 
-export { Routes, getRouteIcon };
+export { AppRoutes, getRouteIcon };

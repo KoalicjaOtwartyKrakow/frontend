@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -13,12 +13,12 @@ import {
     getCrudInProgressState,
 } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const AccommodationCreatePage = () => {
     const { t } = useTranslation(["accommodation"]);
     const { addToast } = useToasts();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {
         createdAccommodation,
@@ -41,9 +41,9 @@ const AccommodationCreatePage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.ACCOMMODATIONS);
+            navigate(AppRoutes.ACCOMMODATIONS);
         }
-    }, [addToast, createdAccommodation, history, t]);
+    }, [addToast, createdAccommodation, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const accommodation = formFields.formToModel(values);
@@ -77,7 +77,7 @@ const AccommodationCreatePage = () => {
             )}
 
             {!initialValues && (
-                <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
+                <PageNavigationBackToList to={AppRoutes.ACCOMMODATIONS} />
             )}
         </PageCard>
     );

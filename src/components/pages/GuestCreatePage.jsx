@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -16,12 +16,12 @@ import {
     getCrudInProgressState,
 } from "constants/CrudProgress";
 import Guest from "models/Guest";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const GuestCreatePage = () => {
     const { t } = useTranslation(["guest"]);
     const { addToast } = useToasts();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {
         createdGuest,
@@ -44,9 +44,9 @@ const GuestCreatePage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.GUESTS);
+            navigate(AppRoutes.GUESTS);
         }
-    }, [addToast, createdGuest, history, t]);
+    }, [addToast, createdGuest, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const guest = formFields.formToModel(values);
@@ -81,7 +81,9 @@ const GuestCreatePage = () => {
                 />
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.GUESTS} />}
+            {!initialValues && (
+                <PageNavigationBackToList to={AppRoutes.GUESTS} />
+            )}
         </PageCard>
     );
 };

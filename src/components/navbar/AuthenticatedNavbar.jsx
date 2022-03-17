@@ -10,7 +10,7 @@ import {
     UncontrolledDropdown,
 } from "reactstrap";
 import AuthenticatedNavbarItem from "components/navbar/AuthenticatedNavbarItem";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import { faCog, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
@@ -29,7 +29,7 @@ const AuthenticatedNavbar = ({ onLogout }) => {
 
     return (
         <Navbar color="dark" dark expand="md">
-            <NavbarBrand href={Routes.ROOT}>KOK:on</NavbarBrand>
+            <NavbarBrand href={AppRoutes.ROOT}>KOK:on</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="me-auto" navbar>

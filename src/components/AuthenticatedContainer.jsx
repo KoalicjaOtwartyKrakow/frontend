@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "reactstrap";
-import { useHistory, withRouter } from "react-router-dom";
+import { useNavigate, withRouter } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
@@ -12,10 +12,10 @@ import { CustomToast } from "components/atoms/Toast";
 import { appConfig } from "constants/AppConfig";
 
 const AuthenticatedContainer = ({ children }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const onJumbotronClick = () => {
-        const path = Routes.ROOT;
-        history.push(path);
+        const path = AppRoutes.ROOT;
+        navigate(path);
     };
 
     const { t } = useTranslation(["common"]);
@@ -66,4 +66,4 @@ const AuthenticatedContainer = ({ children }) => {
     );
 };
 
-export default withRouter(AuthenticatedContainer);
+export default AuthenticatedContainer;

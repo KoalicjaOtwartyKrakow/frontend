@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -15,13 +15,13 @@ import {
     getCrudInProgressState,
 } from "constants/CrudProgress";
 import Host from "models/Host";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const HostEditPage = () => {
     const { t } = useTranslation(["host"]);
     const { addToast } = useToasts();
     const params = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { host, hostGetInProgress, hostGetError, retrieveHost } =
         useGetHost();
@@ -53,9 +53,9 @@ const HostEditPage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.HOSTS);
+            navigate(AppRoutes.HOSTS);
         }
-    }, [updatedHost, addToast, history, t]);
+    }, [updatedHost, addToast, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const host = formFields.formToModel(values);
@@ -88,7 +88,9 @@ const HostEditPage = () => {
                 />
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.HOSTS} />}
+            {!initialValues && (
+                <PageNavigationBackToList to={AppRoutes.HOSTS} />
+            )}
         </PageCard>
     );
 };

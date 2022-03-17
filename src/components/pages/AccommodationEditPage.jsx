@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -19,14 +19,14 @@ import {
     getCrudInProgressState,
 } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import GuestList from "components/guests/GuestList";
 
 const AccommodationEditPage = () => {
     const { t } = useTranslation(["accommodation", "guests"]);
     const { addToast } = useToasts();
     const params = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {
         accommodation,
@@ -80,9 +80,9 @@ const AccommodationEditPage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.ACCOMMODATIONS);
+            navigate(AppRoutes.ACCOMMODATIONS);
         }
-    }, [addToast, history, t, updatedAccommodation]);
+    }, [addToast, navigate, t, updatedAccommodation]);
 
     const onSubmit = async (values, onSubmitError) => {
         const accommodation = formFields.formToModel(values);
@@ -123,7 +123,7 @@ const AccommodationEditPage = () => {
                 )}
 
                 {!initialValues && (
-                    <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
+                    <PageNavigationBackToList to={AppRoutes.ACCOMMODATIONS} />
                 )}
             </PageCard>
             {isAssignedGuestsVisible && (

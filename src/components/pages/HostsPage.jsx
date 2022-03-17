@@ -11,14 +11,14 @@ import RefreshButton from "components/atoms/RefreshButton";
 import { useGetHosts } from "hooks/api/hostsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
 import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
-import { useHistory } from "react-router-dom";
-import { Routes } from "constants/Routes";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "constants/AppRoutes";
 
 const HostsPage = () => {
     const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } =
         useGetHosts();
     const { t } = useTranslation(["hosts"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const hostCount = hosts
         ? `(${t("hosts:card.found")}: ${hosts.length})`
@@ -35,7 +35,7 @@ const HostsPage = () => {
     }, [retrieveHosts, shouldFetchHosts]);
 
     const navigateToCreatePage = () => {
-        history.push(Routes.HOST_CREATE);
+        navigate(AppRoutes.HOST_CREATE);
     };
 
     return (

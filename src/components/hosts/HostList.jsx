@@ -1,22 +1,22 @@
 import React from "react";
-import { generatePath, useHistory } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import "components/hosts/HostList.sass";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import HostListItem from "components/hosts/HostListItem";
 
 const HostList = ({ hosts }) => {
     const { t } = useTranslation(["hosts"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const getEditRoute = (hostId) => {
-        return generatePath(Routes.HOST_EDIT, { hostId });
+        return generatePath(AppRoutes.HOST_EDIT, { hostId });
     };
 
     const onEdit = (hostId) => {
         const path = getEditRoute(hostId);
-        history.push(path);
+        navigate(path);
     };
 
     const onRemove = () => {};

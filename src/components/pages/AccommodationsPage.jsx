@@ -11,8 +11,8 @@ import RefreshButton from "components/atoms/RefreshButton";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
 import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
-import { useHistory } from "react-router-dom";
-import { Routes } from "constants/Routes";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "constants/AppRoutes";
 
 const AccommodationsPage = () => {
     const {
@@ -22,7 +22,7 @@ const AccommodationsPage = () => {
         retrieveAccommodations,
     } = useGetAccommodations();
     const { t } = useTranslation(["accommodations"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const accommodationCount = accommodations
         ? `(${t("accommodations:card.found")}: ${accommodations.length})`
@@ -44,7 +44,7 @@ const AccommodationsPage = () => {
     }, [retrieveAccommodations, shouldFetchAccommodations]);
 
     const navigateToCreatePage = () => {
-        history.push(Routes.ACCOMMODATION_CREATE);
+        navigate(AppRoutes.ACCOMMODATION_CREATE);
     };
 
     return (

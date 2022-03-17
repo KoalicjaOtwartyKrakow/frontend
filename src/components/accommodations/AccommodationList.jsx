@@ -1,23 +1,23 @@
 import React from "react";
-import { generatePath, useHistory } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import "components/accommodations/AccommodationList.sass";
 
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
 
 const AccommodationList = ({ accommodations }) => {
     const { t } = useTranslation(["accommodations"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const getEditRoute = (accommodationId) => {
-        return generatePath(Routes.ACCOMMODATION_EDIT, { accommodationId });
+        return generatePath(AppRoutes.ACCOMMODATION_EDIT, { accommodationId });
     };
 
     const onEdit = (accommodationId) => {
         const path = getEditRoute(accommodationId);
-        history.push(path);
+        navigate(path);
     };
 
     const onRemove = () => {};

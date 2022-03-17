@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -23,7 +23,7 @@ const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
     const { addToast } = useToasts();
     const params = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
     const selectedAccommodation = useRef(undefined);
 
     const { guest, guestGetInProgress, guestGetError, retrieveGuest } =
@@ -60,9 +60,9 @@ const GuestEditPage = () => {
             addToast(t("guest:form.message.updateSuccess"), {
                 appearance: "success",
             });
-            history.push(Routes.GUESTS);
+            navigate(AppRoutes.GUESTS);
         }
-    }, [addToast, history, t, updatedGuest]);
+    }, [addToast, navigate, t, updatedGuest]);
 
     /**
      *
@@ -129,7 +129,9 @@ const GuestEditPage = () => {
                 </AccommodationContext.Provider>
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.GUESTS} />}
+            {!initialValues && (
+                <PageNavigationBackToList to={AppRoutes.GUESTS} />
+            )}
         </PageCard>
     );
 };
