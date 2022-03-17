@@ -16,8 +16,10 @@ const useGetHosts = () => {
 
     const retrieveHosts = () => {
         const url = getPath(Paths.HOST);
-        const transformResponse = (data) =>
-            JSON.parse(data).map((item) => plainToClass(Host, item));
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            parsed.map((item) => plainToClass(Host, item));
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {

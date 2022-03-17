@@ -16,7 +16,10 @@ const useGetGuest = () => {
 
     const fetchGuest = ({ guestId }) => {
         const url = getPath(Paths.GUEST) + "/" + guestId;
-        const transformResponse = (data) => plainToClass(Guest, JSON.parse(data));
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            plainToClass(Guest, parsed);
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {

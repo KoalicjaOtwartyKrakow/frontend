@@ -60,7 +60,10 @@ const useGetHost = () => {
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(Paths.HOST) + "/" + hostId;
-        const transformResponse = (data) => plainToClass(Host, JSON.parse(data));
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            plainToClass(Host, parsed);
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {

@@ -65,7 +65,10 @@ const useGetAccommodation = () => {
         const url = getPath(Paths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });
-        const transformResponse = (data) => plainToClass(Accommodation, JSON.parse(data));
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            plainToClass(Accommodation, parsed);
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {
