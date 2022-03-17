@@ -67,7 +67,7 @@ const useGetAccommodation = () => {
         });
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            plainToClass(Accommodation, parsed);
+            return plainToClass(Accommodation, parsed);
         }
         const config = { url, transformResponse };
 
