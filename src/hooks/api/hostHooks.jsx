@@ -22,7 +22,8 @@ const useCreateHost = () => {
     const createHost = ({ host }) => {
         const url = getPath(Paths.HOST);
         const transformResponse = (data) => {
-            return data && plainToClass(Host, data);
+            const parsed = JSON.parse(data);
+            return parsed && plainToClass(Host, parsed);
         };
         const data = classToPlain(host);
         const config = { data, url, transformResponse };
@@ -59,7 +60,10 @@ const useGetHost = () => {
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(Paths.HOST) + "/" + hostId;
-        const transformResponse = (data) => plainToClass(Host, data);
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            plainToClass(Host, parsed);
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -100,7 +104,8 @@ const useUpdateHost = () => {
     const updateHost = ({ host }) => {
         const url = getPath(Paths.HOST) + "/" + host.id;
         const transformResponse = (data) => {
-            return data && plainToClass(Host, data);
+            const parsed = JSON.parse(data);
+            return parsed && plainToClass(Host, parsed);
         };
         const data = classToPlain(host);
         const config = { data, url, transformResponse };

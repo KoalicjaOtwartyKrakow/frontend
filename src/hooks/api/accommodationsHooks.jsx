@@ -16,8 +16,10 @@ const useGetAccommodations = () => {
 
     const retrieveAccommodations = () => {
         const url = getPath(Paths.ACCOMMODATION);
-        const transformResponse = (data) =>
-            data.map((item) => plainToClass(Accommodation, item));
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            parsed.map((item) => plainToClass(Accommodation, item));
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {

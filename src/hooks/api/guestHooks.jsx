@@ -16,7 +16,10 @@ const useGetGuest = () => {
 
     const fetchGuest = ({ guestId }) => {
         const url = getPath(Paths.GUEST) + "/" + guestId;
-        const transformResponse = (data) => plainToClass(Guest, data);
+        const transformResponse = (data) => {
+            const parsed = JSON.parse(data);
+            plainToClass(Guest, parsed);
+        }
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -60,7 +63,8 @@ const useUpdateGuest = () => {
     const updateGuest = ({ guest }) => {
         const url = getPath(Paths.GUEST) + "/" + guest.id;
         const transformResponse = (data) => {
-            return data && plainToClass(Guest, data);
+            const parsed = JSON.parse(data);
+            return parsed && plainToClass(Guest, parsed);
         };
         const data = classToPlain(guest);
         const config = { data, url, transformResponse };
@@ -106,7 +110,8 @@ const useCreateGuest = () => {
     const createGuest = ({ guest }) => {
         const url = getPath(Paths.GUEST);
         const transformResponse = (data) => {
-            return data && plainToClass(Guest, data);
+            const parsed = JSON.parse(data)
+            return parsed && plainToClass(Guest, parsed);
         };
         const data = classToPlain(guest);
         const config = { data, url, transformResponse };
