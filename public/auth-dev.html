@@ -31,9 +31,6 @@
         const cookieExpirationDate = new Date(googleTokenExpirationUnixTimestamp * 1000 - 2 * MS_PER_MINUTE);
         const expirationWarningDate = new Date(googleTokenExpirationUnixTimestamp * 1000 - 5 * MS_PER_MINUTE);
 
-        console.log(parseJwt(response.credential));
-        console.log(parseJwt(response.credential).exp);
-
         Cookies.set('jwt', response.credential, {
             expires: cookieExpirationDate,
             sameSite: 'strict',
