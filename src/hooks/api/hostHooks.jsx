@@ -62,7 +62,7 @@ const useGetHost = () => {
         const url = getPath(Paths.HOST) + "/" + hostId;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            plainToClass(Host, parsed);
+            return plainToClass(Host, parsed);
         }
         const config = { url, transformResponse };
 
