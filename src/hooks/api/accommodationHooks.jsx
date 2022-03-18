@@ -1,7 +1,7 @@
 import useAxios from "axios-hooks";
 import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
-import { classToPlain, plainToClass } from "serializers/Serializer";
+import {classToPlain, filterImmutableFields, plainToClass} from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
@@ -117,7 +117,7 @@ const useUpdateAccommodation = () => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Accommodation, parsed);
         };
-        const data = classToPlain(accommodation);
+        const data = filterImmutableFields(classToPlain(accommodation));
         const config = { data, url, transformResponse };
 
         const updateData = async () => {
