@@ -10,10 +10,10 @@ import ISO6391 from "iso-639-1";
 const languagesSpokenCheckbox = ({ name, label }) => {
     return (
         <Field
-            id={name.code2}
-            key={name.code2}
+            id={name}
+            key={name}
             name={HostFormFields.LANGUAGES_SPOKEN}
-            value={name.code2}
+            value={name}
             type="checkbox"
             label={label}
             component={FormCheckbox}
@@ -26,8 +26,8 @@ const HostFormLanguagesSpoken = () => {
     const { t } = useTranslation(["host"]);
 
     const languagesSpokenCheckboxes = languages.map((language) => ({
-        name: language,
-        label: ISO6391.getName(language),
+        name: language.code2,
+        label: ISO6391.getName(language.code2.toLowerCase()),
     }));
 
     return (

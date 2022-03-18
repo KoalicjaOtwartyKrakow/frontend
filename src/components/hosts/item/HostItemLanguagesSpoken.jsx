@@ -2,6 +2,18 @@ import React, { useContext } from "react";
 import { HostContext } from "components/host/HostContext";
 import { Badge } from "reactstrap";
 import ISO6391 from "iso-639-1";
+import ReactCountryFlag from "react-country-flag"
+
+
+const iso631_to_iso3166 = code => {
+    const mapping = {
+        'En': 'GB',
+        'Pl': 'PL',
+        'Ru': 'RU',
+        'Uk': 'UA'
+    }
+    return mapping[code] || code
+}
 
 /**
  *
@@ -20,9 +32,13 @@ const HostItemLanguagesSpoken = () => {
     return (
         <>
             {languagesSpoken.map((code) => (
-                <Badge className="mb-1 me-1" key={code.code2}>
-                    {ISO6391.getName(code.code2.toLowerCase())}
-                </Badge>
+                <ReactCountryFlag
+                    className="mb-1 me-1"
+                    key={code.code2}
+                    countryCode={iso631_to_iso3166(code.code2)}
+                    svg
+                    title={ISO6391.getName(code.code2.toLowerCase())}
+                />
             ))}
         </>
     );
