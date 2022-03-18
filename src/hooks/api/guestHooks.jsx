@@ -61,7 +61,7 @@ const useUpdateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateGuest = ({ guest }) => {
-        const url = getPath(Paths.GUEST) + "/" + guest.id;
+        const url = getPath(Paths.GUEST) + "/" + guest.guid;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);

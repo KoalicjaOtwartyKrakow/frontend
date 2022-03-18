@@ -13,6 +13,7 @@ class GuestFormFields {
     static FULL_NAME = "fullName";
     static GLUTEN_FREE_DIET = "glutenFreeDiet";
     static ID = "id";
+    static GUID = "guid";
     static LACTOSE_FREE_DIET = "lactoseFreeDiet";
     static MEAT_FREE_DIET = "meatFreeDiet";
     static PEOPLE_FEMALE_COUNT = "peopleFemaleCount";
@@ -42,7 +43,7 @@ class GuestFormFields {
         const fieldNames = Object.values(GuestFormFields);
         const formValues = pick(guest, fieldNames);
 
-        if (guest.id) {
+        if (guest.guid) {
             return formValues;
         }
 
