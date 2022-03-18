@@ -8,6 +8,10 @@ const IMMUTABLE_FIELDS = [
     "guid",
     "createdAt",
     "updatedAt",
+    "guests",
+    "apartments",
+    "host",
+    "accommodation",
 ]
 
 const plainToClass = function (className, plain, convertCase = false) {
