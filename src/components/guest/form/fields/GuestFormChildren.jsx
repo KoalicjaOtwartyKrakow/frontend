@@ -15,9 +15,9 @@ const GuestFormChildren = (props) => {
 
     const childRenderer = (arrayHelpers) => {
         const items = field.value;
-        const addChild = () => arrayHelpers.push(new GuestChild());
+        const addChild = () => arrayHelpers.push(new Number());
         const insertChild = (index) => () =>
-            arrayHelpers.insert(index, new GuestChild());
+            arrayHelpers.insert(index, new Number());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
         return (

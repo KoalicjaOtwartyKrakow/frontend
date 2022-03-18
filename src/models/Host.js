@@ -9,12 +9,17 @@ import {
 import { nanoid } from "nanoid";
 import MomentSerializer from "serializers/MomentSerializer";
 import { HostStatus } from "models/constants/HostStatus";
+import Language from "models/Language";
 
 @JsonObject()
 class Host {
     @JsonProperty()
     @JsonType(String)
     id = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    guid = undefined;
 
     @JsonProperty()
     @JsonType(String)
@@ -46,8 +51,8 @@ class Host {
     createdAt = undefined;
 
     @JsonProperty()
-    @JsonElementType(Array)
-    languagesSpoken = ["pl"];
+    @JsonElementType(Language)
+    languagesSpoken = [];
 
     @JsonProperty()
     @JsonType(String)

@@ -51,10 +51,10 @@ const HostList = ({ hosts }) => {
             </thead>
             <tbody>
                 {hosts.map((host) => {
-                    const { id } = host;
+                    const { guid } = host;
                     return (
                         <HostListItem
-                            key={id}
+                            key={guid}
                             host={host}
                             onEdit={onEdit}
                             onRemove={onRemove}

@@ -52,6 +52,10 @@ class Accommodation {
     @JsonType(String)
     id = undefined;
 
+    @JsonProperty()
+    @JsonType(String)
+    guid = undefined;
+
     @JsonType(String)
     @JsonProperty()
     ownerComments = "";

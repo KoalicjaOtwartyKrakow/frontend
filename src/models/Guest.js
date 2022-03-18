@@ -8,15 +8,14 @@ import {
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-import GuestChild from "models/guest/GuestChild";
 import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 
 @JsonObject()
 class Guest {
     @JsonProperty()
-    @JsonElementType(GuestChild)
-    children = [];
+    @JsonElementType(Array)
+    childrenAges = [];
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
@@ -54,6 +53,10 @@ class Guest {
     @JsonProperty()
     @JsonType(String)
     id = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    guid = undefined;
 
     @JsonProperty()
     @JsonType(Boolean)

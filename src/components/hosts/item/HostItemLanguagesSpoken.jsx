@@ -20,8 +20,8 @@ const HostItemLanguagesSpoken = () => {
     return (
         <>
             {languagesSpoken.map((code) => (
-                <Badge className="mb-1 me-1" key={code}>
-                    {ISO6391.getName(code.toLowerCase())}
+                <Badge className="mb-1 me-1" key={code.code2}>
+                    {ISO6391.getName(code.code2.toLowerCase())}
                 </Badge>
             ))}
         </>
