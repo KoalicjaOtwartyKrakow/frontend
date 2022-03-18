@@ -49,7 +49,7 @@ class AccommodationFormFields {
                 formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
             )?.id || defaultPolishVoivodeshipId;
 
-        if (accommodation.id) {
+        if (accommodation.guid) {
             return formValues;
         }
 

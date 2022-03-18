@@ -27,7 +27,7 @@ class HostFormFields {
         const fieldNames = Object.values(HostFormFields);
         const formValues = pick(host, fieldNames);
 
-        if (host.id) {
+        if (host.guid) {
             return formValues;
         }
 

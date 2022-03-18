@@ -102,7 +102,7 @@ const useUpdateHost = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateHost = ({ host }) => {
-        const url = getPath(Paths.HOST) + "/" + host.id;
+        const url = getPath(Paths.HOST) + "/" + host.guid;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Host, parsed);

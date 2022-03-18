@@ -42,7 +42,7 @@ class GuestFormFields {
         const fieldNames = Object.values(GuestFormFields);
         const formValues = pick(guest, fieldNames);
 
-        if (guest.id) {
+        if (guest.guid) {
             return formValues;
         }
 
