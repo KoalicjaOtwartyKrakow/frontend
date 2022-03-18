@@ -34,4 +34,4 @@ const filterImmutableFields = function (object) {
     return filtered;
 }
 
-export { classToPlain, plainToClass, filterImmutableFields };
+export { classToPlain, filterImmutableFields, plainToClass };
