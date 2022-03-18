@@ -31,8 +31,8 @@ export function generateAllMocks() {
         guest.children = Array.from(
             { length: chance.natural({ min: 0, max: 3 }) },
             () => {
-                const guestChild = new GuestChild();
-                guestChild.age = chance.age({ type: "child" });
+                let guestChild = new Number();
+                guestChild = chance.age({ type: "child" });
                 return guestChild;
             }
         );

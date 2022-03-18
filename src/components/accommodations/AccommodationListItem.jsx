@@ -16,8 +16,8 @@ import AccommodationItemInfo from "components/accommodations/item/AccommodationI
  * @constructor
  */
 const AccommodationListItem = ({ accommodation, onEdit, onRemove }) => {
-    const { id } = accommodation;
-    const handleEdit = () => onEdit(id);
+    const { guid } = accommodation;
+    const handleEdit = () => onEdit(guid);
 
     return (
         <AccommodationContext.Provider value={accommodation}>

@@ -52,10 +52,10 @@ const GuestList = ({ guests }) => {
             </thead>
             <tbody>
                 {guests.map((guest) => {
-                    const { id } = guest;
+                    const { guid } = guest;
                     return (
                         <GuestListItem
-                            key={id}
+                            key={guid}
                             guest={guest}
                             onEdit={onEdit}
                             onRemove={onRemove}
