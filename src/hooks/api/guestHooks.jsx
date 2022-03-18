@@ -1,7 +1,7 @@
 import useAxios from "axios-hooks";
 import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { Paths } from "services/Api/constants";
-import { classToPlain, plainToClass, filterImmutableFields } from "serializers/Serializer";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
