@@ -15,29 +15,37 @@ const GuestFormPriorityStatus = (props) => {
 
     const items = [
         {
-            id: GuestPriorityStatus.ACCOMMODATION_FOUND,
-            name: t("guest:priorityStatus.accommodationFound"),
+            id: GuestPriorityStatus.DOES_NOT_RESPOND,
+            name: t("guest:priorityStatus.doesNotRespond"),
         },
         {
             id: GuestPriorityStatus.ACCOMMODATION_NOT_NEEDED,
             name: t("guest:priorityStatus.accommodationNotRequired"),
         },
         {
-            id: GuestPriorityStatus.EN_ROUTE_POLAND,
-            name: t("guest:priorityStatus.enRoutePoland"),
+            id: GuestPriorityStatus.EN_ROUTE_UA,
+            name: t("guest:priorityStatus.enRouteUa"),
         },
         {
-            id: GuestPriorityStatus.EN_ROUTE_UKRAINE,
-            name: t("guest:priorityStatus.enRouteUkraine"),
+            id: GuestPriorityStatus.EN_ROUTE_PL,
+            name: t("guest:priorityStatus.enRoutePl"),
         },
         {
-            id: GuestPriorityStatus.IN_KRAKOW,
-            name: t("guest:priorityStatus.inCracow"),
+            id: GuestPriorityStatus.IN_KRK,
+            name: t("guest:priorityStatus.inKrk"),
         },
         {
-            id: GuestPriorityStatus.IN_CRISIS_POINT,
-            name: t("guest:priorityStatus.inCrisisPoint"),
+            id: GuestPriorityStatus.AT_R3,
+            name: t("guest:priorityStatus.atR3"),
         },
+        {
+            id: GuestPriorityStatus.ACCOMMODATION_FOUND,
+            name: t("guest:priorityStatus.accommodationFound"),
+        },
+        {
+            id: GuestPriorityStatus.UPDATED,
+            name: t("guest:priorityStatus.updated"),
+        }
     ];
 
     return (
