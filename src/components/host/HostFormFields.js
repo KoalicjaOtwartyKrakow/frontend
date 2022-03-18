@@ -10,6 +10,7 @@ class HostFormFields {
     static EMAIL = "email";
     static FULL_NAME = "fullName";
     static ID = "id";
+    static GUID = "guid";
     static LANGUAGES_SPOKEN = "languagesSpoken";
     static PHONE_NUMBER = "phoneNumber";
     static STATUS = "status";
