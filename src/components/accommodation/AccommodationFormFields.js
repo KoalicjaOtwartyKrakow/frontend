@@ -20,6 +20,7 @@ class AccommodationFormFields {
     static HOST = "host";
     static HOST_ID = "hostId";
     static ID = "id";
+    static GUID = "guid";
     static IS_VERIFIED = "isVerified";
     static LGBT_FRIENDLY = "lgbtFriendly";
     static PARKING_PLACE = "parkingPlaceAvailable";
@@ -49,7 +50,7 @@ class AccommodationFormFields {
                 formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
             )?.id || defaultPolishVoivodeshipId;
 
-        if (accommodation.id) {
+        if (accommodation.guid) {
             return formValues;
         }
 
