@@ -16,7 +16,7 @@ const FormSelect = React.memo(
                     {isPleaseSelect && <FormOptionPleaseSelect />}
                     {children}
                     {items.map((item) => (
-                        <option value={item.id} key={item.id}>
+                        <option value={item.guid} key={item.guid}>
                             {item.name}
                         </option>
                     ))}
