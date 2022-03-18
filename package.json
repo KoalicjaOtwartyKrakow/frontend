@@ -79,6 +79,7 @@
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
         "react-bootstrap-typeahead": "^6.0.0-alpha.9",
+        "react-country-flag": "^3.0.2",
         "react-datepicker": "4.7.0",
         "react-dom": "^16.12.0",
         "react-easy-emoji": "^1.4.0",
