@@ -22,9 +22,18 @@ const AccommodationItemAddress = () => {
                 <span className="accommodation__address-zip">
                     {accommodation.addressZip}
                 </span>
-                <span className="accommodation__address-voivodeship">
-                    {voivodeship}
+                <span className="accommodation__address-city">
+                    {" "}
+                    {accommodation.addressCity}
                 </span>
+                {voivodeship && (
+                    <>
+                        {", "}
+                        <span className="accommodation__address-voivodeship">
+                            {voivodeship}
+                        </span>
+                    </>
+                )}
             </p>
         </address>
     );

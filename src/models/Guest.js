@@ -10,9 +10,14 @@ import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
+import GuestAccommodation from "models/GuestAccommodation";
 
 @JsonObject()
 class Guest {
+    @JsonProperty()
+    @JsonType(GuestAccommodation)
+    accommodation = undefined;
+
     @JsonProperty("childrenAges")
     @JsonElementType(Number)
     children = [];

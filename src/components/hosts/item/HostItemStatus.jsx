@@ -12,6 +12,10 @@ const HostItemStatus = () => {
     const host = useContext(HostContext);
     const { t } = useTranslation(["host"]);
 
+    if (host === undefined) {
+        debugger;
+    }
+
     const { status } = host;
 
     const colorFromStatus = {
