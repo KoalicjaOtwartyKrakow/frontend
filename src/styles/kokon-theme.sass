@@ -36,43 +36,58 @@ $text-guest-trait: $gray-500
 .bg
   &-accommodations
     background-color: $bg-color-accommodations
+
   &-form-card-section
     background-color: $bg-color-form-card-section
+
   &-guest-priority-status
     &-accommodation-found
       background-color: $bg-color-guest-priority-lowest
+
     &-accommodation-not-needed
       background-color: $bg-color-guest-priority-done
+
     &-en-route-poland
       background-color: $bg-color-guest-priority-medium
+
     &-en-route-ukraine
       background-color: $bg-color-guest-priority-low
+
     &-in-crisis-point
       background-color: $bg-color-guest-priority-highest
+
     &-in-krakow
       background-color: $bg-color-guest-priority-high
+
     &-unknown
       background-color: $gray-400
 
   &-guests
     background-color: $bg-color-guests
+
   &-hosts
     background-color: $bg-color-hosts
+
   &-person-color
     &-child
       background-color: $bg-person-color-child
+
     &-female
       background-color: $bg-person-color-female
+
     &-male
       background-color: $bg-person-color-male
+
     &-total
       background-color: $bg-person-color-total
 
 .btn
   &-accommodations
     @include button-variant($bg-color-accommodations-primary, $bg-color-accommodations-primary, $color-contrast-light)
+
   &-guests
     @include button-variant($bg-color-guests-primary, $bg-color-guests-primary, $color-contrast-light)
+
   &-hosts
     @include button-variant($bg-color-hosts-primary, $bg-color-hosts-primary, $color-contrast-light)
 

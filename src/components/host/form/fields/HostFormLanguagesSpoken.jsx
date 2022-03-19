@@ -1,5 +1,5 @@
 import React from "react";
-import { FormFeedback, FormGroup, FormText, Input } from "reactstrap";
+import { FormFeedback, FormGroup, FormText } from "reactstrap";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { HostFormFields } from "components/host/HostFormFields";

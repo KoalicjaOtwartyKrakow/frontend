@@ -87,6 +87,22 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Number)
     vacanciesTotal = 1;
+    @JsonProperty()
+    @JsonType(Boolean)
+    lgbtFriendly = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    disabledPeopleFriendly = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    parkingPlaceAvailable = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    easyAmbulanceAccess = false;
+
+    constructor() {
+        this.uuidRegenerate();
+    }
 
     get vacanciesTaken() {
         return this.vacanciesTotal - this.vacanciesFree;
@@ -94,26 +110,6 @@ class Accommodation {
 
     set vacanciesTaken(value) {
         this.vacanciesFree = this.vacanciesTotal - value;
-    }
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    lgbtFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    disabledPeopleFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    parkingPlaceAvailable = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    easyAmbulanceAccess = false;
-
-    constructor() {
-        this.uuidRegenerate();
     }
 
     @OnDeserialized()

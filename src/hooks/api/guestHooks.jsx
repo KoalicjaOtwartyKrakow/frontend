@@ -1,7 +1,15 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import {
+    getAuthenticationHeaders,
+    getErrorsFromApi,
+    getPath,
+} from "services/Api/utils";
 import { Paths } from "services/Api/constants";
-import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
+import {
+    classToPlain,
+    filterImmutableFields,
+    plainToClass,
+} from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
@@ -19,7 +27,7 @@ const useGetGuest = () => {
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return plainToClass(Guest, parsed);
-        }
+        };
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -61,7 +69,7 @@ const useUpdateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateGuest = ({ guest }) => {
-        const url = getPath(Paths.GUEST) + "/" + guest.guid;
+        const url = getPath(Paths.GUEST) + "/" + guest.id;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);
@@ -110,7 +118,7 @@ const useCreateGuest = () => {
     const createGuest = ({ guest }) => {
         const url = getPath(Paths.GUEST);
         const transformResponse = (data) => {
-            const parsed = JSON.parse(data)
+            const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);
         };
         const data = classToPlain(guest);
