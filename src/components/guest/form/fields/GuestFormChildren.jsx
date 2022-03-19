@@ -6,10 +6,12 @@ import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/pro-regular-svg-icons";
+import FormInputNoFeedback from "components/atoms/form/FormInputNoFeedback";
+import Feedback from "components/atoms/form/Feedback";
 
-const GuestFormChildren = (props) => {
+const GuestFormChildren = () => {
     const { t } = useTranslation(["guest"]);
-    const [field] = useField({ ...props, name: GuestFormFields.CHILDREN });
+    const [field] = useField(GuestFormFields.CHILDREN);
     const fieldId = field.name;
 
     const childRenderer = (arrayHelpers) => {
@@ -19,11 +21,13 @@ const GuestFormChildren = (props) => {
             arrayHelpers.insert(index, Number());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
+        console.log(items);
+
         return (
             <>
                 {items?.length > 0 ? (
                     items.map((child, index) => {
-                        const id = `${fieldId}[${index}].age`;
+                        const id = `${fieldId}[${index}]`;
                         return (
                             <FormGroup key={index}>
                                 <InputGroup>
@@ -31,11 +35,11 @@ const GuestFormChildren = (props) => {
                                         {t("guest:form.label.childAge")}
                                     </InputGroupText>
                                     <Field
-                                        component={FormInput}
+                                        component={FormInputNoFeedback}
                                         id={id}
                                         name={id}
                                         placeholder="1"
-                                        value={child.age}
+                                        value={child}
                                         type="number"
                                     />
                                     <Button
@@ -53,6 +57,7 @@ const GuestFormChildren = (props) => {
                                         <FontAwesomeIcon icon={faPlus} />
                                     </Button>
                                 </InputGroup>
+                                <Feedback name={id} />
                             </FormGroup>
                         );
                     })

@@ -3,22 +3,23 @@ import { GuestStatus } from "models/constants/GuestStatus";
 import * as Yup from "yup";
 import { GuestFormFields } from "./GuestFormFields";
 
-const childrenModelSchema = Yup.object().shape({
-    [GuestFormFields.CHILD_AGE]: Yup.number()
-        .integer("common:form.validator.integer")
-        .moreThan(0, "common:form.validator.positiveNumber")
-        .min(1, `common:form.validator.numberMin`),
-});
+const childrenModelSchema = Yup.number()
+    .integer("common:form.validator.integer")
+    .moreThan(0, "common:form.validator.positiveNumber")
+    .min(1, `common:form.validator.numberMin`)
+    .required(`common:form.validator.integer`);
 
 const commonSchema = Yup.object().shape({
     [GuestFormFields.PEOPLE_FEMALE_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
+        .min(0, "common:form.validator.numberMin")
         .moreThan(-1, "common:form.validator.positiveNumber")
-        .min(0, `common:form.validator.numberMin`),
+        .required(`common:form.validator.integer`),
     [GuestFormFields.PEOPLE_MALE_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
+        .min(0, "common:form.validator.numberMin")
         .moreThan(-1, "common:form.validator.positiveNumber")
-        .min(0, "common:form.validator.numberMin"),
+        .required(`common:form.validator.integer`),
     [GuestFormFields.CHILDREN]: Yup.array().of(childrenModelSchema),
     [GuestFormFields.DESIRED_DESTINATION]: Yup.string().trim(),
     [GuestFormFields.EMAIL]: Yup.string()
@@ -37,7 +38,8 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.PEOPLE_TOTAL_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
         .moreThan(0, "common:form.validator.positiveNumber")
-        .min(1, "common:form.validator.numberMin"),
+        .min(1, "common:form.validator.numberMin")
+        .required(`common:form.validator.integer`),
     [GuestFormFields.PETS_DESCRIPTION]: Yup.string().trim(),
     [GuestFormFields.PHONE_NUMBER]: Yup.string().trim(),
     [GuestFormFields.PRIORITY_DATE]: Yup.string().trim(),
