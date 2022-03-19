@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import HttpStatus from "http-status-codes";
 import get from "lodash-es/get";
 import { compile } from "path-to-regexp";
@@ -75,6 +75,6 @@ export const getPath = (url, options) => {
 export const getAuthenticationHeaders = () => {
     // TODO(mlazowik): handle the case where it's expired
     return {
-        'Authorization': `Bearer ${Cookies.get('jwt')}`
+        Authorization: `Bearer ${Cookies.get("jwt")}`,
     };
-}
+};

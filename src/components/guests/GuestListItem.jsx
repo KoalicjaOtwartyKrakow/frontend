@@ -20,8 +20,8 @@ import GuestItemDurationOfStay from "components/guests/item/GuestItemDurationOfS
  * @constructor
  */
 const GuestListItem = ({ guest, onEdit, onRemove }) => {
-    const { guid } = guest;
-    const handleEdit = () => onEdit(guid);
+    const { id } = guest;
+    const handleEdit = () => onEdit(id);
 
     return (
         <GuestContext.Provider value={guest}>

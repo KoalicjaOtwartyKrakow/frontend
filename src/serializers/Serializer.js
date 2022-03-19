@@ -12,7 +12,7 @@ const IMMUTABLE_FIELDS = [
     "apartments",
     "host",
     "accommodation",
-]
+];
 
 const plainToClass = function (className, plain, convertCase = false) {
     const camelCasePlain = convertCase ? camelcaseKeys(plain) : plain;
@@ -27,11 +27,11 @@ const classToPlain = function (object, convertCase = false) {
 const filterImmutableFields = function (object) {
     const filtered = cloneDeep(object);
 
-    IMMUTABLE_FIELDS.forEach(field => {
+    IMMUTABLE_FIELDS.forEach((field) => {
         delete filtered[field];
     });
 
     return filtered;
-}
+};
 
 export { classToPlain, filterImmutableFields, plainToClass };

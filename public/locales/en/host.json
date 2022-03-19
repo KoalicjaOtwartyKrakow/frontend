@@ -22,8 +22,9 @@
             "comments": "Comments",
             "fullName": "Full name",
             "hostAdditionalInformation": "Host additional information",
-            "languagesSpoken": "Languages Spoken",
             "hostStatus": "Host status",
+            "languagesSpoken": "Languages spoken",
+            "languagesSpokenPlaceholder": "Type in names or codes…",
             "lgbtFriendly": "LGBT friendly"
         },
         "message": {

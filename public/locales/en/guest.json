@@ -66,13 +66,13 @@
         "women": "Women"
     },
     "priorityStatus": {
-        "doesNotRespond": "Does not respond",
-        "accommodationNotRequired": "Accommodation not required",
-        "enRouteUa": "Transiting in Ukraine",
-        "enRoutePl": "Transiting in Poland",
-        "inKrk": "In Cracow",
-        "atR3": "At R3",
         "accommodationFound": "Accommodation found",
+        "accommodationNotRequired": "Accommodation not required",
+        "atR3": "At R3",
+        "doesNotRespond": "Does not respond",
+        "enRoutePoland": "Transiting in Poland",
+        "enRouteUkraine": "Transiting in Ukraine",
+        "inTheCity": "In Cracow",
         "updated": "Updated"
     },
     "status": {

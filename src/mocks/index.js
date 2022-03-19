@@ -7,8 +7,6 @@ import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
-import GuestChild from "models/guest/GuestChild";
-import { languages } from "models/constants/Languages";
 import * as constants from "services/Api/constants";
 import { Paths } from "services/Api/constants";
 import MockAdapter from "axios-mock-adapter";
@@ -16,25 +14,29 @@ import axios from "axios";
 import { getPath } from "services/Api/utils";
 import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
-import { times, uniq } from "lodash-es";
+import { times } from "lodash-es";
 
 const chance = new Chance(0xdeadbeef);
+
+const availableLanguages = Object.freeze([
+    { code: "en", code3: "eng", name: "English" },
+    { code: "pl", code3: "pol", name: "Polish" },
+    { code: "uk", code3: "ukr", name: "Ukrainian" },
+    { code: "ru", code3: "rus", name: "Russian" },
+]);
 
 export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
         guest.id = chance.guid({ version: 5 });
+        guest.uuid = chance.guid({ version: 5 });
         guest.fullName = chance.name();
         guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
         guest.children = Array.from(
             { length: chance.natural({ min: 0, max: 3 }) },
-            () => {
-                let guestChild = new Number();
-                guestChild = chance.age({ type: "child" });
-                return guestChild;
-            }
+            () => chance.age({ type: "child" })
         );
         const stayDuration = moment.duration({
             months: chance.natural({ min: 0, max: 3 }),
@@ -82,6 +84,7 @@ export function generateAllMocks() {
     const mockedHosts = Array.from({ length: 30 }, () => {
         const host = new Host();
         host.id = chance.guid({ version: 5 });
+        host.uuid = chance.guid({ version: 5 });
         host.fullName = chance.name();
         host.email = chance.email();
         host.phoneNumber = chance.phone();
@@ -89,10 +92,9 @@ export function generateAllMocks() {
         host.callBefore = chance.hour({ twentyfour: true }).toString();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
-        host.languagesSpoken = uniq(
-            chance
-                .pickset(languages, chance.integer({ min: 0, max: 4 }))
-                .concat("pl")
+        host.languagesSpoken = chance.pickset(
+            availableLanguages,
+            chance.integer({ min: 0, max: availableLanguages.length })
         );
         return host;
     });
@@ -101,6 +103,7 @@ export function generateAllMocks() {
         const accommodation = new Accommodation();
         // Id
         accommodation.id = chance.guid({ version: 5 });
+        accommodation.uuid = chance.guid({ version: 5 });
 
         // Vacancies
         accommodation.addressLine = chance.address();
@@ -187,7 +190,7 @@ if (constants.useMocks) {
         );
 
         console.log(`[useGetAccommodation] Mocked response for ${url}: `);
-        return [200, plainAccommodations];
+        return [200, JSON.stringify(plainAccommodations)];
     });
 
     mockAdapter
@@ -212,7 +215,7 @@ if (constants.useMocks) {
                 `[useGetAccommodation] Mocked response for ${url}: `,
                 accommodation
             );
-            return [200, plain];
+            return [200, JSON.stringify(plain)];
         });
 
     mockAdapter
@@ -234,7 +237,7 @@ if (constants.useMocks) {
                 `[useUpdateAccommodation] Mocked response for ${url}: `,
                 updatedAccommodation
             );
-            return [200, plain];
+            return [200, JSON.stringify(plain)];
         });
 
     mockAdapter.onPost(Paths.ACCOMMODATION).reply((config) => {
@@ -257,7 +260,7 @@ if (constants.useMocks) {
             createdAccommodation
         );
 
-        return [200, plain];
+        return [200, JSON.stringify(plain)];
     });
 
     mockAdapter
@@ -288,7 +291,7 @@ if (constants.useMocks) {
 
             const plain = classToPlain(accommodation);
 
-            return [200, plain];
+            return [200, JSON.stringify(plain)];
         });
 
     mockAdapter.onGet(Paths.HOST).reply((config) => {
@@ -296,7 +299,7 @@ if (constants.useMocks) {
         const plainHosts = mockedHosts.map((host) => classToPlain(host));
 
         console.log(`[useGetHost] Mocked response for ${url}: `, plainHosts);
-        return [200, plainHosts];
+        return [200, JSON.stringify(plainHosts)];
     });
 
     mockAdapter
@@ -316,7 +319,7 @@ if (constants.useMocks) {
             const plain = classToPlain(host);
 
             console.log(`[useGetHost] Mocked response for ${url}: `, host);
-            return [200, plain];
+            return [200, JSON.stringify(plain)];
         });
 
     mockAdapter.onPut(new RegExp(getPath(Paths.HOST))).reply((config) => {
@@ -336,7 +339,7 @@ if (constants.useMocks) {
             `[useUpdateHost] Mocked response for ${url}: `,
             updatedHost
         );
-        return [200, plain];
+        return [200, JSON.stringify(plain)];
     });
 
     mockAdapter.onPost(Paths.HOST).reply((config) => {
@@ -359,7 +362,7 @@ if (constants.useMocks) {
             createdHost
         );
 
-        return [200, plain];
+        return [200, JSON.stringify(plain)];
     });
 
     mockAdapter.onGet(Paths.GUEST).reply((config) => {
@@ -367,7 +370,7 @@ if (constants.useMocks) {
         const plainGuests = mockedGuests.map((guest) => classToPlain(guest));
 
         console.log(`[useGetGuest] Mocked response for ${url}: `, plainGuests);
-        return [200, plainGuests];
+        return [200, JSON.stringify(plainGuests)];
     });
 
     mockAdapter
@@ -387,7 +390,7 @@ if (constants.useMocks) {
             const plain = classToPlain(guest);
 
             console.log(`[useGetGuest] Mocked response for ${url}: `, guest);
-            return [200, plain];
+            return [200, JSON.stringify(plain)];
         });
 
     mockAdapter.onPut(new RegExp(getPath(Paths.GUEST))).reply((config) => {
@@ -407,7 +410,7 @@ if (constants.useMocks) {
             `[useUpdateGuest] Mocked response for ${url}: `,
             updatedGuest
         );
-        return [200, plain];
+        return [200, JSON.stringify(plain)];
     });
 
     mockAdapter.onPost(Paths.GUEST).reply((config) => {
@@ -430,6 +433,6 @@ if (constants.useMocks) {
             createdGuest
         );
 
-        return [200, plain];
+        return [200, JSON.stringify(plain)];
     });
 }

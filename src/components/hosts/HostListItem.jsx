@@ -12,8 +12,8 @@ import HostItemStatus from "components/hosts/item/HostItemStatus";
  * @constructor
  */
 const HostListItem = ({ host, onEdit, onRemove }) => {
-    const { guid } = host;
-    const handleEdit = () => onEdit(guid);
+    const { id } = host;
+    const handleEdit = () => onEdit(id);
 
     return (
         <HostContext.Provider value={host}>
