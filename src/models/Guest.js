@@ -13,9 +13,9 @@ import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 
 @JsonObject()
 class Guest {
-    @JsonProperty()
-    @JsonElementType(Array)
-    childrenAges = [];
+    @JsonProperty("childrenAges")
+    @JsonElementType(Number)
+    children = [];
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()

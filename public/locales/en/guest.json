@@ -70,9 +70,9 @@
         "accommodationNotRequired": "Accommodation not required",
         "atR3": "At R3",
         "doesNotRespond": "Does not respond",
-        "enRoutePl": "Transiting in Poland",
-        "enRouteUa": "Transiting in Ukraine",
-        "inKrk": "In Cracow",
+        "enRoutePoland": "Transiting in Poland",
+        "enRouteUkraine": "Transiting in Ukraine",
+        "inTheCity": "In Cracow",
         "updated": "Updated"
     },
     "status": {
