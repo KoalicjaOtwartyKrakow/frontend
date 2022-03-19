@@ -18,6 +18,7 @@ import Guest from "models/Guest";
 import { Routes } from "constants/Routes";
 import { useAddGuestToAccommodation } from "hooks/api/accommodationHooks";
 import Accommodation from "models/Accommodation";
+import { AccommodationContext } from "components/accommodation/AccommodationContext";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
@@ -51,6 +52,7 @@ const GuestEditPage = () => {
 
     const formFields = new GuestFormFields();
     const initialValues = formFields.modelToForm(guest);
+    console.log("*", guest);
 
     const { guestId } = params;
 
@@ -111,7 +113,7 @@ const GuestEditPage = () => {
         return addGuestResponse;
     };
 
-    const guestRequestUpdate = async (accommodation, onSubmitError) => {
+    const guestRequestUpdate = async (guest, onSubmitError) => {
         const updateGuestResponse = await updateGuest({ guest });
 
         if (updateGuestResponse?.errors) {
@@ -150,12 +152,14 @@ const GuestEditPage = () => {
             <PageErrorMessage error={guestUpdateError} />
 
             {initialValues && (
-                <GuestForm
-                    guestInProgress={guestInProgress}
-                    initialValues={initialValues}
-                    onAccommodationSelected={onAccommodationSelected}
-                    onSubmit={onSubmit}
-                />
+                <AccommodationContext.Provider value={guest.accommodation}>
+                    <GuestForm
+                        guestInProgress={guestInProgress}
+                        initialValues={initialValues}
+                        onAccommodationSelected={onAccommodationSelected}
+                        onSubmit={onSubmit}
+                    />
+                </AccommodationContext.Provider>
             )}
 
             {!initialValues && <PageNavigationBackToList to={Routes.GUESTS} />}

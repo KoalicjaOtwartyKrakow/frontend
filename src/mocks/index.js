@@ -15,6 +15,7 @@ import { getPath } from "services/Api/utils";
 import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { times } from "lodash-es";
+import GuestAccommodation from "models/GuestAccommodation";
 
 const chance = new Chance(0xdeadbeef);
 
@@ -31,6 +32,10 @@ const getMockedHoursAndMinutes = () => {
     const mockedMoment = moment({ hour: randomHour, minute: randomMinute });
     return mockedMoment.format("HH:mm");
 };
+
+function getRandomItem(items) {
+    return items[chance.natural({ min: 0, max: items.length - 1 })];
+}
 
 export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
@@ -106,7 +111,7 @@ export function generateAllMocks() {
         return host;
     });
 
-    const mockedAccommodations = Array.from({ length: 15 }, () => {
+    const mockAccommodation = () => {
         const accommodation = new Accommodation();
         // Id
         accommodation.id = chance.guid({ version: 5 });
@@ -114,10 +119,7 @@ export function generateAllMocks() {
 
         // Vacancies
         accommodation.addressLine = chance.address();
-        accommodation.addressVoivodeship =
-            polishVoivodeships[
-                chance.natural({ min: 0, max: polishVoivodeships.length - 1 })
-            ].id;
+        accommodation.addressVoivodeship = getRandomItem(polishVoivodeships).id;
         accommodation.addressCity = chance.city();
         const zip = chance.zip().split("");
         zip.splice(2, 0, "-");
@@ -166,21 +168,39 @@ export function generateAllMocks() {
             ];
         accommodation.hostId = accommodation.host.id;
 
-        // Randomly (50%) assign couple of guests to Accommodation.
+        // Randomly (90%) assign couple of guests to Accommodation.
         // Notice: this does not check if Guest is already assigned to some
         // other accommodation, which is not a valid production scenario
-        if (chance.bool()) {
+        if (chance.natural({ min: 1, max: 10 }) < 9) {
             times(chance.natural({ min: 1, max: 4 }), () => {
                 const guest =
                     mockedGuests[
                         chance.natural({ min: 0, max: mockedGuests.length - 1 })
                     ];
-                accommodation.guests.push(guest);
+                const plain = classToPlain(guest);
+                const copyOfGuest = plainToClass(Guest, plain);
+                accommodation.guests.push(copyOfGuest);
+                copyOfGuest.accommodation = plainToClass(
+                    GuestAccommodation,
+                    classToPlain(accommodation)
+                );
             });
         }
 
         return accommodation;
-    });
+    };
+
+    const mockedAccommodations = Array.from({ length: 15 }, mockAccommodation);
+
+    for (const mockedGuest of mockedGuests) {
+        const mockedAccommodation = getRandomItem(mockedAccommodations);
+        const plainAccommodation = classToPlain(mockedAccommodation);
+        const guestAccommodation = plainToClass(
+            GuestAccommodation,
+            plainAccommodation
+        );
+        mockedGuest.accommodation = guestAccommodation;
+    }
 
     return { mockedAccommodations, mockedGuests, mockedHosts };
 }
@@ -295,6 +315,11 @@ if (constants.useMocks) {
                 accommodation.guests.unshift(guest);
                 accommodation.updatedAt = moment();
             }
+            debugger;
+            guest.accommodation = plainToClass(
+                GuestAccommodation,
+                classToPlain(accommodation)
+            );
 
             const plain = classToPlain(accommodation);
 
@@ -426,6 +451,7 @@ if (constants.useMocks) {
             (mock) => mock.id === updatedGuest.id
         );
 
+        debugger;
         mockedGuests[guestIndex] = updatedGuest;
 
         const plain = data;

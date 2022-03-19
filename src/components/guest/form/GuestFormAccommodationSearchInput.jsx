@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import GuestFormAccommodationSearchItem from "components/guest/form/GuestFormAccommodationSearchItem";
 import { useTranslation } from "react-i18next";
+import { AccommodationContext } from "components/accommodation/AccommodationContext";
+import { isAccommodation } from "models/constants/Utils";
 
 const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
     const { t } = useTranslation(["guest"]);
+    const accommodation = useContext(AccommodationContext);
 
     const [caseSensitive] = useState(false);
     const [ignoreDiacritics] = useState(true);
@@ -44,23 +47,35 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
         return `${address}${hostInfo}`;
     };
 
+    const renderMenuItemChildren = (accommodation) => {
+        if (accommodation?.host === undefined || !accommodation) {
+            return null;
+        }
+        return (
+            <GuestFormAccommodationSearchItem accommodation={accommodation} />
+        );
+    };
+
+    const onChange = (options) => onAccommodationSelected(options[0]);
+
+    const defaultSelected = isAccommodation(accommodation)
+        ? [accommodation]
+        : [];
+
     return (
         <>
             <Typeahead
-                size="lg"
                 caseSensitive={caseSensitive}
+                defaultSelected={defaultSelected}
+                filterBy={["addressLine", "addressZip", "addressCity"]}
                 id="accommodations-search"
                 ignoreDiacritics={ignoreDiacritics}
+                labelKey={getLabelKey}
+                onChange={onChange}
                 options={options}
                 placeholder={t("guest:form.label.findAccommodation")}
-                labelKey={getLabelKey}
-                filterBy={["addressLine", "addressZip", "addressCity"]}
-                onChange={(options) => onAccommodationSelected(options[0])}
-                renderMenuItemChildren={(accommodation) => (
-                    <GuestFormAccommodationSearchItem
-                        accommodation={accommodation}
-                    />
-                )}
+                renderMenuItemChildren={renderMenuItemChildren}
+                size="lg"
             />
         </>
     );

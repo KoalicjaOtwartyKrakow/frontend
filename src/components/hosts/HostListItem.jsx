@@ -12,6 +12,13 @@ import HostItemStatus from "components/hosts/item/HostItemStatus";
  * @constructor
  */
 const HostListItem = ({ host, onEdit, onRemove }) => {
+    if (!host) {
+        console.error(
+            "[HostListItem] Error: host is undefined. Disabling rendering"
+        );
+        return null;
+    }
+
     const { id } = host;
     const handleEdit = () => onEdit(id);
 
