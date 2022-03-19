@@ -12,9 +12,9 @@ const LoadingPage = ({ visible }) => {
         { "d-none": !visible }
     );
 
-    const addBodyClass = (className) => document.body.classList.add(className);
-    const removeBodyClass = (className) =>
-        document.body.classList.remove(className);
+    // const addBodyClass = (className) => document.body.classList.add(className);
+    // const removeBodyClass = (className) =>
+    //     document.body.classList.remove(className);
 
     useEffect(() => {});
 

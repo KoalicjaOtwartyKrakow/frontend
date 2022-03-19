@@ -39,7 +39,7 @@ const GuestEditPage = () => {
     const {
         accommodationAddGuest,
         accommodationAddGuestInProgress,
-        accommodationAddGuestsUpdateError,
+        // accommodationAddGuestsUpdateError,
         addGuestToAccommodation,
     } = useAddGuestToAccommodation();
 
@@ -78,7 +78,7 @@ const GuestEditPage = () => {
                 appearance: "info",
             });
         }
-    }, [addToast, history, t, updatedGuest]);
+    }, [accommodationAddGuest, addToast, history, t, updatedGuest]);
 
     /**
      *
