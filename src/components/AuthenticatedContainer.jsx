@@ -9,6 +9,7 @@ import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
 import { CustomToast } from "components/atoms/Toast";
+import { appConfig } from "constants/AppConfig";
 
 const AuthenticatedContainer = ({ children }) => {
     const history = useHistory();
@@ -18,6 +19,7 @@ const AuthenticatedContainer = ({ children }) => {
     };
 
     const { t } = useTranslation(["common"]);
+    const { publicUrl } = appConfig;
 
     return (
         <ToastProvider
@@ -26,20 +28,36 @@ const AuthenticatedContainer = ({ children }) => {
         >
             <AuthenticatedNavbar onLogout={emptyFn} />
             <Jumbotron onClick={onJumbotronClick}>
-                <Container>
-                    <div className="jumbotron__logos">
-                        <img className="jumbotron__logos--salam" src="salam-lab-logo.jpeg"/>
-                        <img className="jumbotron__logos--uaik" src="ua-in-krakow-logo.jpeg"/>
-                        <img className="jumbotron__logos--zustricz" src="zustricz-logo.jpeg"/>
-                        <img className="jumbotron__logos--kok" src="koalicja-logo.png"/>
+                <Container className="jumbotron__logos">
+                    <div className="justify-content-start d-none d-lg-flex mb-2">
+                        <img
+                            alt="Logo of Salam Lab"
+                            className="jumbotron__logos--logo"
+                            src={`${publicUrl}/images/logo-salam-lab.jpeg`}
+                        />
+                        <img
+                            alt="Logo of UA in Kraków"
+                            className="jumbotron__logos--logo"
+                            src={`${publicUrl}/images/logo-ua-in-krakow.jpeg`}
+                        />
+                        <img
+                            alt="Logo of Zustricz"
+                            className="jumbotron__logos--logo"
+                            src={`${publicUrl}/images/logo-zustricz.jpeg`}
+                        />
+                        <img
+                            alt="Logo of Koalicja Otwarty Kraków"
+                            className="jumbotron__logos--logo"
+                            src={`${publicUrl}/images/logo-koalicja.png`}
+                        />
                     </div>
-                    <p className="lead">
+                    <p className="lead d-none d-lg-block">
                         {t("common:application.header.subtitle")}
                     </p>
                 </Container>
             </Jumbotron>
             <Container>
-                <div className="mt-3 mb-3 text-muted">
+                <div className="mt-3 mb-3 text-muted d-none d-lg-block">
                     Dashboard {">"} Breadcrumbs here...
                 </div>
                 {children}
