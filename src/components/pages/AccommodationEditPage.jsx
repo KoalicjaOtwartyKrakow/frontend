@@ -107,7 +107,8 @@ const AccommodationEditPage = () => {
             <PageCard header={t("accommodation:card.title.update")}>
                 <InProgress
                     inProgress={
-                        accommodationInProgress !== crudInProgressStates.NONE
+                        accommodationInProgress ===
+                        crudInProgressStates.RETRIEVE
                     }
                 />
                 <PageErrorMessage error={accommodationGetError} />
