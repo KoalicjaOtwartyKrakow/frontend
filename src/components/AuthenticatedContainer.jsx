@@ -27,7 +27,12 @@ const AuthenticatedContainer = ({ children }) => {
             <AuthenticatedNavbar onLogout={emptyFn} />
             <Jumbotron onClick={onJumbotronClick}>
                 <Container>
-                    <h1 className="display-6">#KoalicjaOtwartyKraków</h1>
+                    <div className="jumbotron__logos">
+                        <img className="jumbotron__logos--salam" src="salam-lab-logo.jpeg"/>
+                        <img className="jumbotron__logos--uaik" src="ua-in-krakow-logo.jpeg"/>
+                        <img className="jumbotron__logos--zustricz" src="zustricz-logo.jpeg"/>
+                        <img className="jumbotron__logos--kok" src="koalicja-logo.png"/>
+                    </div>
                     <p className="lead">
                         {t("common:application.header.subtitle")}
                     </p>
