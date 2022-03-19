@@ -24,7 +24,7 @@ const getPolishVoivodeshipById = (id) => {
 };
 
 const getPolishVoivodeshipNameById = (id) => {
-    return getPolishVoivodeshipById(id)?.name || "-";
+    return getPolishVoivodeshipById(id)?.name || "";
 };
 
 export {
