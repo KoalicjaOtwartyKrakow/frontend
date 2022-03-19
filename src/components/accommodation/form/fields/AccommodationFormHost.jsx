@@ -70,6 +70,7 @@ const AccommodationFormHost = () => {
                 name={fieldId}
                 items={sortedItems}
                 isPleaseSelect={!hostId}
+                disabled={hostsGetInProgress || hostsGetError}
             />
         </FormGroup>
     );
