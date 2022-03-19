@@ -6,6 +6,4 @@ const fasIconPropType = PropTypes.shape({
     prefix: PropTypes.string.isRequired,
 });
 
-export {
-    fasIconPropType,
-};
+export { fasIconPropType };

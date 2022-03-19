@@ -13,9 +13,9 @@ import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 
 @JsonObject()
 class Guest {
-    @JsonProperty()
-    @JsonElementType(Array)
-    childrenAges = [];
+    @JsonProperty("childrenAges")
+    @JsonElementType(Number)
+    children = [];
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
@@ -50,13 +50,9 @@ class Guest {
     @JsonType(String)
     durationOfStay = "";
 
-    @JsonProperty()
+    @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    guid = undefined;
 
     @JsonProperty()
     @JsonType(Boolean)
@@ -100,7 +96,7 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
-    priorityStatus = GuestPriorityStatus.IN_CRISIS_POINT;
+    priorityStatus = GuestPriorityStatus.AT_R3;
 
     @JsonProperty()
     @JsonType(String)

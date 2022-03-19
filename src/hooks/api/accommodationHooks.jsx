@@ -1,7 +1,15 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import {
+    getAuthenticationHeaders,
+    getErrorsFromApi,
+    getPath,
+} from "services/Api/utils";
 import { Paths } from "services/Api/constants";
-import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
+import {
+    classToPlain,
+    filterImmutableFields,
+    plainToClass,
+} from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
@@ -22,7 +30,7 @@ const useCreateAccommodation = () => {
     const createAccommodation = ({ accommodation }) => {
         const url = getPath(Paths.ACCOMMODATION);
         const transformResponse = (data) => {
-            const parsed = JSON.parse(data)
+            const parsed = JSON.parse(data);
             return parsed && plainToClass(Accommodation, parsed);
         };
         const data = classToPlain(accommodation);
@@ -68,7 +76,7 @@ const useGetAccommodation = () => {
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return plainToClass(Accommodation, parsed);
-        }
+        };
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -111,7 +119,7 @@ const useUpdateAccommodation = () => {
      */
     const updateAccommodation = ({ accommodation }) => {
         const url = getPath(Paths.ACCOMMODATION_BY_ID, {
-            accommodationId: accommodation.guid,
+            accommodationId: accommodation.id,
         });
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
@@ -161,8 +169,8 @@ const useAddGuestToAccommodation = () => {
      */
     const addGuestToAccommodation = ({ accommodation, guest }) => {
         const url = getPath(Paths.ACCOMMODATION_BY_ID_ADD_GUEST, {
-            accommodationId: accommodation.guid,
-            guestId: guest.guid,
+            accommodationId: accommodation.id,
+            guestId: guest.id,
         });
         debugger;
 

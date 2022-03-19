@@ -10,9 +10,9 @@ import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestCol
 const GuestItemPeople = () => {
     const guest = useContext(GuestContext);
 
-    const { peopleTotalCount, peopleMaleCount, peopleFemaleCount, childrenAges } =
+    const { peopleTotalCount, peopleMaleCount, peopleFemaleCount, children } =
         guest;
-    const peopleChildrenCount = childrenAges.length;
+    const peopleChildrenCount = children.length;
 
     return (
         <>

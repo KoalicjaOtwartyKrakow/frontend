@@ -4,7 +4,6 @@ import { Field, FieldArray, useField } from "formik";
 import { useTranslation } from "react-i18next";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormInput from "components/atoms/form/FormInput";
-import GuestChild from "models/guest/GuestChild";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/pro-regular-svg-icons";
 
@@ -15,9 +14,9 @@ const GuestFormChildren = (props) => {
 
     const childRenderer = (arrayHelpers) => {
         const items = field.value;
-        const addChild = () => arrayHelpers.push(new Number());
+        const addChild = () => arrayHelpers.push(Number());
         const insertChild = (index) => () =>
-            arrayHelpers.insert(index, new Number());
+            arrayHelpers.insert(index, Number());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
         return (

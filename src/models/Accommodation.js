@@ -10,7 +10,6 @@ import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
-import GuestChild from "models/guest/GuestChild";
 import Guest from "models/Guest";
 
 @JsonObject()
@@ -48,13 +47,9 @@ class Accommodation {
     @JsonType(String)
     hostId = undefined;
 
-    @JsonProperty()
+    @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    guid = undefined;
 
     @JsonType(String)
     @JsonProperty()
@@ -76,6 +71,10 @@ class Accommodation {
     @JsonType(String)
     status = AccommodationStatus.CREATED;
 
+    @JsonProperty()
+    @JsonType(String)
+    uuid = "";
+
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
@@ -88,6 +87,22 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Number)
     vacanciesTotal = 1;
+    @JsonProperty()
+    @JsonType(Boolean)
+    lgbtFriendly = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    disabledPeopleFriendly = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    parkingPlaceAvailable = false;
+    @JsonProperty()
+    @JsonType(Boolean)
+    easyAmbulanceAccess = false;
+
+    constructor() {
+        this.uuidRegenerate();
+    }
 
     get vacanciesTaken() {
         return this.vacanciesTotal - this.vacanciesFree;
@@ -96,22 +111,6 @@ class Accommodation {
     set vacanciesTaken(value) {
         this.vacanciesFree = this.vacanciesTotal - value;
     }
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    lgbtFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    disabledPeopleFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    parkingPlaceAvailable = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    easyAmbulanceAccess = false;
 
     @OnDeserialized()
     uuidRegenerate() {

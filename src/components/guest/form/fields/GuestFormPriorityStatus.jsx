@@ -23,16 +23,16 @@ const GuestFormPriorityStatus = (props) => {
             name: t("guest:priorityStatus.accommodationNotRequired"),
         },
         {
-            id: GuestPriorityStatus.EN_ROUTE_UA,
-            name: t("guest:priorityStatus.enRouteUa"),
+            id: GuestPriorityStatus.EN_ROUTE_UKRAINE,
+            name: t("guest:priorityStatus.enRouteUkraine"),
         },
         {
-            id: GuestPriorityStatus.EN_ROUTE_PL,
-            name: t("guest:priorityStatus.enRoutePl"),
+            id: GuestPriorityStatus.EN_ROUTE_POLAND,
+            name: t("guest:priorityStatus.enRoutePoland"),
         },
         {
-            id: GuestPriorityStatus.IN_KRK,
-            name: t("guest:priorityStatus.inKrk"),
+            id: GuestPriorityStatus.IN_KRAKOW,
+            name: t("guest:priorityStatus.inTheCity"),
         },
         {
             id: GuestPriorityStatus.AT_R3,
@@ -45,7 +45,7 @@ const GuestFormPriorityStatus = (props) => {
         {
             id: GuestPriorityStatus.UPDATED,
             name: t("guest:priorityStatus.updated"),
-        }
+        },
     ];
 
     return (

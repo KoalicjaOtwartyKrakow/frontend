@@ -54,10 +54,10 @@ const AccommodationList = ({ accommodations }) => {
             </thead>
             <tbody>
                 {accommodations.map((accommodation) => {
-                    const { guid } = accommodation;
+                    const { uuid } = accommodation;
                     return (
                         <AccommodationListItem
-                            key={guid}
+                            key={uuid}
                             accommodation={accommodation}
                             onEdit={onEdit}
                             onRemove={onRemove}

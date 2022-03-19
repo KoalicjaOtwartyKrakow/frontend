@@ -39,9 +39,9 @@ const AccommodationFormHost = () => {
             return;
         }
 
-        const retrievedHost = retrievedHosts.find((item) => item.guid === hostId);
+        const retrievedHost = retrievedHosts.find((item) => item.id === hostId);
 
-        if (retrievedHost.guid !== host?.guid) {
+        if (retrievedHost.id !== host?.id) {
             handleChangeValue(retrievedHost);
         }
     }, [retrievedHosts, hostId, host, handleChangeValue]);
@@ -52,7 +52,7 @@ const AccommodationFormHost = () => {
      * @returns {{name: string, id: string}}
      */
     const mapHostToItem = (host) => ({
-        id: host.guid,
+        id: host.id,
         name: `${host.fullName}`,
     });
 

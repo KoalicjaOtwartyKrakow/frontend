@@ -1,5 +1,9 @@
 import useAxios from "axios-hooks";
-import {getAuthenticationHeaders, getErrorsFromApi, getPath} from "services/Api/utils";
+import {
+    getAuthenticationHeaders,
+    getErrorsFromApi,
+    getPath,
+} from "services/Api/utils";
 import { Paths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
@@ -19,7 +23,7 @@ const useGetHosts = () => {
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed.map((item) => plainToClass(Host, item));
-        }
+        };
         const config = { url, transformResponse };
 
         const fetchData = async () => {
