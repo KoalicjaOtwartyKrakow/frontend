@@ -87,15 +87,19 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Number)
     vacanciesTotal = 1;
+
     @JsonProperty()
     @JsonType(Boolean)
     lgbtFriendly = false;
+
     @JsonProperty()
     @JsonType(Boolean)
     disabledPeopleFriendly = false;
+
     @JsonProperty()
     @JsonType(Boolean)
     parkingPlaceAvailable = false;
+
     @JsonProperty()
     @JsonType(Boolean)
     easyAmbulanceAccess = false;

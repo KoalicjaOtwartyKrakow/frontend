@@ -6715,6 +6715,11 @@ iso-639-1@^2.1.13:
   resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-2.1.13.tgz#bfca6c6b49be6f92815f1985e892d497770ea1dc"
   integrity sha512-stYt3u6OnVDNcK4IWARGXmTOOY5Wa5g4bUmBsttZp/55ZiEjDUibR3C59ZnorKoSS0tfJmFuGMST3ksnY1zu7Q==
 
+iso-639-3@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/iso-639-3/-/iso-639-3-3.0.1.tgz#4be56987c46fbda79da63a3d90d6552d7429dcea"
+  integrity sha512-SdljCYXOexv/JmbQ0tvigHN43yECoscVpe2y2hlEqy/CStXQlroPhZLj7zKLRiGqLJfw8k7B973UAMDoQczVgQ==
+
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"

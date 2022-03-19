@@ -25,6 +25,13 @@ const availableLanguages = Object.freeze([
     { code: "ru", code3: "rus", name: "Russian" },
 ]);
 
+const getMockedHoursAndMinutes = () => {
+    const randomHour = chance.hour({ twentyfour: true }).toString();
+    const randomMinute = chance.minute();
+    const mockedMoment = moment({ hour: randomHour, minute: randomMinute });
+    return mockedMoment.format("HH:mm");
+};
+
 export function generateAllMocks() {
     const mockedGuests = Array.from({ length: 30 }, () => {
         const guest = new Guest();
@@ -88,8 +95,8 @@ export function generateAllMocks() {
         host.fullName = chance.name();
         host.email = chance.email();
         host.phoneNumber = chance.phone();
-        host.callAfter = chance.hour({ twentyfour: true }).toString();
-        host.callBefore = chance.hour({ twentyfour: true }).toString();
+        host.callAfter = getMockedHoursAndMinutes();
+        host.callBefore = getMockedHoursAndMinutes();
         host.status = chance.pickone(Object.values(HostStatus));
         host.comments = chance.paragraph();
         host.languagesSpoken = chance.pickset(
@@ -322,25 +329,42 @@ if (constants.useMocks) {
             return [200, JSON.stringify(plain)];
         });
 
-    mockAdapter.onPut(new RegExp(getPath(Paths.HOST))).reply((config) => {
-        const { url, data } = config;
-        const json = JSON.parse(data);
-        const updatedHost = plainToClass(Host, json);
+    mockAdapter
+        .onPut(new RegExp(getPath(Paths.HOST) + "/.+"))
+        .reply((config) => {
+            const { url, data } = config;
+            const matchedPath = matchPath(url, {
+                path: getPath(Paths.HOST) + "/:hostId",
+                exact: true,
+                strict: false,
+            });
+            const {
+                params: { hostId },
+            } = matchedPath;
+            const json = JSON.parse(data);
 
-        const hostIndex = mockedHosts.findIndex(
-            (mock) => mock.id === updatedHost.id
-        );
+            const updatedHost = plainToClass(Host, json);
+            updatedHost.id = hostId;
 
-        mockedHosts[hostIndex] = updatedHost;
+            const hostIndex = mockedHosts.findIndex(
+                (mock) => mock.id === hostId
+            );
+            if (hostIndex === -1) {
+                throw Error(
+                    "[useUpdateHost] Tried to PUT host, but host with such ID is not present in mocks"
+                );
+            }
 
-        const plain = data;
+            mockedHosts[hostIndex] = updatedHost;
 
-        console.log(
-            `[useUpdateHost] Mocked response for ${url}: `,
-            updatedHost
-        );
-        return [200, JSON.stringify(plain)];
-    });
+            const plain = data;
+
+            console.log(
+                `[useUpdateHost] Mocked response for ${url}: `,
+                updatedHost
+            );
+            return [200, JSON.stringify(plain)];
+        });
 
     mockAdapter.onPost(Paths.HOST).reply((config) => {
         const { url, data } = config;
