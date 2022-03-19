@@ -65,6 +65,8 @@ export function generateAllMocks() {
         guest.petsPresent = chance.bool();
         guest.petsDescription =
             "Dog, cat and a squirrel. Also " + chance.sentence({ words: 5 });
+        guest.isAgent = chance.bool();
+        guest.documentNumber = chance.ssn();
 
         const foodAllergies = ["Chocolate", "Nuts", "Strawberry"];
         const foodAllergiesQuantity = chance.natural({
