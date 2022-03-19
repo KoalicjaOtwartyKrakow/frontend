@@ -4,7 +4,7 @@ import snakeCaseKeys from "snakecase-keys";
 import { cloneDeep } from "lodash-es";
 
 const IMMUTABLE_FIELDS = [
-    "id",
+    "uuid", // Used in frontend only
     "guid",
     "createdAt",
     "updatedAt",
