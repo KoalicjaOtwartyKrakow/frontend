@@ -33,6 +33,10 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
+    documentNumber = "";
+
+    @JsonProperty()
+    @JsonType(String)
     email = "";
 
     @JsonProperty("financeStatus")
@@ -58,6 +62,10 @@ class Guest {
     @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    isAgent = false;
 
     @JsonProperty()
     @JsonType(Boolean)

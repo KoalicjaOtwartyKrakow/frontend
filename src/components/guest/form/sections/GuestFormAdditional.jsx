@@ -7,6 +7,8 @@ import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import GuestFormPetsPresence from "components/guest/form/fields/GuestFormPetsPresence";
 import GuestFormPetsDescription from "components/guest/form/fields/GuestFormPetsDescription";
 import GuestFormFinancialStatus from "components/guest/form/fields/GuestFormFinancialStatus";
+import GuestFormDocumentNumber from "components/guest/form/fields/GuestFormDocumentNumber";
+import GuestFormIsAgent from "components/guest/form/fields/GuestFormIsAgent";
 
 const GuestFormAdditional = () => {
     const { t } = useTranslation(["guest"]);
@@ -20,6 +22,8 @@ const GuestFormAdditional = () => {
                     <GuestFormPetsPresence />
                     <GuestFormPetsDescription />
                     <GuestFormFinancialStatus />
+                    <GuestFormDocumentNumber />
+                    <GuestFormIsAgent />
                 </Col>
             </Row>
         </FormSection>

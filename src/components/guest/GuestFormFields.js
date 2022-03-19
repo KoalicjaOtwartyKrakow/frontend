@@ -6,6 +6,7 @@ import Guest from "models/Guest";
 class GuestFormFields {
     static CHILDREN = "children";
     static DESIRED_DESTINATION = "desiredDestination";
+    static DOCUMENT_NUMBER = "documentNumber";
     static DURATION_OF_STAY = "durationOfStay";
     static EMAIL = "email";
     static FINANCIAL_STATUS = "financialStatus";
@@ -13,6 +14,7 @@ class GuestFormFields {
     static FULL_NAME = "fullName";
     static GLUTEN_FREE_DIET = "glutenFreeDiet";
     static ID = "id";
+    static IS_AGENT = "isAgent";
     static LACTOSE_FREE_DIET = "lactoseFreeDiet";
     static MEAT_FREE_DIET = "meatFreeDiet";
     static PEOPLE_FEMALE_COUNT = "peopleFemaleCount";
