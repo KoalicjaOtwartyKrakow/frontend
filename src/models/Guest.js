@@ -50,13 +50,9 @@ class Guest {
     @JsonType(String)
     durationOfStay = "";
 
-    @JsonProperty()
+    @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    guid = undefined;
 
     @JsonProperty()
     @JsonType(Boolean)
@@ -100,7 +96,7 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
-    priorityStatus = GuestPriorityStatus.IN_CRISIS_POINT;
+    priorityStatus = GuestPriorityStatus.AT_R3;
 
     @JsonProperty()
     @JsonType(String)

@@ -10,7 +10,7 @@ class HostFormFields {
     static EMAIL = "email";
     static FULL_NAME = "fullName";
     static ID = "id";
-    static GUID = "guid";
+    static ID = "id";
     static LANGUAGES_SPOKEN = "languagesSpoken";
     static PHONE_NUMBER = "phoneNumber";
     static STATUS = "status";
@@ -28,7 +28,7 @@ class HostFormFields {
         const fieldNames = Object.values(HostFormFields);
         const formValues = pick(host, fieldNames);
 
-        if (host.guid) {
+        if (host.id) {
             return formValues;
         }
 

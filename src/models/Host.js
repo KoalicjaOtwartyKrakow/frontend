@@ -13,13 +13,9 @@ import Language from "models/Language";
 
 @JsonObject()
 class Host {
-    @JsonProperty()
+    @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    guid = undefined;
 
     @JsonProperty()
     @JsonType(String)

@@ -1,28 +1,29 @@
-import { JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
+import {
+    JsonConverter,
+    JsonObject,
+    JsonProperty,
+    JsonType,
+    OnDeserialized,
+} from "ta-json";
 import { nanoid } from "nanoid";
+import LanguageCodeSerializer from "serializers/LanguageCodeSerializer";
 
 @JsonObject()
 class Language {
+    @JsonConverter(new LanguageCodeSerializer())
     @JsonProperty()
     @JsonType(String)
-    code2 = 'Pl';
+    code2 = "pl";
 
+    @JsonConverter(new LanguageCodeSerializer())
     @JsonProperty()
     @JsonType(String)
-    code3 = 'pol';
+    code3 = "pol";
 
+    @JsonConverter(new LanguageCodeSerializer())
     @JsonProperty()
     @JsonType(String)
-    name = 'Polski';
-
-    constructor() {
-        this.uuidRegenerate();
-    }
-
-    @OnDeserialized()
-    uuidRegenerate() {
-        this.uuid = nanoid();
-    }
+    name = "polish";
 }
 
 export default Language;

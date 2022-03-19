@@ -48,13 +48,9 @@ class Accommodation {
     @JsonType(String)
     hostId = undefined;
 
-    @JsonProperty()
+    @JsonProperty("guid")
     @JsonType(String)
     id = undefined;
-
-    @JsonProperty()
-    @JsonType(String)
-    guid = undefined;
 
     @JsonType(String)
     @JsonProperty()
@@ -75,6 +71,10 @@ class Accommodation {
     @JsonProperty()
     @JsonType(String)
     status = AccommodationStatus.CREATED;
+
+    @JsonProperty()
+    @JsonType(String)
+    uuid = "";
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
@@ -112,6 +112,10 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Boolean)
     easyAmbulanceAccess = false;
+
+    constructor() {
+        this.uuidRegenerate();
+    }
 
     @OnDeserialized()
     uuidRegenerate() {

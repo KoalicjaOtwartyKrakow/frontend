@@ -24,8 +24,8 @@ const AccommodationForm = (props) => {
 
     const key = initialValues.uuid;
 
-    const isCreateMode = !initialValues.guid;
-    const isUpdateMode = !!initialValues.guid;
+    const isCreateMode = !initialValues.id;
+    const isUpdateMode = !!initialValues.id;
 
     const validateOnMount = isCreateMode;
 
