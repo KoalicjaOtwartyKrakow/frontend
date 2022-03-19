@@ -49,6 +49,7 @@ const GuestFormPeopleTotalCount = (props) => {
                 name={fieldId}
                 placeholder={0}
                 type="number"
+                formText={t("guest:form.text.includingChildren")}
             />
         </FormGroup>
     );

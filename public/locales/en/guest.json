@@ -55,6 +55,7 @@
             "stayInfo": "Stay information"
         },
         "text": {
+            "includingChildren": "(Including children)",
             "durationOfStay": "Number and a time unit: '10 days' or '1 week'"
         }
     },
