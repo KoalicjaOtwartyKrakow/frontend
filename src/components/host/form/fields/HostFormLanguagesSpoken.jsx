@@ -3,7 +3,6 @@ import { FormFeedback, FormGroup, FormText } from "reactstrap";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { HostFormFields } from "components/host/HostFormFields";
-import ISO6391 from "iso-639-1";
 import {
     Token,
     Typeahead,
@@ -11,7 +10,7 @@ import {
 } from "react-bootstrap-typeahead";
 import FormLabel from "components/atoms/form/FormLabel";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-import { sortBy } from "lodash-es";
+import { availableLanguages } from "models/Language";
 
 const HostFormLanguagesSpoken = () => {
     const { t } = useTranslation(["common", "host"]);
@@ -20,52 +19,64 @@ const HostFormLanguagesSpoken = () => {
     const field = getFieldProps(HostFormFields.LANGUAGES_SPOKEN);
     const selectedLanguages = field.value || [];
 
-    const availableLanguages = sortBy(
-        ISO6391.getLanguages(ISO6391.getAllCodes()),
-        ["name"]
-    );
-
+    /**
+     *
+     * @param {Language[]} languages
+     */
     const setSelectedLanguages = (languages) => {
-        setFieldValue(HostFormFields.LANGUAGES_SPOKEN, languages);
+        setFieldValue(HostFormFields.LANGUAGES_SPOKEN, languages, true);
     };
 
+    /**
+     *
+     * @param {Language} language
+     */
     const onRemove = (language) => {
         const languages = [...selectedLanguages].filter(
             (item) => item.code !== language.code
         );
-        setSelectedLanguages(languages);
         setFieldTouched(HostFormFields.LANGUAGES_SPOKEN, true);
+        setSelectedLanguages(languages);
     };
 
-    const renderInput = (inputProps) => {
-        const error = FormikApiErrors.getError(
-            HostFormFields.LANGUAGES_SPOKEN,
-            formikContext
-        );
-        // FIXME: There is some issue with validation logic, it kicks in but then clears out
-        // console.log(error);
+    /**
+     *
+     * @param {Language} language
+     * @returns {JSX.Element}
+     */
+    const languageToToken = (language) => (
+        <Token
+            index={language.code}
+            key={language.code}
+            onRemove={onRemove}
+            option={language}
+        >
+            {language.name}
+        </Token>
+    );
 
+    const error = FormikApiErrors.getError(
+        HostFormFields.LANGUAGES_SPOKEN,
+        formikContext
+    );
+
+    const renderInput = (inputProps) => {
         return (
             <>
                 <TypeaheadInputMulti
                     {...inputProps}
                     selected={selectedLanguages}
                 >
-                    {selectedLanguages.map((language, idx) => (
-                        <Token
-                            index={idx}
-                            key={language.code}
-                            onRemove={onRemove}
-                            option={language}
-                        >
-                            {language.name}
-                        </Token>
-                    ))}
+                    {selectedLanguages.map(languageToToken)}
                 </TypeaheadInputMulti>
-                {error && <FormFeedback>{t(error)}</FormFeedback>}
+                {error && (
+                    <FormFeedback className="d-block">{t(error)}</FormFeedback>
+                )}
             </>
         );
     };
+
+    const renderMenuItemChildren = (language) => <span>{language.name}</span>;
 
     return (
         <FormGroup tag="fieldset">
@@ -73,21 +84,22 @@ const HostFormLanguagesSpoken = () => {
                 {t("host:form.label.languagesSpoken")}
             </FormLabel>
             <Typeahead
-                multiple
                 caseSensitive={false}
+                filterBy={["code", "name"]}
                 id="language-search"
                 ignoreDiacritics={true}
+                labelKey={"name"}
+                multiple
+                onChange={setSelectedLanguages}
                 options={availableLanguages}
                 placeholder={t("host:form.label.languagesSpokenPlaceholder")}
-                labelKey={"name"}
-                filterBy={["code", "name"]}
-                onChange={setSelectedLanguages}
-                renderMenuItemChildren={(language) => (
-                    <span>{language.name}</span>
-                )}
                 renderInput={renderInput}
+                renderMenuItemChildren={renderMenuItemChildren}
+                selected={selectedLanguages}
             />
-            <FormText>{t("common:form.text.atLeastOneLanguage")}</FormText>
+            {!error && (
+                <FormText>{t("common:form.text.atLeastOneLanguage")}</FormText>
+            )}
         </FormGroup>
     );
 };
