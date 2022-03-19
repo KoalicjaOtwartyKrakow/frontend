@@ -10,7 +10,6 @@ import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
-import GuestChild from "models/guest/GuestChild";
 import Guest from "models/Guest";
 
 @JsonObject()

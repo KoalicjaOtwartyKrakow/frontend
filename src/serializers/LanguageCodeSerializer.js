@@ -1,4 +1,3 @@
-import moment from "moment-es6";
 import Singleton from "singleton-decorator";
 import { capitalize } from "lodash-es";
 

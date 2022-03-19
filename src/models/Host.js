@@ -48,7 +48,7 @@ class Host {
 
     @JsonProperty()
     @JsonElementType(Language)
-    languagesSpoken = [];
+    languagesSpoken = [new Language()];
 
     @JsonProperty()
     @JsonType(String)

@@ -17,11 +17,13 @@ const HostItemLanguagesSpoken = () => {
 
     const { languagesSpoken } = host;
 
+    const languages = languagesSpoken || [];
+
     return (
         <>
-            {languagesSpoken.map((code) => (
-                <Badge className="mb-1 me-1" key={code.code2}>
-                    {ISO6391.getName(code.code2.toLowerCase())}
+            {languages.map((language) => (
+                <Badge className="mb-1 me-1" key={language.code}>
+                    {ISO6391.getName(language.code)}
                 </Badge>
             ))}
         </>

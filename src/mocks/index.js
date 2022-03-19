@@ -14,15 +14,15 @@ import axios from "axios";
 import { getPath } from "services/Api/utils";
 import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
-import { times, uniq } from "lodash-es";
+import { times } from "lodash-es";
 
 const chance = new Chance(0xdeadbeef);
 
 const availableLanguages = Object.freeze([
-    { code2: "en", code3: "eng", name: "english" },
-    { code2: "pl", code3: "pol", name: "polish" },
-    { code2: "uk", code3: "ukr", name: "ukrainian" },
-    { code2: "ru", code3: "rus", name: "russian" },
+    { code: "en", code3: "eng", name: "English" },
+    { code: "pl", code3: "pol", name: "Polish" },
+    { code: "uk", code3: "ukr", name: "Ukrainian" },
+    { code: "ru", code3: "rus", name: "Russian" },
 ]);
 
 export function generateAllMocks() {

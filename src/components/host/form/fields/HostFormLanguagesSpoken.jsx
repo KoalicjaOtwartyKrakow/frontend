@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { FormGroup } from "reactstrap";
-import { Field } from "formik";
+import React from "react";
+import { FormFeedback, FormGroup, FormText, Input } from "reactstrap";
+import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-import FormCheckbox from "components/atoms/form/FormCheckbox";
 import { HostFormFields } from "components/host/HostFormFields";
 import ISO6391 from "iso-639-1";
 import {
@@ -10,40 +9,69 @@ import {
     Typeahead,
     TypeaheadInputMulti,
 } from "react-bootstrap-typeahead";
-import GuestFormAccommodationSearchItem from "components/guest/form/GuestFormAccommodationSearchItem";
-
-// const languagesSpokenCheckbox = ({ value, label }) => {
-//     return (
-//         <Field
-//             id={value}
-//             key={value}
-//             name={HostFormFields.LANGUAGES_SPOKEN}
-//             value={value}
-//             type="checkbox"
-//             label={label}
-//             component={FormCheckbox}
-//             inline
-//         />
-//     );
-// };
+import FormLabel from "components/atoms/form/FormLabel";
+import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+import { sortBy } from "lodash-es";
 
 const HostFormLanguagesSpoken = () => {
-    const { t } = useTranslation(["host"]);
-    const [selectedLanguages, setSelectedLanguages] = useState([]);
+    const { t } = useTranslation(["common", "host"]);
+    const formikContext = useFormikContext();
+    const { setFieldValue, setFieldTouched, getFieldProps } = formikContext;
+    const field = getFieldProps(HostFormFields.LANGUAGES_SPOKEN);
+    const selectedLanguages = field.value || [];
 
-    const availableLanguages = ISO6391.getLanguages(ISO6391.getAllCodes());
+    const availableLanguages = sortBy(
+        ISO6391.getLanguages(ISO6391.getAllCodes()),
+        ["name"]
+    );
 
-    // const languagesSpokenCheckboxes = availableLanguages.map((language) => ({
-    //     value: language.code2,
-    //     label: ISO6391.getName(language.code2.toLowerCase()),
-    // }));
+    const setSelectedLanguages = (languages) => {
+        setFieldValue(HostFormFields.LANGUAGES_SPOKEN, languages);
+    };
+
+    const onRemove = (language) => {
+        const languages = [...selectedLanguages].filter(
+            (item) => item.code !== language.code
+        );
+        setSelectedLanguages(languages);
+        setFieldTouched(HostFormFields.LANGUAGES_SPOKEN, true);
+    };
+
+    const renderInput = (inputProps) => {
+        const error = FormikApiErrors.getError(
+            HostFormFields.LANGUAGES_SPOKEN,
+            formikContext
+        );
+        // FIXME: There is some issue with validation logic, it kicks in but then clears out
+        // console.log(error);
+
+        return (
+            <>
+                <TypeaheadInputMulti
+                    {...inputProps}
+                    selected={selectedLanguages}
+                >
+                    {selectedLanguages.map((language, idx) => (
+                        <Token
+                            index={idx}
+                            key={language.code}
+                            onRemove={onRemove}
+                            option={language}
+                        >
+                            {language.name}
+                        </Token>
+                    ))}
+                </TypeaheadInputMulti>
+                {error && <FormFeedback>{t(error)}</FormFeedback>}
+            </>
+        );
+    };
 
     return (
         <FormGroup tag="fieldset">
-            <legend className="form-label">
+            <FormLabel className="form-label" required={true}>
                 {t("host:form.label.languagesSpoken")}
-                {":"}
-            </legend>
+            </FormLabel>
             <Typeahead
                 multiple
                 caseSensitive={false}
@@ -57,26 +85,9 @@ const HostFormLanguagesSpoken = () => {
                 renderMenuItemChildren={(language) => (
                     <span>{language.name}</span>
                 )}
-                renderInput={(inputProps, props) => (
-                    <TypeaheadInputMulti
-                        {...inputProps}
-                        selected={selectedLanguages}
-                    >
-                        {selectedLanguages.map((language, idx) => (
-                            <Token
-                                index={idx}
-                                key={language.code}
-                                onRemove={props.onRemove}
-                                option={language}
-                            >
-                                {language.name}
-                            </Token>
-                        ))}
-                    </TypeaheadInputMulti>
-                )}
+                renderInput={renderInput}
             />
-
-            {/*{languagesSpokenCheckboxes.map(languagesSpokenCheckbox)}*/}
+            <FormText>{t("common:form.text.atLeastOneLanguage")}</FormText>
         </FormGroup>
     );
 };
