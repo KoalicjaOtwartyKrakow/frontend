@@ -13,7 +13,6 @@ class GuestFormFields {
     static FULL_NAME = "fullName";
     static GLUTEN_FREE_DIET = "glutenFreeDiet";
     static ID = "id";
-    static ID = "id";
     static LACTOSE_FREE_DIET = "lactoseFreeDiet";
     static MEAT_FREE_DIET = "meatFreeDiet";
     static PEOPLE_FEMALE_COUNT = "peopleFemaleCount";
@@ -26,9 +25,6 @@ class GuestFormFields {
     static PRIORITY_STATUS = "priorityStatus";
     static SPECIAL_NEEDS = "specialNeeds";
     static VERIFICATION_STATUS = "verificationStatus";
-
-    // children array object
-    static CHILD_AGE = "age";
 
     /**
      * Transform object from model to form values.
