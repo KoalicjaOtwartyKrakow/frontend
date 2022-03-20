@@ -77,11 +77,9 @@ const useUpdateGuest = () => {
             return parsed && plainToClass(Guest, parsed);
         };
 
-        const plain = classToPlain(guest);
+        const data = filterImmutableFields(classToPlain(guest));
 
         // This whole stuff is dirty AF
-        const filteredPlain = filterImmutableFields(plain);
-        const data = omit(filteredPlain, ["accommodationUnit"]);
         data.accommodationUnitId = data.accommodationUnitId ?? null;
 
         const config = {
@@ -134,7 +132,7 @@ const useCreateGuest = () => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);
         };
-        const data = classToPlain(guest);
+        const data = filterImmutableFields(classToPlain(guest));
         const config = { data, url, transformResponse };
 
         const createData = async () => {

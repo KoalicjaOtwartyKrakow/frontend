@@ -33,7 +33,7 @@ const useCreateAccommodation = () => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Accommodation, parsed);
         };
-        const data = classToPlain(accommodation);
+        const data = filterImmutableFields(classToPlain(accommodation));
         const config = { data, url, transformResponse };
 
         const createData = async () => {
