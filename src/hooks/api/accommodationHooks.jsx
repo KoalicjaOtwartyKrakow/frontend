@@ -172,7 +172,6 @@ const useAddGuestToAccommodation = () => {
             accommodationId: accommodation.id,
             guestId: guest.id,
         });
-        debugger;
 
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
