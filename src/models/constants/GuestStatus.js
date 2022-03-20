@@ -1,5 +1,5 @@
 export const GuestStatus = Object.freeze({
-    CREATED: "created",
-    VERIFIED: "verified",
-    REJECTED: "rejected",
+    CREATED: "CREATED",
+    VERIFIED: "VERIFIED",
+    REJECTED: "REJECTED",
 });
