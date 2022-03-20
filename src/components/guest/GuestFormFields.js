@@ -50,9 +50,19 @@ class GuestFormFields {
         return { ...formValues, ...createFormValues };
     }
 
-    formToModel(formValues) {
+    /**
+     *
+     * @param formValues
+     * @param {Accommodation|undefined} accommodation
+     */
+    formToModel(formValues, accommodation) {
         const guest = new Guest();
-        return merge(guest, formValues);
+        /**
+         * @type {Guest}
+         */
+        const model = merge(guest, formValues);
+        model.accommodation = accommodation;
+        return model;
     }
 
     getInitialStatus() {
