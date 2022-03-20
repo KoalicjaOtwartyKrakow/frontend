@@ -22,7 +22,9 @@ const useGetHosts = () => {
         const url = getPath(Paths.HOST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            return parsed.map((item) => plainToClass(Host, item));
+            return Array.isArray(parsed)
+                ? parsed.map((item) => plainToClass(Host, item))
+                : [];
         };
         const config = { url, transformResponse };
 

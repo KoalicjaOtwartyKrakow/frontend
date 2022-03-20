@@ -22,7 +22,9 @@ const useGetAccommodations = () => {
         const url = getPath(Paths.ACCOMMODATION);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            return parsed.map((item) => plainToClass(Accommodation, item));
+            return Array.isArray(parsed)
+                ? parsed.map((item) => plainToClass(Accommodation, item))
+                : [];
         };
         const config = { url, transformResponse };
 

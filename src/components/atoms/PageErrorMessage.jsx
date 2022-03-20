@@ -30,6 +30,8 @@ const PageErrorMessage = ({ children, error }) => {
         if (type === ApiErrorTypes.SERVER) {
             const httpStatusToMessageMap = {
                 [HttpStatus.NOT_FOUND]: t("common:errors.notFound"),
+                [HttpStatus.UNAUTHORIZED]: t("common:errors.unauthorized"),
+                [HttpStatus.BAD_REQUEST]: t("common:errors.badRequest"),
             };
             message = "" + httpStatusToMessageMap[code];
         }

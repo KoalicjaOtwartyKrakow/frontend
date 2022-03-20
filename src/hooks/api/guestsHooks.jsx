@@ -22,7 +22,9 @@ const useGetGuests = () => {
         const url = getPath(Paths.GUEST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            return parsed.map((item) => plainToClass(Guest, item));
+            return Array.isArray(parsed)
+                ? parsed.map((item) => plainToClass(Guest, item))
+                : [];
         };
         const config = { url, transformResponse };
 

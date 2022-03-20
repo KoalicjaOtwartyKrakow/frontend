@@ -317,7 +317,7 @@ if (constants.useMocks) {
                 accommodation.guests.unshift(guest);
                 accommodation.updatedAt = moment();
             }
-            debugger;
+
             guest.accommodation = plainToClass(
                 GuestAccommodation,
                 classToPlain(accommodation)
@@ -453,7 +453,6 @@ if (constants.useMocks) {
             (mock) => mock.id === updatedGuest.id
         );
 
-        debugger;
         mockedGuests[guestIndex] = updatedGuest;
 
         const plain = data;
