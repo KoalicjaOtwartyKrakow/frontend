@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, FormText } from "reactstrap";
+import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 

@@ -34,11 +34,21 @@ const HostItemContactDetails = () => {
         <address>
             <span className="fw-semibold">{host.fullName}</span> <br />
             <HostItemContactDetail detail={host.email} />
-            {host.phoneNumber && <span>📞 {host.phoneNumber}</span>}
+            {host.phoneNumber && (
+                <span>
+                    <span role="img" aria-label="Phone number">
+                        📞
+                    </span>{" "}
+                    {host.phoneNumber}
+                </span>
+            )}
             {hasPhoneCallPreference && (
                 <span>
                     {" "}
-                    🕑 {host.callAfter} - {host.callBefore}
+                    <span role="img" aria-label="Calling hours">
+                        🕑
+                    </span>{" "}
+                    {host.callAfter} - {host.callBefore}
                 </span>
             )}
         </address>

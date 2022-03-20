@@ -11,6 +11,7 @@ import {
     plainToClass,
 } from "serializers/Serializer";
 import Guest from "models/Guest";
+import { omit } from "lodash-es";
 
 const useGetGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
@@ -70,12 +71,24 @@ const useUpdateGuest = () => {
      */
     const updateGuest = ({ guest }) => {
         const url = getPath(Paths.GUEST) + "/" + guest.id;
+
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);
         };
-        const data = filterImmutableFields(classToPlain(guest));
-        const config = { data, url, transformResponse };
+
+        const plain = classToPlain(guest);
+
+        // This whole stuff is dirty AF
+        const filteredPlain = filterImmutableFields(plain);
+        const data = omit(filteredPlain, ["accommodationUnit"]);
+        data.accommodationUnitId = data.accommodationUnitId ?? null;
+
+        const config = {
+            data,
+            url,
+            transformResponse,
+        };
 
         const updateData = async () => {
             try {

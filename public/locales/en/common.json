@@ -57,6 +57,7 @@
         "error": "Action error",
         "info": "Notice",
         "success": "Action successful",
+        "warning": "Warning",
         "unknown": "Unknown"
     }
 }
