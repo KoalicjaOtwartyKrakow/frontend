@@ -29,9 +29,15 @@ const PageErrorMessage = ({ children, error }) => {
 
         if (type === ApiErrorTypes.SERVER) {
             const httpStatusToMessageMap = {
+                [HttpStatus.INTERNAL_SERVER_ERROR]: t(
+                    "common:errors.internalServerError"
+                ),
                 [HttpStatus.NOT_FOUND]: t("common:errors.notFound"),
                 [HttpStatus.UNAUTHORIZED]: t("common:errors.unauthorized"),
                 [HttpStatus.BAD_REQUEST]: t("common:errors.badRequest"),
+                [HttpStatus.UNPROCESSABLE_ENTITY]: t(
+                    "common:errors.unprocessableEntity"
+                ),
             };
             message = "" + httpStatusToMessageMap[code];
         }

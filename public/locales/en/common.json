@@ -14,18 +14,20 @@
     },
     "errors": {
         "apiFailure": "API request failed",
+        "badRequest": "Bad request. Invalid data was provided by user or it is a bug. Contact us",
+        "connectionRefused": "Server refused a network connection",
+        "connectionReset": "Network connection was reset by server",
+        "internalServerError": "Ooops! This was unexpected. The server made a boo-boo. We've sent our best trained monkeys to investigate",
         "notFound": "Endpoint not found",
         "unauthorized": "You are (no longer) authorized to perform this operation. Authenticate again",
-        "badRequest": "API reported a malformed request. This is probably bug in the app. Contact us",
-        "connectionReset": "Network connection was reset by server",
-        "connectionRefused": "Server refused a network connection",
         "unhandledApiError": "Unhandled API error"
+        "unprocessableEntity": "Malformed request. This is probably bug in the app. Contact us",
     },
     "form": {
         "button": {
+            "backToList": "Back to the list"
             "remove": "Remove",
             "reset": "Reset changes",
-            "backToList": "Back to the list"
         },
         "label": {
             "email": "E-mail",
