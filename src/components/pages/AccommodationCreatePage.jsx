@@ -9,9 +9,7 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import { useCreateAccommodation } from "hooks/api/accommodationHooks";
-import {
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { getCrudInProgressState } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
 import { AppRoutes } from "constants/AppRoutes";
 

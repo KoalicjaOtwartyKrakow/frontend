@@ -15,9 +15,9 @@ import {
     getCrudInProgressState,
 } from "constants/CrudProgress";
 import Guest from "models/Guest";
-import { Routes } from "constants/Routes";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { isAccommodation } from "models/constants/Utils";
+import { AppRoutes } from "constants/AppRoutes";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
@@ -38,7 +38,7 @@ const GuestEditPage = () => {
 
     const guestInProgress = getCrudInProgressState({
         retrieveInProgress: guestGetInProgress,
-        updateInProgress: guestUpdateInProgress
+        updateInProgress: guestUpdateInProgress,
     });
 
     const formFields = new GuestFormFields();

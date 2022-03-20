@@ -4,11 +4,7 @@
         "react-app"
     ],
     "rules": {
-        "prettier/prettier": "error",
-        "indent": [
-            "error",
-            4
-        ]
+        "prettier/prettier": "error"
     },
     "parserOptions": {
         "ecmaFeatures": {

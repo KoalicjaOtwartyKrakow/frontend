@@ -5,7 +5,7 @@ import {
     IconFoodGlutenFree,
     IconFoodLactoseFree,
     IconFoodMeatFree,
-    IconPetsPresent
+    IconPetsPresent,
 } from "components/shared/Icons";
 
 /**

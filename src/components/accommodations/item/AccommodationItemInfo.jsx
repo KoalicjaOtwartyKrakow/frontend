@@ -7,7 +7,7 @@ import {
     IconPetsAllowed,
     IconPetsNotAllowed,
     IconPetsNotPresent,
-    IconPetsPresent
+    IconPetsPresent,
 } from "components/shared/Icons";
 
 /**

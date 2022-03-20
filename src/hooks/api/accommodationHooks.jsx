@@ -207,5 +207,5 @@ export {
     useCreateAccommodation,
     useGetAccommodation,
     useUpdateAccommodation,
-    useAddGuestToAccommodation
+    useAddGuestToAccommodation,
 };
