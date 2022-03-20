@@ -33,7 +33,7 @@ const useCreateHost = () => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Host, parsed);
         };
-        const data = classToPlain(host);
+        const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
         const createData = async () => {

@@ -11,7 +11,7 @@ const IMMUTABLE_FIELDS = [
     "guests",
     "apartments",
     "host",
-    "accommodation",
+    "accommodationUnit",
 ];
 
 const plainToClass = function (className, plain, convertCase = false) {
