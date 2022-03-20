@@ -1,10 +1,10 @@
 export const GuestPriorityStatus = Object.freeze({
-    ACCOMMODATION_FOUND: "accommodation_found",
-    ACCOMMODATION_NOT_NEEDED: "accommodation_not_needed",
-    AT_R3: "at_r3",
-    DOES_NOT_RESPOND: "does_not_respond",
-    EN_ROUTE_POLAND: "en_route_pl",
-    EN_ROUTE_UKRAINE: "en_route_ua",
-    IN_KRAKOW: "in_krk",
-    UPDATED: "updated",
+    ACCOMMODATION_FOUND: "ACCOMMODATION_FOUND",
+    ACCOMMODATION_NOT_NEEDED: "ACCOMMODATION_NOT_NEEDED",
+    AT_R3: "AT_R3",
+    DOES_NOT_RESPOND: "DOES_NOT_RESPOND",
+    EN_ROUTE_POLAND: "EN_ROUTE_PL",
+    EN_ROUTE_UKRAINE: "EN_ROUTE_UA",
+    IN_KRAKOW: "IN_KRK",
+    UPDATED: "UPDATED",
 });
