@@ -11,12 +11,26 @@ import { nanoid } from "nanoid";
 import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 import GuestAccommodation from "models/GuestAccommodation";
+import { isAccommodation } from "models/constants/Utils";
 
 @JsonObject()
 class Guest {
     @JsonProperty()
     @JsonType(GuestAccommodation)
-    accommodation = undefined;
+    accommodationUnit = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    accommodationUnitId = undefined;
+
+    set accommodation(accommodation) {
+        this.accommodationUnit = accommodation;
+        this.accommodationUnitId = accommodation?.id;
+    }
+
+    get accommodation() {
+        return this.accommodationUnit;
+    }
 
     @JsonProperty("childrenAges")
     @JsonElementType(Number)
@@ -131,6 +145,9 @@ class Guest {
     @OnDeserialized()
     uuidRegenerate() {
         this.uuid = nanoid();
+        if (isAccommodation(this.accommodation)) {
+            this.accommodationUnitId = this.accommodation.id;
+        }
     }
 }
 

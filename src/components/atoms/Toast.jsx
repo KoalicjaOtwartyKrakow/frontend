@@ -7,6 +7,7 @@ const CustomToast = ({ children, ...props }) => {
 
     const appearanceTitles = {
         success: t("common:toast.success"),
+        warning: t("common:toast.warning"),
         info: t("common:toast.info"),
         error: t("common:toast.error"),
     };

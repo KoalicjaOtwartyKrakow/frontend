@@ -38,11 +38,13 @@
         },
         "message": {
             "addGuestToAccommodationFailure": "Failed to assign Guest to the Accommodation Unit",
-            "addGuestToAccommodationSuccess": "Guest assigned to Accommodation Unit",
+            "addGuestToAccommodationSuccess": "Guest has been assigned to the selected Accommodation Unit",
+            "removeGuestFromAccommodationSuccess": "Guest has been removed from selected Accommodation Unit",
+            "removeGuestFromAccommodationWarning": "Guest will no longer be assigned to the Accommodation Unit",
             "createFailure": "Guest was not added to the system",
-            "createSuccess": "The new Guest has been added to the system",
-            "updateFailure": "There was an issue updating the Guest",
-            "updateSuccess": "Guest updated successfully"
+            "createSuccess": "A new Guest has been added to the system",
+            "updateFailure": "There was an issue updating Guest data",
+            "updateSuccess": "Guest data updated successfully"
         },
         "placeholder": {
             "desiredDestination": "Where is the Guest headed?",

@@ -1,7 +1,7 @@
 import { TaJson } from "ta-json";
 import camelcaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep, omit } from "lodash-es";
 
 const IMMUTABLE_FIELDS = [
     "uuid", // Used in frontend only
@@ -25,12 +25,8 @@ const classToPlain = function (object, convertCase = false) {
 };
 
 const filterImmutableFields = function (object) {
-    const filtered = cloneDeep(object);
-
-    IMMUTABLE_FIELDS.forEach((field) => {
-        delete filtered[field];
-    });
-
+    const copy = cloneDeep(object);
+    const filtered = omit(copy, IMMUTABLE_FIELDS);
     return filtered;
 };
 

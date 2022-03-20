@@ -16,9 +16,8 @@ import {
 } from "constants/CrudProgress";
 import Guest from "models/Guest";
 import { Routes } from "constants/Routes";
-import { useAddGuestToAccommodation } from "hooks/api/accommodationHooks";
-import Accommodation from "models/Accommodation";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
+import { isAccommodation } from "models/constants/Utils";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
@@ -37,17 +36,9 @@ const GuestEditPage = () => {
         updateGuest,
     } = useUpdateGuest();
 
-    const {
-        accommodationAddGuest,
-        accommodationAddGuestInProgress,
-        // accommodationAddGuestsUpdateError,
-        addGuestToAccommodation,
-    } = useAddGuestToAccommodation();
-
     const guestInProgress = getCrudInProgressState({
         retrieveInProgress: guestGetInProgress,
-        updateInProgress:
-            guestUpdateInProgress || accommodationAddGuestInProgress,
+        updateInProgress: guestUpdateInProgress
     });
 
     const formFields = new GuestFormFields();
@@ -69,18 +60,9 @@ const GuestEditPage = () => {
             addToast(t("guest:form.message.updateSuccess"), {
                 appearance: "success",
             });
-
             history.push(Routes.GUESTS);
         }
     }, [addToast, history, t, updatedGuest]);
-
-    useLayoutEffect(() => {
-        if (accommodationAddGuest instanceof Accommodation) {
-            addToast(t("guest:form.message.addGuestToAccommodationSuccess"), {
-                appearance: "info",
-            });
-        }
-    }, [accommodationAddGuest, addToast, history, t, updatedGuest]);
 
     /**
      *
@@ -88,29 +70,14 @@ const GuestEditPage = () => {
      */
     const onAccommodationSelected = (accommodation) => {
         selectedAccommodation.current = accommodation;
-    };
-
-    const guestRequestBindToAccommodation = async (accommodation) => {
-        if (!(accommodation instanceof Accommodation)) {
-            return;
-        }
-        const addGuestResponse = await addGuestToAccommodation({
-            accommodation,
-            guest,
-        });
-
-        if (addGuestResponse?.errors) {
-            addToast(t("guest:form.message.addGuestToAccommodationFailure"), {
-                appearance: "error",
-            });
-        } else {
-            console.log(
-                "[GuestEditPage] Guest bound to accommodation:",
-                accommodation
+        if (!isAccommodation(accommodation)) {
+            addToast(
+                t("guest:form.message.removeGuestFromAccommodationWarning"),
+                {
+                    appearance: "warning",
+                }
             );
         }
-
-        return addGuestResponse;
     };
 
     const guestRequestUpdate = async (guest, onSubmitError) => {
@@ -131,15 +98,15 @@ const GuestEditPage = () => {
     };
 
     const onSubmit = async (values, onSubmitError) => {
-        const guest = formFields.formToModel(values);
         const accommodation = selectedAccommodation.current;
+        const guest = formFields.formToModel(values, accommodation);
 
         console.log("[GuestEditPage] Invoked onSubmit() with:", {
             values,
+            guest,
             accommodation,
         });
 
-        await guestRequestBindToAccommodation(accommodation);
         await guestRequestUpdate(guest, onSubmitError);
     };
 
