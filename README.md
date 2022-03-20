@@ -6,38 +6,30 @@ At the moment, our IDEs of choice are JetBrains tools, i.e. WebStorm and family.
 other editor (namely, VS Code, Vim, whatever), please make sure you're able to follow the code formatting etc. in the
 same way as everybody else.
 
-### Configure Git
-
-On Windows systems:
+### Configure Git and line endings
 
 ```shell
-git config --global core.autocrlf true
+git config --local core.autocrlf input
 ```
+The LF is our line ending of choice. Be sure to set 
 
-If you’re on a Linux or macOS system:
+1. Go **Settings…** » **Editor** » **Code Style** and select `Unix and macOS (\n)` as Line separator.
 
+### Install Node 16.x
+
+Please use `lts/gallium`. Install `yarn` 1.x for this version. Then run
 ```shell
-git config --global core.autocrlf input
+yarn
 ```
+to install project dependencies.
 
-This setup should leave you with CRLF endings in Windows checkouts, but LF endings on macOS and Linux systems and in the
-repository.
-
-### Install Node 14.x
-
-Please use `lts/fermium` in case of `nvm`  on MacOS / Linux. On Windows - use your favorite method of installation and make sure `node` 14.x its on the PATH.
-
-This will become irrelevant when #57 is implementd.
-
-### Configure Prettier and disable Eslint
+### Configure Prettier
 
 1. Go **Settings…** » **Plugins** and search for Prettier plugin. Install it.
 2. Go **Settings…** » **Languages & Frameworks** » **JavaScript** » **Prettier**.
 3. Choose Prettier plugin path from the dropdown.
 4. Set "Run for files" to `{**/*,*}.{js,ts,jsx,tsx,json,css,scss,sass}`
-5. Check both "On Reformat Code action" and "On Save" checkboxes.
-
-Also, please disable ESlint in Webstorm (until #66) is implemented.
+5. Check both **On Reformat Code action** and **On Save** checkboxes.
 
 ### Install Webstorm plugins
 
@@ -72,7 +64,7 @@ Ask for authToken on `#frontend` channel on the project's Discord.
 ### Configure API path
 
 Set API path in `.env.local` (create it first, have a look at `.env` file for template). For development purposes you
-can mock API responses by setting:
+must mock API responses by setting:
 
 ```shell
 REACT_APP_KOKON_API_USE_MOCKS=true
@@ -87,18 +79,8 @@ yarn start
 
 ### Production-like build
 
-Create `.env.production.local` and set these values:
-
-```shell
-REACT_APP_KOKON_ROUTER_BASENAME=/ukraina/
-REACT_APP_KOKON_API_USE_MOCKS=false
-```
-
-And then:
+Create `.env.production.local` and set values as suggested by backend team. Then:
 
 ```shell
 yarn build
 ```
-
-Obviously `/ukraina/` should point to whatever directory you plan to serve as your base url. Build is created
-in `./build` directory.
