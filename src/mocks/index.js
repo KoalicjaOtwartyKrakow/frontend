@@ -226,8 +226,9 @@ if (constants.useMocks) {
         .onGet(new RegExp(getPath(Paths.ACCOMMODATION) + "/*"))
         .reply((config) => {
             const { url } = config;
+            const path = getPath(Paths.ACCOMMODATION_BY_ID);
             const matchedPath = matchPath(url, {
-                path: getPath(Paths.ACCOMMODATION) + "/:accommodationId",
+                path,
                 exact: true,
                 strict: false,
             });
