@@ -36,13 +36,9 @@ const AccommodationItemAvailability = () => {
 
     return (
         <Badge color={badgeColor} className={className}>
-            <span className="accommodation-availability__count-allocated">
-                {accommodation.vacanciesTaken}
-            </span>
+            <span className="accommodation-availability__count-allocated">{accommodation.vacanciesTaken}</span>
             {" / "}
-            <span className="accommodation-availability__count-max">
-                {accommodation.vacanciesTotal}
-            </span>
+            <span className="accommodation-availability__count-max">{accommodation.vacanciesTotal}</span>
         </Badge>
     );
 };

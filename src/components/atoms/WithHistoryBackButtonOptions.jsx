@@ -1,21 +1,19 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const withHistoryBackButtonOptions = (Button, options) => {
-    const innerFn = (props) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const history = useHistory();
+    const InnerComponent = (props) => {
+        const navigate = useNavigate();
         const { to } = options;
-        const onClick = history.goBack;
-        const buttonOptions =
-            history.length > 2 ? { onClick } : { tag: Link, to };
+        const onClick = () => navigate(-1);
+        const buttonOptions = navigate.length > 2 ? { onClick } : { tag: Link, to };
 
         return <Button {...props} {...buttonOptions} />;
     };
 
-    innerFn.propTypes = {};
+    InnerComponent.propTypes = {};
 
-    return innerFn;
+    return InnerComponent;
 };
 
 export default withHistoryBackButtonOptions;

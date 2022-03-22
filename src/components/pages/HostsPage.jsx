@@ -11,18 +11,15 @@ import RefreshButton from "components/atoms/RefreshButton";
 import { useGetHosts } from "hooks/api/hostsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
 import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
-import { useHistory } from "react-router-dom";
-import { Routes } from "constants/Routes";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "constants/AppRoutes";
 
 const HostsPage = () => {
-    const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } =
-        useGetHosts();
+    const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } = useGetHosts();
     const { t } = useTranslation(["hosts"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const hostCount = hosts
-        ? `(${t("hosts:card.found")}: ${hosts.length})`
-        : "";
+    const hostCount = hosts ? `(${t("hosts:card.found")}: ${hosts.length})` : "";
 
     const pageHeader = `${t("hosts:card.title")} ${hostCount}`;
 
@@ -35,7 +32,7 @@ const HostsPage = () => {
     }, [retrieveHosts, shouldFetchHosts]);
 
     const navigateToCreatePage = () => {
-        history.push(Routes.HOST_CREATE);
+        navigate(AppRoutes.HOST_CREATE);
     };
 
     return (
@@ -47,10 +44,7 @@ const HostsPage = () => {
                         label={t("hosts:button.create")}
                         className="ms-2"
                     />
-                    <RefreshButton
-                        disabled={hostsGetInProgress}
-                        onClick={() => retrieveHosts()}
-                    />
+                    <RefreshButton disabled={hostsGetInProgress} onClick={() => retrieveHosts()} />
                 </Col>
             </Row>
             <HorizontalLine />
@@ -60,11 +54,7 @@ const HostsPage = () => {
                 <>
                     <HostListDescription />
                     {hosts.length && <HostList hosts={hosts} />}
-                    {!hosts.length && (
-                        <Alert color="warning">
-                            {t("hosts:card.notAvailable")}
-                        </Alert>
-                    )}
+                    {!hosts.length && <Alert color="warning">{t("hosts:card.notAvailable")}</Alert>}
                 </>
             )}
         </PageCard>

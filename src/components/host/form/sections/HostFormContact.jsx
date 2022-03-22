@@ -17,9 +17,7 @@ const HostFormContact = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("host:form.section.contact")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("host:form.section.contact")}</FormSectionHeader>
             <HostFormStatus />
             <Row>
                 <Col xs={12} lg={6}>

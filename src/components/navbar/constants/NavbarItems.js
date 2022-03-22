@@ -1,26 +1,26 @@
-import { getRouteIcon, Routes } from "constants/Routes";
+import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const navbarItems = [
     {
-        path: Routes.ROOT,
+        path: AppRoutes.ROOT,
         icon: faHome,
         i18nKey: "navbar:dashboard",
         exact: true,
     },
     {
-        path: Routes.ACCOMMODATIONS,
-        icon: getRouteIcon(Routes.ACCOMMODATIONS),
+        path: AppRoutes.ACCOMMODATIONS,
+        icon: getRouteIcon(AppRoutes.ACCOMMODATIONS),
         i18nKey: "navbar:accommodations",
     },
     {
-        path: Routes.GUESTS,
-        icon: getRouteIcon(Routes.GUESTS),
+        path: AppRoutes.GUESTS,
+        icon: getRouteIcon(AppRoutes.GUESTS),
         i18nKey: "navbar:guests",
     },
     {
-        path: Routes.HOSTS,
-        icon: getRouteIcon(Routes.HOSTS),
+        path: AppRoutes.HOSTS,
+        icon: getRouteIcon(AppRoutes.HOSTS),
         i18nKey: "navbar:hosts",
     },
 ];

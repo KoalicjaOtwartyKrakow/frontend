@@ -6,17 +6,8 @@ import ProgressIcon from "components/atoms/ProgressIcon";
 
 const EntityFormSubmitButton = ({ disabled, isSubmitting, label }) => {
     return (
-        <Button
-            color="primary"
-            type="submit"
-            disabled={disabled}
-            className="ms-2"
-        >
-            <ProgressIcon
-                className="me-2"
-                icon={faCheck}
-                inProgress={isSubmitting}
-            />
+        <Button color="primary" type="submit" disabled={disabled} className="ms-2">
+            <ProgressIcon className="me-2" icon={faCheck} inProgress={isSubmitting} />
             <span className="fw-semibold">{label}</span>
         </Button>
     );

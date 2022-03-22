@@ -9,9 +9,7 @@ const HostItemContactDetails = () => {
     const host = useContext(HostContext);
 
     if (!host) {
-        console.error(
-            "[HostListItem] Error: host is undefined. Disabling rendering"
-        );
+        console.error("[HostListItem] Error: host is undefined. Disabling rendering");
         return <address>Error: no host data</address>;
     }
 
@@ -27,8 +25,7 @@ const HostItemContactDetails = () => {
         );
     };
 
-    const hasPhoneCallPreference =
-        (host.callAfter || host.callBefore) && host.phoneNumber;
+    const hasPhoneCallPreference = (host.callAfter || host.callBefore) && host.phoneNumber;
 
     return (
         <address>

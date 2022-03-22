@@ -14,9 +14,7 @@ const GuestItemPhone = () => {
     const { phoneNumber } = guest;
     return (
         <address className="guest guest__contact-info mb-0">
-            <span className="guest__contact-info__phone fw-semibold">
-                {phoneNumber}
-            </span>
+            <span className="guest__contact-info__phone fw-semibold">{phoneNumber}</span>
         </address>
     );
 };

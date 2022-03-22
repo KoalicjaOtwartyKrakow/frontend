@@ -10,9 +10,7 @@ const HostFormDetailedInformation = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("host:form.section.detailedInformation")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("host:form.section.detailedInformation")}</FormSectionHeader>
         </FormSection>
     );
 };

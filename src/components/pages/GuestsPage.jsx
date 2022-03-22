@@ -11,23 +11,19 @@ import RefreshButton from "components/atoms/RefreshButton";
 import { useGetGuests } from "hooks/api/guestsHooks";
 import HorizontalLine from "components/atoms/HorizontalLine";
 import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
-import { useHistory } from "react-router-dom";
-import { Routes } from "constants/Routes";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "constants/AppRoutes";
 
 const GuestsPage = () => {
-    const { guests, guestsGetInProgress, guestsGetError, retrieveGuests } =
-        useGetGuests();
+    const { guests, guestsGetInProgress, guestsGetError, retrieveGuests } = useGetGuests();
     const { t } = useTranslation(["guests"]);
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const guestCount = guests
-        ? `(${t("guests:card.found")}: ${guests.length})`
-        : "";
+    const guestCount = guests ? `(${t("guests:card.found")}: ${guests.length})` : "";
 
     const pageHeader = `${t("guests:card.title")} ${guestCount}`;
 
-    const shouldFetchGuests =
-        !guests && !guestsGetError && !guestsGetInProgress;
+    const shouldFetchGuests = !guests && !guestsGetError && !guestsGetInProgress;
 
     useEffect(() => {
         if (shouldFetchGuests) {
@@ -36,7 +32,7 @@ const GuestsPage = () => {
     }, [retrieveGuests, shouldFetchGuests]);
 
     const navigateToCreatePage = () => {
-        history.push(Routes.GUEST_CREATE);
+        navigate(AppRoutes.GUEST_CREATE);
     };
 
     return (
@@ -48,10 +44,7 @@ const GuestsPage = () => {
                         label={t("guests:button.create")}
                         className="ms-2"
                     />
-                    <RefreshButton
-                        disabled={guestsGetInProgress}
-                        onClick={() => retrieveGuests()}
-                    />
+                    <RefreshButton disabled={guestsGetInProgress} onClick={() => retrieveGuests()} />
                 </Col>
             </Row>
             <HorizontalLine />
@@ -61,11 +54,7 @@ const GuestsPage = () => {
                 <>
                     <GuestListDescription />
                     {guests.length && <GuestList guests={guests} />}
-                    {!guests.length && (
-                        <Alert color="warning">
-                            {t("guests:card.notAvailable")}
-                        </Alert>
-                    )}
+                    {!guests.length && <Alert color="warning">{t("guests:card.notAvailable")}</Alert>}
                 </>
             )}
         </PageCard>

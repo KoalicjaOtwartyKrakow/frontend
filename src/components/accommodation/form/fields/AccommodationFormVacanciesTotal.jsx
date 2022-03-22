@@ -16,13 +16,7 @@ const AccommodationFormVacanciesTotal = () => {
             <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.vacanciesTotal")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="5"
-                type="number"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="5" type="number" />
         </FormGroup>
     );
 };

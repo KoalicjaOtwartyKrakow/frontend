@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -9,23 +9,17 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import AccommodationForm from "components/accommodation/AccommodationForm";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import { useCreateAccommodation } from "hooks/api/accommodationHooks";
-import {
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { getCrudInProgressState } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const AccommodationCreatePage = () => {
     const { t } = useTranslation(["accommodation"]);
     const { addToast } = useToasts();
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const {
-        createdAccommodation,
-        accommodationCreateInProgress,
-        accommodationCreateError,
-        createAccommodation,
-    } = useCreateAccommodation();
+    const { createdAccommodation, accommodationCreateInProgress, accommodationCreateError, createAccommodation } =
+        useCreateAccommodation();
 
     const accommodationInProgress = getCrudInProgressState({
         createInProgress: accommodationCreateInProgress,
@@ -41,16 +35,13 @@ const AccommodationCreatePage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.ACCOMMODATIONS);
+            navigate(AppRoutes.ACCOMMODATIONS);
         }
-    }, [addToast, createdAccommodation, history, t]);
+    }, [addToast, createdAccommodation, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const accommodation = formFields.formToModel(values);
-        console.log(
-            "[AccommodationCreatePage] Invoked onSubmit() with values:",
-            values
-        );
+        console.log("[AccommodationCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createAccommodation({ accommodation });
 
@@ -76,9 +67,7 @@ const AccommodationCreatePage = () => {
                 />
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={Routes.ACCOMMODATIONS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.ACCOMMODATIONS} />}
         </PageCard>
     );
 };

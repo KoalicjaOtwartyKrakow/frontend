@@ -13,16 +13,8 @@ const AccommodationFormStaffComments = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("accommodation:form.label.description")}
-            </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                type="textarea"
-                rows={5}
-            />
+            <FormLabel for={fieldId}>{t("accommodation:form.label.description")}</FormLabel>
+            <Field component={FormInput} id={fieldId} name={fieldId} type="textarea" rows={5} />
         </FormGroup>
     );
 };

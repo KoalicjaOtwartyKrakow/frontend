@@ -22,10 +22,8 @@ const GuestItemPriorityDate = () => {
 
     const isGuestPresentSinceToday = differenceInDays === 0;
     const isGuestPresentSinceYesterday = differenceInDays === 1;
-    const isGuestPresentSinceLessThanWeek =
-        differenceInDays > 1 && differenceInDays < 7;
-    const isGuestPresentMoreThanAWeek =
-        differenceInDays >= 7 && differenceInDays < 14;
+    const isGuestPresentSinceLessThanWeek = differenceInDays > 1 && differenceInDays < 7;
+    const isGuestPresentMoreThanAWeek = differenceInDays >= 7 && differenceInDays < 14;
     const isGuestPresentMoreThanTwoWeeks = differenceInDays >= 14;
 
     // UX: this would probably need a color scheme instead, this was just quicker to implement

@@ -1,15 +1,7 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
-import { Paths } from "services/Api/constants";
-import {
-    classToPlain,
-    filterImmutableFields,
-    plainToClass,
-} from "serializers/Serializer";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { ApiPaths } from "services/Api/constants";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
 
 const useCreateHost = () => {
@@ -28,7 +20,7 @@ const useCreateHost = () => {
      * @returns {Promise<*|undefined>}
      */
     const createHost = ({ host }) => {
-        const url = getPath(Paths.HOST);
+        const url = getPath(ApiPaths.HOST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Host, parsed);
@@ -67,7 +59,7 @@ const useGetHost = () => {
     const hostGetError = getErrorsFromApi(error);
 
     const fetchHost = ({ hostId }) => {
-        const url = getPath(Paths.HOST) + "/" + hostId;
+        const url = getPath(ApiPaths.HOST) + "/" + hostId;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return plainToClass(Host, parsed);
@@ -110,7 +102,7 @@ const useUpdateHost = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateHost = ({ host }) => {
-        const url = getPath(Paths.HOST) + "/" + host.id;
+        const url = getPath(ApiPaths.HOST) + "/" + host.id;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Host, parsed);

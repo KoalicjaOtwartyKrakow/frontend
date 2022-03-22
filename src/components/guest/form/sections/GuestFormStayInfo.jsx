@@ -15,9 +15,7 @@ const GuestFormStayInfo = () => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("guest:form.section.stayInfo")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("guest:form.section.stayInfo")}</FormSectionHeader>
             <Row>
                 <Col xs={12} md={6}>
                     <GuestFormPriorityDate />

@@ -16,9 +16,7 @@ const GuestFormPersonalData = () => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("guest:form.section.personalData")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("guest:form.section.personalData")}</FormSectionHeader>
             <Row>
                 <Col xs={12} md={6}>
                     <GuestFormPriorityStatus />

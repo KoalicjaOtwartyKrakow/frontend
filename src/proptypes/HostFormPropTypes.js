@@ -9,9 +9,7 @@ const hostFormInitialValuesPropTypes = PropTypes.shape({
     [HostFormFields.CALL_AFTER]: PropTypes.string,
     [HostFormFields.CALL_BEFORE]: PropTypes.string,
     [HostFormFields.COMMENTS]: PropTypes.string,
-    [HostFormFields.LANGUAGES_SPOKEN]: PropTypes.arrayOf(
-        PropTypes.instanceOf(Language).isRequired
-    ).isRequired,
+    [HostFormFields.LANGUAGES_SPOKEN]: PropTypes.arrayOf(PropTypes.instanceOf(Language).isRequired).isRequired,
     [HostFormFields.STATUS]: PropTypes.string,
 });
 
@@ -36,9 +34,4 @@ const hostFormCardPropTypes = {
     formLabel: PropTypes.string.isRequired,
 };
 
-export {
-    hostFormCardPropTypes,
-    hostFormHostPropTypes,
-    hostFormPropTypes,
-    hostInProgressPropType,
-};
+export { hostFormCardPropTypes, hostFormHostPropTypes, hostFormPropTypes, hostInProgressPropType };

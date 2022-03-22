@@ -27,13 +27,14 @@ export const baseUrl = process.env.REACT_APP_KOKON_API_URL;
 export const timeout = Number(process.env.REACT_APP_KOKON_API_TIMEOUT);
 export const useMocks = process.env.REACT_APP_KOKON_API_USE_MOCKS === "true";
 
-export class Paths {
+export class ApiPaths {
     static ACCOMMODATION = "/accommodation";
-    static ACCOMMODATION_BY_ID = Paths.ACCOMMODATION + "/:accommodationId";
-    static ACCOMMODATION_BY_ID_ADD_GUEST =
-        Paths.ACCOMMODATION_BY_ID + "/guest/:guestId";
+    static ACCOMMODATION_BY_ID = ApiPaths.ACCOMMODATION + "/:accommodationId";
+    static ACCOMMODATION_BY_ID_ADD_GUEST = ApiPaths.ACCOMMODATION_BY_ID + "/guest/:guestId";
     static GUEST = "/guest";
+    static GUEST_BY_ID = ApiPaths.GUEST + "/:guestId";
     static HOST = "/host";
+    static HOST_BY_ID = ApiPaths.HOST + "/:hostId";
 }
 
 export class ApiErrorStatus {

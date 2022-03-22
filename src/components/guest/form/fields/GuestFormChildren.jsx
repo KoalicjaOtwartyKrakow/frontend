@@ -16,8 +16,7 @@ const GuestFormChildren = () => {
     const childRenderer = (arrayHelpers) => {
         const items = field.value;
         const addChild = () => arrayHelpers.push(Number());
-        const insertChild = (index) => () =>
-            arrayHelpers.insert(index, Number());
+        const insertChild = (index) => () => arrayHelpers.insert(index, Number());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
         console.log(items);
@@ -30,9 +29,7 @@ const GuestFormChildren = () => {
                         return (
                             <FormGroup key={index}>
                                 <InputGroup>
-                                    <InputGroupText>
-                                        {t("guest:form.label.childAge")}
-                                    </InputGroupText>
+                                    <InputGroupText>{t("guest:form.label.childAge")}</InputGroupText>
                                     <Field
                                         component={FormInputNoFeedback}
                                         id={id}
@@ -41,18 +38,10 @@ const GuestFormChildren = () => {
                                         value={child}
                                         type="number"
                                     />
-                                    <Button
-                                        color="secondary"
-                                        outline
-                                        onClick={removeChild(index)}
-                                    >
+                                    <Button color="secondary" outline onClick={removeChild(index)}>
                                         <FontAwesomeIcon icon={faMinus} />
                                     </Button>
-                                    <Button
-                                        color="secondary"
-                                        outline
-                                        onClick={insertChild(index + 1)}
-                                    >
+                                    <Button color="secondary" outline onClick={insertChild(index + 1)}>
                                         <FontAwesomeIcon icon={faPlus} />
                                     </Button>
                                 </InputGroup>

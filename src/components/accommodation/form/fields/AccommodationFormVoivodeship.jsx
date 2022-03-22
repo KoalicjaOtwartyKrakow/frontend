@@ -18,12 +18,7 @@ const AccommodationFormAddressVoivodeship = () => {
             <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.addressVoivodeship")}
             </FormLabel>
-            <Field
-                component={FormItemsVoivodeships}
-                id={fieldId}
-                name={fieldId}
-                isPleaseSelect={!accommodationId}
-            />
+            <Field component={FormItemsVoivodeships} id={fieldId} name={fieldId} isPleaseSelect={!accommodationId} />
         </FormGroup>
     );
 };
