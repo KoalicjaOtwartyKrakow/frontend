@@ -8,14 +8,13 @@ import { HostStatus } from "models/constants/HostStatus";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import moment from "moment-es6";
 import * as constants from "services/Api/constants";
-import { Paths } from "services/Api/constants";
+import { ApiPaths } from "services/Api/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { getPath } from "services/Api/utils";
-import { matchPath } from "react-router-dom";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { times } from "lodash-es";
 import GuestAccommodation from "models/GuestAccommodation";
+import { match, pathToRegexp } from "path-to-regexp";
 
 const chance = new Chance(0xdeadbeef);
 
@@ -46,9 +45,8 @@ export function generateAllMocks() {
         guest.verificationStatus = chance.pickone(Object.values(HostStatus));
         guest.email = chance.email();
         guest.phoneNumber = chance.phone();
-        guest.children = Array.from(
-            { length: chance.natural({ min: 0, max: 3 }) },
-            () => chance.age({ type: "child" })
+        guest.children = Array.from({ length: chance.natural({ min: 0, max: 3 }) }, () =>
+            chance.age({ type: "child" })
         );
         const stayDuration = moment.duration({
             months: chance.natural({ min: 0, max: 3 }),
@@ -57,14 +55,10 @@ export function generateAllMocks() {
         guest.durationOfStay = stayDuration.humanize();
         guest.peopleFemaleCount = chance.natural({ min: 1, max: 2 });
         guest.peopleMaleCount = chance.natural({ min: 0, max: 3 });
-        guest.peopleTotalCount =
-            guest.peopleFemaleCount +
-            guest.peopleMaleCount +
-            guest.children.length;
+        guest.peopleTotalCount = guest.peopleFemaleCount + guest.peopleMaleCount + guest.children.length;
         guest.financialStatus = chance.sentence();
         guest.petsPresent = chance.bool();
-        guest.petsDescription =
-            "Dog, cat and a squirrel. Also " + chance.sentence({ words: 5 });
+        guest.petsDescription = "Dog, cat and a squirrel. Also " + chance.sentence({ words: 5 });
         guest.isAgent = chance.bool();
         guest.documentNumber = chance.ssn();
 
@@ -74,23 +68,16 @@ export function generateAllMocks() {
             max: Math.min(foodAllergies.length, 2),
         });
 
-        guest.foodAllergies = chance
-            .pickset(foodAllergies, foodAllergiesQuantity)
-            .join(", ");
+        guest.foodAllergies = chance.pickset(foodAllergies, foodAllergiesQuantity).join(", ");
 
         guest.meatFreeDiet = chance.bool();
         guest.glutenFreeDiet = chance.bool();
         guest.lactoseFreeDiet = chance.bool();
         guest.desiredDestination = chance.address();
-        guest.priorityStatus = chance.pickone(
-            Object.values(GuestPriorityStatus)
-        );
+        guest.priorityStatus = chance.pickone(Object.values(GuestPriorityStatus));
 
         const daysFromStartOfWar = moment().diff(moment("2022-02-24"), "days");
-        guest.priorityDate = moment().subtract(
-            chance.natural({ min: 0, max: daysFromStartOfWar }),
-            "days"
-        );
+        guest.priorityDate = moment().subtract(chance.natural({ min: 0, max: daysFromStartOfWar }), "days");
 
         return guest;
     });
@@ -130,9 +117,7 @@ export function generateAllMocks() {
         // Info
         accommodation.staffComments = chance.paragraph();
         accommodation.ownerComments = chance.paragraph();
-        accommodation.status = chance.pickone(
-            Object.values(AccommodationStatus)
-        );
+        accommodation.status = chance.pickone(Object.values(AccommodationStatus));
 
         // Vacancies
         accommodation.vacanciesTotal = chance.natural({ min: 1, max: 8 });
@@ -164,10 +149,7 @@ export function generateAllMocks() {
         accommodation.easyAmbulanceAccess = chance.bool();
 
         // Relations
-        accommodation.host =
-            mockedHosts[
-                chance.natural({ min: 0, max: mockedHosts.length - 1 })
-            ];
+        accommodation.host = mockedHosts[chance.natural({ min: 0, max: mockedHosts.length - 1 })];
         accommodation.hostId = accommodation.host.id;
 
         // Randomly (90%) assign couple of guests to Accommodation.
@@ -175,17 +157,11 @@ export function generateAllMocks() {
         // other accommodation, which is not a valid production scenario
         if (chance.natural({ min: 1, max: 10 }) < 9) {
             times(chance.natural({ min: 1, max: 4 }), () => {
-                const guest =
-                    mockedGuests[
-                        chance.natural({ min: 0, max: mockedGuests.length - 1 })
-                    ];
+                const guest = mockedGuests[chance.natural({ min: 0, max: mockedGuests.length - 1 })];
                 const plain = classToPlain(guest);
                 const copyOfGuest = plainToClass(Guest, plain);
                 accommodation.guests.push(copyOfGuest);
-                copyOfGuest.accommodation = plainToClass(
-                    GuestAccommodation,
-                    classToPlain(accommodation)
-                );
+                copyOfGuest.accommodation = plainToClass(GuestAccommodation, classToPlain(accommodation));
             });
         }
 
@@ -197,10 +173,7 @@ export function generateAllMocks() {
     for (const mockedGuest of mockedGuests) {
         const mockedAccommodation = getRandomItem(mockedAccommodations);
         const plainAccommodation = classToPlain(mockedAccommodation);
-        const guestAccommodation = plainToClass(
-            GuestAccommodation,
-            plainAccommodation
-        );
+        const guestAccommodation = plainToClass(GuestAccommodation, plainAccommodation);
         mockedGuest.accommodation = guestAccommodation;
     }
 
@@ -209,68 +182,46 @@ export function generateAllMocks() {
 
 if (constants.useMocks) {
     const mockAdapter = new MockAdapter(axios);
-    const { mockedAccommodations, mockedHosts, mockedGuests } =
-        generateAllMocks();
+    const { mockedAccommodations, mockedHosts, mockedGuests } = generateAllMocks();
 
-    mockAdapter.onGet(Paths.ACCOMMODATION).reply((config) => {
+    mockAdapter.onGet(pathToRegexp(ApiPaths.ACCOMMODATION)).reply((config) => {
         const { url } = config;
-        const plainAccommodations = mockedAccommodations.map((accommodation) =>
-            classToPlain(accommodation)
-        );
+        const plainAccommodations = mockedAccommodations.map((accommodation) => classToPlain(accommodation));
 
         console.log(`[useGetAccommodation] Mocked response for ${url}: `);
         return [200, JSON.stringify(plainAccommodations)];
     });
 
-    mockAdapter
-        .onGet(new RegExp(getPath(Paths.ACCOMMODATION) + "/*"))
-        .reply((config) => {
-            const { url } = config;
-            const path = getPath(Paths.ACCOMMODATION_BY_ID);
-            const matchedPath = matchPath(url, {
-                path,
-                exact: true,
-                strict: false,
-            });
-            const {
-                params: { accommodationId },
-            } = matchedPath;
+    mockAdapter.onGet(pathToRegexp(ApiPaths.ACCOMMODATION_BY_ID)).reply((config) => {
+        const { url } = config;
+        const matchedPath = match(ApiPaths.ACCOMMODATION_BY_ID)(url);
+        const {
+            params: { accommodationId },
+        } = matchedPath;
 
-            const accommodation = mockedAccommodations.find(
-                (mock) => mock.id === accommodationId
-            );
-            const plain = classToPlain(accommodation);
+        const accommodation = mockedAccommodations.find((mock) => mock.id === accommodationId);
+        const plain = classToPlain(accommodation);
 
-            console.log(
-                `[useGetAccommodation] Mocked response for ${url}: `,
-                accommodation
-            );
-            return [200, JSON.stringify(plain)];
-        });
+        console.log(`[useGetAccommodation] Mocked response for ${url}: `, accommodation);
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter
-        .onPut(new RegExp(getPath(Paths.ACCOMMODATION)))
-        .reply((config) => {
-            const { url, data } = config;
-            const json = JSON.parse(data);
-            const updatedAccommodation = plainToClass(Accommodation, json);
+    mockAdapter.onPut(pathToRegexp(ApiPaths.ACCOMMODATION_BY_ID)).reply((config) => {
+        const { url, data } = config;
+        const json = JSON.parse(data);
+        const updatedAccommodation = plainToClass(Accommodation, json);
 
-            const accommodationIndex = mockedAccommodations.findIndex(
-                (mock) => mock.id === updatedAccommodation.id
-            );
+        const accommodationIndex = mockedAccommodations.findIndex((mock) => mock.id === updatedAccommodation.id);
 
-            mockedAccommodations[accommodationIndex] = updatedAccommodation;
+        mockedAccommodations[accommodationIndex] = updatedAccommodation;
 
-            const plain = data;
+        const plain = data;
 
-            console.log(
-                `[useUpdateAccommodation] Mocked response for ${url}: `,
-                updatedAccommodation
-            );
-            return [200, JSON.stringify(plain)];
-        });
+        console.log(`[useUpdateAccommodation] Mocked response for ${url}: `, updatedAccommodation);
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter.onPost(Paths.ACCOMMODATION).reply((config) => {
+    mockAdapter.onPost(pathToRegexp(ApiPaths.ACCOMMODATION)).reply((config) => {
         const { url, data } = config;
         const json = JSON.parse(data);
         /**
@@ -285,51 +236,35 @@ if (constants.useMocks) {
 
         const plain = classToPlain(createdAccommodation);
 
-        console.log(
-            `[useUpdateAccommodation] Mocked response for ${url}: `,
-            createdAccommodation
-        );
+        console.log(`[useUpdateAccommodation] Mocked response for ${url}: `, createdAccommodation);
 
         return [200, JSON.stringify(plain)];
     });
 
-    mockAdapter
-        .onPost(new RegExp(getPath(Paths.ACCOMMODATION) + "/.+/guest/.+"))
-        .reply((config) => {
-            const { url } = config;
-            const matchedPath = matchPath(url, {
-                path:
-                    getPath(Paths.ACCOMMODATION) +
-                    "/:accommodationId/guest/:guestId",
-                exact: true,
-                strict: false,
-            });
-            const {
-                params: { accommodationId, guestId },
-            } = matchedPath;
+    mockAdapter.onPost(pathToRegexp(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST)).reply((config) => {
+        const { url } = config;
+        const matchedPath = match(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST)(url);
+        const {
+            params: { accommodationId, guestId },
+        } = matchedPath;
 
-            const accommodation = mockedAccommodations.find(
-                (mock) => mock.id === accommodationId
-            );
+        const accommodation = mockedAccommodations.find((mock) => mock.id === accommodationId);
 
-            const guest = mockedGuests.find((mock) => mock.id === guestId);
+        const guest = mockedGuests.find((mock) => mock.id === guestId);
 
-            if (!accommodation.guests.some((item) => item.id)) {
-                accommodation.guests.unshift(guest);
-                accommodation.updatedAt = moment();
-            }
+        if (!accommodation.guests.some((item) => item.id)) {
+            accommodation.guests.unshift(guest);
+            accommodation.updatedAt = moment();
+        }
 
-            guest.accommodation = plainToClass(
-                GuestAccommodation,
-                classToPlain(accommodation)
-            );
+        guest.accommodation = plainToClass(GuestAccommodation, classToPlain(accommodation));
 
-            const plain = classToPlain(accommodation);
+        const plain = classToPlain(accommodation);
 
-            return [200, JSON.stringify(plain)];
-        });
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter.onGet(Paths.HOST).reply((config) => {
+    mockAdapter.onGet(ApiPaths.HOST).reply((config) => {
         const { url } = config;
         const plainHosts = mockedHosts.map((host) => classToPlain(host));
 
@@ -337,64 +272,45 @@ if (constants.useMocks) {
         return [200, JSON.stringify(plainHosts)];
     });
 
-    mockAdapter
-        .onGet(new RegExp(getPath(Paths.HOST) + "/.+"))
-        .reply((config) => {
-            const { url } = config;
-            const matchedPath = matchPath(url, {
-                path: getPath(Paths.HOST) + "/:hostId",
-                exact: true,
-                strict: false,
-            });
-            const {
-                params: { hostId },
-            } = matchedPath;
+    mockAdapter.onGet(pathToRegexp(ApiPaths.HOST_BY_ID)).reply((config) => {
+        const { url } = config;
+        const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
+        const {
+            params: { hostId },
+        } = matchedPath;
 
-            const host = mockedHosts.find((mock) => mock.id === hostId);
-            const plain = classToPlain(host);
+        const host = mockedHosts.find((mock) => mock.id === hostId);
+        const plain = classToPlain(host);
 
-            console.log(`[useGetHost] Mocked response for ${url}: `, host);
-            return [200, JSON.stringify(plain)];
-        });
+        console.log(`[useGetHost] Mocked response for ${url}: `, host);
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter
-        .onPut(new RegExp(getPath(Paths.HOST) + "/.+"))
-        .reply((config) => {
-            const { url, data } = config;
-            const matchedPath = matchPath(url, {
-                path: getPath(Paths.HOST) + "/:hostId",
-                exact: true,
-                strict: false,
-            });
-            const {
-                params: { hostId },
-            } = matchedPath;
-            const json = JSON.parse(data);
+    mockAdapter.onPut(pathToRegexp(ApiPaths.HOST_BY_ID)).reply((config) => {
+        const { url, data } = config;
+        const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
+        const {
+            params: { hostId },
+        } = matchedPath;
+        const json = JSON.parse(data);
 
-            const updatedHost = plainToClass(Host, json);
-            updatedHost.id = hostId;
+        const updatedHost = plainToClass(Host, json);
+        updatedHost.id = hostId;
 
-            const hostIndex = mockedHosts.findIndex(
-                (mock) => mock.id === hostId
-            );
-            if (hostIndex === -1) {
-                throw Error(
-                    "[useUpdateHost] Tried to PUT host, but host with such ID is not present in mocks"
-                );
-            }
+        const hostIndex = mockedHosts.findIndex((mock) => mock.id === hostId);
+        if (hostIndex === -1) {
+            throw Error("[useUpdateHost] Tried to PUT host, but host with such ID is not present in mocks");
+        }
 
-            mockedHosts[hostIndex] = updatedHost;
+        mockedHosts[hostIndex] = updatedHost;
 
-            const plain = data;
+        const plain = data;
 
-            console.log(
-                `[useUpdateHost] Mocked response for ${url}: `,
-                updatedHost
-            );
-            return [200, JSON.stringify(plain)];
-        });
+        console.log(`[useUpdateHost] Mocked response for ${url}: `, updatedHost);
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter.onPost(Paths.HOST).reply((config) => {
+    mockAdapter.onPost(pathToRegexp(ApiPaths.HOST)).reply((config) => {
         const { url, data } = config;
         const json = JSON.parse(data);
         /**
@@ -409,15 +325,12 @@ if (constants.useMocks) {
 
         const plain = classToPlain(createdHost);
 
-        console.log(
-            `[useUpdateHost] Mocked response for ${url}: `,
-            createdHost
-        );
+        console.log(`[useUpdateHost] Mocked response for ${url}: `, createdHost);
 
         return [200, JSON.stringify(plain)];
     });
 
-    mockAdapter.onGet(Paths.GUEST).reply((config) => {
+    mockAdapter.onGet(pathToRegexp(ApiPaths.GUEST)).reply((config) => {
         const { url } = config;
         const plainGuests = mockedGuests.map((guest) => classToPlain(guest));
 
@@ -425,47 +338,36 @@ if (constants.useMocks) {
         return [200, JSON.stringify(plainGuests)];
     });
 
-    mockAdapter
-        .onGet(new RegExp(getPath(Paths.GUEST) + "/.+"))
-        .reply((config) => {
-            const { url } = config;
-            const matchedPath = matchPath(url, {
-                path: getPath(Paths.GUEST) + "/:guestId",
-                exact: true,
-                strict: false,
-            });
-            const {
-                params: { guestId },
-            } = matchedPath;
+    mockAdapter.onGet(pathToRegexp(ApiPaths.GUEST_BY_ID)).reply((config) => {
+        const { url } = config;
+        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
+        const {
+            params: { guestId },
+        } = matchedPath;
 
-            const guest = mockedGuests.find((mock) => mock.id === guestId);
-            const plain = classToPlain(guest);
+        const guest = mockedGuests.find((mock) => mock.id === guestId);
+        const plain = classToPlain(guest);
 
-            console.log(`[useGetGuest] Mocked response for ${url}: `, guest);
-            return [200, JSON.stringify(plain)];
-        });
+        console.log(`[useGetGuest] Mocked response for ${url}: `, guest);
+        return [200, JSON.stringify(plain)];
+    });
 
-    mockAdapter.onPut(new RegExp(getPath(Paths.GUEST))).reply((config) => {
+    mockAdapter.onPut(pathToRegexp(ApiPaths.GUEST_BY_ID)).reply((config) => {
         const { url, data } = config;
         const json = JSON.parse(data);
         const updatedGuest = plainToClass(Guest, json);
 
-        const guestIndex = mockedGuests.findIndex(
-            (mock) => mock.id === updatedGuest.id
-        );
+        const guestIndex = mockedGuests.findIndex((mock) => mock.id === updatedGuest.id);
 
         mockedGuests[guestIndex] = updatedGuest;
 
         const plain = data;
 
-        console.log(
-            `[useUpdateGuest] Mocked response for ${url}: `,
-            updatedGuest
-        );
+        console.log(`[useUpdateGuest] Mocked response for ${url}: `, updatedGuest);
         return [200, JSON.stringify(plain)];
     });
 
-    mockAdapter.onPost(Paths.GUEST).reply((config) => {
+    mockAdapter.onPost(pathToRegexp(ApiPaths.GUEST)).reply((config) => {
         const { url, data } = config;
         const json = JSON.parse(data);
         /**
@@ -480,10 +382,7 @@ if (constants.useMocks) {
 
         const plain = classToPlain(createdGuest);
 
-        console.log(
-            `[useUpdateGuest] Mocked response for ${url}: `,
-            createdGuest
-        );
+        console.log(`[useUpdateGuest] Mocked response for ${url}: `, createdGuest);
 
         return [200, JSON.stringify(plain)];
     });

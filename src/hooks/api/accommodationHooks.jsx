@@ -4,7 +4,7 @@ import {
     getErrorsFromApi,
     getPath,
 } from "services/Api/utils";
-import { Paths } from "services/Api/constants";
+import { ApiPaths } from "services/Api/constants";
 import {
     classToPlain,
     filterImmutableFields,
@@ -28,7 +28,7 @@ const useCreateAccommodation = () => {
      * @returns {Promise<*|undefined>}
      */
     const createAccommodation = ({ accommodation }) => {
-        const url = getPath(Paths.ACCOMMODATION);
+        const url = getPath(ApiPaths.ACCOMMODATION);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Accommodation, parsed);
@@ -70,7 +70,7 @@ const useGetAccommodation = () => {
     const accommodationGetError = getErrorsFromApi(error);
 
     const fetchAccommodation = ({ accommodationId }) => {
-        const url = getPath(Paths.ACCOMMODATION_BY_ID, {
+        const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });
         const transformResponse = (data) => {
@@ -118,7 +118,7 @@ const useUpdateAccommodation = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateAccommodation = ({ accommodation }) => {
-        const url = getPath(Paths.ACCOMMODATION_BY_ID, {
+        const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId: accommodation.id,
         });
         const transformResponse = (data) => {
@@ -168,7 +168,7 @@ const useAddGuestToAccommodation = () => {
      * @returns {Promise<{errors: Object, status: ApiErrorStatus}|undefined>}
      */
     const addGuestToAccommodation = ({ accommodation, guest }) => {
-        const url = getPath(Paths.ACCOMMODATION_BY_ID_ADD_GUEST, {
+        const url = getPath(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST, {
             accommodationId: accommodation.id,
             guestId: guest.id,
         });

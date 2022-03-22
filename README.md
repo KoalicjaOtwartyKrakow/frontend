@@ -30,6 +30,7 @@ to install project dependencies.
 3. Choose Prettier plugin path from the dropdown.
 4. Set "Run for files" to `{**/*,*}.{js,ts,jsx,tsx,json,css,scss,sass}`
 5. Check both **On Reformat Code action** and **On Save** checkboxes.
+6. Go **Settings…** » **Languages & Frameworks** » **JavaScript** » **Code Quality Tools** » **ESLint** » and select *Automatic ESLint configuration*. 
 
 ### Install Webstorm plugins
 

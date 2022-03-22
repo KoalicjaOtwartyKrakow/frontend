@@ -4,7 +4,7 @@ import {
     getErrorsFromApi,
     getPath,
 } from "services/Api/utils";
-import { Paths } from "services/Api/constants";
+import { ApiPaths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
 
@@ -19,7 +19,7 @@ const useGetGuests = () => {
     const guestsGetError = getErrorsFromApi(error);
 
     const retrieveGuests = () => {
-        const url = getPath(Paths.GUEST);
+        const url = getPath(ApiPaths.GUEST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return Array.isArray(parsed)

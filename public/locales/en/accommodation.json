@@ -61,7 +61,6 @@
             "updateFailure": "There was an issue updating the Accommodation Unit",
             "updateSuccess": "Successful update of Accommodation Unit data"
         },
-
         "validator": {
             "address": "Enter address",
             "cityName": "Enter a city name",
