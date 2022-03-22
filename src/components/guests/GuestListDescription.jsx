@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    IconFoodAllergy,
-    IconFoodGlutenFree,
-    IconFoodLactoseFree,
-    IconFoodMeatFree,
-} from "components/shared/Icons";
+import { IconFoodAllergy, IconFoodGlutenFree, IconFoodLactoseFree, IconFoodMeatFree } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
 import GuestPriorityStatusBadge from "components/guest/GuestPriorityStatusBadge";
 import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestColorScheme";
@@ -39,20 +34,16 @@ const GuestListDescription = () => {
                 <Col xs={12} lg={6}>
                     <p className="text-lg-end">
                         <span>
-                            <IconFoodMeatFree /> –{" "}
-                            {t("guest:traits.food.meatFree")};{" "}
+                            <IconFoodMeatFree /> – {t("guest:traits.food.meatFree")};{" "}
                         </span>
                         <span>
-                            <IconFoodAllergy /> –{" "}
-                            {t("guest:traits.food.allergy")};{" "}
+                            <IconFoodAllergy /> – {t("guest:traits.food.allergy")};{" "}
                         </span>
                         <span>
-                            <IconFoodGlutenFree /> –{" "}
-                            {t("guest:traits.food.glutenFree")};{" "}
+                            <IconFoodGlutenFree /> – {t("guest:traits.food.glutenFree")};{" "}
                         </span>
                         <span>
-                            <IconFoodLactoseFree /> –{" "}
-                            {t("guest:traits.food.lactoseFree")};{" "}
+                            <IconFoodLactoseFree /> – {t("guest:traits.food.lactoseFree")};{" "}
                         </span>
                     </p>
                 </Col>

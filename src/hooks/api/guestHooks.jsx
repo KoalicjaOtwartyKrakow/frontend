@@ -1,17 +1,8 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
-import { Paths } from "services/Api/constants";
-import {
-    classToPlain,
-    filterImmutableFields,
-    plainToClass,
-} from "serializers/Serializer";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { ApiPaths } from "services/Api/constants";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
-import { omit } from "lodash-es";
 
 const useGetGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
@@ -24,7 +15,7 @@ const useGetGuest = () => {
     const guestGetError = getErrorsFromApi(error);
 
     const fetchGuest = ({ guestId }) => {
-        const url = getPath(Paths.GUEST) + "/" + guestId;
+        const url = getPath(ApiPaths.GUEST) + "/" + guestId;
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return plainToClass(Guest, parsed);
@@ -35,10 +26,7 @@ const useGetGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetGuest] Error on retrieveGuest(): ",
-                    error
-                );
+                console.error("[useGetGuest] Error on retrieveGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -70,7 +58,7 @@ const useUpdateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateGuest = ({ guest }) => {
-        const url = getPath(Paths.GUEST) + "/" + guest.id;
+        const url = getPath(ApiPaths.GUEST) + "/" + guest.id;
 
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
@@ -92,10 +80,7 @@ const useUpdateGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useUpdateGuest] Error on updateGuest(): ",
-                    error
-                );
+                console.error("[useUpdateGuest] Error on updateGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -127,7 +112,7 @@ const useCreateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const createGuest = ({ guest }) => {
-        const url = getPath(Paths.GUEST);
+        const url = getPath(ApiPaths.GUEST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
             return parsed && plainToClass(Guest, parsed);
@@ -139,10 +124,7 @@ const useCreateGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useCreateGuest] Error on createGuest(): ",
-                    error
-                );
+                console.error("[useCreateGuest] Error on createGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };

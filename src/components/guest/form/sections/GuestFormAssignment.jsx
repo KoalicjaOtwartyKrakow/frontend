@@ -13,14 +13,10 @@ const GuestFormStayInfo = ({ onAccommodationSelected }) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("guest:form.section.assignAccommodation")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("guest:form.section.assignAccommodation")}</FormSectionHeader>
             <Row>
                 <Col xs={12}>
-                    <GuestFormAccommodationSearchInput
-                        onAccommodationSelected={onAccommodationSelected}
-                    />
+                    <GuestFormAccommodationSearchInput onAccommodationSelected={onAccommodationSelected} />
                 </Col>
             </Row>
         </FormSection>

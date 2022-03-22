@@ -13,13 +13,7 @@ import HorizontalLine from "components/atoms/HorizontalLine";
  * @component
  */
 const EntityFormButtons = React.memo((props) => {
-    const {
-        onRemove,
-        removeInProgress,
-        submitDisabled,
-        submitInProgress,
-        submitLabel,
-    } = props;
+    const { onRemove, removeInProgress, submitDisabled, submitInProgress, submitLabel } = props;
 
     const { t } = useTranslation(["common"]);
     return (
@@ -45,9 +39,7 @@ const EntityFormButtons = React.memo((props) => {
                             inProgress={removeInProgress}
                         />
                     )}
-                    <EntityFormResetButton
-                        label={t("common:form.button.reset")}
-                    />
+                    <EntityFormResetButton label={t("common:form.button.reset")} />
                 </Col>
             </Row>
         </React.Fragment>

@@ -11,9 +11,7 @@ const AccommodationFormDetailedInformation = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormSection className="mb-0">
-            <FormSectionHeader>
-                {t("accommodation:form.section.detailedInfo")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("accommodation:form.section.detailedInfo")}</FormSectionHeader>
             <Row>
                 <Col xs={12} md={4}>
                     <AccommodationFormPets />

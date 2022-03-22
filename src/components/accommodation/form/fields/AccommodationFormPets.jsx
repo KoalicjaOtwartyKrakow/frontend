@@ -6,17 +6,7 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 
 const petCheckbox = ({ name, label }) => {
-    return (
-        <Field
-            id={name}
-            key={name}
-            name={name}
-            type="checkbox"
-            label={label}
-            component={FormCheckbox}
-            inline
-        />
-    );
+    return <Field id={name} key={name} name={name} type="checkbox" label={label} component={FormCheckbox} inline />;
 };
 
 const AccommodationFormPets = () => {

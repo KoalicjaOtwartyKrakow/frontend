@@ -30,6 +30,11 @@
 //   adjustStyleLoaders(enableStyleSourceMaps)
 // );
 
-const { override, addDecoratorsLegacy } = require("customize-cra");
+const {
+    override,
+    addDecoratorsLegacy,
+    // useBabelRc,
+    // useEslintRc,
+} = require("customize-cra");
 
 module.exports = override(addDecoratorsLegacy());

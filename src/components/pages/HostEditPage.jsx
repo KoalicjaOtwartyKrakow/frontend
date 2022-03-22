@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -10,24 +10,19 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
 import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Host from "models/Host";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const HostEditPage = () => {
     const { t } = useTranslation(["host"]);
     const { addToast } = useToasts();
     const params = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const { host, hostGetInProgress, hostGetError, retrieveHost } =
-        useGetHost();
+    const { host, hostGetInProgress, hostGetError, retrieveHost } = useGetHost();
 
-    const { updatedHost, hostUpdateInProgress, hostUpdateError, updateHost } =
-        useUpdateHost();
+    const { updatedHost, hostUpdateInProgress, hostUpdateError, updateHost } = useUpdateHost();
 
     const hostInProgress = getCrudInProgressState({
         retrieveInProgress: hostGetInProgress,
@@ -53,9 +48,9 @@ const HostEditPage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.HOSTS);
+            navigate(AppRoutes.HOSTS);
         }
-    }, [updatedHost, addToast, history, t]);
+    }, [updatedHost, addToast, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const host = formFields.formToModel(values);
@@ -74,21 +69,15 @@ const HostEditPage = () => {
 
     return (
         <PageCard header={t("host:card.title.update")}>
-            <InProgress
-                inProgress={hostInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={hostInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={hostGetError} />
             <PageErrorMessage error={hostUpdateError} />
 
             {initialValues && (
-                <HostForm
-                    hostInProgress={hostInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
-                />
+                <HostForm hostInProgress={hostInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.HOSTS} />}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.HOSTS} />}
         </PageCard>
     );
 };

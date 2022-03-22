@@ -3,32 +3,19 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 
 const commonSchema = Yup.object().shape({
     // Address
-    [AccommodationFormFields.ADDRESS_CITY]: Yup.string()
-        .trim()
-        .required("accommodation:form.validator.cityName"),
-    [AccommodationFormFields.ADDRESS_LINE]: Yup.string()
-        .trim()
-        .required("accommodation:form.validator.address"),
-    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required(
-        "common:form.validator.voivodeshipName"
-    ),
-    [AccommodationFormFields.ADDRESS_ZIP]: Yup.string()
-        .trim()
-        .required("common:form.validator.zip"),
+    [AccommodationFormFields.ADDRESS_CITY]: Yup.string().trim().required("accommodation:form.validator.cityName"),
+    [AccommodationFormFields.ADDRESS_LINE]: Yup.string().trim().required("accommodation:form.validator.address"),
+    [AccommodationFormFields.ADDRESS_VOIVODESHIP]: Yup.string().required("common:form.validator.voivodeshipName"),
+    [AccommodationFormFields.ADDRESS_ZIP]: Yup.string().trim().required("common:form.validator.zip"),
 
     // Host
-    [AccommodationFormFields.HOST_ID]: Yup.string().required(
-        "accommodation:form.validator.hostRequired"
-    ),
+    [AccommodationFormFields.HOST_ID]: Yup.string().required("accommodation:form.validator.hostRequired"),
 
     // Vacancies
     [AccommodationFormFields.VACANCIES_TAKEN]: Yup.number()
         .integer("common:form.validator.integer")
         .moreThan(-1, "common:form.validator.positiveNumber")
-        .max(
-            Yup.ref(AccommodationFormFields.VACANCIES_TOTAL),
-            "accommodation:form.validator.tooManyPeople"
-        )
+        .max(Yup.ref(AccommodationFormFields.VACANCIES_TOTAL), "accommodation:form.validator.tooManyPeople")
         .required("accommodation:form.validator.vacanciesTaken"),
     [AccommodationFormFields.VACANCIES_TOTAL]: Yup.number()
         .integer("common:form.validator.integer")
@@ -55,9 +42,7 @@ const accommodationFormCreateSchema = Yup.object().concat(commonSchema);
 
 const accommodationFormUpdateSchema = Yup.object()
     .shape({
-        [AccommodationFormFields.ID]: Yup.string().required(
-            "common:form.validator.missingId"
-        ),
+        [AccommodationFormFields.ID]: Yup.string().required("common:form.validator.missingId"),
     })
     .concat(commonSchema);
 

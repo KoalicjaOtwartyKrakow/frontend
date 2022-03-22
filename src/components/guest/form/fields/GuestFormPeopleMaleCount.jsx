@@ -16,13 +16,7 @@ const GuestFormPeopleMaleCount = (props) => {
             <FormLabel for={fieldId} className="required">
                 {t("guest:form.label.peopleMaleCount")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="0"
-                type="number"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="0" type="number" />
         </FormGroup>
     );
 };

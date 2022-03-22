@@ -12,16 +12,8 @@ const GuestFormFoodAllergies = (props) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("guest:form.label.foodAllergies")}
-            </FormLabel>
-            <Field
-                component={FormTextArea}
-                id={fieldId}
-                name={fieldId}
-                type="textarea"
-                rows={1}
-            />
+            <FormLabel for={fieldId}>{t("guest:form.label.foodAllergies")}</FormLabel>
+            <Field component={FormTextArea} id={fieldId} name={fieldId} type="textarea" rows={1} />
         </FormGroup>
     );
 };

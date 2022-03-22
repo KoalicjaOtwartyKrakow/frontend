@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -10,35 +10,26 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import GuestForm from "components/guest/GuestForm";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { useGetGuest, useUpdateGuest } from "hooks/api/guestHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Guest from "models/Guest";
-import { Routes } from "constants/Routes";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { isAccommodation } from "models/constants/Utils";
+import { AppRoutes } from "constants/AppRoutes";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
     const { addToast } = useToasts();
     const params = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
     const selectedAccommodation = useRef(undefined);
 
-    const { guest, guestGetInProgress, guestGetError, retrieveGuest } =
-        useGetGuest();
+    const { guest, guestGetInProgress, guestGetError, retrieveGuest } = useGetGuest();
 
-    const {
-        updatedGuest,
-        guestUpdateInProgress,
-        guestUpdateError,
-        updateGuest,
-    } = useUpdateGuest();
+    const { updatedGuest, guestUpdateInProgress, guestUpdateError, updateGuest } = useUpdateGuest();
 
     const guestInProgress = getCrudInProgressState({
         retrieveInProgress: guestGetInProgress,
-        updateInProgress: guestUpdateInProgress
+        updateInProgress: guestUpdateInProgress,
     });
 
     const formFields = new GuestFormFields();
@@ -60,9 +51,9 @@ const GuestEditPage = () => {
             addToast(t("guest:form.message.updateSuccess"), {
                 appearance: "success",
             });
-            history.push(Routes.GUESTS);
+            navigate(AppRoutes.GUESTS);
         }
-    }, [addToast, history, t, updatedGuest]);
+    }, [addToast, navigate, t, updatedGuest]);
 
     /**
      *
@@ -71,12 +62,9 @@ const GuestEditPage = () => {
     const onAccommodationSelected = (accommodation) => {
         selectedAccommodation.current = accommodation;
         if (!isAccommodation(accommodation)) {
-            addToast(
-                t("guest:form.message.removeGuestFromAccommodationWarning"),
-                {
-                    appearance: "warning",
-                }
-            );
+            addToast(t("guest:form.message.removeGuestFromAccommodationWarning"), {
+                appearance: "warning",
+            });
         }
     };
 
@@ -112,9 +100,7 @@ const GuestEditPage = () => {
 
     return (
         <PageCard header={t("guest:card.title.update")}>
-            <InProgress
-                inProgress={guestInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={guestGetError} />
             <PageErrorMessage error={guestUpdateError} />
 
@@ -129,7 +115,7 @@ const GuestEditPage = () => {
                 </AccommodationContext.Provider>
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.GUESTS} />}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}
         </PageCard>
     );
 };

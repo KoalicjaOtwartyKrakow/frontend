@@ -12,8 +12,7 @@ const CustomToast = ({ children, ...props }) => {
         error: t("common:toast.error"),
     };
 
-    const title =
-        appearanceTitles[props.appearance] || t("common:toast.unknown");
+    const title = appearanceTitles[props.appearance] || t("common:toast.unknown");
 
     return (
         <DefaultToast {...props}>

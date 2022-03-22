@@ -6,17 +6,7 @@ import { GuestFormFields } from "components/guest/GuestFormFields";
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 
 const dietCheckbox = ({ name, label }) => {
-    return (
-        <Field
-            id={name}
-            key={name}
-            name={name}
-            type="checkbox"
-            label={label}
-            component={FormCheckbox}
-            inline
-        />
-    );
+    return <Field id={name} key={name} name={name} type="checkbox" label={label} component={FormCheckbox} inline />;
 };
 
 const GuestFormDietaryRequirements = () => {
@@ -39,9 +29,7 @@ const GuestFormDietaryRequirements = () => {
 
     return (
         <FormGroup tag="fieldset">
-            <legend className="form-label">
-                {t("guest:form.label.dietaryRequirements")}
-            </legend>
+            <legend className="form-label">{t("guest:form.label.dietaryRequirements")}</legend>
             {dietsCheckboxes.map(dietCheckbox)}
         </FormGroup>
     );

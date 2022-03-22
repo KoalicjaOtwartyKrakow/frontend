@@ -16,13 +16,7 @@ const GuestFormFullName = () => {
             <FormLabel for={fieldId} className="required">
                 {t("common:form.label.fullName")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="Alexandra Bondarenko"
-                type="text"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="Alexandra Bondarenko" type="text" />
             <FormText></FormText>
         </FormGroup>
     );

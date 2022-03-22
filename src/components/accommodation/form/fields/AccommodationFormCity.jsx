@@ -16,13 +16,7 @@ const AccommodationFormAddressCity = () => {
             <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.addressCity")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="Kraków"
-                type="text"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="Kraków" type="text" />
         </FormGroup>
     );
 };

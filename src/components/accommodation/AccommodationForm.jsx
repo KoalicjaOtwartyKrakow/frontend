@@ -15,6 +15,7 @@ import AccommodationFormAdditional from "components/accommodation/form/sections/
 import AccommodationFormButtons from "components/accommodation/form/sections/AccommodationFormButtons";
 import { Col, Row } from "reactstrap";
 import AccommodationFormVacancies from "components/accommodation/form/sections/AccommodationFormVacancies";
+// eslint-disable-next-line max-len
 import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
 
 const AccommodationForm = (props) => {
@@ -29,9 +30,7 @@ const AccommodationForm = (props) => {
 
     const validateOnMount = isCreateMode;
 
-    const validationSchema = isUpdateMode
-        ? accommodationFormUpdateSchema
-        : accommodationFormCreateSchema;
+    const validationSchema = isUpdateMode ? accommodationFormUpdateSchema : accommodationFormCreateSchema;
 
     // const onChange = (currentState) => {
     //   const { name } = currentState.values;
@@ -52,19 +51,14 @@ const AccommodationForm = (props) => {
     const onSubmit = async (values, formikBag) => {
         console.log("[Accommodation] AccommodationForm onSubmit()");
 
-        const [formattedValues, hasErrors] = await yupTransform(
-            values,
-            formikBag,
-            validationSchema
-        );
+        const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 
         if (hasErrors) {
             return;
         }
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (response) =>
-            onSubmitError(response, values, resetForm);
+        const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
 
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
@@ -82,9 +76,7 @@ const AccommodationForm = (props) => {
 
     const { t } = useTranslation(["accommodation"]);
 
-    const submitLabel = isCreateMode
-        ? t("accommodation:form.button.create")
-        : t("accommodation:form.button.update");
+    const submitLabel = isCreateMode ? t("accommodation:form.button.create") : t("accommodation:form.button.update");
 
     return (
         <Formik {...formikProps}>

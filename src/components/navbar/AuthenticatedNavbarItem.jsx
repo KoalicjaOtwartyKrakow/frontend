@@ -5,17 +5,20 @@ import { NavItem, NavLink } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fasIconPropType } from "proptypes/CommonPropTypes";
 import { useTranslation } from "react-i18next";
+import classNames from "classnames";
 
 const AuthenticatedNavbarItem = React.memo(({ exact, icon, i18nKey, path }) => {
     const { t } = useTranslation(["accommodation"]);
+    const NavbarNavLink = (props) => {
+        return <RouterNavLink {...props} className={(active) => classNames(props.className, { active })} />;
+    };
+    const options = {};
+    if (exact) {
+        options.exact = undefined;
+    }
     return (
         <NavItem>
-            <NavLink
-                tag={RouterNavLink}
-                to={path}
-                activeClassName="active"
-                exact={exact}
-            >
+            <NavLink tag={NavbarNavLink} to={path} {...options}>
                 <FontAwesomeIcon icon={icon} /> {t(i18nKey)}
             </NavLink>
         </NavItem>

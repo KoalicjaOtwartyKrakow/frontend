@@ -13,18 +13,10 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
     const [caseSensitive] = useState(false);
     const [ignoreDiacritics] = useState(true);
 
-    const {
-        accommodations,
-        accommodationsGetError,
-        accommodationsGetInProgress,
-        retrieveAccommodations,
-    } = useGetAccommodations();
+    const { accommodations, accommodationsGetError, accommodationsGetInProgress, retrieveAccommodations } =
+        useGetAccommodations();
 
-    const shouldFetchAccommodations = !(
-        accommodations ||
-        accommodationsGetError ||
-        accommodationsGetInProgress
-    );
+    const shouldFetchAccommodations = !(accommodations || accommodationsGetError || accommodationsGetInProgress);
 
     const options = accommodations || [];
 
@@ -51,16 +43,12 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
         if (accommodation?.host === undefined || !accommodation) {
             return null;
         }
-        return (
-            <GuestFormAccommodationSearchItem accommodation={accommodation} />
-        );
+        return <GuestFormAccommodationSearchItem accommodation={accommodation} />;
     };
 
     const onChange = (options) => onAccommodationSelected(options[0]);
 
-    const defaultSelected = isAccommodation(accommodation)
-        ? [accommodation]
-        : [];
+    const defaultSelected = isAccommodation(accommodation) ? [accommodation] : [];
 
     return (
         <>

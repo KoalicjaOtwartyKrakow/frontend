@@ -11,22 +11,15 @@ const NonFieldError = ({ error, isNotLastError }) => (
 );
 
 const NonFieldErrors = ({ formik: { status }, label = "" }) => {
-    const nonFieldErrors =
-        getIn(status, [API_ERRORS, API_NON_FIELD_ERRORS]) || [];
+    const nonFieldErrors = getIn(status, [API_ERRORS, API_NON_FIELD_ERRORS]) || [];
     const hasErrors = nonFieldErrors.length > 0;
 
     return (
         hasErrors && (
             <Alert color="danger">
-                {label && (
-                    <h4 className="alert-heading fw-semibold mb-3">{label}</h4>
-                )}
+                {label && <h4 className="alert-heading fw-semibold mb-3">{label}</h4>}
                 {nonFieldErrors.map((error, index, arr) => (
-                    <NonFieldError
-                        isNotLastError={index < arr.length - 1}
-                        error={error}
-                        key={error}
-                    />
+                    <NonFieldError isNotLastError={index < arr.length - 1} error={error} key={error} />
                 ))}
             </Alert>
         )

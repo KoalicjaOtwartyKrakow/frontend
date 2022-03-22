@@ -24,14 +24,7 @@ const FormDate = React.memo(({ field, form, ...props }) => {
 
     return (
         <React.Fragment>
-            <Input
-                invalid={invalid}
-                type="date"
-                {...field}
-                onChange={onChange}
-                value={value}
-                {...props}
-            />
+            <Input invalid={invalid} type="date" {...field} onChange={onChange} value={value} {...props} />
             {invalid && <FormFeedback>{t(error)}</FormFeedback>}
         </React.Fragment>
     );

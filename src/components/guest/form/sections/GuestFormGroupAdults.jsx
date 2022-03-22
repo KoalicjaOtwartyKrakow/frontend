@@ -12,9 +12,7 @@ const GuestFormGroupAdults = () => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("guest:form.section.groupAdults")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("guest:form.section.groupAdults")}</FormSectionHeader>
             <Row>
                 <Col xs={12} lg={4}>
                     <GuestFormPeopleTotalCount />

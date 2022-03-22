@@ -33,12 +33,7 @@ const AccommodationFormAddressStatus = () => {
             <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.status")}
             </FormLabel>
-            <Field
-                component={FormSelect}
-                id={fieldId}
-                name={fieldId}
-                items={items}
-            />
+            <Field component={FormSelect} id={fieldId} name={fieldId} items={items} />
         </FormGroup>
     );
 };

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
@@ -11,24 +11,16 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import GuestForm from "components/guest/GuestForm";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { useCreateGuest } from "hooks/api/guestHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Guest from "models/Guest";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 
 const GuestCreatePage = () => {
     const { t } = useTranslation(["guest"]);
     const { addToast } = useToasts();
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const {
-        createdGuest,
-        guestCreateInProgress,
-        guestCreateError,
-        createGuest,
-    } = useCreateGuest();
+    const { createdGuest, guestCreateInProgress, guestCreateError, createGuest } = useCreateGuest();
 
     const guestInProgress = getCrudInProgressState({
         createInProgress: guestCreateInProgress,
@@ -44,16 +36,13 @@ const GuestCreatePage = () => {
                 appearance: "success",
             });
 
-            history.push(Routes.GUESTS);
+            navigate(AppRoutes.GUESTS);
         }
-    }, [addToast, createdGuest, history, t]);
+    }, [addToast, createdGuest, navigate, t]);
 
     const onSubmit = async (values, onSubmitError) => {
         const guest = formFields.formToModel(values);
-        console.log(
-            "[GuestCreatePage] Invoked onSubmit() with values:",
-            values
-        );
+        console.log("[GuestCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createGuest({ guest });
         if (response?.errors) {
@@ -68,20 +57,14 @@ const GuestCreatePage = () => {
 
     return (
         <PageCard header={t("guest:card.title.create")}>
-            <InProgress
-                inProgress={guestInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={guestCreateError} />
 
             {initialValues && (
-                <GuestForm
-                    guestInProgress={guestInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
-                />
+                <GuestForm guestInProgress={guestInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
-            {!initialValues && <PageNavigationBackToList to={Routes.GUESTS} />}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}
         </PageCard>
     );
 };

@@ -1,19 +1,41 @@
 {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "plugin:node/recommended"
-  ],
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error",
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "func-names": "off",
-    "no-process-exit": "off",
-    "object-shorthand": "off",
-    "class-methods-use-this": "off"
-  }
+    "ignorePatterns": [
+        "public/locales/**/*.json"
+    ],
+    "plugins": [
+        "prettier"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "react-app"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "max-len": [
+            2,
+            {
+                "code": 120,
+                "tabWidth": 4,
+                "ignoreUrls": true
+            }
+        ]
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true,
+            "legacyDecorators": true
+        },
+        "sourceType": "module",
+        "useJSXTextNode": false
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.ts?(x)"
+            ],
+            "rules": {
+            }
+        }
+    ]
 }

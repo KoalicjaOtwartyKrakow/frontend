@@ -12,9 +12,7 @@ const HostFormAdditionalInformation = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("host:form.section.additionalInformation")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("host:form.section.additionalInformation")}</FormSectionHeader>
             <HostFormComments />
             <HostFormLanguagesSpoken />
         </FormSection>

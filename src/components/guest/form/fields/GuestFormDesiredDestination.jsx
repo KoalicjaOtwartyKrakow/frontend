@@ -13,9 +13,7 @@ const GuestFormDesiredDestination = (props) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("guest:form.label.desiredDestination")}
-            </FormLabel>
+            <FormLabel for={fieldId}>{t("guest:form.label.desiredDestination")}</FormLabel>
             <Field
                 component={FormInput}
                 id={fieldId}

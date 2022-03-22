@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "reactstrap";
-import { useHistory, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
-import { Routes } from "constants/Routes";
+import { AppRoutes } from "constants/AppRoutes";
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
 import { emptyFn } from "shared/utils";
@@ -12,20 +12,17 @@ import { CustomToast } from "components/atoms/Toast";
 import { appConfig } from "constants/AppConfig";
 
 const AuthenticatedContainer = ({ children }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const onJumbotronClick = () => {
-        const path = Routes.ROOT;
-        history.push(path);
+        const path = AppRoutes.ROOT;
+        navigate(path);
     };
 
     const { t } = useTranslation(["common"]);
     const { publicUrl } = appConfig;
 
     return (
-        <ToastProvider
-            autoDismiss={Notifications.toastAutoDismiss}
-            components={{ Toast: CustomToast }}
-        >
+        <ToastProvider autoDismiss={Notifications.toastAutoDismiss} components={{ Toast: CustomToast }}>
             <AuthenticatedNavbar onLogout={emptyFn} />
             <Jumbotron onClick={onJumbotronClick}>
                 <Container className="jumbotron__logos">
@@ -51,19 +48,15 @@ const AuthenticatedContainer = ({ children }) => {
                             src={`${publicUrl}/images/logo-koalicja.png`}
                         />
                     </div>
-                    <p className="lead d-none d-lg-block">
-                        {t("common:application.header.subtitle")}
-                    </p>
+                    <p className="lead d-none d-lg-block">{t("common:application.header.subtitle")}</p>
                 </Container>
             </Jumbotron>
             <Container>
-                <div className="mt-3 mb-3 text-muted d-none d-lg-block">
-                    Dashboard {">"} Breadcrumbs here...
-                </div>
+                <div className="mt-3 mb-3 text-muted d-none d-lg-block">Dashboard {">"} Breadcrumbs here...</div>
                 {children}
             </Container>
         </ToastProvider>
     );
 };
 
-export default withRouter(AuthenticatedContainer);
+export default AuthenticatedContainer;

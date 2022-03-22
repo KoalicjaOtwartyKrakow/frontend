@@ -5,8 +5,7 @@ import { fallbackLanguage, supportedLanguages } from "i18n";
 
 const LanguageSwitcher = ({ className }) => {
     const { i18n } = useTranslation(["accommodation"]);
-    const storedLanguage =
-        localStorage.getItem("i18nextLng") || fallbackLanguage;
+    const storedLanguage = localStorage.getItem("i18nextLng") || fallbackLanguage;
     const [language, setLanguage] = useState(storedLanguage);
 
     const switchLanguage = (i18n, selectedLanguage) => () => {
@@ -26,12 +25,7 @@ const LanguageSwitcher = ({ className }) => {
             {supportedLanguages.map((item) => {
                 const active = isActive(item.code);
                 return (
-                    <Button
-                        onClick={switchLanguage(i18n, item.code)}
-                        active={active}
-                        outline={!active}
-                        key={item.code}
-                    >
+                    <Button onClick={switchLanguage(i18n, item.code)} active={active} outline={!active} key={item.code}>
                         {item.label}
                     </Button>
                 );

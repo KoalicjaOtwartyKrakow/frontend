@@ -6,8 +6,5 @@ import GuestAccommodation from "models/GuestAccommodation";
 // well. How to reproduce: change `accommodation` field in Guest to type Accommodation
 // instead of current GuestAccommodation.
 export function isAccommodation(accommodation) {
-    return (
-        accommodation instanceof Accommodation ||
-        accommodation instanceof GuestAccommodation
-    );
+    return accommodation instanceof Accommodation || accommodation instanceof GuestAccommodation;
 }

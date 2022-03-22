@@ -10,28 +10,15 @@ import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestCol
 const GuestItemPeople = () => {
     const guest = useContext(GuestContext);
 
-    const { peopleTotalCount, peopleMaleCount, peopleFemaleCount, children } =
-        guest;
+    const { peopleTotalCount, peopleMaleCount, peopleFemaleCount, children } = guest;
     const peopleChildrenCount = children.length;
 
     return (
         <>
-            <GuestPriorityStatusBadge
-                color={GuestPeopleCountBadgeColor.TOTAL}
-                label={peopleTotalCount}
-            />
-            <GuestPriorityStatusBadge
-                color={GuestPeopleCountBadgeColor.MALE}
-                label={peopleMaleCount}
-            />
-            <GuestPriorityStatusBadge
-                color={GuestPeopleCountBadgeColor.FEMALE}
-                label={peopleFemaleCount}
-            />
-            <GuestPriorityStatusBadge
-                color={GuestPeopleCountBadgeColor.CHILDREN}
-                label={peopleChildrenCount}
-            />
+            <GuestPriorityStatusBadge color={GuestPeopleCountBadgeColor.TOTAL} label={peopleTotalCount} />
+            <GuestPriorityStatusBadge color={GuestPeopleCountBadgeColor.MALE} label={peopleMaleCount} />
+            <GuestPriorityStatusBadge color={GuestPeopleCountBadgeColor.FEMALE} label={peopleFemaleCount} />
+            <GuestPriorityStatusBadge color={GuestPeopleCountBadgeColor.CHILDREN} label={peopleChildrenCount} />
         </>
     );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
-import { getRouteIcon, Routes } from "constants/Routes";
+import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import HomePageCard from "components/pages/home/HomePageCard";
 
 const DashboardPage = () => {
@@ -13,27 +13,25 @@ const DashboardPage = () => {
             body: t("dashboard:accommodations.description"),
             color: "accommodations",
             header: t("dashboard:accommodations.header"),
-            icon: getRouteIcon(Routes.ACCOMMODATIONS),
-            navigationButtonLabel: t(
-                "dashboard:accommodations.navigateButtonLabel"
-            ),
-            navigationRoute: Routes.ACCOMMODATIONS,
+            icon: getRouteIcon(AppRoutes.ACCOMMODATIONS),
+            navigationButtonLabel: t("dashboard:accommodations.navigateButtonLabel"),
+            navigationRoute: AppRoutes.ACCOMMODATIONS,
         },
         {
             body: t("dashboard:guests.description"),
             color: "guests",
             header: t("dashboard:guests.header"),
-            icon: getRouteIcon(Routes.GUESTS),
+            icon: getRouteIcon(AppRoutes.GUESTS),
             navigationButtonLabel: t("dashboard:guests.navigateButtonLabel"),
-            navigationRoute: Routes.GUESTS,
+            navigationRoute: AppRoutes.GUESTS,
         },
         {
             body: t("dashboard:hosts.description"),
             color: "hosts",
             header: t("dashboard:hosts.header"),
-            icon: getRouteIcon(Routes.HOSTS),
+            icon: getRouteIcon(AppRoutes.HOSTS),
             navigationButtonLabel: t("dashboard:hosts.navigateButtonLabel"),
-            navigationRoute: Routes.HOSTS,
+            navigationRoute: AppRoutes.HOSTS,
         },
     ];
 

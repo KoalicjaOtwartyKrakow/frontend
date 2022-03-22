@@ -13,9 +13,7 @@ const getErrorMessageFromStatus = function (status) {
         case HttpStatus.IM_A_TEAPOT:
             return "Unable to connect, network is offline";
         default:
-            console.warn(
-                "TODO: provide handling for other status codes, broken network connection etc."
-            );
+            console.warn("TODO: provide handling for other status codes, broken network connection etc.");
             return "Unhandled API error";
     }
 };
@@ -51,10 +49,7 @@ class FormikApiErrors {
      * @return {ApiErrors}
      */
     static getStatusFromApi = function (apiErrors, status) {
-        if (
-            status.type === ApiErrorTypes.SERVER &&
-            status.code === HttpStatus.BAD_REQUEST
-        ) {
+        if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.BAD_REQUEST) {
             return new ApiErrors(apiErrors);
         }
 

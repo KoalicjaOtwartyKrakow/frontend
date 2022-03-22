@@ -4,10 +4,7 @@ import { Form, Formik } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
-import {
-    guestFormCreateSchema,
-    guestFormUpdateSchema,
-} from "components/guest/GuestFormSchemas";
+import { guestFormCreateSchema, guestFormUpdateSchema } from "components/guest/GuestFormSchemas";
 import GuestFormButtons from "components/guest/form/sections/GuestFormButtons";
 import { Col, Row } from "reactstrap";
 import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
@@ -19,12 +16,7 @@ import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
 import GuestFormAssignment from "components/guest/form/sections/GuestFormAssignment";
 
 const GuestForm = (props) => {
-    const {
-        initialValues,
-        onAccommodationSelected,
-        onRemove,
-        guestInProgress,
-    } = props;
+    const { initialValues, onAccommodationSelected, onRemove, guestInProgress } = props;
 
     const initialStatus = formFields.getInitialStatus();
 
@@ -35,9 +27,7 @@ const GuestForm = (props) => {
 
     const validateOnMount = isCreateMode;
 
-    const validationSchema = isUpdateMode
-        ? guestFormUpdateSchema
-        : guestFormCreateSchema;
+    const validationSchema = isUpdateMode ? guestFormUpdateSchema : guestFormCreateSchema;
 
     // const onChange = (currentState) => {
     //   const { name } = currentState.values;
@@ -58,19 +48,14 @@ const GuestForm = (props) => {
     const onSubmit = async (values, formikBag) => {
         console.log("[Guest] GuestForm onSubmit()");
 
-        const [formattedValues, hasErrors] = await yupTransform(
-            values,
-            formikBag,
-            validationSchema
-        );
+        const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 
         if (hasErrors) {
             return;
         }
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (response) =>
-            onSubmitError(response, values, resetForm);
+        const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
 
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
@@ -88,19 +73,13 @@ const GuestForm = (props) => {
 
     const { t } = useTranslation(["guest"]);
 
-    const submitLabel = isCreateMode
-        ? t("guest:form.button.create")
-        : t("guest:form.button.update");
+    const submitLabel = isCreateMode ? t("guest:form.button.create") : t("guest:form.button.update");
 
     return (
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
-                    {!isCreateMode && (
-                        <GuestFormAssignment
-                            onAccommodationSelected={onAccommodationSelected}
-                        />
-                    )}
+                    {!isCreateMode && <GuestFormAssignment onAccommodationSelected={onAccommodationSelected} />}
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />

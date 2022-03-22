@@ -4,12 +4,7 @@ import { Button } from "reactstrap";
 
 const EntityFormResetButton = ({ label }) => {
     return (
-        <Button
-            color="secondary"
-            type="reset"
-            outline
-            className="mr-2 d-none d-md-inline-block"
-        >
+        <Button color="secondary" type="reset" outline className="mr-2 d-none d-md-inline-block">
             {label}
         </Button>
     );
