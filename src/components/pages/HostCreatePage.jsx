@@ -11,10 +11,7 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
 import { useCreateHost } from "hooks/api/hostHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Host from "models/Host";
 import { AppRoutes } from "constants/AppRoutes";
 
@@ -23,8 +20,7 @@ const HostCreatePage = () => {
     const { addToast } = useToasts();
     const navigate = useNavigate();
 
-    const { createdHost, hostCreateInProgress, hostCreateError, createHost } =
-        useCreateHost();
+    const { createdHost, hostCreateInProgress, hostCreateError, createHost } = useCreateHost();
 
     const hostInProgress = getCrudInProgressState({
         createInProgress: hostCreateInProgress,
@@ -62,22 +58,14 @@ const HostCreatePage = () => {
 
     return (
         <PageCard header={t("host:card.title.create")}>
-            <InProgress
-                inProgress={hostInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={hostInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={hostCreateError} />
 
             {initialValues && (
-                <HostForm
-                    hostInProgress={hostInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
-                />
+                <HostForm hostInProgress={hostInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={AppRoutes.HOSTS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.HOSTS} />}
         </PageCard>
     );
 };

@@ -22,44 +22,15 @@ function App() {
             <AuthenticatedContainer>
                 <Routes>
                     <Route path={AppRoutes.ROOT} element={<DashboardPage />} />
-                    <Route
-                        path={AppRoutes.ACCOMMODATIONS}
-                        element={<AccommodationsPage />}
-                    />
-                    <Route
-                        path={AppRoutes.ACCOMMODATION_CREATE}
-                        element={<AccommodationCreatePage />}
-                    />
-                    <Route
-                        path={AppRoutes.ACCOMMODATION_EDIT}
-                        element={<AccommodationEditPage />}
-                    />
-                    <Route
-                        path={AppRoutes.GUESTS}
-                        exact
-                        element={<GuestsPage />}
-                    />
-                    <Route
-                        path={AppRoutes.GUEST_CREATE}
-                        element={<GuestCreatePage />}
-                    />
-                    <Route
-                        path={AppRoutes.GUEST_EDIT}
-                        element={<GuestEditPage />}
-                    />
-                    <Route
-                        path={AppRoutes.HOSTS}
-                        exact
-                        element={<HostsPage />}
-                    />
-                    <Route
-                        path={AppRoutes.HOST_CREATE}
-                        element={<HostCreatePage />}
-                    />
-                    <Route
-                        path={AppRoutes.HOST_EDIT}
-                        element={<HostEditPage />}
-                    />
+                    <Route path={AppRoutes.ACCOMMODATIONS} element={<AccommodationsPage />} />
+                    <Route path={AppRoutes.ACCOMMODATION_CREATE} element={<AccommodationCreatePage />} />
+                    <Route path={AppRoutes.ACCOMMODATION_EDIT} element={<AccommodationEditPage />} />
+                    <Route path={AppRoutes.GUESTS} exact element={<GuestsPage />} />
+                    <Route path={AppRoutes.GUEST_CREATE} element={<GuestCreatePage />} />
+                    <Route path={AppRoutes.GUEST_EDIT} element={<GuestEditPage />} />
+                    <Route path={AppRoutes.HOSTS} exact element={<HostsPage />} />
+                    <Route path={AppRoutes.HOST_CREATE} element={<HostCreatePage />} />
+                    <Route path={AppRoutes.HOST_EDIT} element={<HostEditPage />} />
                 </Routes>
             </AuthenticatedContainer>
         </Suspense>

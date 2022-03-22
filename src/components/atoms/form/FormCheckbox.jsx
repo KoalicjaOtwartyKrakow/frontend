@@ -2,16 +2,7 @@ import React from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
-const FormCheckbox = ({
-    children,
-    className,
-    label,
-    id,
-    inline,
-    field,
-    form,
-    ...props
-}) => {
+const FormCheckbox = ({ children, className, label, id, inline, field, form, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
     const invalid = !!error;
 

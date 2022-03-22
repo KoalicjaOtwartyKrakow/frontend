@@ -6,8 +6,7 @@ const withHistoryBackButtonOptions = (Button, options) => {
         const navigate = useNavigate();
         const { to } = options;
         const onClick = () => navigate(-1);
-        const buttonOptions =
-            navigate.length > 2 ? { onClick } : { tag: Link, to };
+        const buttonOptions = navigate.length > 2 ? { onClick } : { tag: Link, to };
 
         return <Button {...props} {...buttonOptions} />;
     };

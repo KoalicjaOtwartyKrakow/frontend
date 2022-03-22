@@ -12,8 +12,7 @@ import FormLabel from "components/atoms/form/FormLabel";
 const AccommodationFormHost = () => {
     const { t } = useTranslation(["accommodation"]);
     const { setFieldValue, values } = useFormikContext();
-    const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } =
-        useGetHosts();
+    const { hosts, hostsGetInProgress, hostsGetError, retrieveHosts } = useGetHosts();
 
     const fieldId = AccommodationFormFields.HOST_ID;
 

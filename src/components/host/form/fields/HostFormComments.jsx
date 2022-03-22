@@ -13,13 +13,7 @@ const HostFormComments = () => {
     return (
         <FormGroup>
             <FormLabel for={fieldId}>{t("host:form.label.comments")}</FormLabel>
-            <Field
-                component={FormTextArea}
-                id={fieldId}
-                name={fieldId}
-                type="textarea"
-                rows={5}
-            />
+            <Field component={FormTextArea} id={fieldId} name={fieldId} type="textarea" rows={5} />
         </FormGroup>
     );
 };

@@ -18,12 +18,8 @@ const AccommodationCreatePage = () => {
     const { addToast } = useToasts();
     const navigate = useNavigate();
 
-    const {
-        createdAccommodation,
-        accommodationCreateInProgress,
-        accommodationCreateError,
-        createAccommodation,
-    } = useCreateAccommodation();
+    const { createdAccommodation, accommodationCreateInProgress, accommodationCreateError, createAccommodation } =
+        useCreateAccommodation();
 
     const accommodationInProgress = getCrudInProgressState({
         createInProgress: accommodationCreateInProgress,
@@ -45,10 +41,7 @@ const AccommodationCreatePage = () => {
 
     const onSubmit = async (values, onSubmitError) => {
         const accommodation = formFields.formToModel(values);
-        console.log(
-            "[AccommodationCreatePage] Invoked onSubmit() with values:",
-            values
-        );
+        console.log("[AccommodationCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createAccommodation({ accommodation });
 
@@ -74,9 +67,7 @@ const AccommodationCreatePage = () => {
                 />
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={AppRoutes.ACCOMMODATIONS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.ACCOMMODATIONS} />}
         </PageCard>
     );
 };

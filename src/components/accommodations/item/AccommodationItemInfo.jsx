@@ -21,13 +21,8 @@ const AccommodationItemInfo = () => {
      */
     const accommodation = useContext(AccommodationContext);
 
-    const {
-        petsAllowed,
-        petsPresent,
-        disabledPeopleFriendly,
-        parkingPlaceAvailable,
-        easyAmbulanceAccess,
-    } = accommodation;
+    const { petsAllowed, petsPresent, disabledPeopleFriendly, parkingPlaceAvailable, easyAmbulanceAccess } =
+        accommodation;
 
     return (
         <p className="h5 d-flex align-items-center">

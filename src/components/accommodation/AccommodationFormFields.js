@@ -1,10 +1,7 @@
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import Accommodation from "models/Accommodation";
 import { getFormattedDate } from "shared/datetime";
-import {
-    defaultPolishVoivodeshipId,
-    getPolishVoivodeshipById,
-} from "models/constants/Address";
+import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
 import { merge, pick } from "lodash-es";
 
 class AccommodationFormFields {
@@ -46,9 +43,8 @@ class AccommodationFormFields {
         const formValues = pick(accommodation, fieldNames);
 
         formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
-            getPolishVoivodeshipById(
-                formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP]
-            )?.id || defaultPolishVoivodeshipId;
+            getPolishVoivodeshipById(formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP])?.id ||
+            defaultPolishVoivodeshipId;
 
         if (accommodation.id) {
             return formValues;
@@ -70,8 +66,7 @@ class AccommodationFormFields {
 
         // Required for recalculation, as vacanciesTaken setter is called sooner
         // than vacanciesFree get upgraded during merge()
-        accommodation.vacanciesTaken =
-            formValues[AccommodationFormFields.VACANCIES_TAKEN];
+        accommodation.vacanciesTaken = formValues[AccommodationFormFields.VACANCIES_TAKEN];
 
         return accommodation;
     }

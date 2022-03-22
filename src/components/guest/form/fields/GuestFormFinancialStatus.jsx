@@ -13,15 +13,8 @@ const GuestFormFinancialStatus = () => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("guest:form.label.financialStatus")}
-            </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                type="text"
-            />
+            <FormLabel for={fieldId}>{t("guest:form.label.financialStatus")}</FormLabel>
+            <Field component={FormInput} id={fieldId} name={fieldId} type="text" />
         </FormGroup>
     );
 };

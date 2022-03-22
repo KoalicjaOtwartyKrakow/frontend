@@ -10,12 +10,7 @@ import classNames from "classnames";
 const AuthenticatedNavbarItem = React.memo(({ exact, icon, i18nKey, path }) => {
     const { t } = useTranslation(["accommodation"]);
     const NavbarNavLink = (props) => {
-        return (
-            <RouterNavLink
-                {...props}
-                className={(active) => classNames(props.className, { active })}
-            />
-        );
+        return <RouterNavLink {...props} className={(active) => classNames(props.className, { active })} />;
     };
     const options = {};
     if (exact) {

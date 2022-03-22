@@ -21,45 +21,26 @@ const HostList = ({ hosts }) => {
 
     const onRemove = () => {};
 
-    const columnNames = [
-        "fullName",
-        "email",
-        "phoneNumber",
-        "languagesSpoken",
-        "status",
-        "comments",
-    ];
+    const columnNames = ["fullName", "email", "phoneNumber", "languagesSpoken", "status", "comments"];
 
     return (
         <Table hover striped responsive>
             <colgroup>
                 {columnNames.map((columnName) => (
-                    <col
-                        className={`host__col-${columnName}`}
-                        key={columnName}
-                    />
+                    <col className={`host__col-${columnName}`} key={columnName} />
                 ))}
             </colgroup>
             <thead className="thead-dark">
                 <tr>
                     {columnNames.map((columnName) => (
-                        <th key={columnName}>
-                            {t(`hosts:list.columnHeader:${columnName}`)}
-                        </th>
+                        <th key={columnName}>{t(`hosts:list.columnHeader:${columnName}`)}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
                 {hosts.map((host) => {
                     const { id } = host;
-                    return (
-                        <HostListItem
-                            key={id}
-                            host={host}
-                            onEdit={onEdit}
-                            onRemove={onRemove}
-                        />
-                    );
+                    return <HostListItem key={id} host={host} onEdit={onEdit} onRemove={onRemove} />;
                 })}
             </tbody>
         </Table>

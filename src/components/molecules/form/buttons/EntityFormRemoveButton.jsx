@@ -6,13 +6,7 @@ import ProgressIcon from "components/atoms/ProgressIcon";
 
 const EntityFormRemoveButton = ({ label, onClick, inProgress }) => {
     return (
-        <Button
-            color="danger"
-            type="button"
-            className="mr-1 mr-md-2"
-            onClick={onClick}
-            disabled={inProgress}
-        >
+        <Button color="danger" type="button" className="mr-1 mr-md-2" onClick={onClick} disabled={inProgress}>
             <ProgressIcon icon={faTrash} inProgress={inProgress} />
             <span className="d-none d-sm-inline">{label}</span>
         </Button>

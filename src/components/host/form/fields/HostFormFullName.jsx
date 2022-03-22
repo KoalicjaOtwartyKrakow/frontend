@@ -16,13 +16,7 @@ const HostFormFullName = () => {
             <FormLabel for={fieldId} className="required">
                 {t("common:form.label.fullName")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="Janina Nowak"
-                type="text"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="Janina Nowak" type="text" />
         </FormGroup>
     );
 };

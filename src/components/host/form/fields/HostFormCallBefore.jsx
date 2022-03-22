@@ -13,15 +13,8 @@ const HostFormCallBefore = () => {
     const { t } = useTranslation(["host"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("host:form.label.callBefore")}
-            </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                type="time"
-            />
+            <FormLabel for={fieldId}>{t("host:form.label.callBefore")}</FormLabel>
+            <Field component={FormInput} id={fieldId} name={fieldId} type="time" />
         </FormGroup>
     );
 };

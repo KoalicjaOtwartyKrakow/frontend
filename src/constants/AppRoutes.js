@@ -1,17 +1,10 @@
-import {
-    faBed,
-    faExclamation,
-    faHandHoldingHeart,
-    faHome,
-    faUserFriends,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBed, faExclamation, faHandHoldingHeart, faHome, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 class AppRoutes {
     static ROOT = "/";
     static ACCOMMODATIONS = "/accommodations";
     static ACCOMMODATION_CREATE = AppRoutes.ACCOMMODATIONS + "/create";
-    static ACCOMMODATION_EDIT =
-        AppRoutes.ACCOMMODATIONS + "/:accommodationId/edit";
+    static ACCOMMODATION_EDIT = AppRoutes.ACCOMMODATIONS + "/:accommodationId/edit";
 
     static HOSTS = "/hosts";
     static HOST_CREATE = AppRoutes.HOSTS + "/create";
@@ -33,9 +26,7 @@ const getRouteIcon = (route) => {
     const icon = RoutesIcons[route];
 
     if (!icon) {
-        console.warn(
-            `[Routes.getRouteIcon] Missing icon for router ${route}, please add it in RoutesIcons`
-        );
+        console.warn(`[Routes.getRouteIcon] Missing icon for router ${route}, please add it in RoutesIcons`);
         return faExclamation;
     }
 

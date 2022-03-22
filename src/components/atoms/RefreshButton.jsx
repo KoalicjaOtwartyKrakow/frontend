@@ -12,19 +12,8 @@ const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
     const buttonClassName = classNames(className);
 
     return (
-        <Button
-            color="primary"
-            outline
-            type="submit"
-            disabled={disabled}
-            className={buttonClassName}
-            onClick={onClick}
-        >
-            <ProgressIcon
-                className="me-2"
-                icon={faRotate}
-                inProgress={inProgress}
-            />
+        <Button color="primary" outline type="submit" disabled={disabled} className={buttonClassName} onClick={onClick}>
+            <ProgressIcon className="me-2" icon={faRotate} inProgress={inProgress} />
             <span className="fw-semibold">{label}</span>
         </Button>
     );

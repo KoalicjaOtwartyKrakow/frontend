@@ -17,9 +17,7 @@ const AccommodationFormAddress = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("accommodation:form.section.addressData")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("accommodation:form.section.addressData")}</FormSectionHeader>
             <Row>
                 <Col xs={12} md={8}>
                     <AccommodationFormAddressLine />

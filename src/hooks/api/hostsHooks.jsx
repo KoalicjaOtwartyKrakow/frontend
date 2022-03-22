@@ -1,9 +1,5 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
@@ -22,9 +18,7 @@ const useGetHosts = () => {
         const url = getPath(ApiPaths.HOST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            return Array.isArray(parsed)
-                ? parsed.map((item) => plainToClass(Host, item))
-                : [];
+            return Array.isArray(parsed) ? parsed.map((item) => plainToClass(Host, item)) : [];
         };
         const config = { url, transformResponse };
 
@@ -32,10 +26,7 @@ const useGetHosts = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetHosts] Error on retrieveHosts(): ",
-                    error
-                );
+                console.error("[useGetHosts] Error on retrieveHosts(): ", error);
                 return getErrorsFromApi(error);
             }
         };

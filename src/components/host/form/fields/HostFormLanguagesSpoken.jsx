@@ -3,11 +3,7 @@ import { FormFeedback, FormGroup, FormText } from "reactstrap";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { HostFormFields } from "components/host/HostFormFields";
-import {
-    Token,
-    Typeahead,
-    TypeaheadInputMulti,
-} from "react-bootstrap-typeahead";
+import { Token, Typeahead, TypeaheadInputMulti } from "react-bootstrap-typeahead";
 import FormLabel from "components/atoms/form/FormLabel";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { availableLanguages } from "models/Language";
@@ -32,9 +28,7 @@ const HostFormLanguagesSpoken = () => {
      * @param {Language} language
      */
     const onRemove = (language) => {
-        const languages = [...selectedLanguages].filter(
-            (item) => item.code !== language.code
-        );
+        const languages = [...selectedLanguages].filter((item) => item.code !== language.code);
         setFieldTouched(HostFormFields.LANGUAGES_SPOKEN, true);
         setSelectedLanguages(languages);
     };
@@ -45,33 +39,20 @@ const HostFormLanguagesSpoken = () => {
      * @returns {JSX.Element}
      */
     const languageToToken = (language) => (
-        <Token
-            index={language.code}
-            key={language.code}
-            onRemove={onRemove}
-            option={language}
-        >
+        <Token index={language.code} key={language.code} onRemove={onRemove} option={language}>
             {language.name}
         </Token>
     );
 
-    const error = FormikApiErrors.getError(
-        HostFormFields.LANGUAGES_SPOKEN,
-        formikContext
-    );
+    const error = FormikApiErrors.getError(HostFormFields.LANGUAGES_SPOKEN, formikContext);
 
     const renderInput = (inputProps) => {
         return (
             <>
-                <TypeaheadInputMulti
-                    {...inputProps}
-                    selected={selectedLanguages}
-                >
+                <TypeaheadInputMulti {...inputProps} selected={selectedLanguages}>
                     {selectedLanguages.map(languageToToken)}
                 </TypeaheadInputMulti>
-                {error && (
-                    <FormFeedback className="d-block">{t(error)}</FormFeedback>
-                )}
+                {error && <FormFeedback className="d-block">{t(error)}</FormFeedback>}
             </>
         );
     };
@@ -97,9 +78,7 @@ const HostFormLanguagesSpoken = () => {
                 renderMenuItemChildren={renderMenuItemChildren}
                 selected={selectedLanguages}
             />
-            {!error && (
-                <FormText>{t("common:form.text.atLeastOneLanguage")}</FormText>
-            )}
+            {!error && <FormText>{t("common:form.text.atLeastOneLanguage")}</FormText>}
         </FormGroup>
     );
 };

@@ -12,16 +12,8 @@ const GuestFormPetsDescription = (props) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("guest:form.label.petsDescription")}
-            </FormLabel>
-            <Field
-                component={FormTextArea}
-                id={fieldId}
-                name={fieldId}
-                type="textarea"
-                rows={2}
-            />
+            <FormLabel for={fieldId}>{t("guest:form.label.petsDescription")}</FormLabel>
+            <Field component={FormTextArea} id={fieldId} name={fieldId} type="textarea" rows={2} />
         </FormGroup>
     );
 };

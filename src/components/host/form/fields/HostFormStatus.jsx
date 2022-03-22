@@ -33,12 +33,7 @@ const HostFormStatus = (props) => {
             <FormLabel for={fieldId} className="required">
                 {t("host:form.label.hostStatus")}
             </FormLabel>
-            <Field
-                component={FormSelect}
-                id={fieldId}
-                name={fieldId}
-                items={items}
-            />
+            <Field component={FormSelect} id={fieldId} name={fieldId} items={items} />
         </FormGroup>
     );
 };

@@ -14,9 +14,7 @@ const DashboardPage = () => {
             color: "accommodations",
             header: t("dashboard:accommodations.header"),
             icon: getRouteIcon(AppRoutes.ACCOMMODATIONS),
-            navigationButtonLabel: t(
-                "dashboard:accommodations.navigateButtonLabel"
-            ),
+            navigationButtonLabel: t("dashboard:accommodations.navigateButtonLabel"),
             navigationRoute: AppRoutes.ACCOMMODATIONS,
         },
         {

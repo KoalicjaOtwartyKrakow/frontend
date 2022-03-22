@@ -22,10 +22,7 @@ const AuthenticatedContainer = ({ children }) => {
     const { publicUrl } = appConfig;
 
     return (
-        <ToastProvider
-            autoDismiss={Notifications.toastAutoDismiss}
-            components={{ Toast: CustomToast }}
-        >
+        <ToastProvider autoDismiss={Notifications.toastAutoDismiss} components={{ Toast: CustomToast }}>
             <AuthenticatedNavbar onLogout={emptyFn} />
             <Jumbotron onClick={onJumbotronClick}>
                 <Container className="jumbotron__logos">
@@ -51,15 +48,11 @@ const AuthenticatedContainer = ({ children }) => {
                             src={`${publicUrl}/images/logo-koalicja.png`}
                         />
                     </div>
-                    <p className="lead d-none d-lg-block">
-                        {t("common:application.header.subtitle")}
-                    </p>
+                    <p className="lead d-none d-lg-block">{t("common:application.header.subtitle")}</p>
                 </Container>
             </Jumbotron>
             <Container>
-                <div className="mt-3 mb-3 text-muted d-none d-lg-block">
-                    Dashboard {">"} Breadcrumbs here...
-                </div>
+                <div className="mt-3 mb-3 text-muted d-none d-lg-block">Dashboard {">"} Breadcrumbs here...</div>
                 {children}
             </Container>
         </ToastProvider>

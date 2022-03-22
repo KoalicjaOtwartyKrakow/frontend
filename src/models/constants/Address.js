@@ -27,9 +27,4 @@ const getPolishVoivodeshipNameById = (id) => {
     return getPolishVoivodeshipById(id)?.name || "";
 };
 
-export {
-    defaultPolishVoivodeshipId,
-    getPolishVoivodeshipById,
-    getPolishVoivodeshipNameById,
-    polishVoivodeships,
-};
+export { defaultPolishVoivodeshipId, getPolishVoivodeshipById, getPolishVoivodeshipNameById, polishVoivodeships };

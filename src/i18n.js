@@ -30,17 +30,7 @@ i18next
         debug: false,
         defaultNS: "common",
         supportedLngs: supportedLanguages.map((language) => language.code),
-        ns: [
-            "accommodation",
-            "accommodations",
-            "common",
-            "dashboard",
-            "guest",
-            "guests",
-            "host",
-            "hosts",
-            "navbar",
-        ],
+        ns: ["accommodation", "accommodations", "common", "dashboard", "guest", "guests", "host", "hosts", "navbar"],
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },

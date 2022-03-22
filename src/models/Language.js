@@ -23,9 +23,7 @@ class Language {
     name = "Polish";
 }
 
-const availableLanguages = sortBy(ISO6391.getLanguages(ISO6391.getAllCodes()), [
-    "name",
-]).map((item) => {
+const availableLanguages = sortBy(ISO6391.getLanguages(ISO6391.getAllCodes()), ["name"]).map((item) => {
     const language = new Language();
     language.code = item.code;
     language.code3 = ISO6391To3[item.code] || "";

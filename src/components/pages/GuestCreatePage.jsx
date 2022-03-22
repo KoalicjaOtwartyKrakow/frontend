@@ -11,10 +11,7 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import GuestForm from "components/guest/GuestForm";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { useCreateGuest } from "hooks/api/guestHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Guest from "models/Guest";
 import { AppRoutes } from "constants/AppRoutes";
 
@@ -23,12 +20,7 @@ const GuestCreatePage = () => {
     const { addToast } = useToasts();
     const navigate = useNavigate();
 
-    const {
-        createdGuest,
-        guestCreateInProgress,
-        guestCreateError,
-        createGuest,
-    } = useCreateGuest();
+    const { createdGuest, guestCreateInProgress, guestCreateError, createGuest } = useCreateGuest();
 
     const guestInProgress = getCrudInProgressState({
         createInProgress: guestCreateInProgress,
@@ -50,10 +42,7 @@ const GuestCreatePage = () => {
 
     const onSubmit = async (values, onSubmitError) => {
         const guest = formFields.formToModel(values);
-        console.log(
-            "[GuestCreatePage] Invoked onSubmit() with values:",
-            values
-        );
+        console.log("[GuestCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createGuest({ guest });
         if (response?.errors) {
@@ -68,22 +57,14 @@ const GuestCreatePage = () => {
 
     return (
         <PageCard header={t("guest:card.title.create")}>
-            <InProgress
-                inProgress={guestInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={guestCreateError} />
 
             {initialValues && (
-                <GuestForm
-                    guestInProgress={guestInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
-                />
+                <GuestForm guestInProgress={guestInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={AppRoutes.GUESTS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}
         </PageCard>
     );
 };

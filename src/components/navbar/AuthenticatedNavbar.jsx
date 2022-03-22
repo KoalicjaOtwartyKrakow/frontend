@@ -34,28 +34,21 @@ const AuthenticatedNavbar = ({ onLogout }) => {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="me-auto" navbar>
                     {navbarItems.map((navbarItem) => (
-                        <AuthenticatedNavbarItem
-                            {...navbarItem}
-                            key={navbarItem.path}
-                        />
+                        <AuthenticatedNavbarItem {...navbarItem} key={navbarItem.path} />
                     ))}
                 </Nav>
                 <LanguageSwitcher className="me-3" />
                 <Nav navbar>
                     <UncontrolledDropdown navbaritem="true">
                         <DropdownToggle nav caret>
-                            <FontAwesomeIcon icon={faUser} />{" "}
-                            {t("navbar:account")}
+                            <FontAwesomeIcon icon={faUser} /> {t("navbar:account")}
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem>
-                                <FontAwesomeIcon icon={faCog} />{" "}
-                                {t("navbar:applicationSettings")}
+                                <FontAwesomeIcon icon={faCog} /> {t("navbar:applicationSettings")}
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem onClick={onLogout}>
-                                {t("navbar:signOut")}
-                            </DropdownItem>
+                            <DropdownItem onClick={onLogout}>{t("navbar:signOut")}</DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 </Nav>

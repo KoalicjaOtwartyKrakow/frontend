@@ -1,15 +1,7 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import {
-    classToPlain,
-    filterImmutableFields,
-    plainToClass,
-} from "serializers/Serializer";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
@@ -40,10 +32,7 @@ const useCreateAccommodation = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useCreateAccommodation] Error on createAccommodation(): ",
-                    error
-                );
+                console.error("[useCreateAccommodation] Error on createAccommodation(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -83,10 +72,7 @@ const useGetAccommodation = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetAccommodation] Error on retrieveAccommodation(): ",
-                    error
-                );
+                console.error("[useGetAccommodation] Error on retrieveAccommodation(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -132,10 +118,7 @@ const useUpdateAccommodation = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetAccommodation] Error on updateAccommodation(): ",
-                    error
-                );
+                console.error("[useGetAccommodation] Error on updateAccommodation(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -184,10 +167,7 @@ const useAddGuestToAccommodation = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useAddGuestToAccommodation] Error on addGuestToAccommodation(): ",
-                    error
-                );
+                console.error("[useAddGuestToAccommodation] Error on addGuestToAccommodation(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -203,9 +183,4 @@ const useAddGuestToAccommodation = () => {
     };
 };
 
-export {
-    useCreateAccommodation,
-    useGetAccommodation,
-    useUpdateAccommodation,
-    useAddGuestToAccommodation,
-};
+export { useCreateAccommodation, useGetAccommodation, useUpdateAccommodation, useAddGuestToAccommodation };

@@ -12,9 +12,7 @@ const AccommodationFormVacancies = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormSection>
-            <FormSectionHeader>
-                {t("accommodation:form.section.availability")}
-            </FormSectionHeader>
+            <FormSectionHeader>{t("accommodation:form.section.availability")}</FormSectionHeader>
             <Row>
                 <Col xs={6} lg={3} xl={2}>
                     <AccommodationFormVacanciesTaken />

@@ -1,15 +1,7 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import {
-    classToPlain,
-    filterImmutableFields,
-    plainToClass,
-} from "serializers/Serializer";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Host from "models/Host";
 
 const useCreateHost = () => {

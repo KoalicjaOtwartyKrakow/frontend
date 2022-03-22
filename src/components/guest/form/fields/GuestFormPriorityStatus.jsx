@@ -53,12 +53,7 @@ const GuestFormPriorityStatus = (props) => {
             <FormLabel for={fieldId} className="required">
                 {t("guest:form.label.priorityStatus")}
             </FormLabel>
-            <Field
-                component={FormSelect}
-                id={fieldId}
-                name={fieldId}
-                items={items}
-            />
+            <Field component={FormSelect} id={fieldId} name={fieldId} items={items} />
         </FormGroup>
     );
 };

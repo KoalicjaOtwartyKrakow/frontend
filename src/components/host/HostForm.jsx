@@ -6,10 +6,7 @@ import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
 import { hostFormPropTypes } from "proptypes/HostFormPropTypes";
-import {
-    hostFormCreateSchema,
-    hostFormUpdateSchema,
-} from "components/host/HostFormSchemas";
+import { hostFormCreateSchema, hostFormUpdateSchema } from "components/host/HostFormSchemas";
 import HostFormButtons from "components/host/form/sections/HostFormButtons";
 import { Col, Row } from "reactstrap";
 import HostFormContact from "components/host/form/sections/HostFormContact";
@@ -28,9 +25,7 @@ const HostForm = (props) => {
 
     const validateOnMount = isCreateMode;
 
-    const validationSchema = isUpdateMode
-        ? hostFormUpdateSchema
-        : hostFormCreateSchema;
+    const validationSchema = isUpdateMode ? hostFormUpdateSchema : hostFormCreateSchema;
 
     // const onChange = (currentState) => {
     //   const { name } = currentState.values;
@@ -51,19 +46,14 @@ const HostForm = (props) => {
     const onSubmit = async (values, formikBag) => {
         console.log("[Host] HostForm onSubmit()");
 
-        const [formattedValues, hasErrors] = await yupTransform(
-            values,
-            formikBag,
-            validationSchema
-        );
+        const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 
         if (hasErrors) {
             return;
         }
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (response) =>
-            onSubmitError(response, values, resetForm);
+        const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
 
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
@@ -81,17 +71,13 @@ const HostForm = (props) => {
 
     const { t } = useTranslation(["host"]);
 
-    const submitLabel = isCreateMode
-        ? t("host:form.button.create")
-        : t("host:form.button.update");
+    const submitLabel = isCreateMode ? t("host:form.button.create") : t("host:form.button.update");
 
     return (
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
-                    <NonFieldErrors
-                        label={t("host:form.message.updateFailure")}
-                    />
+                    <NonFieldErrors label={t("host:form.message.updateFailure")} />
                     <Row>
                         <Col xs={12} lg={6}>
                             <HostFormContact />

@@ -10,10 +10,7 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import GuestForm from "components/guest/GuestForm";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { useGetGuest, useUpdateGuest } from "hooks/api/guestHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Guest from "models/Guest";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { isAccommodation } from "models/constants/Utils";
@@ -26,15 +23,9 @@ const GuestEditPage = () => {
     const navigate = useNavigate();
     const selectedAccommodation = useRef(undefined);
 
-    const { guest, guestGetInProgress, guestGetError, retrieveGuest } =
-        useGetGuest();
+    const { guest, guestGetInProgress, guestGetError, retrieveGuest } = useGetGuest();
 
-    const {
-        updatedGuest,
-        guestUpdateInProgress,
-        guestUpdateError,
-        updateGuest,
-    } = useUpdateGuest();
+    const { updatedGuest, guestUpdateInProgress, guestUpdateError, updateGuest } = useUpdateGuest();
 
     const guestInProgress = getCrudInProgressState({
         retrieveInProgress: guestGetInProgress,
@@ -71,12 +62,9 @@ const GuestEditPage = () => {
     const onAccommodationSelected = (accommodation) => {
         selectedAccommodation.current = accommodation;
         if (!isAccommodation(accommodation)) {
-            addToast(
-                t("guest:form.message.removeGuestFromAccommodationWarning"),
-                {
-                    appearance: "warning",
-                }
-            );
+            addToast(t("guest:form.message.removeGuestFromAccommodationWarning"), {
+                appearance: "warning",
+            });
         }
     };
 
@@ -112,9 +100,7 @@ const GuestEditPage = () => {
 
     return (
         <PageCard header={t("guest:card.title.update")}>
-            <InProgress
-                inProgress={guestInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={guestGetError} />
             <PageErrorMessage error={guestUpdateError} />
 
@@ -129,9 +115,7 @@ const GuestEditPage = () => {
                 </AccommodationContext.Provider>
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={AppRoutes.GUESTS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}
         </PageCard>
     );
 };

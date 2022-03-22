@@ -1,17 +1,8 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import {
-    classToPlain,
-    filterImmutableFields,
-    plainToClass,
-} from "serializers/Serializer";
+import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
-import { omit } from "lodash-es";
 
 const useGetGuest = () => {
     const [{ data, loading, error }, fetch] = useAxios(
@@ -35,10 +26,7 @@ const useGetGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetGuest] Error on retrieveGuest(): ",
-                    error
-                );
+                console.error("[useGetGuest] Error on retrieveGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -92,10 +80,7 @@ const useUpdateGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useUpdateGuest] Error on updateGuest(): ",
-                    error
-                );
+                console.error("[useUpdateGuest] Error on updateGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };
@@ -139,10 +124,7 @@ const useCreateGuest = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useCreateGuest] Error on createGuest(): ",
-                    error
-                );
+                console.error("[useCreateGuest] Error on createGuest(): ", error);
                 return getErrorsFromApi(error);
             }
         };

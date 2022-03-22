@@ -6,8 +6,6 @@ import "components/accommodations/AccommodationList.sass";
 
 import { AppRoutes } from "constants/AppRoutes";
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
-import { plainToClass } from "serializers/Serializer";
-import Accommodation from "models/Accommodation";
 
 const AccommodationList = ({ accommodations }) => {
     const { t } = useTranslation(["accommodations"]);
@@ -24,33 +22,19 @@ const AccommodationList = ({ accommodations }) => {
 
     const onRemove = () => {};
 
-    const columnNames = [
-        "city",
-        "address",
-        "status",
-        "capacity",
-        "description",
-        "information",
-    ];
+    const columnNames = ["city", "address", "status", "capacity", "description", "information"];
 
     return (
         <Table hover striped responsive>
             <colgroup>
                 {columnNames.map((columnName) => (
-                    <col
-                        className={`accommodation__col-${columnName}`}
-                        key={columnName}
-                    />
+                    <col className={`accommodation__col-${columnName}`} key={columnName} />
                 ))}
             </colgroup>
             <thead className="thead-dark">
                 <tr>
                     {columnNames.map((columnName) => (
-                        <th key={columnName}>
-                            {t(
-                                `accommodations:list.columnHeader:${columnName}`
-                            )}
-                        </th>
+                        <th key={columnName}>{t(`accommodations:list.columnHeader:${columnName}`)}</th>
                     ))}
                 </tr>
             </thead>

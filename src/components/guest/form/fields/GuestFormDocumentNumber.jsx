@@ -13,15 +13,8 @@ const GuestFormDocumentNumber = () => {
     const { t } = useTranslation(["common"]);
     return (
         <FormGroup>
-            <FormLabel for={fieldId}>
-                {t("guest:form.label.documentNumber")}
-            </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                type="text"
-            />
+            <FormLabel for={fieldId}>{t("guest:form.label.documentNumber")}</FormLabel>
+            <Field component={FormInput} id={fieldId} name={fieldId} type="text" />
         </FormGroup>
     );
 };

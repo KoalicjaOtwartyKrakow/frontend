@@ -1,9 +1,5 @@
 import useAxios from "axios-hooks";
-import {
-    getAuthenticationHeaders,
-    getErrorsFromApi,
-    getPath,
-} from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
@@ -22,9 +18,7 @@ const useGetGuests = () => {
         const url = getPath(ApiPaths.GUEST);
         const transformResponse = (data) => {
             const parsed = JSON.parse(data);
-            return Array.isArray(parsed)
-                ? parsed.map((item) => plainToClass(Guest, item))
-                : [];
+            return Array.isArray(parsed) ? parsed.map((item) => plainToClass(Guest, item)) : [];
         };
         const config = { url, transformResponse };
 
@@ -32,10 +26,7 @@ const useGetGuests = () => {
             try {
                 await fetch(config);
             } catch (error) {
-                console.error(
-                    "[useGetGuests] Error on retrieveGuests(): ",
-                    error
-                );
+                console.error("[useGetGuests] Error on retrieveGuests(): ", error);
                 return getErrorsFromApi(error);
             }
         };

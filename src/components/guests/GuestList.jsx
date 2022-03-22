@@ -35,32 +35,20 @@ const GuestList = ({ guests }) => {
         <Table hover striped responsive>
             <colgroup>
                 {columnNames.map((columnName) => (
-                    <col
-                        className={`accommodation__col-${columnName}`}
-                        key={columnName}
-                    />
+                    <col className={`accommodation__col-${columnName}`} key={columnName} />
                 ))}
             </colgroup>
             <thead className="thead-dark">
                 <tr>
                     {columnNames.map((columnName) => (
-                        <th key={columnName}>
-                            {t(`guests:list.columnHeader:${columnName}`)}
-                        </th>
+                        <th key={columnName}>{t(`guests:list.columnHeader:${columnName}`)}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
                 {guests.map((guest) => {
                     const { uuid } = guest;
-                    return (
-                        <GuestListItem
-                            key={uuid}
-                            guest={guest}
-                            onEdit={onEdit}
-                            onRemove={onRemove}
-                        />
-                    );
+                    return <GuestListItem key={uuid} guest={guest} onEdit={onEdit} onRemove={onRemove} />;
                 })}
             </tbody>
         </Table>

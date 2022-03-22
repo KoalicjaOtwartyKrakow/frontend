@@ -1,10 +1,4 @@
-import {
-    JsonConverter,
-    JsonObject,
-    JsonProperty,
-    JsonType,
-    OnDeserialized,
-} from "ta-json";
+import { JsonConverter, JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";

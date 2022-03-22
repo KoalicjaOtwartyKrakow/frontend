@@ -10,10 +10,7 @@ import PageNavigationBackToList from "components/atoms/PageNavHome";
 import HostForm from "components/host/HostForm";
 import { HostFormFields } from "components/host/HostFormFields";
 import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
-import {
-    crudInProgressStates,
-    getCrudInProgressState,
-} from "constants/CrudProgress";
+import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
 import Host from "models/Host";
 import { AppRoutes } from "constants/AppRoutes";
 
@@ -23,11 +20,9 @@ const HostEditPage = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const { host, hostGetInProgress, hostGetError, retrieveHost } =
-        useGetHost();
+    const { host, hostGetInProgress, hostGetError, retrieveHost } = useGetHost();
 
-    const { updatedHost, hostUpdateInProgress, hostUpdateError, updateHost } =
-        useUpdateHost();
+    const { updatedHost, hostUpdateInProgress, hostUpdateError, updateHost } = useUpdateHost();
 
     const hostInProgress = getCrudInProgressState({
         retrieveInProgress: hostGetInProgress,
@@ -74,23 +69,15 @@ const HostEditPage = () => {
 
     return (
         <PageCard header={t("host:card.title.update")}>
-            <InProgress
-                inProgress={hostInProgress !== crudInProgressStates.NONE}
-            />
+            <InProgress inProgress={hostInProgress !== crudInProgressStates.NONE} />
             <PageErrorMessage error={hostGetError} />
             <PageErrorMessage error={hostUpdateError} />
 
             {initialValues && (
-                <HostForm
-                    hostInProgress={hostInProgress}
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}
-                />
+                <HostForm hostInProgress={hostInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
-            {!initialValues && (
-                <PageNavigationBackToList to={AppRoutes.HOSTS} />
-            )}
+            {!initialValues && <PageNavigationBackToList to={AppRoutes.HOSTS} />}
         </PageCard>
     );
 };

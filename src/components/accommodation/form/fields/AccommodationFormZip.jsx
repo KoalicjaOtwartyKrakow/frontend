@@ -16,13 +16,7 @@ const AccommodationFormZip = () => {
             <FormLabel for={fieldId} className="required">
                 {t("accommodation:form.label.addressZip")}
             </FormLabel>
-            <Field
-                component={FormInput}
-                id={fieldId}
-                name={fieldId}
-                placeholder="00-000"
-                type="text"
-            />
+            <Field component={FormInput} id={fieldId} name={fieldId} placeholder="00-000" type="text" />
         </FormGroup>
     );
 };

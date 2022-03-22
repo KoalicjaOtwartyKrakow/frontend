@@ -9,8 +9,7 @@ import { crudInProgressStates } from "constants/CrudProgress";
  * @component
  */
 const HostFormButtons = React.memo((props) => {
-    const { isSubmitting, onRemove, inProgress, submitDisabled, submitLabel } =
-        props;
+    const { isSubmitting, onRemove, inProgress, submitDisabled, submitLabel } = props;
 
     return (
         <EntityFormButtons
