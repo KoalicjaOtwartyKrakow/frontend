@@ -5,42 +5,44 @@ import { delay } from "lodash-es";
 
 class Auth {
     static emptyToken = "";
-    static token = `kokon-auth-token`;
+    static tokenItemName = "kokon-auth-token";
     static httpHeader = "Authorization";
-
-    static refreshTokenIntervalHandle = undefined;
+    static rotateTokenIntervalHandle = undefined;
 
     /**
      * @param {GoogleLoginResponse|GoogleLoginResponseOffline} response
      */
     static startRotateRefreshToken = (response) => {
-        const getAsMilliseconds = (timeInSeconds = 3600 - 5 * 60) => timeInSeconds * 1000;
-        const authResponse = response.getAuthResponse();
-
-        // Timing to renew access token
-        const refreshIterval = getAsMilliseconds(authResponse.expires_in);
-
-        const refreshToken = async () => {
-            const authResponse = await response.reloadAuthResponse();
-            console.log("[Auth.refreshToken] authResponse:", authResponse);
-            const token = authResponse.id_token;
+        const persistToken = (token) => {
             Auth.putAuthTokenToStorage(token);
             Auth.updateAxiosAuthorizationHeader(token)();
         };
 
-        const token = response.getAuthResponse().id_token;
-        Auth.putAuthTokenToStorage(token);
+        const rotateToken = async () => {
+            const authResponse = await response.reloadAuthResponse();
+            console.log("[Auth.refreshToken] authResponse:", authResponse);
+            const token = authResponse.id_token;
+            persistToken(token);
+        };
+
+        const getAsMilliseconds = (timeInSeconds = 3600 - 5 * 60) => timeInSeconds * 1000;
+        const authResponse = response.getAuthResponse();
+        const token = authResponse.id_token;
+
+        persistToken(token);
+
+        const tokenRotateInterval = getAsMilliseconds(authResponse.expires_in);
 
         delay(() => {
-            Auth.refreshTokenIntervalHandle = setInterval(refreshToken, refreshIterval);
-        }, refreshIterval);
+            Auth.rotateTokenIntervalHandle = setInterval(rotateToken, tokenRotateInterval);
+        }, tokenRotateInterval);
 
         return token;
     };
 
     static stopRotateRefreshToken = () => {
         const token = Auth.emptyToken;
-        clearInterval(Auth.refreshTokenIntervalHandle);
+        clearInterval(Auth.rotateTokenIntervalHandle);
         Auth.putAuthTokenToStorage(token);
         return token;
     };
@@ -50,11 +52,11 @@ class Auth {
     }
 
     static getAuthTokenFromStorage() {
-        return localStorage.getItem(Auth.token) || Auth.emptyToken;
+        return localStorage.getItem(Auth.tokenItemName) || Auth.emptyToken;
     }
 
     static putAuthTokenToStorage(token) {
-        return localStorage.setItem(Auth.token, token);
+        return localStorage.setItem(Auth.tokenItemName, token);
     }
 
     static updateAxiosAuthorizationHeader(token) {
