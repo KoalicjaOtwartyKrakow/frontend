@@ -76,7 +76,7 @@ export const getPath = (url, options) => {
 export const getAuthenticationHeaders = () => {
     // TODO(mlazowik): handle the case where it's expired
     return {
-        Authorization: `Bearer ${Cookies.get("jwt")}`,
+        // Authorization: `Bearer ${Cookies.get("jwt")}`,
     };
 };
 

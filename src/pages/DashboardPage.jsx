@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
 import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
-import HomePageCard from "components/pages/home/HomePageCard";
+import HomePageCard from "pages/home/HomePageCard";
 
 const DashboardPage = () => {
     const { t } = useTranslation(["dashboard"]);

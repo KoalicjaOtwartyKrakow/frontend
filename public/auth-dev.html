@@ -25,6 +25,7 @@
     }
 
     function handleCredentialResponse(response) {
+        debugger;
         const jwt = parseJwt(response.credential);
         const googleTokenExpirationUnixTimestamp = jwt.exp;
         const MS_PER_MINUTE = 60000;
