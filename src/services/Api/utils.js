@@ -5,6 +5,7 @@ import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 
 import { ApiClientStatus, ApiErrorStatus, ApiErrorTypes } from "./constants";
+import { plainToClass } from "serializers/Serializer";
 
 const _getStatus = (error) => {
     const response = error.response;
@@ -77,4 +78,24 @@ export const getAuthenticationHeaders = () => {
     return {
         Authorization: `Bearer ${Cookies.get("jwt")}`,
     };
+};
+
+export const transformObjectResponse = (modelClass) => (data) => {
+    try {
+        const parsed = JSON.parse(data);
+        return parsed && plainToClass(modelClass, parsed);
+    } catch (error) {
+        console.error("[transformResponse] Retrieved malformed JSON response:", { data, modelClass });
+        return undefined;
+    }
+};
+
+export const transformArrayResponse = (modelClass) => (data) => {
+    try {
+        const parsed = JSON.parse(data);
+        return Array.isArray(parsed) ? parsed.map((item) => plainToClass(modelClass, item)) : [];
+    } catch (error) {
+        console.error("[transformArrayResponse] Retrieved malformed JSON response:", { data, modelClass });
+        return [];
+    }
 };

@@ -1,7 +1,6 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import { plainToClass } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useGetAccommodations = () => {
@@ -16,10 +15,7 @@ const useGetAccommodations = () => {
 
     const retrieveAccommodations = () => {
         const url = getPath(ApiPaths.ACCOMMODATION);
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return Array.isArray(parsed) ? parsed.map((item) => plainToClass(Accommodation, item)) : [];
-        };
+        const transformResponse = transformArrayResponse(Accommodation);
         const config = { url, transformResponse };
 
         const fetchData = async () => {

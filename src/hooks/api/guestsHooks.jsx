@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
@@ -16,10 +16,7 @@ const useGetGuests = () => {
 
     const retrieveGuests = () => {
         const url = getPath(ApiPaths.GUEST);
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return Array.isArray(parsed) ? parsed.map((item) => plainToClass(Guest, item)) : [];
-        };
+        const transformResponse = transformArrayResponse(Guest);
         const config = { url, transformResponse };
 
         const fetchData = async () => {

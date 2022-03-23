@@ -1,7 +1,7 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
+import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Host from "models/Host";
 
 const useCreateHost = () => {
@@ -21,10 +21,7 @@ const useCreateHost = () => {
      */
     const createHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST);
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return parsed && plainToClass(Host, parsed);
-        };
+        const transformResponse = transformArrayResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
@@ -60,10 +57,7 @@ const useGetHost = () => {
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(ApiPaths.HOST) + "/" + hostId;
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return plainToClass(Host, parsed);
-        };
+        const transformResponse = transformArrayResponse(Host);
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -103,10 +97,7 @@ const useUpdateHost = () => {
      */
     const updateHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST) + "/" + host.id;
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return parsed && plainToClass(Host, parsed);
-        };
+        const transformResponse = transformArrayResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
