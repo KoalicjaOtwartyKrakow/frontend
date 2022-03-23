@@ -1,29 +1,23 @@
 import React from "react";
+import Jumbotron from "components/atoms/compat/Jumbotron";
 import { Container } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { Notifications } from "services/Notifications";
-import { ToastProvider } from "react-toast-notifications";
-import { useTranslation } from "react-i18next";
 import { AppRoutes } from "constants/AppRoutes";
-import Jumbotron from "components/atoms/compat/Jumbotron";
-import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
-import { emptyFn } from "shared/utils";
-import { CustomToast } from "components/atoms/Toast";
 import { appConfig } from "constants/AppConfig";
+import { useTranslation } from "react-i18next";
 
-const AuthenticatedContainer = ({ children }) => {
+const AuthenticatedHeader = () => {
     const navigate = useNavigate();
     const onJumbotronClick = () => {
         const path = AppRoutes.ROOT;
         navigate(path);
     };
 
-    const { t } = useTranslation(["common"]);
     const { publicUrl } = appConfig;
+    const { t } = useTranslation(["common"]);
 
     return (
-        <ToastProvider autoDismiss={Notifications.toastAutoDismiss} components={{ Toast: CustomToast }}>
-            <AuthenticatedNavbar onLogout={emptyFn} />
+        <>
             <Jumbotron onClick={onJumbotronClick}>
                 <Container className="jumbotron__logos">
                     <div className="justify-content-start d-none d-lg-flex mb-2">
@@ -51,12 +45,8 @@ const AuthenticatedContainer = ({ children }) => {
                     <p className="lead d-none d-lg-block">{t("common:application.header.subtitle")}</p>
                 </Container>
             </Jumbotron>
-            <Container>
-                <div className="mt-3 mb-3 text-muted d-none d-lg-block">Dashboard {">"} Breadcrumbs here...</div>
-                {children}
-            </Container>
-        </ToastProvider>
+        </>
     );
 };
 
-export default AuthenticatedContainer;
+export default AuthenticatedHeader;

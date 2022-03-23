@@ -4,10 +4,7 @@ import { ApiPaths } from "services/Api/constants";
 import Accommodation from "models/Accommodation";
 
 const useGetAccommodations = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" }, { manual: true, autoCancel: false });
 
     const accommodations = data;
     const accommodationsGetInProgress = loading;
