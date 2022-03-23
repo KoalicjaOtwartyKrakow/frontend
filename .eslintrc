@@ -1,6 +1,7 @@
 {
     "ignorePatterns": [
-        "public/locales/**/*.json"
+        "public/locales/**/*.json",
+        "package.json"
     ],
     "plugins": [
         "prettier"
