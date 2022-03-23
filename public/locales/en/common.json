@@ -4,6 +4,15 @@
             "subtitle": "KOK:on – we help people find a safe harbor!"
         }
     },
+    "authentication": {
+        "button": {
+            "signIn": "Sign in using Google Account"
+        },
+        "error": {
+            "signIn": "Unable to Sign In",
+            "clientIdInvalid": "Google GSI Client ID incorrect. Please contact administrator"
+        }
+    },
     "buttons": {
         "create": "Create new",
         "refresh": "Refresh data"

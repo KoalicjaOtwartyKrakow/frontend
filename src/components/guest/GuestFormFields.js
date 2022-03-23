@@ -4,6 +4,7 @@ import { getFormattedDate } from "shared/datetime";
 import Guest from "models/Guest";
 
 class GuestFormFields {
+    static ACCOMMODATION_UNIT = "accommodationUnit";
     static CHILDREN = "children";
     static DESIRED_DESTINATION = "desiredDestination";
     static DOCUMENT_NUMBER = "documentNumber";
@@ -53,15 +54,14 @@ class GuestFormFields {
     /**
      *
      * @param formValues
-     * @param {Accommodation|undefined} accommodation
      */
-    formToModel(formValues, accommodation) {
+    formToModel(formValues) {
         const guest = new Guest();
         /**
          * @type {Guest}
          */
         const model = merge(guest, formValues);
-        model.accommodation = accommodation;
+        model.accommodationUnitId = model.accommodationUnit?.id;
         return model;
     }
 

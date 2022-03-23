@@ -1,21 +1,18 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const guest = data;
     const guestGetInProgress = loading;
     const guestGetError = getErrorsFromApi(error);
 
     const fetchGuest = ({ guestId }) => {
-        const url = getPath(ApiPaths.GUEST) + "/" + guestId;
+        const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
         const transformResponse = transformObjectResponse(Guest);
         const config = { url, transformResponse };
 
@@ -40,10 +37,7 @@ const useGetGuest = () => {
 };
 
 const useUpdateGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "PUT" });
 
     const updatedGuest = data;
     const guestUpdateInProgress = loading;
@@ -55,7 +49,18 @@ const useUpdateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateGuest = ({ guest }) => {
-        const url = getPath(ApiPaths.GUEST) + "/" + guest.id;
+        if (!Guest.is(guest)) {
+            throw new TypeError("[useUpdateGuest] Provided guest is not a Guest instance");
+        }
+
+        const guestId = guest?.id;
+
+        if (!guestId) {
+            throw new TypeError("[useUpdateGuest] Provided guest has no id!");
+        }
+
+        const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
+
         const transformResponse = transformObjectResponse(Guest);
         const data = filterImmutableFields(classToPlain(guest));
 
@@ -89,10 +94,7 @@ const useUpdateGuest = () => {
 };
 
 const useCreateGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
 
     const createdGuest = data;
     const guestCreateInProgress = loading;

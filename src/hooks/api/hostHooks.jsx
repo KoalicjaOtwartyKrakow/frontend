@@ -1,14 +1,11 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Host from "models/Host";
 
 const useCreateHost = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
 
     const createdHost = data;
     const hostCreateInProgress = loading;
@@ -21,7 +18,7 @@ const useCreateHost = () => {
      */
     const createHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST);
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
@@ -46,10 +43,7 @@ const useCreateHost = () => {
 };
 
 const useGetHost = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const host = data;
     const hostGetInProgress = loading;
@@ -57,7 +51,7 @@ const useGetHost = () => {
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(ApiPaths.HOST) + "/" + hostId;
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -81,10 +75,7 @@ const useGetHost = () => {
 };
 
 const useUpdateHost = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "PUT" });
 
     const updatedHost = data;
     const hostUpdateInProgress = loading;
@@ -97,7 +88,7 @@ const useUpdateHost = () => {
      */
     const updateHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST) + "/" + host.id;
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 

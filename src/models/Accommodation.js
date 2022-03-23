@@ -113,6 +113,10 @@ class Accommodation {
     uuidRegenerate() {
         this.uuid = nanoid();
     }
+
+    static is(item) {
+        return item instanceof Accommodation;
+    }
 }
 
 export default Accommodation;
