@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath } from "services/Api/utils";
+import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields, plainToClass } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
@@ -21,10 +21,7 @@ const useCreateAccommodation = () => {
      */
     const createAccommodation = ({ accommodation }) => {
         const url = getPath(ApiPaths.ACCOMMODATION);
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return parsed && plainToClass(Accommodation, parsed);
-        };
+        const transformResponse = transformObjectResponse(Accommodation);
         const data = filterImmutableFields(classToPlain(accommodation));
         const config = { data, url, transformResponse };
 
@@ -62,10 +59,7 @@ const useGetAccommodation = () => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return plainToClass(Accommodation, parsed);
-        };
+        const transformResponse = transformObjectResponse(Accommodation);
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -107,10 +101,7 @@ const useUpdateAccommodation = () => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId: accommodation.id,
         });
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return parsed && plainToClass(Accommodation, parsed);
-        };
+        const transformResponse = transformObjectResponse(Accommodation);
         const data = filterImmutableFields(classToPlain(accommodation));
         const config = { data, url, transformResponse };
 
@@ -156,10 +147,7 @@ const useAddGuestToAccommodation = () => {
             guestId: guest.id,
         });
 
-        const transformResponse = (data) => {
-            const parsed = JSON.parse(data);
-            return parsed && plainToClass(Accommodation, parsed);
-        };
+        const transformResponse = transformObjectResponse(Accommodation);
 
         const config = { url, transformResponse };
 

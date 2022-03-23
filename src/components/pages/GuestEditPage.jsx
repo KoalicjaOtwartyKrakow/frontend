@@ -34,7 +34,6 @@ const GuestEditPage = () => {
 
     const formFields = new GuestFormFields();
     const initialValues = formFields.modelToForm(guest);
-    console.log("*", guest);
 
     const { guestId } = params;
 
