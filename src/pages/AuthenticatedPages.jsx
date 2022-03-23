@@ -17,6 +17,7 @@ import HostsPage from "pages/host/HostsPage";
 import HostCreatePage from "pages/host/HostCreatePage";
 import HostEditPage from "pages/host/HostEditPage";
 import Auth from "services/Auth";
+import AuthenticatedHeader from "pages/authenticated/AuthenticatedHeader";
 
 const RequireAuth = ({ children }) => {
     const token = Auth.getAuthTokenFromStorage();
@@ -39,6 +40,7 @@ const AuthenticatedPages = ({ onLogout }) => {
     return (
         <ToastProvider autoDismiss={Notifications.toastAutoDismiss} components={{ Toast: CustomToast }}>
             <AuthenticatedNavbar onLogout={onLogout} />
+            <AuthenticatedHeader />
             <Container>
                 <Routes>
                     <Route
