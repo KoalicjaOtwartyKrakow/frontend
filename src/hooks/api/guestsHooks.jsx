@@ -1,7 +1,6 @@
 import useAxios from "axios-hooks";
 import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
-import { plainToClass } from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuests = () => {
