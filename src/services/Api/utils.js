@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import HttpStatus from "http-status-codes";
 import get from "lodash-es/get";
 import { compile } from "path-to-regexp";
