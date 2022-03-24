@@ -44,12 +44,12 @@ npm config set "@fortawesome:registry" https://npm.fontawesome.com/
 npm config set "//npm.fontawesome.com/:_authToken" ????????-????-????-????-????????????
 ```
 
-Ask for authToken on `#frontend` channel on the project's Discord. 
+Ask for **_authToken** value on *#frontend* channel of the project's Discord. 
 
 ## Development
 
 1. Assign yourself to the task.
-2. Create a branch (`task-123-some-name`) and a pull request against `staging` when complete.
+2. Create a branch (`fr-123-some-name`) and a pull request against `staging` when complete.
 3. See a job you can do, but no task? Let's discuss it on Discord *#frontend* channel.
 4. In commits try not to describe what have you done, but rather _why_ have you done that and what is the outcome /
    improvement / fix.
@@ -64,8 +64,9 @@ Ask for authToken on `#frontend` channel on the project's Discord.
 
 ### Configure API path
 
-Set API path in `.env.local` (create it first, have a look at `.env` file for template). For development purposes you
-must mock API responses by setting:
+Create `.env.local` (have a look at `.env` file for template). Set up the following
+
+For development purposes you should mock API responses by setting:
 
 ```shell
 REACT_APP_KOKON_API_USE_MOCKS=true

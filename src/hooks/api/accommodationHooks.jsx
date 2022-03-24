@@ -1,14 +1,11 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
 
     const createdAccommodation = data;
     const accommodationCreateInProgress = loading;
@@ -46,10 +43,7 @@ const useCreateAccommodation = () => {
 };
 
 const useGetAccommodation = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const accommodation = data;
     const accommodationGetInProgress = loading;
@@ -83,10 +77,7 @@ const useGetAccommodation = () => {
 };
 
 const useUpdateAccommodation = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "PUT" });
 
     const updatedAccommodation = data;
     const accommodationUpdateInProgress = loading;
@@ -126,10 +117,7 @@ const useUpdateAccommodation = () => {
 };
 
 const useAddGuestToAccommodation = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
 
     const accommodationAddGuest = data;
     const accommodationAddGuestInProgress = loading;

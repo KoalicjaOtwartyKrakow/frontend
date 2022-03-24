@@ -8,6 +8,7 @@ import "styles/bootstrap-post-custom.sass";
 import "styles/kokon-theme.sass";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
+import { configure } from "axios-hooks";
 import "./index.sass";
 import App from "App";
 import { baseUrl, timeout } from "services/Api/constants";
@@ -28,6 +29,9 @@ if (process.env.NODE_ENV === "production") {
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.timeout = timeout;
+
+const defaultOptions = { manual: true, autoCancel: false };
+configure({ axios, defaultOptions });
 
 ReactDOM.render(
     <BrowserRouter basename={appConfig.routerBasename}>
