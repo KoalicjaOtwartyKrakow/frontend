@@ -8,7 +8,7 @@ import GuestAccommodation from "models/GuestAccommodation";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { ApiPaths } from "services/Api/constants";
 
-const mockAccommodation = (mockedGuests, mockedHosts) => {
+const mockAccommodation = () => {
     const accommodation = new Accommodation();
     // Id
     accommodation.id = chance.guid({ version: 5 });

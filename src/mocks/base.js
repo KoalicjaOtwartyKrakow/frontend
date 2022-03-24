@@ -2,6 +2,7 @@ import Chance from "chance";
 import moment from "moment-es6";
 
 const chance = new Chance(0xdeadbeef);
+const daysFromStartOfWar = moment().diff(moment("2022-02-24"), "days");
 
 const getMockedHoursAndMinutes = () => {
     const randomHour = chance.hour({ twentyfour: true }).toString();
@@ -21,4 +22,4 @@ const availableLanguages = Object.freeze([
     { code: "ru", code3: "rus", name: "Russian" },
 ]);
 
-export { availableLanguages, chance, getMockedHoursAndMinutes, getRandomItem };
+export { availableLanguages, chance, daysFromStartOfWar, getMockedHoursAndMinutes, getRandomItem };
