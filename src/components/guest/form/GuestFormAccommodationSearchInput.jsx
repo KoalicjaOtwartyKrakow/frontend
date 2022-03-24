@@ -1,14 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
 import GuestFormAccommodationSearchItem from "components/guest/form/GuestFormAccommodationSearchItem";
 import { useTranslation } from "react-i18next";
-import { AccommodationContext } from "components/accommodation/AccommodationContext";
-import { isAccommodation } from "models/constants/Utils";
+import { emptyArray } from "services/Api/utils";
+import { classToPlain, plainToClass } from "serializers/Serializer";
+import GuestAccommodation from "models/GuestAccommodation";
+import { useField } from "formik";
+import { GuestFormFields } from "components/guest/GuestFormFields";
 
 const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
     const { t } = useTranslation(["guest"]);
-    const accommodation = useContext(AccommodationContext);
+
+    const [field, , fieldHelper] = useField(GuestFormFields.ACCOMMODATION_UNIT);
+
+    /**
+     * @type {GuestAccommodation}
+     */
+    const guestAccommodation = field.value;
 
     const [caseSensitive] = useState(false);
     const [ignoreDiacritics] = useState(true);
@@ -18,7 +27,17 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
 
     const shouldFetchAccommodations = !(accommodations || accommodationsGetError || accommodationsGetInProgress);
 
-    const options = accommodations || [];
+    const getGuestAccommodations = useCallback(() => {
+        if (accommodations?.length) {
+            return Array.from(accommodations || emptyArray, (accommodation) => {
+                const plain = classToPlain(accommodation);
+                return plainToClass(GuestAccommodation, plain);
+            });
+        }
+        return emptyArray;
+    }, [accommodations]);
+
+    const guestAccommodations = getGuestAccommodations();
 
     useEffect(() => {
         if (shouldFetchAccommodations) {
@@ -46,21 +65,29 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
         return <GuestFormAccommodationSearchItem accommodation={accommodation} />;
     };
 
-    const onChange = (options) => onAccommodationSelected(options[0]);
+    const onChange = (selectedOptions) => {
+        const value = selectedOptions[0];
+        fieldHelper.setValue(value);
+        onAccommodationSelected(value);
+    };
 
-    const defaultSelected = isAccommodation(accommodation) ? [accommodation] : [];
+    const getSelectedGuestAccommodation = useCallback(() => {
+        return GuestAccommodation.is(guestAccommodation) ? [guestAccommodation] : emptyArray;
+    }, [guestAccommodation]);
+
+    const selectedGuestAccommodation = getSelectedGuestAccommodation();
 
     return (
         <>
             <Typeahead
                 caseSensitive={caseSensitive}
-                defaultSelected={defaultSelected}
+                defaultSelected={selectedGuestAccommodation}
                 filterBy={["addressLine", "addressZip", "addressCity"]}
                 id="accommodations-search"
                 ignoreDiacritics={ignoreDiacritics}
                 labelKey={getLabelKey}
                 onChange={onChange}
-                options={options}
+                options={guestAccommodations}
                 placeholder={t("guest:form.label.findAccommodation")}
                 renderMenuItemChildren={renderMenuItemChildren}
                 size="lg"

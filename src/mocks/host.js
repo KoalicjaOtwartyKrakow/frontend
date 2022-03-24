@@ -8,7 +8,8 @@ import moment from "moment-es6";
 
 const mockHost = () => {
     const host = new Host();
-    host.id = chance.guid({ version: 5 });
+    host.createdAt = moment();
+    host.id = chance.guid({ version: 4 });
     host.uuid = chance.guid({ version: 5 });
     host.fullName = chance.name();
     host.email = chance.email();
@@ -60,7 +61,7 @@ const mockHostResponses = ({ mockedHosts }) => {
 
         const hostIndex = mockedHosts.findIndex((mock) => mock.id === hostId);
         if (hostIndex === -1) {
-            throw Error("[useUpdateHost] Tried to PUT host, but host with such ID is not present in mocks");
+            throw RangeError("[useUpdateHost] Tried to PUT host, but host with such ID is not present in mocks");
         }
 
         mockedHosts[hostIndex] = updatedHost;
@@ -78,7 +79,7 @@ const mockHostResponses = ({ mockedHosts }) => {
          * @type {Host}
          */
         const createdHost = plainToClass(Host, json);
-        createdHost.id = chance.guid({ version: 5 });
+        createdHost.id = chance.guid({ version: 4 });
         createdHost.createdAt = moment();
         createdHost.updatedAt = moment();
 

@@ -19,8 +19,6 @@ const GuestFormChildren = () => {
         const insertChild = (index) => () => arrayHelpers.insert(index, Number());
         const removeChild = (index) => () => arrayHelpers.remove(index);
 
-        console.log(items);
-
         return (
             <>
                 {items?.length > 0 ? (

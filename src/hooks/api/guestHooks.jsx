@@ -12,7 +12,7 @@ const useGetGuest = () => {
     const guestGetError = getErrorsFromApi(error);
 
     const fetchGuest = ({ guestId }) => {
-        const url = getPath(ApiPaths.GUEST) + "/" + guestId;
+        const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
         const transformResponse = transformObjectResponse(Guest);
         const config = { url, transformResponse };
 
@@ -49,7 +49,18 @@ const useUpdateGuest = () => {
      * @returns {Promise<*|undefined>}
      */
     const updateGuest = ({ guest }) => {
-        const url = getPath(ApiPaths.GUEST) + "/" + guest.id;
+        if (!Guest.is(guest)) {
+            throw new TypeError("[useUpdateGuest] Provided guest is not a Guest instance");
+        }
+
+        const guestId = guest?.id;
+
+        if (!guestId) {
+            throw new TypeError("[useUpdateGuest] Provided guest has no id!");
+        }
+
+        const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
+
         const transformResponse = transformObjectResponse(Guest);
         const data = filterImmutableFields(classToPlain(guest));
 
