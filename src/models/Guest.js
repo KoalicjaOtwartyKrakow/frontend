@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 import GuestAccommodation from "models/GuestAccommodation";
+import User from "models/User";
 
 @JsonObject()
 class Guest {
@@ -18,6 +19,19 @@ class Guest {
     @JsonProperty("childrenAges")
     @JsonElementType(Number)
     children = [];
+
+    @JsonConverter(new MomentSerializer())
+    @JsonProperty()
+    @JsonType(String)
+    claimedAt = undefined;
+
+    @JsonProperty()
+    @JsonType(User)
+    claimedBy = undefined;
+
+    @JsonProperty()
+    @JsonType(String)
+    claimedById = undefined;
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
