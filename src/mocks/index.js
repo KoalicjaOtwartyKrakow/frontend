@@ -13,5 +13,5 @@ if (constants.useMocks) {
 
     mockAccommodationResponses({ mockedAccommodations, mockedGuests });
     mockHostResponses({ mockedHosts });
-    mockGuestResponses({ mockedGuests });
+    mockGuestResponses({ mockedAccommodations, mockedGuests });
 }

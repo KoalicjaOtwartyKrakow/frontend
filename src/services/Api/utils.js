@@ -81,12 +81,14 @@ export const transformObjectResponse = (modelClass) => (data) => {
     }
 };
 
+export const emptyArray = [];
+
 export const transformArrayResponse = (modelClass) => (data) => {
     try {
         const parsed = JSON.parse(data);
-        return Array.isArray(parsed) ? parsed.map((item) => plainToClass(modelClass, item)) : [];
+        return Array.isArray(parsed) ? parsed.map((item) => plainToClass(modelClass, item)) : emptyArray;
     } catch (error) {
         console.error("[transformArrayResponse] Retrieved malformed JSON response:", { data, modelClass });
-        return [];
+        return emptyArray;
     }
 };

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import "components/authentication/login/LoginPageContainer.scss";
 import LoadingPage from "pages/loading/LoadingPage";
 import LoginPageContainer from "components/authentication/login/LoginPageContainer";
+// eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
-import { Redirect } from "react-router";
 
 const LoginPage = ({ onSignInSuccess }) => {
     const isDestroyed = useRef(false);
@@ -15,8 +15,6 @@ const LoginPage = ({ onSignInSuccess }) => {
      * @return
      */
     const onSignIn = (response) => {
-        // eslint-disable-next-line no-debugger
-        debugger;
         // const token = response.getAuthResponse().id_token;
         onSignInSuccess(response);
     };

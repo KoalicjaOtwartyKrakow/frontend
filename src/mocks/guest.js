@@ -6,9 +6,12 @@ import { chance, mockAdapter } from "mocks/base";
 import { match, pathToRegexp } from "path-to-regexp";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
+import GuestAccommodation from "models/GuestAccommodation";
+import Accommodation from "models/Accommodation";
 
 const mockGuest = () => {
     const guest = new Guest();
+    guest.createdAt = moment();
     guest.id = chance.guid({ version: 5 });
     guest.uuid = chance.guid({ version: 5 });
     guest.fullName = chance.name();
@@ -50,7 +53,7 @@ const mockGuest = () => {
     return guest;
 };
 
-const mockGuestResponses = ({ mockedGuests }) => {
+const mockGuestResponses = ({ mockedAccommodations, mockedGuests }) => {
     mockAdapter.onGet(pathToRegexp(ApiPaths.GUEST)).reply((config) => {
         const { url } = config;
         const plainGuests = mockedGuests.map((guest) => classToPlain(guest));
@@ -75,14 +78,41 @@ const mockGuestResponses = ({ mockedGuests }) => {
 
     mockAdapter.onPut(pathToRegexp(ApiPaths.GUEST_BY_ID)).reply((config) => {
         const { url, data } = config;
-        const json = JSON.parse(data);
-        const updatedGuest = plainToClass(Guest, json);
+        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
+        const {
+            params: { guestId },
+        } = matchedPath;
 
-        const guestIndex = mockedGuests.findIndex((mock) => mock.id === updatedGuest.id);
+        const json = JSON.parse(data);
+
+        const guestIndex = mockedGuests.findIndex((mockedGuestId) => mockedGuestId.id === guestId);
+
+        if (guestIndex === -1) {
+            throw RangeError("[useUpdateGuest] Tried to PUT guest, but guest with such ID is not present in mocks");
+        }
+
+        /**
+         *
+         * @type {Guest}
+         */
+        const updatedGuest = plainToClass(Guest, json);
+        updatedGuest.id = guestId;
+
+        const accommodation = mockedAccommodations.find(
+            (mockedAccommodation) => mockedAccommodation.id === updatedGuest.accommodationUnitId
+        );
+
+        if (accommodation instanceof Accommodation) {
+            const plainAccommodation = classToPlain(accommodation);
+            const accommodationUnit = plainToClass(GuestAccommodation, plainAccommodation);
+            updatedGuest.accommodationUnit = accommodationUnit;
+        } else {
+            updatedGuest.accommodationUnit = undefined;
+        }
 
         mockedGuests[guestIndex] = updatedGuest;
 
-        const plain = data;
+        const plain = classToPlain(updatedGuest);
 
         console.log(`[useUpdateGuest] Mocked response for ${url}: `, updatedGuest);
         return [200, JSON.stringify(plain)];
