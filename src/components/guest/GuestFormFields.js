@@ -6,6 +6,8 @@ import Guest from "models/Guest";
 class GuestFormFields {
     static ACCOMMODATION_UNIT = "accommodationUnit";
     static CHILDREN = "children";
+    static CLAIMED_BY = "claimedBy";
+    static CLAIMED_BY_USER_ID = "claimedById";
     static DESIRED_DESTINATION = "desiredDestination";
     static DOCUMENT_NUMBER = "documentNumber";
     static DURATION_OF_STAY = "durationOfStay";
