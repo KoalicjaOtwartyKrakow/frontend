@@ -72,14 +72,6 @@ export const getPath = (url, options) => {
     return toPath(options);
 };
 
-// TODO(mlazowik): create a hook that wraps `useAxios` and adds the auth header.
-export const getAuthenticationHeaders = () => {
-    // TODO(mlazowik): handle the case where it's expired
-    return {
-        // Authorization: `Bearer ${Cookies.get("jwt")}`,
-    };
-};
-
 export const transformObjectResponse = (modelClass) => (data) => {
     try {
         const parsed = JSON.parse(data);

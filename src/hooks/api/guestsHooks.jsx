@@ -1,13 +1,10 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import Guest from "models/Guest";
 
 const useGetGuests = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const guests = data;
     const guestsGetInProgress = loading;

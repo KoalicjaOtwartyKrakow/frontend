@@ -1,10 +1,10 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import Accommodation from "models/Accommodation";
 
 const useGetAccommodations = () => {
-    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" }, { manual: true, autoCancel: false });
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const accommodations = data;
     const accommodationsGetInProgress = loading;

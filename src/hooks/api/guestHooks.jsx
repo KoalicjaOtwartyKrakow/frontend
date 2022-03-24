@@ -1,14 +1,11 @@
 import useAxios from "axios-hooks";
-import { getAuthenticationHeaders, getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "GET", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "GET" });
 
     const guest = data;
     const guestGetInProgress = loading;
@@ -40,10 +37,7 @@ const useGetGuest = () => {
 };
 
 const useUpdateGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "PUT", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "PUT" });
 
     const updatedGuest = data;
     const guestUpdateInProgress = loading;
@@ -89,10 +83,7 @@ const useUpdateGuest = () => {
 };
 
 const useCreateGuest = () => {
-    const [{ data, loading, error }, fetch] = useAxios(
-        { method: "POST", headers: getAuthenticationHeaders() },
-        { manual: true, autoCancel: false }
-    );
+    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
 
     const createdGuest = data;
     const guestCreateInProgress = loading;
