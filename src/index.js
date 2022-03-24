@@ -7,11 +7,11 @@ import "styles/bootstrap-pre-custom.sass";
 import "styles/bootstrap-post-custom.sass";
 import "styles/kokon-theme.sass";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
+import Axios from "axios";
 import { configure } from "axios-hooks";
 import "./index.sass";
 import App from "App";
-import { baseUrl, timeout } from "services/Api/constants";
+import { baseURL, timeout } from "services/Api/constants";
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
 import "mocks/index";
@@ -27,10 +27,13 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-axios.defaults.baseURL = baseUrl;
-axios.defaults.timeout = timeout;
+const axios = Axios.create({
+    baseURL,
+    timeout,
+});
 
 const defaultOptions = { manual: true, autoCancel: false };
+
 configure({ axios, defaultOptions });
 
 ReactDOM.render(
