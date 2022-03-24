@@ -7,7 +7,7 @@ import "styles/bootstrap-pre-custom.sass";
 import "styles/bootstrap-post-custom.sass";
 import "styles/kokon-theme.sass";
 import { BrowserRouter } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import { configure } from "axios-hooks";
 import "./index.sass";
 import App from "App";
@@ -27,10 +27,8 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-const axios = Axios.create({
-    baseURL,
-    timeout,
-});
+axios.defaults.baseURL = baseURL;
+axios.defaults.timeout = timeout;
 
 const defaultOptions = { manual: true, autoCancel: false };
 

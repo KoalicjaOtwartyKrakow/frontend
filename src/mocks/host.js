@@ -1,5 +1,5 @@
 import Host from "models/Host";
-import { availableLanguages, chance, getMockedHoursAndMinutes, mockAdapter } from "mocks/base";
+import { availableLanguages, chance, getMockedHoursAndMinutes } from "mocks/base";
 import { HostStatus } from "models/constants/HostStatus";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
@@ -25,7 +25,7 @@ const mockHost = () => {
     return host;
 };
 
-const mockHostResponses = ({ mockedHosts }) => {
+const mockHostResponses = (mockAdapter, { mockedHosts }) => {
     mockAdapter.onGet(ApiPaths.HOST).reply((config) => {
         const { url } = config;
         const plainHosts = mockedHosts.map((host) => classToPlain(host));
