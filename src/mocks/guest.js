@@ -2,7 +2,7 @@ import Guest from "models/Guest";
 import { HostStatus } from "models/constants/HostStatus";
 import moment from "moment-es6";
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
-import { chance, mockAdapter } from "mocks/base";
+import { chance } from "mocks/base";
 import { match, pathToRegexp } from "path-to-regexp";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, plainToClass } from "serializers/Serializer";
@@ -53,7 +53,7 @@ const mockGuest = () => {
     return guest;
 };
 
-const mockGuestResponses = ({ mockedAccommodations, mockedGuests }) => {
+const mockGuestResponses = (mockAdapter, { mockedAccommodations, mockedGuests }) => {
     mockAdapter.onGet(pathToRegexp(ApiPaths.GUEST)).reply((config) => {
         const { url } = config;
         const plainGuests = mockedGuests.map((guest) => classToPlain(guest));

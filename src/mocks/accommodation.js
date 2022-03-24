@@ -1,6 +1,6 @@
 import moment from "moment-es6";
 import { match, pathToRegexp } from "path-to-regexp";
-import { chance, getRandomItem, mockAdapter } from "mocks/base";
+import { chance, getRandomItem } from "mocks/base";
 import Accommodation from "models/Accommodation";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import { polishVoivodeships } from "models/constants/Address";
@@ -59,7 +59,7 @@ const mockAccommodation = (mockedGuests, mockedHosts) => {
     return accommodation;
 };
 
-const mockAccommodationResponses = ({ mockedAccommodations, mockedGuests }) => {
+const mockAccommodationResponses = (mockAdapter, { mockedAccommodations, mockedGuests }) => {
     mockAdapter.onGet(pathToRegexp(ApiPaths.ACCOMMODATION)).reply((config) => {
         const { url } = config;
         const plainAccommodations = mockedAccommodations.map((accommodation) => classToPlain(accommodation));

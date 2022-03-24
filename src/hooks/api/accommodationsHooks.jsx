@@ -12,8 +12,6 @@ const useGetAccommodations = () => {
 
     const retrieveAccommodations = () => {
         const url = getPath(ApiPaths.ACCOMMODATION);
-        // eslint-disable-next-line no-debugger
-        debugger;
         const transformResponse = transformArrayResponse(Accommodation);
         const config = { url, transformResponse };
 

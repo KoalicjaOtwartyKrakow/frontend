@@ -1,7 +1,5 @@
 import Chance from "chance";
 import moment from "moment-es6";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
 
 const chance = new Chance(0xdeadbeef);
 
@@ -23,6 +21,4 @@ const availableLanguages = Object.freeze([
     { code: "ru", code3: "rus", name: "Russian" },
 ]);
 
-const mockAdapter = new MockAdapter(axios);
-
-export { availableLanguages, chance, getMockedHoursAndMinutes, getRandomItem, mockAdapter };
+export { availableLanguages, chance, getMockedHoursAndMinutes, getRandomItem };
