@@ -11,6 +11,7 @@
             "update": "Save changes"
         },
         "label": {
+            "assignedAccommodation": "Assigned accommodation",
             "addChild": "Add children data",
             "childAge": "Child age",
             "desiredDestination": "Desired destination",
@@ -32,7 +33,7 @@
             "petsDescription": "Pets description",
             "petsPresent": "Pets present",
             "priorityDate": "Priority date",
-            "priorityStatus": "Priority status",
+            "priorityStatus": "Guest status",
             "specialNeeds": "Special needs",
             "status": "Status",
             "volunteerName": "Assigned volunteer"
@@ -61,6 +62,7 @@
             "stayInfo": "Stay information"
         },
         "text": {
+            "claimedAt": "Claimed at",
             "includingChildren": "(Including children)",
             "durationOfStay": "Number and a time unit: '10 days' or '1 week'"
         }

@@ -95,7 +95,7 @@ const GuestEditPage = () => {
 
     return (
         <PageCard header={t("guest:card.title.update")}>
-            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
+            <InProgress inProgress={guestInProgress === crudInProgressStates.RETRIEVE} />
             <PageErrorMessage error={guestGetError} />
             <PageErrorMessage error={guestUpdateError} />
 

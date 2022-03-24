@@ -13,7 +13,7 @@ import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupA
 import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
 import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
 import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
-import GuestFormAssignment from "components/guest/form/sections/GuestFormAssignment";
+import GuestFormAssignments from "components/guest/form/sections/GuestFormAssignments";
 
 const GuestForm = (props) => {
     const { initialValues, onAccommodationSelected, onRemove, guestInProgress } = props;
@@ -57,6 +57,8 @@ const GuestForm = (props) => {
 
         const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
 
+        // eslint-disable-next-line no-debugger
+
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
 
@@ -79,7 +81,10 @@ const GuestForm = (props) => {
         <Formik {...formikProps}>
             {({ isSubmitting, isValid }) => (
                 <Form noValidate>
-                    {!isCreateMode && <GuestFormAssignment onAccommodationSelected={onAccommodationSelected} />}
+                    <GuestFormAssignments
+                        onAccommodationSelected={onAccommodationSelected}
+                        isCreateMode={isCreateMode}
+                    />
                     <Row>
                         <Col xs={12} lg={6}>
                             <GuestFormPersonalData />

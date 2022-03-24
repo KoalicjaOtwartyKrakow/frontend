@@ -7,7 +7,6 @@ import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import GuestFormFullName from "components/guest/form/fields/GuestFormFullName";
 import GuestFormEmail from "components/guest/form/fields/GuestFormEmail";
 import GuestFormPhoneNumber from "components/guest/form/fields/GuestFormPhoneNumber";
-import GuestFormPriorityStatus from "components/guest/form/fields/GuestFormPriorityStatus";
 
 /**
  * @component
@@ -18,10 +17,7 @@ const GuestFormPersonalData = () => {
         <FormSection>
             <FormSectionHeader>{t("guest:form.section.personalData")}</FormSectionHeader>
             <Row>
-                <Col xs={12} md={6}>
-                    <GuestFormPriorityStatus />
-                </Col>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={12}>
                     <GuestFormFullName />
                 </Col>
                 <Col xs={12} md={6}>

@@ -44,6 +44,8 @@ const mockGuestRelationships = ({ mockedAccommodations, mockedGuests, mockedUser
             mockedGuest.claimedBy = mockedUser;
             mockedGuest.claimedById = mockedUser.id;
             mockedGuest.claimedAt = moment().subtract(chance.natural({ min: 0, max: 10 }), "days");
+        } else {
+            mockedGuest.claimedAt = moment(mockedGuest.createdAt);
         }
     }
 };
