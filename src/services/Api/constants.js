@@ -23,7 +23,7 @@ export const ApiGenericStatus = Object.freeze({
     UNKNOWN: "unknown",
 });
 
-export const baseUrl = process.env.REACT_APP_KOKON_API_URL;
+export const baseURL = process.env.REACT_APP_KOKON_API_URL;
 export const timeout = Number(process.env.REACT_APP_KOKON_API_TIMEOUT);
 export const useMocks = process.env.REACT_APP_KOKON_API_USE_MOCKS === "true";
 
