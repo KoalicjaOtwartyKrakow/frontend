@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
+import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
 import { ApiPaths } from "services/Api/constants";
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
 import Host from "models/Host";
@@ -18,7 +18,7 @@ const useCreateHost = () => {
      */
     const createHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST);
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
@@ -51,7 +51,7 @@ const useGetHost = () => {
 
     const fetchHost = ({ hostId }) => {
         const url = getPath(ApiPaths.HOST) + "/" + hostId;
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const config = { url, transformResponse };
 
         const fetchData = async () => {
@@ -88,7 +88,7 @@ const useUpdateHost = () => {
      */
     const updateHost = ({ host }) => {
         const url = getPath(ApiPaths.HOST) + "/" + host.id;
-        const transformResponse = transformArrayResponse(Host);
+        const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
         const config = { data, url, transformResponse };
 
