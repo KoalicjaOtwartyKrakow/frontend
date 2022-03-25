@@ -19,19 +19,19 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "components/molecules/LanguageSwitcher";
 
-const AuthenticatedNavbar = ({ onLogout }) => {
+const AuthenticatedNavbar = ({ onLogout, onMenuItemSettings }) => {
     const { t } = useTranslation(["navbar"]);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
-    const toggle = () => {
-        setIsOpen(!isOpen);
+    const toggleIsNavbarOpen = () => {
+        setIsNavbarOpen(!isNavbarOpen);
     };
 
     return (
         <Navbar color="dark" dark expand="md">
             <NavbarBrand href={AppRoutes.ROOT}>KOK:on</NavbarBrand>
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
+            <NavbarToggler onClick={toggleIsNavbarOpen} />
+            <Collapse isOpen={isNavbarOpen} navbar>
                 <Nav className="me-auto" navbar>
                     {navbarItems.map((navbarItem) => (
                         <AuthenticatedNavbarItem {...navbarItem} key={navbarItem.path} />
@@ -44,7 +44,7 @@ const AuthenticatedNavbar = ({ onLogout }) => {
                             <FontAwesomeIcon icon={faUser} /> {t("navbar:account")}
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem>
+                            <DropdownItem onClick={onMenuItemSettings}>
                                 <FontAwesomeIcon icon={faCog} /> {t("navbar:applicationSettings")}
                             </DropdownItem>
                             <DropdownItem divider />
