@@ -17,10 +17,6 @@ const GuestFormVolunteerAssignment = () => {
     const { users, usersGetInProgress, usersGetError, retrieveUsers } = useGetUsers();
 
     const fieldId = GuestFormFields.CLAIMED_BY_USER_ID;
-    /**
-     * @type {User}
-     */
-    const selectedUserId = values[GuestFormFields.CLAIMED_BY_USER_ID];
 
     const getRetrievedUsers = useCallback(() => {
         return users?.length ? sortBy(users, ["fullName"]) : emptyArray;
@@ -29,29 +25,11 @@ const GuestFormVolunteerAssignment = () => {
     const retrievedUsers = getRetrievedUsers();
     const shouldFetchUsers = !users && !usersGetError && !usersGetInProgress;
 
-    const getRetrievedUserById = (id) => retrievedUsers.find((retrievedUser) => retrievedUser.id === id);
-
-    const handleChangeValue = React.useCallback(
-        (selectedUserId) => {
-            const retrievedUser = getRetrievedUserById(selectedUserId);
-            setFieldValue(GuestFormFields.CLAIMED_BY, retrievedUser);
-        },
-        [setFieldValue, selectedUserId]
-    );
-
     useEffect(() => {
         if (shouldFetchUsers) {
             retrieveUsers();
         }
     }, [retrieveUsers, shouldFetchUsers]);
-
-    useEffect(() => {
-        if (retrievedUsers.length === 0 || !selectedUserId) {
-            return;
-        }
-
-        // handleChangeValue(selectedUserId);
-    }, [selectedUserId, handleChangeValue, retrievedUsers]);
 
     const getFormSelectItems = useCallback(() => {
         /**
@@ -76,7 +54,7 @@ const GuestFormVolunteerAssignment = () => {
         });
 
         return result;
-    }, [retrievedUsers]);
+    }, [retrievedUsers, t]);
 
     const items = getFormSelectItems();
 
