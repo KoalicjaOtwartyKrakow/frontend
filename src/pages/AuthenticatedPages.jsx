@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "reactstrap";
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
@@ -18,6 +18,9 @@ import HostCreatePage from "pages/host/HostCreatePage";
 import HostEditPage from "pages/host/HostEditPage";
 import Auth from "services/Auth";
 import AuthenticatedHeader from "pages/authenticated/AuthenticatedHeader";
+import AuthenticatedBreadcrumbs from "pages/authenticated/AuthenticatedBreadcrumbs";
+import Aside from "components/aside/Aside";
+import Mocks from "components/mocks/Mocks";
 
 const RequireAuth = ({ children }) => {
     const token = Auth.getAuthTokenFromStorage();
@@ -37,11 +40,18 @@ const RequireAuth = ({ children }) => {
 };
 
 const AuthenticatedPages = ({ onLogout }) => {
+    const [isAsideOpen, setIsAsideOpen] = useState(false);
+    const toggleIsAsideOpen = () => {
+        setIsAsideOpen(!isAsideOpen);
+    };
+
     return (
         <ToastProvider autoDismiss={Notifications.toastAutoDismiss} components={{ Toast: CustomToast }}>
-            <AuthenticatedNavbar onLogout={onLogout} />
+            <Mocks />
+            <AuthenticatedNavbar onLogout={onLogout} onMenuItemSettings={toggleIsAsideOpen} />
             <AuthenticatedHeader />
             <Container>
+                <AuthenticatedBreadcrumbs />
                 <Routes>
                     <Route
                         path={AppRoutes.ROOT}
@@ -127,6 +137,7 @@ const AuthenticatedPages = ({ onLogout }) => {
                     />
                 </Routes>
             </Container>
+            <Aside isOpen={isAsideOpen} toggleIsOpen={toggleIsAsideOpen} />
         </ToastProvider>
     );
 };
