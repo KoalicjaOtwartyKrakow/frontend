@@ -13,7 +13,7 @@ import HorizontalLine from "components/atoms/HorizontalLine";
  * @component
  */
 const EntityFormButtons = React.memo((props) => {
-    const { onRemove, removeInProgress, submitDisabled, submitInProgress, submitLabel } = props;
+    const { onRemove, removeInProgress, submitDisabled, submitIcon, submitInProgress, submitLabel } = props;
 
     const { t } = useTranslation(["common"]);
     return (
@@ -29,6 +29,7 @@ const EntityFormButtons = React.memo((props) => {
                 <Col xs={8} className="d-flex flex-row-reverse">
                     <EntityFormSubmitButton
                         disabled={submitDisabled}
+                        icon={submitIcon}
                         isSubmitting={submitInProgress}
                         label={submitLabel}
                     />
@@ -39,7 +40,7 @@ const EntityFormButtons = React.memo((props) => {
                             inProgress={removeInProgress}
                         />
                     )}
-                    <EntityFormResetButton label={t("common:form.button.reset")} />
+                    <EntityFormResetButton label={t("common:form.button.reset")} disabled={submitDisabled} />
                 </Col>
             </Row>
         </React.Fragment>
@@ -52,6 +53,7 @@ EntityFormButtons.propTypes = {
     submitDisabled: PropTypes.bool.isRequired,
     submitInProgress: PropTypes.bool.isRequired,
     submitLabel: PropTypes.string.isRequired,
+    submitIcon: PropTypes.string,
 };
 
 export default EntityFormButtons;

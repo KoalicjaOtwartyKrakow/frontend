@@ -6,7 +6,6 @@ const useApplicationSettings = () => {
     const defaultSettings = {};
 
     if (appConfig.useMocks) {
-        // eslint-disable-next-line no-debugger
         defaultSettings[ApplicationSettings.IS_ENABLE_MOCKS] = false;
     }
 

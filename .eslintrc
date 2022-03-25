@@ -1,15 +1,7 @@
 {
-    "ignorePatterns": [
-        "public/locales/**/*.json",
-        "package.json"
-    ],
-    "plugins": [
-        "prettier"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "react-app"
-    ],
+    "ignorePatterns": ["public/locales/**/*.json", "package.json"],
+    "plugins": ["prettier"],
+    "extends": ["eslint:recommended", "react-app"],
     "rules": {
         "prettier/prettier": "error",
         "max-len": [
@@ -32,11 +24,8 @@
     },
     "overrides": [
         {
-            "files": [
-                "**/*.ts?(x)"
-            ],
-            "rules": {
-            }
+            "files": ["**/*.ts?(x)"],
+            "rules": {}
         }
     ]
 }

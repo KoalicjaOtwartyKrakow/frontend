@@ -34,6 +34,8 @@ export class ApiPaths {
     static GUEST_BY_ID = ApiPaths.GUEST + "/:guestId";
     static HOST = "/host";
     static HOST_BY_ID = ApiPaths.HOST + "/:hostId";
+    static USER = "/user";
+    static USER_BY_ID = ApiPaths.USER + "/:userId";
 }
 
 export class ApiErrorStatus {

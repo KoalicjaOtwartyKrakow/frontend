@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 
-const EntityFormResetButton = ({ label }) => {
+const EntityFormResetButton = ({ label, disabled }) => {
     return (
-        <Button color="secondary" type="reset" outline className="mr-2 d-none d-md-inline-block">
+        <Button color="secondary" type="reset" outline className="mr-2 d-none d-md-inline-block" disabled={disabled}>
             {label}
         </Button>
     );

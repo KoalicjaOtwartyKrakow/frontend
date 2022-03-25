@@ -5,11 +5,13 @@ import { useTranslation } from "react-i18next";
 import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import GuestFormAccommodationSearchInput from "components/guest/form/GuestFormAccommodationSearchInput";
+import GuestFormVolunteerAssignment from "components/guest/form/fields/GuestFormVolunteerAssignment";
+import GuestFormPriorityStatus from "components/guest/form/fields/GuestFormPriorityStatus";
 
 /**
  * @component
  */
-const GuestFormStayInfo = ({ onAccommodationSelected }) => {
+const GuestFormAssignments = ({ onAccommodationSelected }) => {
     const { t } = useTranslation(["guest"]);
     return (
         <FormSection>
@@ -19,8 +21,16 @@ const GuestFormStayInfo = ({ onAccommodationSelected }) => {
                     <GuestFormAccommodationSearchInput onAccommodationSelected={onAccommodationSelected} />
                 </Col>
             </Row>
+            <Row>
+                <Col xs={12} md={6}>
+                    <GuestFormVolunteerAssignment />
+                </Col>
+                <Col xs={12} md={6}>
+                    <GuestFormPriorityStatus />
+                </Col>
+            </Row>
         </FormSection>
     );
 };
 
-export default React.memo(GuestFormStayInfo);
+export default React.memo(GuestFormAssignments);

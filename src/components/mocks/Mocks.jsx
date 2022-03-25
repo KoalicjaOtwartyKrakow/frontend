@@ -1,5 +1,3 @@
-import React from "react";
-import * as constants from "services/Api/constants";
 import { mockGuest, mockGuestResponses } from "mocks/guest";
 import { mockHost, mockHostResponses } from "mocks/host";
 import { mockAccommodation, mockAccommodationResponses } from "mocks/accommodation";
@@ -8,19 +6,23 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import useApplicationSettings from "hooks/useApplicationSettings";
 import { ApplicationSettings } from "components/settings/constants";
+import { mockUser, mockUserResponses } from "mocks/user";
 
 const applyMocks = () => {
     const mockAdapter = new MockAdapter(axios);
 
+    const mockedAccommodations = Array.from({ length: 30 }, mockAccommodation);
     const mockedGuests = Array.from({ length: 30 }, mockGuest);
     const mockedHosts = Array.from({ length: 30 }, mockHost);
-    const mockedAccommodations = Array.from({ length: 30 }, mockAccommodation);
+    const mockedUsers = Array.from({ length: 30 }, mockUser);
 
-    mockRelationships({ mockedAccommodations, mockedGuests, mockedHosts });
+    mockRelationships({ mockedAccommodations, mockedGuests, mockedHosts, mockedUsers });
 
     mockAccommodationResponses(mockAdapter, { mockedAccommodations, mockedGuests });
     mockHostResponses(mockAdapter, { mockedHosts });
     mockGuestResponses(mockAdapter, { mockedAccommodations, mockedGuests });
+
+    mockUserResponses(mockAdapter, { mockedUsers });
 };
 
 const Mocks = () => {

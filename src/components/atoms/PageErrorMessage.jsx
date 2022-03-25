@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Alert } from "reactstrap";
+import { Alert, UncontrolledAlert } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import { ApiClientStatus, ApiErrorTypes } from "services/Api/constants";
 import HttpStatus from "http-status-codes";
@@ -51,11 +51,11 @@ const PageErrorMessage = ({ children, error }) => {
     };
 
     return (
-        <Alert color="danger">
+        <UncontrolledAlert color="danger">
             <h5>{t("common:errors.apiFailure")}</h5>
             {getApiError()}
             {children && <p>{children}</p>}
-        </Alert>
+        </UncontrolledAlert>
     );
 };
 

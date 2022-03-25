@@ -8,6 +8,8 @@ import { classToPlain, plainToClass } from "serializers/Serializer";
 import GuestAccommodation from "models/GuestAccommodation";
 import { useField } from "formik";
 import { GuestFormFields } from "components/guest/GuestFormFields";
+import { FormGroup } from "reactstrap";
+import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
     const { t } = useTranslation(["guest"]);
@@ -78,7 +80,8 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
     const selectedGuestAccommodation = getSelectedGuestAccommodation();
 
     return (
-        <>
+        <FormGroup>
+            <FormLabel>{t("guest:form.label.assignedAccommodation")}</FormLabel>
             <Typeahead
                 caseSensitive={caseSensitive}
                 defaultSelected={selectedGuestAccommodation}
@@ -92,7 +95,7 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }) => {
                 renderMenuItemChildren={renderMenuItemChildren}
                 size="lg"
             />
-        </>
+        </FormGroup>
     );
 };
 
