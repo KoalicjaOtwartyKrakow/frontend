@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/ProgressIcon'... Remove this comment to see the full error message
 import ProgressIcon from "components/atoms/ProgressIcon";
 import { useTranslation } from "react-i18next";
 
-const EntityFormSubmitButton = ({ disabled, isSubmitting, label, icon = faCheck, usePleaseWaitLabel = false }) => {
+const EntityFormSubmitButton = ({ disabled, isSubmitting, label, icon = faCheck, usePleaseWaitLabel = false }: any) => {
     const { t } = useTranslation(["common"]);
     const buttonLabel = isSubmitting && usePleaseWaitLabel ? t("common:data.pleaseWait") : label;
     return (

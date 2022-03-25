@@ -6,6 +6,7 @@ import {
     IconPetsAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
+    // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/shared/Icons' or it... Remove this comment to see the full error message
 } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
 

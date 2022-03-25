@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const withHistoryBackButtonOptions = (Button, options) => {
-    const InnerComponent = (props) => {
+const withHistoryBackButtonOptions = (Button: any, options: any) => {
+    const InnerComponent = (props: any) => {
         const navigate = useNavigate();
         const { to } = options;
         const onClick = () => navigate(-1);

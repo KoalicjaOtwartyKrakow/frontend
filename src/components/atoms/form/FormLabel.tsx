@@ -2,7 +2,7 @@ import React from "react";
 import { Label } from "reactstrap";
 import classNames from "classnames";
 
-const FormLabel = ({ children, className, required = false, ...props }) => {
+const FormLabel = ({ children, className, required = false, ...props }: any) => {
     const labelClassName = classNames(className, { required });
     return (
         <Label className={labelClassName} {...props}>

@@ -1,7 +1,11 @@
 import useAxios from "axios-hooks";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/utils' or its cor... Remove this comment to see the full error message
 import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { ApiPaths } from "services/Api/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Host' or its correspond... Remove this comment to see the full error message
 import Host from "models/Host";
 
 const useCreateHost = () => {
@@ -16,7 +20,7 @@ const useCreateHost = () => {
      * @param {Host} host
      * @returns {Promise<*|undefined>}
      */
-    const createHost = ({ host }) => {
+    const createHost = ({ host }: any) => {
         const url = getPath(ApiPaths.HOST);
         const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));
@@ -49,7 +53,7 @@ const useGetHost = () => {
     const hostGetInProgress = loading;
     const hostGetError = getErrorsFromApi(error);
 
-    const fetchHost = ({ hostId }) => {
+    const fetchHost = ({ hostId }: any) => {
         const url = getPath(ApiPaths.HOST) + "/" + hostId;
         const transformResponse = transformObjectResponse(Host);
         const config = { url, transformResponse };
@@ -86,7 +90,7 @@ const useUpdateHost = () => {
      * @param {Host} host
      * @returns {Promise<*|undefined>}
      */
-    const updateHost = ({ host }) => {
+    const updateHost = ({ host }: any) => {
         const url = getPath(ApiPaths.HOST) + "/" + host.id;
         const transformResponse = transformObjectResponse(Host);
         const data = filterImmutableFields(classToPlain(host));

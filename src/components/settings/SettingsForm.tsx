@@ -1,11 +1,14 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
 import { Button, FormGroup } from "reactstrap";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormChec... Remove this comment to see the full error message
 import FormCheckbox from "components/atoms/form/FormCheckbox";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
 import { appConfig } from "constants/AppConfig";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/settings/constants'... Remove this comment to see the full error message
 import { ApplicationSettings } from "components/settings/constants";
 
-const SettingsForm = ({ initialValues, onCancel, onSubmit }) => {
+const SettingsForm = ({ initialValues, onCancel, onSubmit }: any) => {
     const checkboxLabel = "Enable mocked API responses";
 
     const formikProps = {

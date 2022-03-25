@@ -1,24 +1,34 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormFiel... Remove this comment to see the full error message
 import { guestFormFields as formFields } from "components/guest/GuestFormFields";
 import React from "react";
 import { Form, Formik } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormSche... Remove this comment to see the full error message
 import { guestFormCreateSchema, guestFormUpdateSchema } from "components/guest/GuestFormSchemas";
 import { Col, Row } from "reactstrap";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditional";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupAdults";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
 import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
 import GuestFormAssignments from "components/guest/form/sections/GuestFormAssignments";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/GuestAccommodation' or ... Remove this comment to see the full error message
 import GuestAccommodation from "models/GuestAccommodation";
 import { useToasts } from "react-toast-notifications";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Enti... Remove this comment to see the full error message
 import EntityFormButtons from "components/molecules/form/EntityFormButtons";
 
-const GuestForm = (props) => {
+const GuestForm = (props: any) => {
     const { addToast } = useToasts();
     const { initialValues, onRemove } = props;
 
@@ -37,7 +47,7 @@ const GuestForm = (props) => {
      *
      * @param {GuestAccommodation} accommodation
      */
-    const onAccommodationSelected = (accommodation) => {
+    const onAccommodationSelected = (accommodation: any) => {
         console.log("[onAccommodationSelected] Selected guest accommodation: ", accommodation);
         if (!GuestAccommodation.is(accommodation)) {
             addToast(t("guest:form.message.removeGuestFromAccommodationWarning"), {
@@ -46,7 +56,7 @@ const GuestForm = (props) => {
         }
     };
 
-    const onSubmitError = (response, values, resetForm) => {
+    const onSubmitError = (response: any, values: any, resetForm: any) => {
         const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
@@ -57,7 +67,7 @@ const GuestForm = (props) => {
      * @param formikBag
      * @returns {Promise<*>}
      */
-    const onSubmit = async (values, formikBag) => {
+    const onSubmit = async (values: any, formikBag: any) => {
         console.log("[Guest] GuestForm onSubmit()");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
@@ -67,7 +77,7 @@ const GuestForm = (props) => {
         }
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
+        const onSubmitApiErrors = (response: any) => onSubmitError(response, values, resetForm);
 
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
@@ -81,7 +91,7 @@ const GuestForm = (props) => {
         validationSchema,
     };
 
-    const submitDisabled = (isValid, isSubmitting) => !isValid || isSubmitting;
+    const submitDisabled = (isValid: any, isSubmitting: any) => !isValid || isSubmitting;
 
     const { t } = useTranslation(["guest"]);
 

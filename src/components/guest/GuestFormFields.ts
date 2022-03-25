@@ -1,6 +1,10 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { isEqual, merge, pick } from "lodash-es";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'shared/datetime' or its corres... Remove this comment to see the full error message
 import { getFormattedDate } from "shared/datetime";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
 import Guest from "models/Guest";
 
 class GuestFormFields {
@@ -37,7 +41,7 @@ class GuestFormFields {
      * @param {Guest} guest
      * @return {Object}
      */
-    modelToForm(guest) {
+    modelToForm(guest: any) {
         if (!(guest instanceof Guest)) {
             return undefined;
         }
@@ -58,7 +62,7 @@ class GuestFormFields {
      *
      * @param formValues
      */
-    formToModel(formValues) {
+    formToModel(formValues: any) {
         const guest = new Guest();
         /**
          * @type {Guest}
@@ -72,7 +76,7 @@ class GuestFormFields {
         return FormikApiErrors.getInitialStatus();
     }
 
-    getDateAsYMD(value) {
+    getDateAsYMD(value: any) {
         return getFormattedDate(value);
     }
 
@@ -81,12 +85,12 @@ class GuestFormFields {
      * @param {{errors: object, status: ApiErrorStatus }} response
      * @returns {ApiErrors}
      */
-    getStatusFromApi(response) {
+    getStatusFromApi(response: any) {
         const { errors, status } = response;
         return FormikApiErrors.getStatusFromApi(errors, status);
     }
 
-    areValuesEqual(prevValues, nextValues) {
+    areValuesEqual(prevValues: any, nextValues: any) {
         const prev = prevValues || {};
         const next = nextValues || {};
 

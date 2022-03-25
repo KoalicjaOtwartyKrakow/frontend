@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestContext'... Remove this comment to see the full error message
 import { GuestContext } from "components/guest/GuestContext";
 import {
     IconFoodAllergy,
@@ -6,6 +7,7 @@ import {
     IconFoodLactoseFree,
     IconFoodMeatFree,
     IconPetsPresent,
+    // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/shared/Icons' or it... Remove this comment to see the full error message
 } from "components/shared/Icons";
 
 /**
@@ -19,6 +21,7 @@ const GuestItemInfo = () => {
      */
     const guest = useContext(GuestContext);
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'foodAllergies' does not exist on type 'u... Remove this comment to see the full error message
     const { foodAllergies, glutenFreeDiet, lactoseFreeDiet, meatFreeDiet, specialNeeds, petsPresent } = guest;
 
     return (

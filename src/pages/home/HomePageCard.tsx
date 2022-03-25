@@ -3,9 +3,9 @@ import { Button, Card, CardBody, CardHeader, CardText, CardTitle, Col, Row } fro
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const HomePageCard = ({ children, color, header, icon, navigationButtonLabel, navigationRoute }) => {
+const HomePageCard = ({ children, color, header, icon, navigationButtonLabel, navigationRoute }: any) => {
     const navigate = useNavigate();
-    const onNavigate = (route) => {
+    const onNavigate = (route: any) => {
         const path = generatePath(route);
         navigate(path);
     };

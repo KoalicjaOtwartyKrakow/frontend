@@ -5,7 +5,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-const LoadingPage = ({ visible }) => {
+const LoadingPage = ({ visible }: any) => {
     const className = classNames(
         "h-100 align-items-center justify-content-center",
         { "d-flex": visible },

@@ -4,18 +4,20 @@ import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import "components/accommodations/AccommodationList.sass";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
 import { AppRoutes } from "constants/AppRoutes";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodations/Acco... Remove this comment to see the full error message
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
 
-const AccommodationList = ({ accommodations }) => {
+const AccommodationList = ({ accommodations }: any) => {
     const { t } = useTranslation(["accommodations"]);
     const navigate = useNavigate();
 
-    const getEditRoute = (accommodationId) => {
+    const getEditRoute = (accommodationId: any) => {
         return generatePath(AppRoutes.ACCOMMODATION_EDIT, { accommodationId });
     };
 
-    const onEdit = (accommodationId) => {
+    const onEdit = (accommodationId: any) => {
         const path = getEditRoute(accommodationId);
         navigate(path);
     };
@@ -39,7 +41,7 @@ const AccommodationList = ({ accommodations }) => {
                 </tr>
             </thead>
             <tbody>
-                {accommodations.map((accommodation) => {
+                {accommodations.map((accommodation: any) => {
                     const { uuid } = accommodation;
                     return (
                         <AccommodationListItem

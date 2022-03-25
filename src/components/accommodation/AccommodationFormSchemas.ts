@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 
 const commonSchema = Yup.object().shape({

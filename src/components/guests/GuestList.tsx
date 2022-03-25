@@ -3,20 +3,22 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
 import { AppRoutes } from "constants/AppRoutes";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guests/GuestListIte... Remove this comment to see the full error message
 import GuestListItem from "components/guests/GuestListItem";
 
-const GuestList = ({ guests }) => {
+const GuestList = ({ guests }: any) => {
     const { t } = useTranslation(["guests"]);
     const navigate = useNavigate();
 
-    const getEditRoute = (guestId) => {
+    const getEditRoute = (guestId: any) => {
         return generatePath(AppRoutes.GUEST_EDIT, { guestId });
     };
 
     const onRemove = () => {};
 
-    const onEdit = (guestId) => {
+    const onEdit = (guestId: any) => {
         const path = getEditRoute(guestId);
         navigate(path);
     };
@@ -46,7 +48,7 @@ const GuestList = ({ guests }) => {
                 </tr>
             </thead>
             <tbody>
-                {guests.map((guest) => {
+                {guests.map((guest: any) => {
                     const { uuid } = guest;
                     return <GuestListItem key={uuid} guest={guest} onEdit={onEdit} onRemove={onRemove} />;
                 })}

@@ -3,16 +3,22 @@ import { Col, Row } from "reactstrap";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormRemoveButton from "components/molecules/form/buttons/EntityFormRemoveButton";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormResetButton from "components/molecules/form/buttons/EntityFormResetButton";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormSubmitButton from "components/molecules/form/buttons/EntityFormSubmitButton";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormBackToListButton from "components/molecules/form/buttons/EntityFormBackToListButton";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/HorizontalLin... Remove this comment to see the full error message
 import HorizontalLine from "components/atoms/HorizontalLine";
 
 /**
  * @component
  */
 const EntityFormButtons = React.memo((props) => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onRemove' does not exist on type '{ chil... Remove this comment to see the full error message
     const { onRemove, removeInProgress, submitDisabled, submitIcon, submitInProgress, submitLabel } = props;
 
     const { t } = useTranslation(["common"]);
@@ -47,6 +53,7 @@ const EntityFormButtons = React.memo((props) => {
     );
 });
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 EntityFormButtons.propTypes = {
     onRemove: PropTypes.func,
     removeInProgress: PropTypes.bool.isRequired,

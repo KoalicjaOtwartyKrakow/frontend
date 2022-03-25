@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import camelCase from "lodash-es/camelCase";
 
 export const API_ERRORS = "apiErrors";
@@ -48,6 +49,7 @@ export class ApiErrorStatus {
 
 export class ApiErrors {
     constructor(apiErrors = {}) {
+        // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         this[API_ERRORS] = apiErrors;
     }
 }

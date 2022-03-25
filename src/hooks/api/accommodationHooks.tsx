@@ -1,7 +1,11 @@
 import useAxios from "axios-hooks";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/utils' or its cor... Remove this comment to see the full error message
 import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { ApiPaths } from "services/Api/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Accommodation' or its c... Remove this comment to see the full error message
 import Accommodation from "models/Accommodation";
 
 const useCreateAccommodation = () => {
@@ -16,7 +20,7 @@ const useCreateAccommodation = () => {
      * @param {Accommodation} accommodation
      * @returns {Promise<*|undefined>}
      */
-    const createAccommodation = ({ accommodation }) => {
+    const createAccommodation = ({ accommodation }: any) => {
         const url = getPath(ApiPaths.ACCOMMODATION);
         const transformResponse = transformObjectResponse(Accommodation);
         const data = filterImmutableFields(classToPlain(accommodation));
@@ -49,7 +53,7 @@ const useGetAccommodation = () => {
     const accommodationGetInProgress = loading;
     const accommodationGetError = getErrorsFromApi(error);
 
-    const fetchAccommodation = ({ accommodationId }) => {
+    const fetchAccommodation = ({ accommodationId }: any) => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });
@@ -88,7 +92,7 @@ const useUpdateAccommodation = () => {
      * @param {Accommodation} accommodation
      * @returns {Promise<*|undefined>}
      */
-    const updateAccommodation = ({ accommodation }) => {
+    const updateAccommodation = ({ accommodation }: any) => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId: accommodation.id,
         });
@@ -129,7 +133,7 @@ const useAddGuestToAccommodation = () => {
      * @param {Guest} guest
      * @returns {Promise<{errors: Object, status: ApiErrorStatus}|undefined>}
      */
-    const addGuestToAccommodation = ({ accommodation, guest }) => {
+    const addGuestToAccommodation = ({ accommodation, guest }: any) => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST, {
             accommodationId: accommodation.id,
             guestId: guest.id,

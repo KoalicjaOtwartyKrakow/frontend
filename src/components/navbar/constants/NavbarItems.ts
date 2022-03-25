@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
 import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 

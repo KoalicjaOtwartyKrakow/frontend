@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
  * @returns {null|JSX.Element}
  * @constructor
  */
-const InProgress = ({ inProgress, label, centered = true }) => {
+const InProgress = ({ inProgress, label, centered = true }: any) => {
     const className = classNames("mb-3", {
         "text-center": centered,
     });

@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/Accommodation... Remove this comment to see the full error message
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 
 /**
@@ -12,6 +14,7 @@ const AccommodationItemStatus = () => {
     const accommodation = useContext(AccommodationContext);
     const { t } = useTranslation(["accommodation"]);
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'status' does not exist on type 'unknown'... Remove this comment to see the full error message
     const { status } = accommodation;
 
     const colorFromStatus = {

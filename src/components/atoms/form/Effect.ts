@@ -1,7 +1,7 @@
 import { connect } from "formik";
 import { useEffect, useRef } from "react";
 
-const Effect = ({ formik, onChange }) => {
+const Effect = ({ formik, onChange }: any) => {
     const ref = useRef(null);
     useEffect(() => {
         onChange(formik, ref.current);

@@ -1,19 +1,26 @@
 // import Effect from 'components/atoms/form/Effect';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormFields... Remove this comment to see the full error message
 import { hostFormFields as formFields } from "components/host/HostFormFields";
 import React from "react";
 import { Form, Formik } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'proptypes/HostFormPropTypes' o... Remove this comment to see the full error message
 import { hostFormPropTypes } from "proptypes/HostFormPropTypes";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormSchema... Remove this comment to see the full error message
 import { hostFormCreateSchema, hostFormUpdateSchema } from "components/host/HostFormSchemas";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
 import HostFormButtons from "components/host/form/sections/HostFormButtons";
 import { Col, Row } from "reactstrap";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
 import HostFormContact from "components/host/form/sections/HostFormContact";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
 import HostFormAdditionalInformation from "components/host/form/sections/HostFormAdditionalInformation";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/NonField... Remove this comment to see the full error message
 import NonFieldErrors from "components/atoms/form/NonFieldErrors";
 
-const HostForm = (props) => {
+const HostForm = (props: any) => {
     const { initialValues, onRemove, hostInProgress } = props;
 
     const initialStatus = formFields.getInitialStatus();
@@ -32,7 +39,7 @@ const HostForm = (props) => {
     //   props.onHostNameChange(name);
     // };
 
-    const onSubmitError = (response, values, resetForm) => {
+    const onSubmitError = (response: any, values: any, resetForm: any) => {
         const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
@@ -43,7 +50,7 @@ const HostForm = (props) => {
      * @param formikBag
      * @returns {Promise<*>}
      */
-    const onSubmit = async (values, formikBag) => {
+    const onSubmit = async (values: any, formikBag: any) => {
         console.log("[Host] HostForm onSubmit()");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
@@ -53,7 +60,7 @@ const HostForm = (props) => {
         }
         const { resetForm } = formikBag;
 
-        const onSubmitApiErrors = (response) => onSubmitError(response, values, resetForm);
+        const onSubmitApiErrors = (response: any) => onSubmitError(response, values, resetForm);
 
         return props.onSubmit(formattedValues, onSubmitApiErrors);
     };
@@ -67,7 +74,7 @@ const HostForm = (props) => {
         validationSchema,
     };
 
-    const submitDisabled = (isValid, isSubmitting) => !isValid || isSubmitting;
+    const submitDisabled = (isValid: any, isSubmitting: any) => !isValid || isSubmitting;
 
     const { t } = useTranslation(["host"]);
 

@@ -1,8 +1,11 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageCard' or ... Remove this comment to see the full error message
 import PageCard from "components/atoms/PageCard";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
 import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'pages/home/HomePageCard' or it... Remove this comment to see the full error message
 import HomePageCard from "pages/home/HomePageCard";
 
 const DashboardPage = () => {

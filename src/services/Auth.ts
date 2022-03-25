@@ -1,6 +1,7 @@
 import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { delay } from "lodash-es";
 
 class Auth {
@@ -12,8 +13,8 @@ class Auth {
     /**
      * @param {GoogleLoginResponse|GoogleLoginResponseOffline} response
      */
-    static startRotateRefreshToken = (response) => {
-        const persistToken = (token) => {
+    static startRotateRefreshToken = (response: any) => {
+        const persistToken = (token: any) => {
             Auth.putAuthTokenToStorage(token);
             Auth.updateAxiosAuthorizationHeader(token)();
         };
@@ -34,6 +35,7 @@ class Auth {
         const tokenRotateInterval = getAsMilliseconds(authResponse.expires_in);
 
         delay(() => {
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timer' is not assignable to type 'undefined'... Remove this comment to see the full error message
             Auth.rotateTokenIntervalHandle = setInterval(rotateToken, tokenRotateInterval);
         }, tokenRotateInterval);
 
@@ -47,7 +49,7 @@ class Auth {
         return token;
     };
 
-    static getHeaderValueFromAuthToken(token) {
+    static getHeaderValueFromAuthToken(token: any) {
         return `Bearer ${token}`;
     }
 
@@ -55,11 +57,11 @@ class Auth {
         return localStorage.getItem(Auth.tokenItemName) || Auth.emptyToken;
     }
 
-    static putAuthTokenToStorage(token) {
+    static putAuthTokenToStorage(token: any) {
         return localStorage.setItem(Auth.tokenItemName, token);
     }
 
-    static updateAxiosAuthorizationHeader(token) {
+    static updateAxiosAuthorizationHeader(token: any) {
         return function () {
             const isAuthenticated = token !== Auth.emptyToken;
             if (isAuthenticated) {

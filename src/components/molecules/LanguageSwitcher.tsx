@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, ButtonGroup } from "reactstrap";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'i18n' or its corresponding typ... Remove this comment to see the full error message
 import { fallbackLanguage, supportedLanguages } from "i18n";
 
-const LanguageSwitcher = ({ className }) => {
+const LanguageSwitcher = ({ className }: any) => {
     const { i18n } = useTranslation(["accommodation"]);
     const storedLanguage = localStorage.getItem("i18nextLng") || fallbackLanguage;
     const [language, setLanguage] = useState(storedLanguage);
 
-    const switchLanguage = (i18n, selectedLanguage) => () => {
+    const switchLanguage = (i18n: any, selectedLanguage: any) => () => {
         i18n.changeLanguage(selectedLanguage).then(() => {
             setLanguage(selectedLanguage);
         });
@@ -18,11 +19,11 @@ const LanguageSwitcher = ({ className }) => {
         localStorage.setItem("i18nextLng", language);
     }, [language]);
 
-    const isActive = (selectedLanguage) => language === selectedLanguage;
+    const isActive = (selectedLanguage: any) => language === selectedLanguage;
 
     return (
         <ButtonGroup size="sm" className={className}>
-            {supportedLanguages.map((item) => {
+            {supportedLanguages.map((item: any) => {
                 const active = isActive(item.code);
                 return (
                     <Button onClick={switchLanguage(i18n, item.code)} active={active} outline={!active} key={item.code}>

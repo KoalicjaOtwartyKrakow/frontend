@@ -1,12 +1,14 @@
 import HttpStatus from "http-status-codes";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import get from "lodash-es/get";
 import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 
 import { ApiClientStatus, ApiErrorStatus, ApiErrorTypes } from "./constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
 import { plainToClass } from "serializers/Serializer";
 
-const _getStatus = (error) => {
+const _getStatus = (error: any) => {
     const response = error.response;
     const request = error.request;
 
@@ -41,6 +43,7 @@ const _getStatus = (error) => {
     }
 
     // This denotes unhandled Axios network error
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'string'.
     status.code = HttpStatus.IM_A_TEAPOT;
     status.type = ApiErrorTypes.UNKNOWN;
 
@@ -53,7 +56,7 @@ const _getStatus = (error) => {
  * @param {object} error
  * @return {{errors: object, status: ApiErrorStatus}}
  */
-export const getErrorsFromApi = (error) => {
+export const getErrorsFromApi = (error: any) => {
     if (!error) {
         return undefined;
     }
@@ -66,12 +69,12 @@ export const getErrorsFromApi = (error) => {
     };
 };
 
-export const getPath = (url, options) => {
+export const getPath = (url: any, options: any) => {
     const toPath = compile(url, { encode: encodeURIComponent });
     return toPath(options);
 };
 
-export const transformObjectResponse = (modelClass) => (data) => {
+export const transformObjectResponse = (modelClass: any) => (data: any) => {
     try {
         const parsed = JSON.parse(data);
         return parsed && plainToClass(modelClass, parsed);
@@ -83,7 +86,7 @@ export const transformObjectResponse = (modelClass) => (data) => {
 
 export const emptyArray = [];
 
-export const transformArrayResponse = (modelClass) => (data) => {
+export const transformArrayResponse = (modelClass: any) => (data: any) => {
     try {
         const parsed = JSON.parse(data);
         return Array.isArray(parsed) ? parsed.map((item) => plainToClass(modelClass, item)) : emptyArray;

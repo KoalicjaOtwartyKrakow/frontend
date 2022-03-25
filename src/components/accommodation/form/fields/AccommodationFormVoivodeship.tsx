@@ -3,8 +3,11 @@ import { FormGroup } from "reactstrap";
 import { Field, useField } from "formik";
 import { useTranslation } from "react-i18next";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Form... Remove this comment to see the full error message
 import { FormItemsVoivodeships } from "components/molecules/form/FormItemsVoivodeships";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormLabe... Remove this comment to see the full error message
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressVoivodeship = () => {

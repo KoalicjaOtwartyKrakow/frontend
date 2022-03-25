@@ -4,8 +4,10 @@ import LoginForm from "./LoginForm";
 import PropTypes from "prop-types";
 import "./LoginPageContainer.scss";
 import classNames from "classnames";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
 import { appConfig } from "constants/AppConfig";
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'onSubmit' does not exist on type '{ chil... Remove this comment to see the full error message
 const LoginPageContainer = React.memo(({ onSubmit, visible }) => {
     const className = classNames("h-100", { "d-none": !visible });
     const { publicUrl } = appConfig;
@@ -37,6 +39,7 @@ const LoginPageContainer = React.memo(({ onSubmit, visible }) => {
     );
 });
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 LoginPageContainer.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 };

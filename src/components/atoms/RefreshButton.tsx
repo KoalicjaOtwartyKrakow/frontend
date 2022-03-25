@@ -3,10 +3,11 @@ import { faRotate } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/ProgressIcon'... Remove this comment to see the full error message
 import ProgressIcon from "components/atoms/ProgressIcon";
 import classNames from "classnames";
 
-const RefreshButton = ({ className, disabled, inProgress, onClick }) => {
+const RefreshButton = ({ className, disabled, inProgress, onClick }: any) => {
     const { t } = useTranslation(["common"]);
     const label = t("common:buttons.refresh");
     const buttonClassName = classNames(className);

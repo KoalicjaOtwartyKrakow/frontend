@@ -1,6 +1,9 @@
 import useAxios from "axios-hooks";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/utils' or its cor... Remove this comment to see the full error message
 import { getErrorsFromApi, getPath, transformArrayResponse } from "services/Api/utils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { ApiPaths } from "services/Api/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
 import Guest from "models/Guest";
 
 const useGetGuests = () => {

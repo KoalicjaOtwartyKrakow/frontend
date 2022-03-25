@@ -1,7 +1,11 @@
 import useAxios from "axios-hooks";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/utils' or its cor... Remove this comment to see the full error message
 import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { ApiPaths } from "services/Api/constants";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
 import Guest from "models/Guest";
 
 const useGetGuest = () => {
@@ -11,7 +15,7 @@ const useGetGuest = () => {
     const guestGetInProgress = loading;
     const guestGetError = getErrorsFromApi(error);
 
-    const fetchGuest = ({ guestId }) => {
+    const fetchGuest = ({ guestId }: any) => {
         const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
         const transformResponse = transformObjectResponse(Guest);
         const config = { url, transformResponse };
@@ -48,7 +52,7 @@ const useUpdateGuest = () => {
      * @param {Guest} guest
      * @returns {Promise<*|undefined>}
      */
-    const updateGuest = ({ guest }) => {
+    const updateGuest = ({ guest }: any) => {
         if (!Guest.is(guest)) {
             throw new TypeError("[useUpdateGuest] Provided guest is not a Guest instance");
         }
@@ -106,7 +110,7 @@ const useCreateGuest = () => {
      * @param {Guest} guest
      * @returns {Promise<*|undefined>}
      */
-    const createGuest = ({ guest }) => {
+    const createGuest = ({ guest }: any) => {
         const url = getPath(ApiPaths.GUEST);
         const transformResponse = transformObjectResponse(Guest);
         const data = filterImmutableFields(classToPlain(guest));

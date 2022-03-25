@@ -1,6 +1,10 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Host' or its correspond... Remove this comment to see the full error message
 import Host from "models/Host";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'shared/datetime' or its corres... Remove this comment to see the full error message
 import { getFormattedDate } from "shared/datetime";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { isEqual, merge, pick } from "lodash-es";
 
 class HostFormFields {
@@ -19,7 +23,7 @@ class HostFormFields {
      * @param {Host} host
      * @return {Object}
      */
-    modelToForm(host) {
+    modelToForm(host: any) {
         if (!(host instanceof Host)) {
             return undefined;
         }
@@ -36,7 +40,7 @@ class HostFormFields {
         return { ...formValues, ...createFormValues };
     }
 
-    formToModel(formValues) {
+    formToModel(formValues: any) {
         const host = new Host();
         return merge(host, formValues);
     }
@@ -45,7 +49,7 @@ class HostFormFields {
         return FormikApiErrors.getInitialStatus();
     }
 
-    getDateAsYMD(value) {
+    getDateAsYMD(value: any) {
         return getFormattedDate(value);
     }
 
@@ -54,12 +58,12 @@ class HostFormFields {
      * @param {{errors: object, status: ApiErrorStatus }} response
      * @returns {ApiErrors}
      */
-    getStatusFromApi(response) {
+    getStatusFromApi(response: any) {
         const { errors, status } = response;
         return FormikApiErrors.getStatusFromApi(errors, status);
     }
 
-    areValuesEqual(prevValues, nextValues) {
+    areValuesEqual(prevValues: any, nextValues: any) {
         const prev = prevValues || {};
         const next = nextValues || {};
 

@@ -10,9 +10,9 @@ import classNames from "classnames";
 
 const getDomId = () => `icon-${nanoid(10)}`;
 
-const IconContainer = ({ children }) => <span>{children}</span>;
+const IconContainer = ({ children }: any) => <span>{children}</span>;
 
-const IconStackWrapper = ({ children, className, id }) => {
+const IconStackWrapper = ({ children, className, id }: any) => {
     const iconStackWrapperClassName = classNames("fa-layers fa-fw fa-lg me-1", className);
     return (
         <span className={iconStackWrapperClassName} id={id}>
@@ -21,7 +21,7 @@ const IconStackWrapper = ({ children, className, id }) => {
     );
 };
 
-const IconTooltip = ({ label, target }) => {
+const IconTooltip = ({ label, target }: any) => {
     return (
         <UncontrolledTooltip placement="top" target={target}>
             {label}
@@ -29,7 +29,7 @@ const IconTooltip = ({ label, target }) => {
     );
 };
 
-const IconPetsPresent = ({ className }) => {
+const IconPetsPresent = ({ className }: any) => {
     const id = getDomId();
     const { t } = useTranslation(["accommodation"]);
     return (

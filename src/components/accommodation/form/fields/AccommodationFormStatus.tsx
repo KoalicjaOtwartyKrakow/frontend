@@ -3,9 +3,13 @@ import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormSele... Remove this comment to see the full error message
 import FormSelect from "components/atoms/form/FormSelect";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/Accommodation... Remove this comment to see the full error message
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormLabe... Remove this comment to see the full error message
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressStatus = () => {

@@ -1,5 +1,6 @@
 import { getIn } from "formik";
 import HttpStatus from "http-status-codes";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { API_ERRORS, API_NON_FIELD_ERRORS, ApiErrors, ApiErrorTypes } from "services/Api/constants";
 
 /**
@@ -7,7 +8,7 @@ import { API_ERRORS, API_NON_FIELD_ERRORS, ApiErrors, ApiErrorTypes } from "serv
  * @param {ApiErrorStatus} status
  * @return {string}
  */
-const getErrorMessageFromStatus = function (status) {
+const getErrorMessageFromStatus = function (status: any) {
     const httpStatusCode = status.code;
     switch (httpStatusCode) {
         case HttpStatus.IM_A_TEAPOT:
@@ -19,7 +20,7 @@ const getErrorMessageFromStatus = function (status) {
 };
 
 class FormikApiErrors {
-    static getError = function (name, form) {
+    static getError = function (name: any, form: any) {
         const { touched, errors, status } = form;
         // console.log(name, errors);
 
@@ -48,7 +49,7 @@ class FormikApiErrors {
      * @param {ApiErrorStatus} status
      * @return {ApiErrors}
      */
-    static getStatusFromApi = function (apiErrors, status) {
+    static getStatusFromApi = function (apiErrors: any, status: any) {
         if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.BAD_REQUEST) {
             return new ApiErrors(apiErrors);
         }

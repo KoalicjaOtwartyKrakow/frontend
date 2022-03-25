@@ -1,7 +1,12 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Accommodation' or its c... Remove this comment to see the full error message
 import Accommodation from "models/Accommodation";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'shared/datetime' or its corres... Remove this comment to see the full error message
 import { getFormattedDate } from "shared/datetime";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/Address' or i... Remove this comment to see the full error message
 import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { merge, pick } from "lodash-es";
 
 class AccommodationFormFields {
@@ -33,7 +38,7 @@ class AccommodationFormFields {
      * @param {Accommodation} accommodation
      * @return {Object}
      */
-    modelToForm(accommodation) {
+    modelToForm(accommodation: any) {
         if (!(accommodation instanceof Accommodation)) {
             return undefined;
         }
@@ -57,7 +62,7 @@ class AccommodationFormFields {
         return { ...formValues, ...createFormValues };
     }
 
-    formToModel(formValues) {
+    formToModel(formValues: any) {
         /**
          * @type {Accommodation}
          */
@@ -74,7 +79,7 @@ class AccommodationFormFields {
         return FormikApiErrors.getInitialStatus();
     }
 
-    getDateAsYMD(value) {
+    getDateAsYMD(value: any) {
         return getFormattedDate(value);
     }
 
@@ -83,12 +88,12 @@ class AccommodationFormFields {
      * @param {{errors: object, status: ApiErrorStatus }} response
      * @returns {ApiErrors}
      */
-    getStatusFromApi(response) {
+    getStatusFromApi(response: any) {
         const { errors, status } = response;
         return FormikApiErrors.getStatusFromApi(errors, status);
     }
 
-    areValuesEqual(prevValues, nextValues) {
+    areValuesEqual(prevValues: any, nextValues: any) {
         const prev = prevValues || {};
         const next = nextValues || {};
 
@@ -110,17 +115,17 @@ class AccommodationFormFields {
             [AccommodationFormFields.VACANCIES_TOTAL],
         ];
 
-        const simpleTypeDiff = (key) => prev[key] !== next[key];
+        const simpleTypeDiff = (key: any) => prev[key] !== next[key];
 
         if (simpleTypeFields.some(simpleTypeDiff)) {
             return false;
         }
 
-        const dateTimeFields = [
+        const dateTimeFields: any = [
             // [ AccommodationFormFields.CREATED_AT ],
         ];
 
-        const dateDiff = (key) => {
+        const dateDiff = (key: any) => {
             const firstDateTime = prev[key];
             const secondDateTime = next[key];
             const asYmd = accommodationFormFields.getDateAsYMD;
