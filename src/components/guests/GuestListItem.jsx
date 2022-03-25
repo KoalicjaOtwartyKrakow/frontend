@@ -21,6 +21,7 @@ import GuestItemDurationOfStay from "components/guests/item/GuestItemDurationOfS
  */
 const GuestListItem = ({ guest, onEdit, onRemove }) => {
     const { id } = guest;
+    console.log(guest);
     const handleEdit = () => onEdit(id);
 
     return (

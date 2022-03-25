@@ -62,7 +62,8 @@ const useUpdateGuest = () => {
         const url = getPath(ApiPaths.GUEST_BY_ID, { guestId });
 
         const transformResponse = transformObjectResponse(Guest);
-        const data = filterImmutableFields(classToPlain(guest));
+        const plain = classToPlain(guest);
+        const data = filterImmutableFields(plain);
 
         // This whole stuff is dirty AF
         data.accommodationUnitId = data.accommodationUnitId ?? null;

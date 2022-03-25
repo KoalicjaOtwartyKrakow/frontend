@@ -57,11 +57,15 @@ const GuestCreatePage = () => {
 
     return (
         <PageCard header={t("guest:card.title.create")}>
-            <InProgress inProgress={guestInProgress !== crudInProgressStates.NONE} />
+            <InProgress inProgress={guestInProgress === crudInProgressStates.RETRIEVE} />
             <PageErrorMessage error={guestCreateError} />
 
             {initialValues && (
-                <GuestForm guestInProgress={guestInProgress} initialValues={initialValues} onSubmit={onSubmit} />
+                <GuestForm
+                    guestInProgress={guestInProgress === crudInProgressStates.CREATE}
+                    initialValues={initialValues}
+                    onSubmit={onSubmit}
+                />
             )}
 
             {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}

@@ -52,19 +52,6 @@ const GuestEditPage = () => {
         }
     }, [addToast, navigate, t, updatedGuest]);
 
-    /**
-     *
-     * @param {GuestAccommodation} accommodation
-     */
-    const onAccommodationSelected = (accommodation) => {
-        console.log("[onAccommodationSelected] Selected guest accommodation: ", accommodation);
-        if (!GuestAccommodation.is(accommodation)) {
-            addToast(t("guest:form.message.removeGuestFromAccommodationWarning"), {
-                appearance: "warning",
-            });
-        }
-    };
-
     const guestRequestUpdate = async (guest, onSubmitError) => {
         const updateGuestResponse = await updateGuest({ guest });
 
@@ -100,12 +87,7 @@ const GuestEditPage = () => {
             <PageErrorMessage error={guestUpdateError} />
 
             {initialValues && (
-                <GuestForm
-                    guestInProgress={guestInProgress}
-                    initialValues={initialValues}
-                    onAccommodationSelected={onAccommodationSelected}
-                    onSubmit={onSubmit}
-                />
+                <GuestForm guestInProgress={guestInProgress} initialValues={initialValues} onSubmit={onSubmit} />
             )}
 
             {!initialValues && <PageNavigationBackToList to={AppRoutes.GUESTS} />}

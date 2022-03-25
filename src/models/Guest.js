@@ -1,4 +1,13 @@
-import { JsonConverter, JsonElementType, JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
+import {
+    JsonConverter,
+    JsonElementType,
+    JsonObject,
+    JsonProperty,
+    JsonReadonly,
+    JsonType,
+    JsonWriteonly,
+    OnDeserialized,
+} from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { GuestStatus } from "models/constants/GuestStatus";
@@ -23,10 +32,12 @@ class Guest {
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
+    @JsonWriteonly()
     claimedAt = undefined;
 
     @JsonProperty()
     @JsonType(User)
+    @JsonWriteonly()
     claimedBy = undefined;
 
     @JsonProperty()

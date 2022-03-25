@@ -18,6 +18,7 @@
         "refresh": "Refresh data"
     },
     "data": {
+        "pleaseWait": "One moment…",
         "loading": "Loading data…",
         "updateSuccess": "Changes saved successfully"
     },
