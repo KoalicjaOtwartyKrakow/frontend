@@ -1,12 +1,11 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { times } from "lodash-es";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
+
 import { classToPlain, plainToClass } from "serializers/Serializer";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
+
 import Guest from "models/Guest";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/GuestAccommodation' or ... Remove this comment to see the full error message
+
 import GuestAccommodation from "models/GuestAccommodation";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'mocks/base' or its correspondi... Remove this comment to see the full error message
+
 import { chance, getRandomItem } from "mocks/base";
 import moment from "moment-es6";
 
@@ -48,10 +47,9 @@ const mockGuestRelationships = ({ mockedAccommodations, mockedGuests, mockedUser
             const mockedUser = getRandomItem(mockedUsers);
             mockedGuest.claimedBy = mockedUser;
             mockedGuest.claimedById = mockedUser.id;
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
             mockedGuest.claimedAt = moment().subtract(chance.natural({ min: 0, max: 10 }), "days");
         } else {
-            // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
             mockedGuest.claimedAt = moment(mockedGuest.createdAt);
         }
     }

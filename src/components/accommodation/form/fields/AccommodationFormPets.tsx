@@ -2,9 +2,9 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
+
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormChec... Remove this comment to see the full error message
+
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 
 const petCheckbox = ({ name, label }: any) => {
@@ -36,7 +36,5 @@ const AccommodationFormPets = () => {
         </FormGroup>
     );
 };
-
-AccommodationFormPets.propTypes = {};
 
 export default AccommodationFormPets;

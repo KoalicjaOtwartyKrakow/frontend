@@ -1,19 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Alert, UncontrolledAlert } from "reactstrap";
-import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
-import { ApiClientStatus, ApiErrorTypes } from "services/Api/constants";
-import HttpStatus from "http-status-codes";
 
-/**
- *
- * @param children
- * @param {boolean|object|undefined} isError
- * @returns {null|JSX.Element}
- * @constructor
- */
-const PageErrorMessage = ({ children, error }: any) => {
+import { UncontrolledAlert } from "reactstrap";
+import { useTranslation } from "react-i18next";
+
+import HttpStatus from "http-status-codes";
+import type { ApiErrorCodeClient, ApiErrors } from "services/Api/types";
+import { ApiErrorCodesClient, ApiErrorTypes } from "services/Api/types";
+
+type Props = {
+    children?: React.ReactNode;
+    error: ApiErrors;
+};
+
+const PageErrorMessage = ({ children, error }: Props) => {
     const { t } = useTranslation(["common"]);
 
     if (!error) {
@@ -29,24 +28,25 @@ const PageErrorMessage = ({ children, error }: any) => {
         let message = "";
 
         if (type === ApiErrorTypes.SERVER) {
-            const httpStatusToMessageMap = {
+            // FIXME: better key types
+            const httpStatusToMessageMap: Record<number, string> = {
                 [HttpStatus.INTERNAL_SERVER_ERROR]: t("common:errors.internalServerError"),
                 [HttpStatus.NOT_FOUND]: t("common:errors.notFound"),
                 [HttpStatus.UNAUTHORIZED]: t("common:errors.unauthorized"),
                 [HttpStatus.BAD_REQUEST]: t("common:errors.badRequest"),
                 [HttpStatus.UNPROCESSABLE_ENTITY]: t("common:errors.unprocessableEntity"),
             };
-            message = "" + httpStatusToMessageMap[code];
+            message = `${httpStatusToMessageMap[code as number]}`;
         }
         if (type === ApiErrorTypes.CLIENT) {
-            const clientStatusToMessageMap = {
-                [ApiClientStatus.ECONNREFUSED]: t("common:errors.connectionRefused"),
+            // FIXME: better key types
+            const clientStatusToMessageMap: Record<string, string> = {
+                [ApiErrorCodesClient.ECONNREFUSED]: t("common:errors.connectionRefused"),
             };
-            message = "" + clientStatusToMessageMap[code];
+            message = `${clientStatusToMessageMap[code as ApiErrorCodeClient]}`;
         }
         return (
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'false | "mb-0"' is not assignable to type 's... Remove this comment to see the full error message
-            <p className={!children && "mb-0"}>
+            <p className={!children ? "mb-0" : undefined}>
                 {message} ({code.toString()})
             </p>
         );
@@ -59,10 +59,6 @@ const PageErrorMessage = ({ children, error }: any) => {
             {children && <p>{children}</p>}
         </UncontrolledAlert>
     );
-};
-
-PageErrorMessage.propTypes = {
-    isError: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.object]),
 };
 
 export default PageErrorMessage;

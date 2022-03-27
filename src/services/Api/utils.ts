@@ -1,18 +1,21 @@
 import HttpStatus from "http-status-codes";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
-import get from "lodash-es/get";
+import { get } from "lodash-es";
 import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 
-import { ApiClientStatus, ApiErrorStatus, ApiErrorTypes } from "./constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
 import { plainToClass } from "serializers/Serializer";
+import { AxiosError } from "axios";
+import type { ApiErrors, ApiErrorStatus } from "services/Api/types";
+import { ApiErrorCodesClient, ApiErrorCodesMisc, ApiErrorTypes } from "services/Api/types";
 
-const _getStatus = (error: any) => {
+const getApiErrorStatus = (error: AxiosError): ApiErrorStatus => {
     const response = error.response;
     const request = error.request;
 
-    const status = new ApiErrorStatus();
+    const status: ApiErrorStatus = {
+        code: ApiErrorCodesMisc.UNKNOWN,
+        type: ApiErrorTypes.UNKNOWN,
+    };
 
     if (response) {
         status.type = ApiErrorTypes.SERVER;
@@ -25,51 +28,41 @@ const _getStatus = (error: any) => {
 
         // Workaround: Axios has some strange way to represent client timeout,
         // returning ECONNABORTED instead
-        const connectionAborted = error.code === ApiClientStatus.ECONNABORTED;
+        const connectionAborted = error.code === ApiErrorCodesClient.ECONNABORTED;
         const messageHasTimeout = error.message.indexOf("timeout") !== -1;
 
         // Workaround: Connection was made, but no meaningful response was received
-        const errorStatus = error?.toJSON().status;
+        const errorStatusJson: any = error?.toJSON();
+        const errorStatus = errorStatusJson.status;
         const messageHasNetworkError = errorStatus === null;
 
         if (connectionAborted && messageHasTimeout) {
-            status.code = ApiClientStatus.ETIMEDOUT;
+            status.code = ApiErrorCodesClient.ETIMEDOUT;
         } else if (messageHasNetworkError) {
-            status.code = ApiClientStatus.ECONNREFUSED;
+            status.code = ApiErrorCodesClient.ECONNREFUSED;
         } else {
             status.code = errorStatus;
         }
         return status;
     }
 
-    // This denotes unhandled Axios network error
-    // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'string'.
-    status.code = HttpStatus.IM_A_TEAPOT;
-    status.type = ApiErrorTypes.UNKNOWN;
-
     return status;
 };
 
-// ECONNABORTED
-/**
- *
- * @param {object} error
- * @return {{errors: object, status: ApiErrorStatus}}
- */
-export const getErrorsFromApi = (error: any) => {
+export const getErrorsFromApi = (error?: AxiosError): ApiErrors => {
     if (!error) {
         return undefined;
     }
     const { response } = error;
     const errors = camelcaseKeys(get(response, "data", {}));
-    const status = _getStatus(error);
+    const status = getApiErrorStatus(error);
     return {
         errors,
         status,
     };
 };
 
-export const getPath = (url: any, options: any) => {
+export const getPath = (url: any, options?: any) => {
     const toPath = compile(url, { encode: encodeURIComponent });
     return toPath(options);
 };

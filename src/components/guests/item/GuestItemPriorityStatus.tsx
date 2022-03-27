@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestContext'... Remove this comment to see the full error message
+
 import { GuestContext } from "components/guest/GuestContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/GuestPriority... Remove this comment to see the full error message
+
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
 /**
@@ -17,7 +17,6 @@ const GuestItemPriorityStatus = () => {
     const guest = useContext(GuestContext);
     const { t } = useTranslation(["guest"]);
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'priorityStatus' does not exist on type '... Remove this comment to see the full error message
     const { priorityStatus } = guest;
 
     const colorFromStatus = {

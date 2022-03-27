@@ -1,13 +1,38 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Accommodation' or its c... Remove this comment to see the full error message
+
 import Accommodation from "models/Accommodation";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'shared/datetime' or its corres... Remove this comment to see the full error message
+
 import { getFormattedDate } from "shared/datetime";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/Address' or i... Remove this comment to see the full error message
+
 import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { merge, pick } from "lodash-es";
+import { ApiErrors } from "services/Api/types";
+
+interface AccommodationFormFieldsInterface {
+    addressCity: any;
+    addressLine: any;
+    addressVoivodeship: any;
+    addressZip: any;
+    staffComments: any;
+    ownerComments: any;
+    description: any;
+    disabledPeopleFriendly: any;
+    easyAmbulanceAccess: any;
+    host: any;
+    hostId: string;
+    id: string;
+    isVerified: any;
+    lgbtFriendly: any;
+    parkingPlaceAvailable: any;
+    petsAllowed: any;
+    petsPresent: any;
+    status: any;
+    uuid: any;
+    vacanciesTaken: any;
+    vacanciesTotal: any;
+    volunteerName: any;
+    [index: string]: any;
+}
 
 class AccommodationFormFields {
     static ADDRESS_CITY = "addressCity";
@@ -83,14 +108,8 @@ class AccommodationFormFields {
         return getFormattedDate(value);
     }
 
-    /**
-     *
-     * @param {{errors: object, status: ApiErrorStatus }} response
-     * @returns {ApiErrors}
-     */
-    getStatusFromApi(response: any) {
-        const { errors, status } = response;
-        return FormikApiErrors.getStatusFromApi(errors, status);
+    getStatusFromApi(apiErrors: ApiErrors) {
+        return FormikApiErrors.getStatusFromApi(apiErrors);
     }
 
     areValuesEqual(prevValues: any, nextValues: any) {
@@ -139,3 +158,4 @@ class AccommodationFormFields {
 const accommodationFormFields = new AccommodationFormFields();
 
 export { accommodationFormFields, AccommodationFormFields };
+export type { AccommodationFormFieldsInterface };

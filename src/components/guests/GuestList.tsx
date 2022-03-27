@@ -3,9 +3,8 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
 import { AppRoutes } from "constants/AppRoutes";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guests/GuestListIte... Remove this comment to see the full error message
+
 import GuestListItem from "components/guests/GuestListItem";
 
 const GuestList = ({ guests }: any) => {

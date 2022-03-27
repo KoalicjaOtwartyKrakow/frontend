@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestContext'... Remove this comment to see the full error message
+
 import { GuestContext } from "components/guest/GuestContext";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'shared/datetime' or its corres... Remove this comment to see the full error message
+
 import { getFormattedDate } from "shared/datetime";
 import classNames from "classnames";
 import moment from "moment-es6";
@@ -16,12 +16,11 @@ const GuestItemPriorityDate = () => {
      * @type {Guest}
      */
     const guest = useContext(GuestContext);
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'priorityDate' does not exist on type 'un... Remove this comment to see the full error message
+
     const { priorityDate } = guest;
 
     const formattedPriorityDate = getFormattedDate(priorityDate);
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     const differenceInDays = moment().diff(priorityDate, "days");
 
     const isGuestPresentSinceToday = differenceInDays === 0;

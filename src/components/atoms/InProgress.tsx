@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
+
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 
@@ -31,11 +31,6 @@ const InProgress = ({ inProgress, label, centered = true }: any) => {
             <FontAwesomeIcon icon={faSpinner} spin /> {label || defaultLabel}
         </p>
     );
-};
-
-InProgress.propTypes = {
-    inProgress: PropTypes.bool.isRequired,
-    label: PropTypes.string,
 };
 
 export default InProgress;

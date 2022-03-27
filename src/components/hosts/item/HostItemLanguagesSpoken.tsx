@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostContext' o... Remove this comment to see the full error message
+
 import { HostContext } from "components/host/HostContext";
 import { Badge } from "reactstrap";
 import ISO6391 from "iso-639-1";
@@ -16,7 +16,6 @@ const HostItemLanguagesSpoken = () => {
     const host = useContext(HostContext);
     // const { t } = useTranslation(["host"]);
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'languagesSpoken' does not exist on type ... Remove this comment to see the full error message
     const { languagesSpoken } = host;
 
     const languages = languagesSpoken || [];

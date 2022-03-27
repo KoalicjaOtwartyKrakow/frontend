@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
-import { AccommodationContext } from "components/accommodation/AccommodationContext";
 
-/**
- *
- * @returns {JSX.Element}
- */
+import { AccommodationContext } from "components/accommodation/AccommodationContext";
+import Accommodation from "models/Accommodation";
+
 const AccommodationItemHost = () => {
-    const accommodation = useContext(AccommodationContext);
-    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-    const { host } = accommodation.host;
+    const accommodation = useContext<Accommodation>(AccommodationContext);
+
+    const { host } = accommodation;
     return (
         <>
             <span className="fw-semibold">{host.fullName}</span>

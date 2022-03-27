@@ -1,30 +1,42 @@
-const crudInProgressStates = Object.freeze({
+const CrudInProgressStates = {
     CREATE: "create",
     DELETE: "delete",
     NONE: "none",
     RETRIEVE: "retrieve",
     UPDATE: "update",
-});
+} as const;
 
-const getCrudInProgressState = ({
+type CrudInProgressState = typeof CrudInProgressStates[keyof typeof CrudInProgressStates];
+
+type CrudProgressFlags = {
+    createInProgress?: boolean;
+    deleteInProgress?: boolean;
+    retrieveInProgress?: boolean;
+    updateInProgress?: boolean;
+};
+
+const getCrudInProgress = ({
     createInProgress = false,
     deleteInProgress = false,
     retrieveInProgress = false,
     updateInProgress = false,
-}) => {
+}: CrudProgressFlags): CrudInProgressState => {
     if (createInProgress) {
-        return crudInProgressStates.CREATE;
+        return CrudInProgressStates.CREATE;
     }
     if (deleteInProgress) {
-        return crudInProgressStates.DELETE;
+        return CrudInProgressStates.DELETE;
     }
     if (retrieveInProgress) {
-        return crudInProgressStates.RETRIEVE;
+        return CrudInProgressStates.RETRIEVE;
     }
     if (updateInProgress) {
-        return crudInProgressStates.UPDATE;
+        return CrudInProgressStates.UPDATE;
     }
-    return crudInProgressStates.NONE;
+    return CrudInProgressStates.NONE;
 };
 
-export { getCrudInProgressState, crudInProgressStates };
+const isCrudInProgress = (crudInProgress?: CrudInProgressState) => crudInProgress !== CrudInProgressStates.NONE;
+
+export { getCrudInProgress, isCrudInProgress, CrudInProgressStates };
+export type { CrudInProgressState, CrudProgressFlags };

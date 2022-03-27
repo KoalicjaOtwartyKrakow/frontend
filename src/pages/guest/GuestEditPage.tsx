@@ -1,29 +1,28 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageCard' or ... Remove this comment to see the full error message
+
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/InProgress' o... Remove this comment to see the full error message
 import InProgress from "components/atoms/InProgress";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageErrorMess... Remove this comment to see the full error message
+
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageNavHome' ... Remove this comment to see the full error message
+
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestForm' or... Remove this comment to see the full error message
+
 import GuestForm from "components/guest/GuestForm";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormFiel... Remove this comment to see the full error message
+
 import { GuestFormFields } from "components/guest/GuestFormFields";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'hooks/api/guestHooks' or its c... Remove this comment to see the full error message
+
 import { useGetGuest, useUpdateGuest } from "hooks/api/guestHooks";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/CrudProgress' or its... Remove this comment to see the full error message
-import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
+
+import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
+
 import Guest from "models/Guest";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
+
 import { AppRoutes } from "constants/AppRoutes";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/GuestAccommodation' or ... Remove this comment to see the full error message
+
 import GuestAccommodation from "models/GuestAccommodation";
 
 const GuestEditPage = () => {
@@ -36,7 +35,7 @@ const GuestEditPage = () => {
 
     const { updatedGuest, guestUpdateInProgress, guestUpdateError, updateGuest } = useUpdateGuest();
 
-    const guestInProgress = getCrudInProgressState({
+    const guestInProgress = getCrudInProgress({
         retrieveInProgress: guestGetInProgress,
         updateInProgress: guestUpdateInProgress,
     });
@@ -93,7 +92,7 @@ const GuestEditPage = () => {
 
     return (
         <PageCard header={t("guest:card.title.update")}>
-            <InProgress inProgress={guestInProgress === crudInProgressStates.RETRIEVE} />
+            <InProgress inProgress={guestInProgress === CrudInProgressStates.RETRIEVE} />
             <PageErrorMessage error={guestGetError} />
             <PageErrorMessage error={guestUpdateError} />
 

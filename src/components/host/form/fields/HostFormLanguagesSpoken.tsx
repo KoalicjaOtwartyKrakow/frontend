@@ -2,14 +2,14 @@ import React from "react";
 import { FormFeedback, FormGroup, FormText } from "reactstrap";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormFields... Remove this comment to see the full error message
+
 import { HostFormFields } from "components/host/HostFormFields";
 import { Token, Typeahead, TypeaheadInputMulti } from "react-bootstrap-typeahead";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormLabe... Remove this comment to see the full error message
+
 import FormLabel from "components/atoms/form/FormLabel";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
+
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Language' or its corres... Remove this comment to see the full error message
+
 import { availableLanguages } from "models/Language";
 
 const HostFormLanguagesSpoken = () => {
@@ -43,7 +43,6 @@ const HostFormLanguagesSpoken = () => {
      * @returns {JSX.Element}
      */
     const languageToToken = (language: any) => (
-        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: any; index: any; key: any; onRem... Remove this comment to see the full error message
         <Token index={language.code} key={language.code} onRemove={onRemove} option={language}>
             {language.name}
         </Token>
@@ -87,7 +86,5 @@ const HostFormLanguagesSpoken = () => {
         </FormGroup>
     );
 };
-
-HostFormLanguagesSpoken.propTypes = {};
 
 export default HostFormLanguagesSpoken;

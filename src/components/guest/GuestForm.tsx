@@ -1,32 +1,24 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormFiel... Remove this comment to see the full error message
-import { guestFormFields as formFields } from "components/guest/GuestFormFields";
 import React from "react";
+import { Col, Row } from "reactstrap";
 import { Form, Formik } from "formik";
+import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
+import { useToasts } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormSche... Remove this comment to see the full error message
-import { guestFormCreateSchema, guestFormUpdateSchema } from "components/guest/GuestFormSchemas";
-import { Col, Row } from "reactstrap";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditional";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupAdults";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
-import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/form/sections... Remove this comment to see the full error message
-import GuestFormAssignments from "components/guest/form/sections/GuestFormAssignments";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/GuestAccommodation' or ... Remove this comment to see the full error message
-import GuestAccommodation from "models/GuestAccommodation";
-import { useToasts } from "react-toast-notifications";
-import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Enti... Remove this comment to see the full error message
 import EntityFormButtons from "components/molecules/form/EntityFormButtons";
+
+import GuestAccommodation from "models/GuestAccommodation";
+import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditional";
+import GuestFormAssignments from "components/guest/form/sections/GuestFormAssignments";
+import GuestFormDetailedInformation from "components/guest/form/sections/GuestFormDetailedInformation";
+import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupAdults";
+import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
+import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
+import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
+
+import { guestFormCreateSchema, guestFormUpdateSchema } from "components/guest/GuestFormSchemas";
+import { guestFormFields as formFields } from "components/guest/GuestFormFields";
 
 const GuestForm = (props: any) => {
     const { addToast } = useToasts();
@@ -91,8 +83,6 @@ const GuestForm = (props: any) => {
         validationSchema,
     };
 
-    const submitDisabled = (isValid: any, isSubmitting: any) => !isValid || isSubmitting;
-
     const { t } = useTranslation(["guest"]);
 
     const submitLabel = isCreateMode ? t("guest:form.button.create") : t("guest:form.button.update");
@@ -100,35 +90,24 @@ const GuestForm = (props: any) => {
 
     return (
         <Formik {...formikProps}>
-            {({ isSubmitting, isValid }) => (
-                <Form noValidate>
-                    <GuestFormAssignments onAccommodationSelected={onAccommodationSelected} />
-                    <Row>
-                        <Col xs={12} lg={6}>
-                            <GuestFormPersonalData />
-                            <GuestFormStayInfo />
-                            <GuestFormGroupAdults />
-                            <GuestFormGroupChildren />
-                        </Col>
-                        <Col xs={12} lg={6}>
-                            <GuestFormAdditional />
-                            <GuestFormDetailedInformation />
-                        </Col>
-                    </Row>
-                    <EntityFormButtons
-                        onRemove={onRemove}
-                        removeInProgress={false}
-                        submitDisabled={submitDisabled(isValid, isSubmitting)}
-                        submitIcon={submitIcon}
-                        submitInProgress={isSubmitting}
-                        submitLabel={submitLabel}
-                    />
-                </Form>
-            )}
+            <Form noValidate>
+                <GuestFormAssignments onAccommodationSelected={onAccommodationSelected} />
+                <Row>
+                    <Col xs={12} lg={6}>
+                        <GuestFormPersonalData />
+                        <GuestFormStayInfo />
+                        <GuestFormGroupAdults />
+                        <GuestFormGroupChildren />
+                    </Col>
+                    <Col xs={12} lg={6}>
+                        <GuestFormAdditional />
+                        <GuestFormDetailedInformation />
+                    </Col>
+                </Row>
+                <EntityFormButtons onRemove={onRemove} submitIcon={submitIcon} submitLabel={submitLabel} />
+            </Form>
         </Formik>
     );
 };
-
-// GuestForm.propTypes = guestFormPropTypes;
 
 export default GuestForm;

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormGroup, Input, Label } from "reactstrap";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormikAp... Remove this comment to see the full error message
+
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
 const FormCheckbox = ({ children, className, label, id, inline, field, form, ...props }: any) => {

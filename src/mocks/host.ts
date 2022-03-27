@@ -1,19 +1,18 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Host' or its correspond... Remove this comment to see the full error message
 import Host from "models/Host";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'mocks/base' or its correspondi... Remove this comment to see the full error message
+
 import { availableLanguages, chance, getMockedHoursAndMinutes } from "mocks/base";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/HostStatus' o... Remove this comment to see the full error message
+
 import { HostStatus } from "models/constants/HostStatus";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
+
 import { ApiPaths } from "services/Api/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
+
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { match, pathToRegexp } from "path-to-regexp";
 import moment from "moment-es6";
 
 const mockHost = () => {
     const host = new Host();
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
     host.createdAt = moment();
     host.id = chance.guid({ version: 4 });
     host.uuid = chance.guid({ version: 5 });
@@ -44,7 +43,6 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
         const { url } = config;
         const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { hostId },
         } = matchedPath;
 
@@ -59,7 +57,6 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
         const { url, data } = config;
         const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { hostId },
         } = matchedPath;
         const json = JSON.parse(data);
@@ -88,9 +85,9 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
          */
         const createdHost = plainToClass(Host, json);
         createdHost.id = chance.guid({ version: 4 });
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
         createdHost.createdAt = moment();
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
         createdHost.updatedAt = moment();
 
         mockedHosts.unshift(createdHost);

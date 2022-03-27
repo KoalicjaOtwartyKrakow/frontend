@@ -1,8 +1,7 @@
-import { connect, getIn } from "formik";
 import { Alert } from "reactstrap";
 import React from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
-import { API_ERRORS, API_NON_FIELD_ERRORS } from "services/Api/constants";
+import { FormikStatus } from "models/FormikStatus";
+import { useFormikContext } from "formik";
 
 const NonFieldError = ({ error, isNotLastError }: any) => (
     <>
@@ -11,8 +10,11 @@ const NonFieldError = ({ error, isNotLastError }: any) => (
     </>
 );
 
-const NonFieldErrors = ({ formik: { status }, label = "" }: any) => {
-    const nonFieldErrors = getIn(status, [API_ERRORS, API_NON_FIELD_ERRORS]) || [];
+const NonFieldErrors = ({ label = "" }: any) => {
+    const formikContext = useFormikContext();
+    const status: FormikStatus = formikContext.status;
+
+    const nonFieldErrors = status.nonFieldErrors || [];
     const hasErrors = nonFieldErrors.length > 0;
 
     return (
@@ -27,5 +29,4 @@ const NonFieldErrors = ({ formik: { status }, label = "" }: any) => {
     );
 };
 
-// @ts-expect-error ts-migrate(2345) FIXME: Argument of type '({ formik: { status }, label }: ... Remove this comment to see the full error message
-export default connect(NonFieldErrors);
+export default NonFieldErrors;

@@ -16,18 +16,16 @@ class AppRoutes {
 }
 
 class RoutesIcons {
-    // @ts-expect-error ts-migrate(1166) FIXME: A computed property name in a class property decla... Remove this comment to see the full error message
     static [AppRoutes.ROOT] = faHome;
-    // @ts-expect-error ts-migrate(1166) FIXME: A computed property name in a class property decla... Remove this comment to see the full error message
+
     static [AppRoutes.ACCOMMODATIONS] = faBed;
-    // @ts-expect-error ts-migrate(1166) FIXME: A computed property name in a class property decla... Remove this comment to see the full error message
+
     static [AppRoutes.GUESTS] = faUserFriends;
-    // @ts-expect-error ts-migrate(1166) FIXME: A computed property name in a class property decla... Remove this comment to see the full error message
+
     static [AppRoutes.HOSTS] = faHandHoldingHeart;
 }
 
 const getRouteIcon = (route: any) => {
-    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     const icon = RoutesIcons[route];
 
     if (!icon) {

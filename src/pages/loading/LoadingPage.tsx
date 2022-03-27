@@ -3,7 +3,6 @@ import { Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
-import PropTypes from "prop-types";
 
 const LoadingPage = ({ visible }: any) => {
     const className = classNames(
@@ -25,10 +24,6 @@ const LoadingPage = ({ visible }: any) => {
             </span>
         </Container>
     );
-};
-
-LoadingPage.propTypes = {
-    visible: PropTypes.bool.isRequired,
 };
 
 export default LoadingPage;

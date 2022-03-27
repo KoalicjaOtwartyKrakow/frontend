@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { Button } from "reactstrap";
 
 const HostFormResetButton = ({ label }: any) => {
@@ -8,10 +8,6 @@ const HostFormResetButton = ({ label }: any) => {
             {label}
         </Button>
     );
-};
-
-HostFormResetButton.propTypes = {
-    label: PropTypes.string.isRequired,
 };
 
 export default HostFormResetButton;

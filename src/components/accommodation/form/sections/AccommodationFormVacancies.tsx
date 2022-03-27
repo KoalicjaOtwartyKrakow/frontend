@@ -2,13 +2,9 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Form... Remove this comment to see the full error message
 import FormSection from "components/molecules/form/FormSection";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Form... Remove this comment to see the full error message
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/form/... Remove this comment to see the full error message
 import AccommodationFormVacanciesTotal from "components/accommodation/form/fields/AccommodationFormVacanciesTotal";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/form/... Remove this comment to see the full error message
 import AccommodationFormVacanciesTaken from "components/accommodation/form/fields/AccommodationFormVacanciesTaken";
 import AccommodationFormStatus from "../fields/AccommodationFormStatus";
 
@@ -31,7 +27,5 @@ const AccommodationFormVacancies = () => {
         </FormSection>
     );
 };
-
-AccommodationFormVacancies.propTypes = {};
 
 export default React.memo(AccommodationFormVacancies);

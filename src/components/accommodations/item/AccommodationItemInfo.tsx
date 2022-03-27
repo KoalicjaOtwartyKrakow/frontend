@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/accommodation/Accom... Remove this comment to see the full error message
+
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import {
     IconDisabledPeopleFriendly,
@@ -9,7 +9,6 @@ import {
     IconPetsNotAllowed,
     IconPetsNotPresent,
     IconPetsPresent,
-    // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/shared/Icons' or it... Remove this comment to see the full error message
 } from "components/shared/Icons";
 
 /**
@@ -23,7 +22,6 @@ const AccommodationItemInfo = () => {
      */
     const accommodation = useContext(AccommodationContext);
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'petsAllowed' does not exist on type 'unk... Remove this comment to see the full error message
     const { petsAllowed, petsPresent, disabledPeopleFriendly, parkingPlaceAvailable, easyAmbulanceAccess } =
         accommodation;
 

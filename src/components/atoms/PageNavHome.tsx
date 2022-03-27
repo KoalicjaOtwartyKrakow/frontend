@@ -2,7 +2,6 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import PropTypes from "prop-types";
 
 const PageNavigationBackToList = ({ to }: any) => {
     const { t } = useTranslation(["common"]);
@@ -14,10 +13,6 @@ const PageNavigationBackToList = ({ to }: any) => {
             </Button>
         </p>
     );
-};
-
-PageNavigationBackToList.propTypes = {
-    to: PropTypes.string.isRequired,
 };
 
 export default PageNavigationBackToList;

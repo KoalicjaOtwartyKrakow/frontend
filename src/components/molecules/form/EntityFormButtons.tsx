@@ -1,25 +1,30 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import type { IconDefinition } from "@fortawesome/fontawesome-common-types";
+import { useFormikContext } from "formik";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormRemoveButton from "components/molecules/form/buttons/EntityFormRemoveButton";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormResetButton from "components/molecules/form/buttons/EntityFormResetButton";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormSubmitButton from "components/molecules/form/buttons/EntityFormSubmitButton";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/butt... Remove this comment to see the full error message
 import EntityFormBackToListButton from "components/molecules/form/buttons/EntityFormBackToListButton";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/HorizontalLin... Remove this comment to see the full error message
 import HorizontalLine from "components/atoms/HorizontalLine";
 
-/**
- * @component
- */
-const EntityFormButtons = React.memo((props) => {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'onRemove' does not exist on type '{ chil... Remove this comment to see the full error message
-    const { onRemove, removeInProgress, submitDisabled, submitIcon, submitInProgress, submitLabel } = props;
+import { CrudInProgressState, CrudInProgressStates, isCrudInProgress } from "constants/CrudProgress";
+
+type Props = {
+    crudInProgressState?: CrudInProgressState;
+    onRemove: () => any;
+    submitIcon?: IconDefinition;
+    submitLabel: string;
+};
+
+const EntityFormButtons = (props: Props) => {
+    const { crudInProgressState, onRemove, submitIcon, submitLabel } = props;
+    const removeInProgress = crudInProgressState === CrudInProgressStates.DELETE;
+    const formikContext = useFormikContext();
+    const { isSubmitting, isValid } = formikContext;
+    const submitDisabled = !isValid || isSubmitting || isCrudInProgress(crudInProgressState);
 
     const { t } = useTranslation(["common"]);
     return (
@@ -36,7 +41,7 @@ const EntityFormButtons = React.memo((props) => {
                     <EntityFormSubmitButton
                         disabled={submitDisabled}
                         icon={submitIcon}
-                        isSubmitting={submitInProgress}
+                        isSubmitting={isSubmitting}
                         label={submitLabel}
                     />
                     {onRemove && (
@@ -51,16 +56,6 @@ const EntityFormButtons = React.memo((props) => {
             </Row>
         </React.Fragment>
     );
-});
-
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
-EntityFormButtons.propTypes = {
-    onRemove: PropTypes.func,
-    removeInProgress: PropTypes.bool.isRequired,
-    submitDisabled: PropTypes.bool.isRequired,
-    submitInProgress: PropTypes.bool.isRequired,
-    submitLabel: PropTypes.string.isRequired,
-    submitIcon: PropTypes.string,
 };
 
-export default EntityFormButtons;
+export default React.memo(EntityFormButtons);

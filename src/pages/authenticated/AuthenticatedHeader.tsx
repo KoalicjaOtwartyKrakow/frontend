@@ -1,11 +1,11 @@
 import React from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/compat/Jumbot... Remove this comment to see the full error message
+
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import { Container } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
+
 import { AppRoutes } from "constants/AppRoutes";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
+
 import { appConfig } from "constants/AppConfig";
 import { useTranslation } from "react-i18next";
 

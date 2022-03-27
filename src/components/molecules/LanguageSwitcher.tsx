@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, ButtonGroup } from "reactstrap";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'i18n' or its corresponding typ... Remove this comment to see the full error message
+
 import { fallbackLanguage, supportedLanguages } from "i18n";
 
 const LanguageSwitcher = ({ className }: any) => {

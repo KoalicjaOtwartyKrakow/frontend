@@ -1,5 +1,5 @@
 import moment from "moment-es6";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
+
 import { appConfig } from "constants/AppConfig";
 
 /**

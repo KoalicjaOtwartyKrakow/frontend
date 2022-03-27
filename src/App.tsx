@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect, useState } from "react";
 import "App.sass";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'pages/login/LoginPage' or its ... Remove this comment to see the full error message
+
 import LoginPage from "pages/login/LoginPage";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Auth' or its correspo... Remove this comment to see the full error message
+
 import Auth from "services/Auth";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'pages/loading/LoadingPage' or ... Remove this comment to see the full error message
+
 import LoadingPage from "pages/loading/LoadingPage";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'pages/AuthenticatedPages' or i... Remove this comment to see the full error message
 const Authenticated = React.lazy(() => import("pages/AuthenticatedPages"));
 
 const App = () => {

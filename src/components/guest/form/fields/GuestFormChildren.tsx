@@ -2,13 +2,13 @@ import React from "react";
 import { Button, FormGroup, InputGroup, InputGroupText } from "reactstrap";
 import { Field, FieldArray, useField } from "formik";
 import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestFormFiel... Remove this comment to see the full error message
+
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/pro-regular-svg-icons";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/FormInpu... Remove this comment to see the full error message
+
 import FormInputNoFeedback from "components/atoms/form/FormInputNoFeedback";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/Feedback... Remove this comment to see the full error message
+
 import Feedback from "components/atoms/form/Feedback";
 
 const GuestFormChildren = () => {

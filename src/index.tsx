@@ -10,11 +10,8 @@ import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { configure } from "axios-hooks";
 import "./index.sass";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'App' or its corresponding type... Remove this comment to see the full error message
 import App from "App";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
 import { baseURL, timeout } from "services/Api/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
 import "mocks/index";

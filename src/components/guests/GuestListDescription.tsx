@@ -1,10 +1,10 @@
 import React from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/shared/Icons' or it... Remove this comment to see the full error message
+
 import { IconFoodAllergy, IconFoodGlutenFree, IconFoodLactoseFree, IconFoodMeatFree } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/guest/GuestPriority... Remove this comment to see the full error message
+
 import GuestPriorityStatusBadge from "components/guest/GuestPriorityStatusBadge";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/shared/constants/Gu... Remove this comment to see the full error message
+
 import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestColorScheme";
 import { Col, Row } from "reactstrap";
 

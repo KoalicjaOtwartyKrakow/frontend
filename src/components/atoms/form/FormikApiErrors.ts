@@ -1,7 +1,8 @@
-import { getIn } from "formik";
+import { FormikContextType, getIn } from "formik";
 import HttpStatus from "http-status-codes";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
-import { API_ERRORS, API_NON_FIELD_ERRORS, ApiErrors, ApiErrorTypes } from "services/Api/constants";
+
+import { ApiErrors, ApiErrorStatus, ApiErrorTypes } from "services/Api/types";
+import { FormikStatus } from "models/FormikStatus";
 
 /**
  *
@@ -20,12 +21,13 @@ const getErrorMessageFromStatus = function (status: any) {
 };
 
 class FormikApiErrors {
-    static getError = function (name: any, form: any) {
-        const { touched, errors, status } = form;
-        // console.log(name, errors);
+    static getError = function (name: string, formikContext: FormikContextType<any>) {
+        const { touched, errors } = formikContext;
+
+        const status: ApiErrors = formikContext.status;
 
         const fieldTouched = getIn(touched, name);
-        const backendError = getIn(status, [API_ERRORS, name]);
+        const backendError = getIn(status, ["fieldErrors", name]);
         const frontendError = getIn(errors, name);
 
         if (frontendError && fieldTouched) {
@@ -40,26 +42,32 @@ class FormikApiErrors {
     };
 
     static getInitialStatus = function () {
-        return new ApiErrors();
+        const formikStatus: FormikStatus = {};
+        return formikStatus;
     };
 
-    /**
-     *
-     * @param {object} apiErrors
-     * @param {ApiErrorStatus} status
-     * @return {ApiErrors}
-     */
-    static getStatusFromApi = function (apiErrors: any, status: any) {
-        if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.BAD_REQUEST) {
-            return new ApiErrors(apiErrors);
+    static getStatusFromApi = function (apiErrors?: ApiErrors) {
+        if (apiErrors === undefined) {
+            const formikStatus: FormikStatus = {};
+            return formikStatus;
         }
 
-        const customErrorMessage = getErrorMessageFromStatus(status);
-        const customErrors = {
-            [API_NON_FIELD_ERRORS]: [customErrorMessage],
+        const { status, errors } = apiErrors;
+
+        if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.BAD_REQUEST) {
+            const formikStatus: FormikStatus = {
+                fieldErrors: errors,
+            };
+            return formikStatus;
+        }
+
+        // const customErrorMessage = getErrorMessageFromStatus(status);
+        // FIXME this is probably screwed up
+        const formikStatus: FormikStatus = {
+            nonFieldErrors: errors["non_field_errors"],
         };
 
-        return new ApiErrors(customErrors);
+        return formikStatus;
     };
 }
 

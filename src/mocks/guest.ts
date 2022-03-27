@@ -1,25 +1,24 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Guest' or its correspon... Remove this comment to see the full error message
 import Guest from "models/Guest";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/HostStatus' o... Remove this comment to see the full error message
+
 import { HostStatus } from "models/constants/HostStatus";
 import moment from "moment-es6";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/constants/GuestPriority... Remove this comment to see the full error message
+
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'mocks/base' or its correspondi... Remove this comment to see the full error message
+
 import { chance } from "mocks/base";
 import { match, pathToRegexp } from "path-to-regexp";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
+
 import { ApiPaths } from "services/Api/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
+
 import { classToPlain, plainToClass } from "serializers/Serializer";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/GuestAccommodation' or ... Remove this comment to see the full error message
+
 import GuestAccommodation from "models/GuestAccommodation";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Accommodation' or its c... Remove this comment to see the full error message
+
 import Accommodation from "models/Accommodation";
 
 const mockGuest = () => {
     const guest = new Guest();
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
     guest.createdAt = moment();
     guest.id = chance.guid({ version: 5 });
     guest.uuid = chance.guid({ version: 5 });
@@ -56,9 +55,8 @@ const mockGuest = () => {
     guest.desiredDestination = chance.address();
     guest.priorityStatus = chance.pickone(Object.values(GuestPriorityStatus));
 
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
     const daysFromStartOfWar = moment().diff(moment("2022-02-24"), "days");
-    // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
     guest.priorityDate = moment().subtract(chance.natural({ min: 0, max: daysFromStartOfWar }), "days");
 
     return guest;
@@ -77,7 +75,6 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
         const { url } = config;
         const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { guestId },
         } = matchedPath;
 
@@ -92,7 +89,6 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
         const { url, data } = config;
         const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { guestId },
         } = matchedPath;
 
@@ -139,9 +135,9 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
          */
         const createdGuest = plainToClass(Guest, json);
         createdGuest.id = chance.guid({ version: 5 });
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
         createdGuest.createdAt = moment();
-        // @ts-expect-error ts-migrate(2349) FIXME: This expression is not callable.
+
         createdGuest.updatedAt = moment();
 
         mockedGuests.unshift(createdGuest);

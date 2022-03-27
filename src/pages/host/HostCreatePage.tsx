@@ -1,28 +1,28 @@
 import React, { useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageCard' or ... Remove this comment to see the full error message
+
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
 
 // import { Toast } from "components/atoms/Toast";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/InProgress' o... Remove this comment to see the full error message
+
 import InProgress from "components/atoms/InProgress";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageErrorMess... Remove this comment to see the full error message
+
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/PageNavHome' ... Remove this comment to see the full error message
+
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostForm' or i... Remove this comment to see the full error message
+
 import HostForm from "components/host/HostForm";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormFields... Remove this comment to see the full error message
+
 import { HostFormFields } from "components/host/HostFormFields";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'hooks/api/hostHooks' or its co... Remove this comment to see the full error message
+
 import { useCreateHost } from "hooks/api/hostHooks";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/CrudProgress' or its... Remove this comment to see the full error message
-import { crudInProgressStates, getCrudInProgressState } from "constants/CrudProgress";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/Host' or its correspond... Remove this comment to see the full error message
+
+import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
+
 import Host from "models/Host";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppRoutes' or its co... Remove this comment to see the full error message
+
 import { AppRoutes } from "constants/AppRoutes";
 
 const HostCreatePage = () => {
@@ -32,7 +32,7 @@ const HostCreatePage = () => {
 
     const { createdHost, hostCreateInProgress, hostCreateError, createHost } = useCreateHost();
 
-    const hostInProgress = getCrudInProgressState({
+    const hostInProgress = getCrudInProgress({
         createInProgress: hostCreateInProgress,
     });
 
@@ -68,7 +68,7 @@ const HostCreatePage = () => {
 
     return (
         <PageCard header={t("host:card.title.create")}>
-            <InProgress inProgress={hostInProgress !== crudInProgressStates.NONE} />
+            <InProgress inProgress={hostInProgress !== CrudInProgressStates.NONE} />
             <PageErrorMessage error={hostCreateError} />
 
             {initialValues && (

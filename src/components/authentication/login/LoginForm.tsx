@@ -1,8 +1,8 @@
 import React from "react";
 import { useGoogleLogin } from "react-google-login";
-import PropTypes from "prop-types";
+
 import { Alert, Button } from "reactstrap";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'constants/AppConfig' or its co... Remove this comment to see the full error message
+
 import { appConfig } from "constants/AppConfig";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,10 +38,6 @@ const LoginForm = ({ onSubmit }: any) => {
             )}
         </div>
     );
-};
-
-LoginForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

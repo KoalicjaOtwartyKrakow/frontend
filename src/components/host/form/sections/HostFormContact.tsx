@@ -5,13 +5,13 @@ import HostFormEmail from "../fields/HostFormEmail";
 import HostFormPhoneNumber from "../fields/HostFormPhoneNumber";
 import HostFormCallAfter from "../fields/HostFormCallAfter";
 import HostFormCallBefore from "../fields/HostFormCallBefore";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/fields/Ho... Remove this comment to see the full error message
+
 import HostFormFullName from "components/host/form/fields/HostFormFullName";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Form... Remove this comment to see the full error message
+
 import FormSection from "components/molecules/form/FormSection";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/molecules/form/Form... Remove this comment to see the full error message
+
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/fields/Ho... Remove this comment to see the full error message
+
 import HostFormStatus from "components/host/form/fields/HostFormStatus";
 
 /**
@@ -49,7 +49,5 @@ const HostFormContact = () => {
         </FormSection>
     );
 };
-
-HostFormContact.propTypes = {};
 
 export default React.memo(HostFormContact);

@@ -1,10 +1,9 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'models/User' or its correspond... Remove this comment to see the full error message
 import User from "models/User";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'mocks/base' or its correspondi... Remove this comment to see the full error message
+
 import { chance } from "mocks/base";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'services/Api/constants' or its... Remove this comment to see the full error message
+
 import { ApiPaths } from "services/Api/constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'serializers/Serializer' or its... Remove this comment to see the full error message
+
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { match, pathToRegexp } from "path-to-regexp";
 import { nanoid } from "nanoid";
@@ -34,7 +33,6 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
         const { url } = config;
         const matchedPath = match(ApiPaths.USER_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { userId },
         } = matchedPath;
 
@@ -49,7 +47,6 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
         const { url, data } = config;
         const matchedPath = match(ApiPaths.USER_BY_ID)(url);
         const {
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'params' does not exist on type 'Match<ob... Remove this comment to see the full error message
             params: { userId },
         } = matchedPath;
         const json = JSON.parse(data);

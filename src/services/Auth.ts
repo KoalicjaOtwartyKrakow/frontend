@@ -1,7 +1,7 @@
 import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
+
 import { delay } from "lodash-es";
 
 class Auth {
@@ -35,7 +35,6 @@ class Auth {
         const tokenRotateInterval = getAsMilliseconds(authResponse.expires_in);
 
         delay(() => {
-            // @ts-expect-error ts-migrate(2322) FIXME: Type 'Timer' is not assignable to type 'undefined'... Remove this comment to see the full error message
             Auth.rotateTokenIntervalHandle = setInterval(rotateToken, tokenRotateInterval);
         }, tokenRotateInterval);
 

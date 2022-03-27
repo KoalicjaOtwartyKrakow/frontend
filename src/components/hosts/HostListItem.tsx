@@ -1,9 +1,9 @@
 import React from "react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostContext' o... Remove this comment to see the full error message
+
 import { HostContext } from "components/host/HostContext";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/hosts/item/HostItem... Remove this comment to see the full error message
+
 import HostItemLanguagesSpoken from "components/hosts/item/HostItemLanguagesSpoken";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/hosts/item/HostItem... Remove this comment to see the full error message
+
 import HostItemStatus from "components/hosts/item/HostItemStatus";
 
 /**

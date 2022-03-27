@@ -1,24 +1,21 @@
 // import Effect from 'components/atoms/form/Effect';
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormFields... Remove this comment to see the full error message
+
 import { hostFormFields as formFields } from "components/host/HostFormFields";
 import React from "react";
 import { Form, Formik } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'proptypes/HostFormPropTypes' o... Remove this comment to see the full error message
-import { hostFormPropTypes } from "proptypes/HostFormPropTypes";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/HostFormSchema... Remove this comment to see the full error message
 import { hostFormCreateSchema, hostFormUpdateSchema } from "components/host/HostFormSchemas";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
-import HostFormButtons from "components/host/form/sections/HostFormButtons";
+
 import { Col, Row } from "reactstrap";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
+
 import HostFormContact from "components/host/form/sections/HostFormContact";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/host/form/sections/... Remove this comment to see the full error message
+
 import HostFormAdditionalInformation from "components/host/form/sections/HostFormAdditionalInformation";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'components/atoms/form/NonField... Remove this comment to see the full error message
+
 import NonFieldErrors from "components/atoms/form/NonFieldErrors";
+import EntityFormButtons from "components/molecules/form/EntityFormButtons";
 
 const HostForm = (props: any) => {
     const { initialValues, onRemove, hostInProgress } = props;
@@ -93,19 +90,15 @@ const HostForm = (props: any) => {
                             <HostFormAdditionalInformation />
                         </Col>
                     </Row>
-                    <HostFormButtons
-                        isSubmitting={isSubmitting}
-                        submitDisabled={submitDisabled(isValid, isSubmitting)}
+                    <EntityFormButtons
                         submitLabel={submitLabel}
                         onRemove={onRemove}
-                        inProgress={hostInProgress}
+                        crudInProgressState={hostInProgress}
                     />
                 </Form>
             )}
         </Formik>
     );
 };
-
-HostForm.propTypes = hostFormPropTypes;
 
 export default HostForm;

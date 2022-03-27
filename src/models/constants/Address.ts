@@ -19,11 +19,11 @@ const polishVoivodeships = Object.freeze([
 
 const defaultPolishVoivodeshipId = "MALOPOLSKIE";
 
-const getPolishVoivodeshipById = (id: any) => {
+const getPolishVoivodeshipById = (id: string) => {
     return polishVoivodeships.find((item) => item.id === id);
 };
 
-const getPolishVoivodeshipNameById = (id: any) => {
+const getPolishVoivodeshipNameById = (id: string): string => {
     return getPolishVoivodeshipById(id)?.name || "";
 };
 
