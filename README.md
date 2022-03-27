@@ -11,7 +11,7 @@ same way as everybody else.
 ```shell
 git config --local core.autocrlf input
 ```
-The LF is our line ending of choice. Be sure to set 
+The LF is our line ending of choice. Be sure to set
 
 1. Go **Settings…** » **Editor** » **Code Style** and select `Unix and macOS (\n)` as Line separator.
 
@@ -30,7 +30,7 @@ to install project dependencies.
 3. Choose Prettier plugin path from the dropdown.
 4. Set "Run for files" to `{**/*,*}.{js,ts,jsx,tsx,json,css,scss,sass}`
 5. Check both **On Reformat Code action** and **On Save** checkboxes.
-6. Go **Settings…** » **Languages & Frameworks** » **JavaScript** » **Code Quality Tools** » **ESLint** » and select *Automatic ESLint configuration*. 
+6. Go **Settings…** » **Languages & Frameworks** » **JavaScript** » **Code Quality Tools** » **ESLint** » and select *Automatic ESLint configuration*.
 
 ### Install Webstorm plugins
 
@@ -44,7 +44,7 @@ npm config set "@fortawesome:registry" https://npm.fontawesome.com/
 npm config set "//npm.fontawesome.com/:_authToken" ????????-????-????-????-????????????
 ```
 
-Ask for **_authToken** value on *#frontend* channel of the project's Discord. 
+Ask for **_authToken** value on *#frontend* channel of the project's Discord.
 
 ## Development
 
@@ -86,3 +86,25 @@ Create `.env.production.local` and set values as suggested by backend team. Then
 ```shell
 yarn build
 ```
+## Cypress Sanity Tests
+
+UI sanity tests are located in `cypress/integration` directory
+
+### How to run
+
+Build the app first and then run the tests:
+```shell
+yarn run cypress
+```
+
+### Skipping failing tests
+
+Most of the selectors are text-based and are prone to failure on UI change.
+If a tests fails due to change in the UI / selectors you can skip it by modifying the `*.spec.js` file in `cypress/integration` and adding `skip` attribute to `it()`.
+```javascript
+it.skip('Failing test', () => {})
+```
+
+### Run tests locally
+In order to run the tests locally you will need to add values for `REACT_APP_GOOGLE_CLIENTID`, `REACT_APP_GOOGLE_CLIENT_SECRET` and `GOOGLE_REFRESH_TOKEN` in your local `.env` file.
+Ask for them on `#frontend` in Slack or [obtain them yourself](https://docs.cypress.io/guides/testing-strategies/google-authentication#Using-the-Google-OAuth-2-0-Playground-to-Create-Testing-Credentials)
