@@ -5,10 +5,10 @@ import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
-type Props = {
+interface Props {
     label: string;
     mobileLabel: string;
-};
+}
 
 const EntityFormBackToListButton = ({ label, mobileLabel, ...rest }: Props) => {
     const navigate = useNavigate();

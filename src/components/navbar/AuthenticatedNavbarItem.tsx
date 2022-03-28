@@ -6,16 +6,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
-const AuthenticatedNavbarItem = React.memo(({ exact, icon, i18nKey, path }) => {
+interface Props {
+    icon: IconDefinition,
+    i18nKey: string,
+    path: string
+}
+
+const AuthenticatedNavbarItem = ({ icon, i18nKey, path }: Props) => {
     const { t } = useTranslation(["accommodation"]);
     const NavbarNavLink = (props: any) => {
         return <RouterNavLink {...props} className={(active) => classNames(props.className, { active })} />;
     };
     const options = {};
-    if (exact) {
-        options.exact = undefined;
-    }
     return (
         <NavItem>
             <NavLink tag={NavbarNavLink} to={path} {...options}>
@@ -23,6 +27,6 @@ const AuthenticatedNavbarItem = React.memo(({ exact, icon, i18nKey, path }) => {
             </NavLink>
         </NavItem>
     );
-});
+};
 
-export default AuthenticatedNavbarItem;
+export default React.memo(AuthenticatedNavbarItem);

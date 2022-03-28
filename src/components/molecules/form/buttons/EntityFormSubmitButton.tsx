@@ -6,13 +6,13 @@ import ProgressIcon from "components/atoms/ProgressIcon";
 import { useTranslation } from "react-i18next";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
-type Props = {
+interface Props {
     disabled: boolean;
     isSubmitting: boolean;
     label: string;
     icon?: IconDefinition;
     usePleaseWaitLabel?: boolean;
-};
+}
 
 const EntityFormSubmitButton = ({
     disabled,

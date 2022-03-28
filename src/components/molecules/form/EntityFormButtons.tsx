@@ -12,12 +12,12 @@ import HorizontalLine from "components/atoms/HorizontalLine";
 
 import { CrudInProgressState, CrudInProgressStates, isCrudInProgress } from "constants/CrudProgress";
 
-type Props = {
+interface Props {
     crudInProgressState?: CrudInProgressState;
     onRemove: () => any;
     submitIcon?: IconDefinition;
     submitLabel: string;
-};
+}
 
 const EntityFormButtons = (props: Props) => {
     const { crudInProgressState, onRemove, submitIcon, submitLabel } = props;

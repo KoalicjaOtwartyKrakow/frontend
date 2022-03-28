@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from "reactstrap";
 
-type Props = {
+interface Props {
     disabled: boolean;
     label: string;
-};
+}
 
 const EntityFormResetButton = ({ label, disabled }: Props) => {
     return (

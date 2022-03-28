@@ -7,10 +7,10 @@ import HttpStatus from "http-status-codes";
 import type { ApiErrorCodeClient, ApiErrors } from "services/Api/types";
 import { ApiErrorCodesClient, ApiErrorTypes } from "services/Api/types";
 
-type Props = {
+interface Props {
     children?: React.ReactNode;
     error: ApiErrors;
-};
+}
 
 const PageErrorMessage = ({ children, error }: Props) => {
     const { t } = useTranslation(["common"]);

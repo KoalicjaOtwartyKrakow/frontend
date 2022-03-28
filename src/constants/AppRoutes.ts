@@ -15,17 +15,14 @@ class AppRoutes {
     static GUEST_EDIT = AppRoutes.GUESTS + "/:guestId/edit";
 }
 
-class RoutesIcons {
-    static [AppRoutes.ROOT] = faHome;
+const RoutesIcons = {
+    [AppRoutes.ROOT]: faHome,
+    [AppRoutes.ACCOMMODATIONS]: faBed,
+    [AppRoutes.GUESTS]: faUserFriends,
+    [AppRoutes.HOSTS]: faHandHoldingHeart,
+} as const;
 
-    static [AppRoutes.ACCOMMODATIONS] = faBed;
-
-    static [AppRoutes.GUESTS] = faUserFriends;
-
-    static [AppRoutes.HOSTS] = faHandHoldingHeart;
-}
-
-const getRouteIcon = (route: any) => {
+const getRouteIcon = (route: string) => {
     const icon = RoutesIcons[route];
 
     if (!icon) {
