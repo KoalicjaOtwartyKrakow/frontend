@@ -23,15 +23,15 @@ import User from "models/User";
 class Guest {
     @JsonProperty()
     @JsonType(GuestAccommodation)
-    accommodationUnit = undefined;
+    accommodationUnit: GuestAccommodation | undefined = undefined;
 
     @JsonProperty()
     @JsonType(String)
-    accommodationUnitId = undefined;
+    accommodationUnitId: string | undefined = undefined;
 
     @JsonProperty("childrenAges")
     @JsonElementType(Number)
-    children = [];
+    children: number[] = [];
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
@@ -51,7 +51,7 @@ class Guest {
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
-    createdAt = undefined;
+    createdAt: moment.Moment | undefined = undefined;
 
     @JsonProperty()
     @JsonType(String)
@@ -87,7 +87,7 @@ class Guest {
 
     @JsonProperty("guid")
     @JsonType(String)
-    id = undefined;
+    id: string | undefined = undefined;
 
     @JsonProperty()
     @JsonType(Boolean)
@@ -125,13 +125,10 @@ class Guest {
     @JsonType(String)
     phoneNumber = "";
 
-    /**
-     * @type {moment.Moment}
-     */
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
-    priorityDate = undefined;
+    priorityDate: moment.Moment | undefined = undefined;
 
     @JsonProperty()
     @JsonType(String)
@@ -150,15 +147,14 @@ class Guest {
     @JsonType(String)
     verificationStatus = GuestStatus.CREATED;
 
-    constructor() {
-        this.uuidRegenerate();
-    }
+    public uuid: string = "";
 
     get accommodation() {
+        // @ts-ignore
         return this.accommodationUnit;
     }
 
-    set accommodation(accommodation) {
+    set accommodation(accommodation: GuestAccommodation) {
         this.accommodationUnit = accommodation;
 
         this.accommodationUnitId = accommodation?.id;
@@ -172,7 +168,7 @@ class Guest {
     uuidRegenerate() {
         this.uuid = nanoid();
         if (GuestAccommodation.is(this.accommodationUnit)) {
-            this.accommodationUnitId = this.accommodationUnit.id;
+            this.accommodationUnitId = this.accommodationUnit?.id;
         }
     }
 }

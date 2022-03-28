@@ -15,7 +15,7 @@ const IMMUTABLE_FIELDS = [
     "accommodationUnit",
 ];
 
-const plainToClass = function (className: any, plain: any, convertCase = false) {
+const plainToClass = function (className: any, plain: any, convertCase = false): typeof className {
     const camelCasePlain = convertCase ? camelcaseKeys(plain) : plain;
     return TaJson.deserialize(camelCasePlain, className);
 };

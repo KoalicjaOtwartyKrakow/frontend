@@ -62,10 +62,6 @@ class GuestAccommodation {
     @JsonType(String)
     status = AccommodationStatus.CREATED;
 
-    @JsonProperty()
-    @JsonType(String)
-    uuid = "";
-
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
@@ -94,6 +90,8 @@ class GuestAccommodation {
     @JsonProperty()
     @JsonType(Boolean)
     easyAmbulanceAccess = false;
+
+    public uuid: string = "";
 
     constructor() {
         this.uuidRegenerate();

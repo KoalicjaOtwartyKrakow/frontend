@@ -1,4 +1,4 @@
-import moment from "moment-es6";
+import moment from "moment";
 
 import Singleton from "singleton-decorator";
 

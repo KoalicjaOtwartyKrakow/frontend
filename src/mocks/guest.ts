@@ -1,14 +1,14 @@
 import Guest from "models/Guest";
 
 import { HostStatus } from "models/constants/HostStatus";
-import moment from "moment-es6";
+import moment from "moment";
 
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
 import { chance } from "mocks/base";
-import { match, pathToRegexp } from "path-to-regexp";
+import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 
-import { ApiPaths } from "services/Api/constants";
+import { ApiPaths, GuestByIdParams } from "services/Api/constants";
 
 import { classToPlain, plainToClass } from "serializers/Serializer";
 
@@ -21,7 +21,6 @@ const mockGuest = () => {
 
     guest.createdAt = moment();
     guest.id = chance.guid({ version: 5 });
-    guest.uuid = chance.guid({ version: 5 });
     guest.fullName = chance.name();
     guest.verificationStatus = chance.pickone(Object.values(HostStatus));
     guest.email = chance.email();
@@ -73,7 +72,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
 
     mockAdapter.onGet(pathToRegexp(ApiPaths.GUEST_BY_ID)).reply((config: any) => {
         const { url } = config;
-        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
+        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url) as MatchResult<GuestByIdParams>;
         const {
             params: { guestId },
         } = matchedPath;
@@ -87,7 +86,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
 
     mockAdapter.onPut(pathToRegexp(ApiPaths.GUEST_BY_ID)).reply((config: any) => {
         const { url, data } = config;
-        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url);
+        const matchedPath = match(ApiPaths.GUEST_BY_ID)(url) as MatchResult<GuestByIdParams>;
         const {
             params: { guestId },
         } = matchedPath;

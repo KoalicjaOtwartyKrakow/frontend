@@ -14,7 +14,6 @@ import App from "App";
 import { baseURL, timeout } from "services/Api/constants";
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
-import "mocks/index";
 
 if (process.env.NODE_ENV === "production") {
     Sentry.init({

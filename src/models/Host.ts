@@ -40,7 +40,7 @@ class Host {
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
-    createdAt = undefined;
+    createdAt: moment.Moment | undefined = undefined;
 
     @JsonProperty()
     @JsonElementType(Language)
@@ -55,10 +55,10 @@ class Host {
     @JsonType(String)
     updatedAt = undefined;
 
-    private uuid: string;
+    public uuid: string = "";
 
     constructor() {
-        this.uuid = nanoid();
+        this.uuidRegenerate();
     }
 
     @OnDeserialized()

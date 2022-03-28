@@ -47,7 +47,7 @@ class FormikApiErrors {
     };
 
     static getStatusFromApi = function (apiErrors?: ApiErrors) {
-        if (apiErrors === undefined) {
+        if (apiErrors === undefined || apiErrors.status === undefined) {
             const formikStatus: FormikStatus = {};
             return formikStatus;
         }

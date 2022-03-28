@@ -1,5 +1,5 @@
-import moment from "moment-es6";
-import { match, pathToRegexp } from "path-to-regexp";
+import moment from "moment";
+import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 
 import { chance, getRandomItem } from "mocks/base";
 
@@ -13,13 +13,12 @@ import GuestAccommodation from "models/GuestAccommodation";
 
 import { classToPlain, plainToClass } from "serializers/Serializer";
 
-import { ApiPaths } from "services/Api/constants";
+import { AccommodationByIdParams, ApiPaths, GuestByIdParams } from "services/Api/constants";
 
 const mockAccommodation = () => {
     const accommodation = new Accommodation();
     // Id
     accommodation.id = chance.guid({ version: 5 });
-    accommodation.uuid = chance.guid({ version: 5 });
 
     // Vacancies
     accommodation.addressLine = chance.address();
@@ -77,7 +76,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
 
     mockAdapter.onGet(pathToRegexp(ApiPaths.ACCOMMODATION_BY_ID)).reply((config: any) => {
         const { url } = config;
-        const matchedPath = match(ApiPaths.ACCOMMODATION_BY_ID)(url);
+        const matchedPath = match(ApiPaths.ACCOMMODATION_BY_ID)(url) as MatchResult<AccommodationByIdParams>;
         const {
             params: { accommodationId },
         } = matchedPath;
@@ -107,10 +106,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
     mockAdapter.onPost(pathToRegexp(ApiPaths.ACCOMMODATION)).reply((config: any) => {
         const { url, data } = config;
         const json = JSON.parse(data);
-        /**
-         * @type {Accommodation}
-         */
-        const createdAccommodation = plainToClass(Accommodation, json);
+        const createdAccommodation: Accommodation = plainToClass(Accommodation, json);
         createdAccommodation.id = chance.guid({ version: 5 });
 
         createdAccommodation.createdAt = moment();
@@ -122,30 +118,6 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
         const plain = classToPlain(createdAccommodation);
 
         console.log(`[useUpdateAccommodation] Mocked response for ${url}: `, createdAccommodation);
-
-        return [200, JSON.stringify(plain)];
-    });
-
-    mockAdapter.onPost(pathToRegexp(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST)).reply((config: any) => {
-        const { url } = config;
-        const matchedPath = match(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST)(url);
-        const {
-            params: { accommodationId, guestId },
-        } = matchedPath;
-
-        const accommodation = mockedAccommodations.find((mock: any) => mock.id === accommodationId);
-
-        const guest = mockedGuests.find((mock: any) => mock.id === guestId);
-
-        if (!accommodation.guests.some((item: any) => item.id)) {
-            accommodation.guests.unshift(guest);
-
-            accommodation.updatedAt = moment();
-        }
-
-        guest.accommodation = plainToClass(GuestAccommodation, classToPlain(accommodation));
-
-        const plain = classToPlain(accommodation);
 
         return [200, JSON.stringify(plain)];
     });

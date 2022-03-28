@@ -70,6 +70,7 @@ const useUpdateGuest = () => {
         const data = filterImmutableFields(plain);
 
         // This whole stuff is dirty AF
+        // @ts-ignore
         data.accommodationUnitId = data.accommodationUnitId ?? null;
 
         const config = {

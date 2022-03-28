@@ -7,6 +7,8 @@ class GuestChild {
     @JsonType(Number)
     age = 1;
 
+    public uuid: string = "";
+
     constructor() {
         this.uuidRegenerate();
     }

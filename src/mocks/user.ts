@@ -2,16 +2,14 @@ import User from "models/User";
 
 import { chance } from "mocks/base";
 
-import { ApiPaths } from "services/Api/constants";
+import { ApiPaths, UserByIdParams } from "services/Api/constants";
 
 import { classToPlain, plainToClass } from "serializers/Serializer";
-import { match, pathToRegexp } from "path-to-regexp";
-import { nanoid } from "nanoid";
+import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 
 const mockUser = () => {
     const user = new User();
     user.id = chance.guid({ version: 4 });
-    user.uuid = nanoid();
     user.givenName = chance.first({ nationality: "it" });
     user.familyName = chance.last({ nationality: "it" });
     user.email = chance.email();
@@ -31,7 +29,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
 
     mockAdapter.onGet(pathToRegexp(ApiPaths.USER_BY_ID)).reply((config: any) => {
         const { url } = config;
-        const matchedPath = match(ApiPaths.USER_BY_ID)(url);
+        const matchedPath = match(ApiPaths.USER_BY_ID)(url) as MatchResult<UserByIdParams>;
         const {
             params: { userId },
         } = matchedPath;
@@ -45,7 +43,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
 
     mockAdapter.onPut(pathToRegexp(ApiPaths.USER_BY_ID)).reply((config: any) => {
         const { url, data } = config;
-        const matchedPath = match(ApiPaths.USER_BY_ID)(url);
+        const matchedPath = match(ApiPaths.USER_BY_ID)(url) as MatchResult<UserByIdParams>;
         const {
             params: { userId },
         } = matchedPath;
@@ -70,10 +68,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
     mockAdapter.onPost(pathToRegexp(ApiPaths.USER)).reply((config: any) => {
         const { url, data } = config;
         const json = JSON.parse(data);
-        /**
-         * @type {User}
-         */
-        const createdUser = plainToClass(User, json);
+        const createdUser: User = plainToClass(User, json);
         createdUser.id = chance.guid({ version: 4 });
 
         mockedUsers.unshift(createdUser);

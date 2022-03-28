@@ -7,7 +7,7 @@ import Guest from "models/Guest";
 import GuestAccommodation from "models/GuestAccommodation";
 
 import { chance, getRandomItem } from "mocks/base";
-import moment from "moment-es6";
+import moment from "moment";
 
 const mockAccommodationRelationships = ({ mockedAccommodations, mockedGuests, mockedHosts }: any) => {
     for (const mockedAccommodation of mockedAccommodations) {

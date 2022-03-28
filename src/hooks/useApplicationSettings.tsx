@@ -8,6 +8,7 @@ const useApplicationSettings = () => {
     const defaultSettings = {};
 
     if (appConfig.useMocks) {
+        // @ts-ignore
         defaultSettings[ApplicationSettings.IS_ENABLE_MOCKS] = false;
     }
 

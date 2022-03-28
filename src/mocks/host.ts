@@ -4,18 +4,16 @@ import { availableLanguages, chance, getMockedHoursAndMinutes } from "mocks/base
 
 import { HostStatus } from "models/constants/HostStatus";
 
-import { ApiPaths } from "services/Api/constants";
+import { ApiPaths, HostByIdParams } from "services/Api/constants";
 
 import { classToPlain, plainToClass } from "serializers/Serializer";
-import { match, pathToRegexp } from "path-to-regexp";
-import moment from "moment-es6";
+import { match, MatchResult, pathToRegexp } from "path-to-regexp";
+import moment from "moment";
 
 const mockHost = () => {
     const host = new Host();
-
     host.createdAt = moment();
     host.id = chance.guid({ version: 4 });
-    host.uuid = chance.guid({ version: 5 });
     host.fullName = chance.name();
     host.email = chance.email();
     host.phoneNumber = chance.phone();
@@ -41,7 +39,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
 
     mockAdapter.onGet(pathToRegexp(ApiPaths.HOST_BY_ID)).reply((config: any) => {
         const { url } = config;
-        const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
+        const matchedPath = match(ApiPaths.HOST_BY_ID)(url) as MatchResult<HostByIdParams>;
         const {
             params: { hostId },
         } = matchedPath;
@@ -55,7 +53,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
 
     mockAdapter.onPut(pathToRegexp(ApiPaths.HOST_BY_ID)).reply((config: any) => {
         const { url, data } = config;
-        const matchedPath = match(ApiPaths.HOST_BY_ID)(url);
+        const matchedPath = match(ApiPaths.HOST_BY_ID)(url) as MatchResult<HostByIdParams>;
         const {
             params: { hostId },
         } = matchedPath;

@@ -106,7 +106,6 @@ const AuthenticatedPages = ({ onLogout }: any) => {
                     />
                     <Route
                         path={AppRoutes.GUESTS}
-                        exact
                         element={
                             <RequireAuth>
                                 <GuestsPage />
@@ -131,7 +130,6 @@ const AuthenticatedPages = ({ onLogout }: any) => {
                     />
                     <Route
                         path={AppRoutes.HOSTS}
-                        exact
                         element={
                             <RequireAuth>
                                 <HostsPage />

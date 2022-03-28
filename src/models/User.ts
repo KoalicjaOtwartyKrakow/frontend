@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 class User {
     @JsonProperty("guid")
     @JsonType(String)
-    id = undefined;
+    id: string | undefined = undefined;
 
     @JsonProperty()
     @JsonType(String)
@@ -29,6 +29,8 @@ class User {
     get fullName() {
         return `${this.givenName} ${this.familyName}`;
     }
+
+    public uuid: string = "";
 
     constructor() {
         this.uuidRegenerate();

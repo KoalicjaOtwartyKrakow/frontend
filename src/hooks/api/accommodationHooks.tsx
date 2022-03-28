@@ -30,7 +30,7 @@ const useCreateAccommodation = () => {
         const createData = async () => {
             try {
                 await fetch(config);
-            } catch (error) {
+            } catch (error: unknown) {
                 console.error("[useCreateAccommodation] Error on createAccommodation(): ", error);
                 return getErrorsFromApi(error);
             }
@@ -121,47 +121,4 @@ const useUpdateAccommodation = () => {
     };
 };
 
-const useAddGuestToAccommodation = () => {
-    const [{ data, loading, error }, fetch] = useAxios({ method: "POST" });
-
-    const accommodationAddGuest = data;
-    const accommodationAddGuestInProgress = loading;
-    const accommodationAddGuestsUpdateError = getErrorsFromApi(error);
-
-    /**
-     *
-     * @param {Accommodation} accommodation
-     * @param {Guest} guest
-     * @returns {Promise<{errors: Object, status: ApiErrorStatus}|undefined>}
-     */
-    const addGuestToAccommodation = ({ accommodation, guest }: any) => {
-        const url = getPath(ApiPaths.ACCOMMODATION_BY_ID_ADD_GUEST, {
-            accommodationId: accommodation.id,
-            guestId: guest.id,
-        });
-
-        const transformResponse = transformObjectResponse(Accommodation);
-
-        const config = { url, transformResponse };
-
-        const updateData = async () => {
-            try {
-                await fetch(config);
-            } catch (error) {
-                console.error("[useAddGuestToAccommodation] Error on addGuestToAccommodation(): ", error);
-                return getErrorsFromApi(error);
-            }
-        };
-
-        return updateData();
-    };
-
-    return {
-        accommodationAddGuest,
-        accommodationAddGuestInProgress,
-        accommodationAddGuestsUpdateError,
-        addGuestToAccommodation,
-    };
-};
-
-export { useCreateAccommodation, useGetAccommodation, useUpdateAccommodation, useAddGuestToAccommodation };
+export { useCreateAccommodation, useGetAccommodation, useUpdateAccommodation };

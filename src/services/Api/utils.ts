@@ -4,7 +4,7 @@ import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 
 import { plainToClass } from "serializers/Serializer";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import type { ApiErrors, ApiErrorStatus } from "services/Api/types";
 import { ApiErrorCodesClient, ApiErrorCodesMisc, ApiErrorTypes } from "services/Api/types";
 
@@ -49,8 +49,8 @@ const getApiErrorStatus = (error: AxiosError): ApiErrorStatus => {
     return status;
 };
 
-export const getErrorsFromApi = (error?: AxiosError): ApiErrors => {
-    if (!error) {
+export const getErrorsFromApi = (error?: AxiosError | null | unknown): ApiErrors => {
+    if (!error || !axios.isAxiosError(error)) {
         return undefined;
     }
     const { response } = error;

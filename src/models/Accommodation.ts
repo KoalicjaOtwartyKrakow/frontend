@@ -30,7 +30,7 @@ class Accommodation {
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
-    createdAt = undefined;
+    createdAt: moment.Moment | undefined = undefined;
 
     @JsonProperty()
     @JsonElementType(Guest)
@@ -46,7 +46,7 @@ class Accommodation {
 
     @JsonProperty("guid")
     @JsonType(String)
-    id = undefined;
+    id: string | undefined = undefined;
 
     @JsonType(String)
     @JsonProperty()
@@ -68,14 +68,10 @@ class Accommodation {
     @JsonType(String)
     status = AccommodationStatus.CREATED;
 
-    @JsonProperty()
-    @JsonType(String)
-    uuid = "";
-
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)
-    updatedAt = undefined;
+    updatedAt: moment.Moment | undefined = undefined;
 
     @JsonProperty()
     @JsonType(Number)
@@ -100,6 +96,8 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Boolean)
     easyAmbulanceAccess = false;
+
+    public uuid: string = "";
 
     constructor() {
         this.uuidRegenerate();

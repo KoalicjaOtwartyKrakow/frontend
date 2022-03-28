@@ -8,7 +8,7 @@ class Auth {
     static emptyToken = "";
     static tokenItemName = "kokon-auth-token";
     static httpHeader = "Authorization";
-    static rotateTokenIntervalHandle = undefined;
+    static rotateTokenIntervalHandle: number | undefined = undefined;
 
     /**
      * @param {GoogleLoginResponse|GoogleLoginResponseOffline} response
@@ -35,7 +35,7 @@ class Auth {
         const tokenRotateInterval = getAsMilliseconds(authResponse.expires_in);
 
         delay(() => {
-            Auth.rotateTokenIntervalHandle = setInterval(rotateToken, tokenRotateInterval);
+            Auth.rotateTokenIntervalHandle = window.setInterval(rotateToken, tokenRotateInterval);
         }, tokenRotateInterval);
 
         return token;
@@ -43,7 +43,7 @@ class Auth {
 
     static stopRotateRefreshToken = () => {
         const token = Auth.emptyToken;
-        clearInterval(Auth.rotateTokenIntervalHandle);
+        window.clearInterval(Auth.rotateTokenIntervalHandle);
         Auth.putAuthTokenToStorage(token);
         return token;
     };
