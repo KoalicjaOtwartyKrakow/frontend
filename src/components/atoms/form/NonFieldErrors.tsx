@@ -17,15 +17,17 @@ const NonFieldErrors = ({ label = "" }: any) => {
     const nonFieldErrors = status.nonFieldErrors || [];
     const hasErrors = nonFieldErrors.length > 0;
 
+    if (!hasErrors) {
+        return null;
+    }
+
     return (
-        hasErrors && (
-            <Alert color="danger">
-                {label && <h4 className="alert-heading fw-semibold mb-3">{label}</h4>}
-                {nonFieldErrors.map((error: any, index: any, arr: any) => (
-                    <NonFieldError isNotLastError={index < arr.length - 1} error={error} key={error} />
-                ))}
-            </Alert>
-        )
+        <Alert color="danger">
+            {label && <h4 className="alert-heading fw-semibold mb-3">{label}</h4>}
+            {nonFieldErrors.map((error: any, index: any, arr: any) => (
+                <NonFieldError isNotLastError={index < arr.length - 1} error={error} key={error} />
+            ))}
+        </Alert>
     );
 };
 

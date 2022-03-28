@@ -17,6 +17,7 @@ import { GuestFormFields } from "components/guest/GuestFormFields";
 import { FormGroup } from "reactstrap";
 
 import FormLabel from "components/atoms/form/FormLabel";
+import { Option } from "react-bootstrap-typeahead/types/types";
 
 const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }: any) => {
     const { t } = useTranslation(["guest"]);
@@ -67,11 +68,8 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }: any) => 
         return `${address}${hostInfo}`;
     };
 
-    const renderMenuItemChildren = (accommodation: any) => {
-        if (accommodation?.host === undefined || !accommodation) {
-            return null;
-        }
-        return <GuestFormAccommodationSearchItem accommodation={accommodation} />;
+    const renderMenuItemChildren = (accommodation: Option) => {
+        return <GuestFormAccommodationSearchItem accommodation={accommodation as GuestAccommodation} />;
     };
 
     const onChange = (selectedOptions: any) => {

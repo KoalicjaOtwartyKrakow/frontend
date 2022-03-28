@@ -13,24 +13,31 @@ import HostItemStatus from "components/hosts/item/HostItemStatus";
 import { HostContext } from "components/host/HostContext";
 
 import HostItemContactDetails from "components/hosts/item/HostItemContactDetails";
+import GuestAccommodation from "models/GuestAccommodation";
+import Accommodation from "models/Accommodation";
 
-const GuestFormAccommodationSearchItem = ({ accommodation }: any) => {
+const GuestFormAccommodationSearchItem = ({ accommodation }: { accommodation: GuestAccommodation }) => {
+    const { host } = accommodation;
+    // FIXME should not use as, better typing required
     return (
-        <AccommodationContext.Provider value={accommodation}>
+        <AccommodationContext.Provider value={accommodation as Accommodation}>
             <Row>
                 <Col lg={4}>
                     <AccommodationItemAddress />
                 </Col>
-                <HostContext.Provider value={accommodation.host}>
-                    <>
-                        <Col>
-                            <HostItemContactDetails />
-                        </Col>
-                        <Col lg={2}>
-                            <HostItemStatus />
-                        </Col>
-                    </>
-                </HostContext.Provider>
+                {host && (
+                    <HostContext.Provider value={host}>
+                        <>
+                            <Col>
+                                <HostItemContactDetails />
+                            </Col>
+                            <Col lg={2}>
+                                <HostItemStatus />
+                            </Col>
+                        </>
+                    </HostContext.Provider>
+                )}
+
                 <Col lg={1}>
                     <AccommodationItemAvailability />
                 </Col>

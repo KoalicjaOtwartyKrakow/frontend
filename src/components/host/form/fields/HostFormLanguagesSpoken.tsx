@@ -10,7 +10,7 @@ import FormLabel from "components/atoms/form/FormLabel";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
-import { availableLanguages } from "models/Language";
+import Language, { availableLanguages } from "models/Language";
 
 const HostFormLanguagesSpoken = () => {
     const { t } = useTranslation(["common", "host"]);
@@ -42,8 +42,8 @@ const HostFormLanguagesSpoken = () => {
      * @param {Language} language
      * @returns {JSX.Element}
      */
-    const languageToToken = (language: any) => (
-        <Token index={language.code} key={language.code} onRemove={onRemove} option={language}>
+    const languageToToken = (language: Language) => (
+        <Token key={language.code} onRemove={onRemove} option={language}>
             {language.name}
         </Token>
     );
