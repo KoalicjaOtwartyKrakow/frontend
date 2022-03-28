@@ -6,6 +6,7 @@ import classNames from "classnames";
 
 import { appConfig } from "constants/AppConfig";
 
+// @ts-ignore FIXME
 const LoginPageContainer = ({ onSubmit, visible }) => {
     const className = classNames("h-100", { "d-none": !visible });
     const { publicUrl } = appConfig;

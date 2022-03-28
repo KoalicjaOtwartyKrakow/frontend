@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect";
 
+// @ts-ignore FIXME
 const FormSelect = React.memo(({ field, form, items, children, isPleaseSelect, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
     const { t } = useTranslation("common");

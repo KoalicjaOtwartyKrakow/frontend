@@ -1,8 +1,6 @@
-// import Effect from 'components/atoms/form/Effect';
-
 import { hostFormFields as formFields } from "components/host/HostFormFields";
 import React from "react";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikBag } from "formik";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useTranslation } from "react-i18next";
 
@@ -31,22 +29,11 @@ const HostForm = (props: any) => {
 
     const validationSchema = isUpdateMode ? hostFormUpdateSchema : hostFormCreateSchema;
 
-    // const onChange = (currentState) => {
-    //   const { name } = currentState.values;
-    //   props.onHostNameChange(name);
-    // };
-
     const onSubmitError = (response: any, values: any, resetForm: any) => {
         const status = formFields.getStatusFromApi(response);
         resetForm({ values, status });
     };
 
-    /**
-     *
-     * @param values
-     * @param formikBag
-     * @returns {Promise<*>}
-     */
     const onSubmit = async (values: any, formikBag: any) => {
         console.log("[Host] HostForm onSubmit()");
 
@@ -71,32 +58,24 @@ const HostForm = (props: any) => {
         validationSchema,
     };
 
-    const submitDisabled = (isValid: any, isSubmitting: any) => !isValid || isSubmitting;
-
     const { t } = useTranslation(["host"]);
 
     const submitLabel = isCreateMode ? t("host:form.button.create") : t("host:form.button.update");
 
     return (
         <Formik {...formikProps}>
-            {({ isSubmitting, isValid }) => (
-                <Form noValidate>
-                    <NonFieldErrors label={t("host:form.message.updateFailure")} />
-                    <Row>
-                        <Col xs={12} lg={6}>
-                            <HostFormContact />
-                        </Col>
-                        <Col xs={12} lg={6}>
-                            <HostFormAdditionalInformation />
-                        </Col>
-                    </Row>
-                    <EntityFormButtons
-                        submitLabel={submitLabel}
-                        onRemove={onRemove}
-                        crudInProgressState={hostInProgress}
-                    />
-                </Form>
-            )}
+            <Form noValidate>
+                <NonFieldErrors label={t("host:form.message.updateFailure")} />
+                <Row>
+                    <Col xs={12} lg={6}>
+                        <HostFormContact />
+                    </Col>
+                    <Col xs={12} lg={6}>
+                        <HostFormAdditionalInformation />
+                    </Col>
+                </Row>
+                <EntityFormButtons submitLabel={submitLabel} onRemove={onRemove} crudInProgressState={hostInProgress} />
+            </Form>
         </Formik>
     );
 };

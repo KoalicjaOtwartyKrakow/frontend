@@ -4,6 +4,7 @@ import { FormFeedback, FormText, Input } from "reactstrap";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { useTranslation } from "react-i18next";
 
+// @ts-ignore FIXME
 const FormInput = React.memo(({ field, form, formText, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
     const { t } = useTranslation(["common"]);

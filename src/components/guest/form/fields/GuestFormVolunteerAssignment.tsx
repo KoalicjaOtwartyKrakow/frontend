@@ -64,6 +64,7 @@ const GuestFormVolunteerAssignment = () => {
 
     const items = getFormSelectItems();
 
+    // @ts-ignore FIXME
     const claimedAt = getFormattedDateTime(values[GuestFormFields.CLAIMED_AT]);
     const claimedAtText = claimedAt ? `${t("guest:form.text.claimedAt")}: ${claimedAt}` : " ";
 

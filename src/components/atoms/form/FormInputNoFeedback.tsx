@@ -3,6 +3,7 @@ import { Input } from "reactstrap";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 
+// @ts-ignore FIXME
 const FormInputNoFeedback = React.memo(({ field, form, ...props }) => {
     const error = FormikApiErrors.getError(field.name, form);
     const invalid = !!error;
