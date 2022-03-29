@@ -64,7 +64,7 @@ const AccommodationEditPage = () => {
 
     const onSubmit = async (values: any, onSubmitError: any) => {
         const accommodation = formFields.formToModel(values);
-        console.log("[AccommodationEditPage] Invoked onSubmit() with values:", values);
+        console.info("[AccommodationEditPage] Invoked onSubmit() with values:", values);
 
         const response = await updateAccommodation({ accommodation });
         if (response?.errors) {
@@ -74,7 +74,7 @@ const AccommodationEditPage = () => {
             });
         }
 
-        console.log("[AccommodationEditPage] Updated accommodation:", values);
+        console.info("[AccommodationEditPage] Updated accommodation:", values);
     };
 
     return (

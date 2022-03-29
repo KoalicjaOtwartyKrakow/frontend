@@ -53,7 +53,7 @@ const HostEditPage = () => {
 
     const onSubmit = async (values: any, onSubmitError: any) => {
         const host = formFields.formToModel(values);
-        console.log("[HostEditPage] Invoked onSubmit() with values:", values);
+        console.info("[HostEditPage] Invoked onSubmit() with values:", values);
 
         const response = await updateHost({ host });
         if (response?.errors) {
@@ -63,7 +63,7 @@ const HostEditPage = () => {
             });
         }
 
-        console.log("[HostEditPage] Updated host:", values);
+        console.info("[HostEditPage] Updated host:", values);
     };
 
     return (

@@ -42,7 +42,7 @@ const HostCreatePage = () => {
 
     const onSubmit = async (values: any, onSubmitError: any) => {
         const host = formFields.formToModel(values);
-        console.log("[HostCreatePage] Invoked onSubmit() with values:", values);
+        console.info("[HostCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createHost({ host });
 
@@ -53,7 +53,7 @@ const HostCreatePage = () => {
             });
         }
 
-        console.log("[HostCreatePage] Created host:", values);
+        console.info("[HostCreatePage] Created host:", values);
     };
 
     return (

@@ -62,7 +62,7 @@ const GuestEditPage = () => {
             return;
         }
 
-        console.log("[GuestEditPage] Updated guest:", guest);
+        console.info("[GuestEditPage] Updated guest:", guest);
 
         return updateGuestResponse;
     };
@@ -70,7 +70,7 @@ const GuestEditPage = () => {
     const onSubmit = async (values: any, onSubmitError: any) => {
         const guest = formFields.formToModel(values);
 
-        console.log("[GuestEditPage] Invoked onSubmit() with:", {
+        console.info("[GuestEditPage] Invoked onSubmit() with:", {
             values,
             guest,
         });

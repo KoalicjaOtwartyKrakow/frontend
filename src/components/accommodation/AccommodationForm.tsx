@@ -42,7 +42,7 @@ const AccommodationForm = (props: any) => {
      * @returns {Promise<*>}
      */
     const onSubmit = async (values: any, formikBag: any) => {
-        console.log("[Accommodation] AccommodationForm onSubmit()");
+        console.info("[Accommodation] AccommodationForm onSubmit()");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 

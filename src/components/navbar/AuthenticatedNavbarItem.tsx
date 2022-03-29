@@ -18,10 +18,7 @@ const AuthenticatedNavbarItem = ({ icon, i18nKey, path }: Props) => {
         return (
             <RouterNavLink
                 {...props}
-                className={(active) => {
-                    console.log(active);
-                    return classNames(props.className, { active: active.isActive });
-                }}
+                className={(active) => classNames(props.className, { active: active.isActive })}
             />
         );
     };

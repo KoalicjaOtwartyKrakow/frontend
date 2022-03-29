@@ -42,7 +42,7 @@ const GuestCreatePage = () => {
 
     const onSubmit = async (values: any, onSubmitError: any) => {
         const guest = formFields.formToModel(values);
-        console.log("[GuestCreatePage] Invoked onSubmit() with values:", values);
+        console.info("[GuestCreatePage] Invoked onSubmit() with values:", values);
 
         const response = await createGuest({ guest });
         if (response?.errors) {
@@ -52,7 +52,7 @@ const GuestCreatePage = () => {
             });
         }
 
-        console.log("[GuestCreatePage] Created guest:", values);
+        console.info("[GuestCreatePage] Created guest:", values);
     };
 
     return (

@@ -37,7 +37,7 @@ const GuestForm = (props: any) => {
      * @param {GuestAccommodation} accommodation
      */
     const onAccommodationSelected = (accommodation: any) => {
-        console.log("[onAccommodationSelected] Selected guest accommodation: ", accommodation);
+        console.info("[onAccommodationSelected] Selected guest accommodation: ", accommodation);
         if (!GuestAccommodation.is(accommodation)) {
             addToast(t("guest:form.message.removeGuestFromAccommodationWarning"), {
                 appearance: "warning",
@@ -57,7 +57,7 @@ const GuestForm = (props: any) => {
      * @returns {Promise<*>}
      */
     const onSubmit = async (values: any, formikBag: any) => {
-        console.log("[Guest] GuestForm onSubmit()");
+        console.info("[Guest] GuestForm onSubmit()");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 

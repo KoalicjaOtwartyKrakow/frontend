@@ -62,7 +62,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
         const { url } = config;
         const plainAccommodations = mockedAccommodations.map((accommodation: any) => classToPlain(accommodation));
 
-        console.log(`[useGetAccommodation] Mocked response for ${url}: `);
+        console.info(`[useGetAccommodation] Mocked response for ${url}: `, plainAccommodations);
         return [200, JSON.stringify(plainAccommodations)];
     });
 
@@ -79,7 +79,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
         }
         const plain = classToPlain(accommodation);
 
-        console.log(`[useGetAccommodation] Mocked response for ${url}: `, accommodation);
+        console.info(`[useGetAccommodation] Mocked response for ${url}: `, accommodation);
         return [200, JSON.stringify(plain)];
     });
 
@@ -94,7 +94,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
 
         const plain = data;
 
-        console.log(`[useUpdateAccommodation] Mocked response for ${url}: `, updatedAccommodation);
+        console.info(`[useUpdateAccommodation] Mocked response for ${url}: `, updatedAccommodation);
         return [200, JSON.stringify(plain)];
     });
 
@@ -112,7 +112,7 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
 
         const plain = classToPlain(createdAccommodation);
 
-        console.log(`[useUpdateAccommodation] Mocked response for ${url}: `, createdAccommodation);
+        console.info(`[useUpdateAccommodation] Mocked response for ${url}: `, createdAccommodation);
 
         return [200, JSON.stringify(plain)];
     });

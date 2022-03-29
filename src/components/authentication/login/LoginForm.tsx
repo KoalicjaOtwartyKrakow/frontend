@@ -12,8 +12,6 @@ const LoginForm = ({ onSubmit }: any) => {
     const appConfigGsiClientId = appConfig.gsi.clientId;
     const clientId = `${appConfigGsiClientId}.apps.googleusercontent.com`;
 
-    console.log({ clientId });
-
     const { signIn, loaded } = useGoogleLogin({
         clientId,
         onSuccess: onSubmit,

@@ -20,7 +20,7 @@ class Auth {
 
         const rotateToken = async () => {
             const authResponse = await response.reloadAuthResponse();
-            console.log("[Auth.refreshToken] authResponse:", authResponse);
+            console.info("[Auth.refreshToken] authResponse:", authResponse);
             const token = authResponse.id_token;
             persistToken(token);
         };

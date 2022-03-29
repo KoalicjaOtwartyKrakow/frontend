@@ -30,7 +30,7 @@ const HostForm = (props: any) => {
     };
 
     const onSubmit = async (values: any, formikBag: any) => {
-        console.log("[Host] HostForm onSubmit()");
+        console.info("[Host] HostForm onSubmit()");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 

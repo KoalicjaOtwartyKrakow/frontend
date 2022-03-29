@@ -20,7 +20,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
         const { url } = config;
         const plainUsers = mockedUsers.map((user: any) => classToPlain(user));
 
-        console.log(`[useGetUser] Mocked response for ${url}: `, plainUsers);
+        console.info(`[useGetUser] Mocked response for ${url}: `, plainUsers);
         return [200, JSON.stringify(plainUsers)];
     });
 
@@ -34,7 +34,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
         const user = mockedUsers.find((mock: any) => mock.id === userId);
         const plain = classToPlain(user);
 
-        console.log(`[useGetUser] Mocked response for ${url}: `, user);
+        console.info(`[useGetUser] Mocked response for ${url}: `, user);
         return [200, JSON.stringify(plain)];
     });
 
@@ -58,7 +58,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
 
         const plain = data;
 
-        console.log(`[useUpdateUser] Mocked response for ${url}: `, updatedUser);
+        console.info(`[useUpdateUser] Mocked response for ${url}: `, updatedUser);
         return [200, JSON.stringify(plain)];
     });
 
@@ -72,7 +72,7 @@ const mockUserResponses = (mockAdapter: any, { mockedUsers }: any) => {
 
         const plain = classToPlain(createdUser);
 
-        console.log(`[useUpdateUser] Mocked response for ${url}: `, createdUser);
+        console.info(`[useUpdateUser] Mocked response for ${url}: `, createdUser);
 
         return [200, JSON.stringify(plain)];
     });

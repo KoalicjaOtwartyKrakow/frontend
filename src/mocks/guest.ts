@@ -59,7 +59,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
         const { url } = config;
         const plainGuests = mockedGuests.map((guest: any) => classToPlain(guest));
 
-        console.log(`[useGetGuest] Mocked response for ${url}: `, plainGuests);
+        console.info(`[useGetGuest] Mocked response for ${url}: `, plainGuests);
         return [200, JSON.stringify(plainGuests)];
     });
 
@@ -73,7 +73,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
         const guest = mockedGuests.find((mock: any) => mock.id === guestId);
         const plain = classToPlain(guest);
 
-        console.log(`[useGetGuest] Mocked response for ${url}: `, guest);
+        console.info(`[useGetGuest] Mocked response for ${url}: `, guest);
         return [200, JSON.stringify(plain)];
     });
 
@@ -115,7 +115,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
 
         const plain = classToPlain(updatedGuest);
 
-        console.log(`[useUpdateGuest] Mocked response for ${url}: `, updatedGuest);
+        console.info(`[useUpdateGuest] Mocked response for ${url}: `, updatedGuest);
         return [200, JSON.stringify(plain)];
     });
 
@@ -136,7 +136,7 @@ const mockGuestResponses = (mockAdapter: any, { mockedAccommodations, mockedGues
 
         const plain = classToPlain(createdGuest);
 
-        console.log(`[useUpdateGuest] Mocked response for ${url}: `, createdGuest);
+        console.info(`[useUpdateGuest] Mocked response for ${url}: `, createdGuest);
 
         return [200, JSON.stringify(plain)];
     });

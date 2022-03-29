@@ -29,7 +29,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
         const { url } = config;
         const plainHosts = mockedHosts.map((host: any) => classToPlain(host));
 
-        console.log(`[useGetHost] Mocked response for ${url}: `, plainHosts);
+        console.info(`[useGetHost] Mocked response for ${url}: `, plainHosts);
         return [200, JSON.stringify(plainHosts)];
     });
 
@@ -43,7 +43,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
         const host = mockedHosts.find((mock: any) => mock.id === hostId);
         const plain = classToPlain(host);
 
-        console.log(`[useGetHost] Mocked response for ${url}: `, host);
+        console.info(`[useGetHost] Mocked response for ${url}: `, host);
         return [200, JSON.stringify(plain)];
     });
 
@@ -67,7 +67,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
 
         const plain = data;
 
-        console.log(`[useUpdateHost] Mocked response for ${url}: `, updatedHost);
+        console.info(`[useUpdateHost] Mocked response for ${url}: `, updatedHost);
         return [200, JSON.stringify(plain)];
     });
 
@@ -88,7 +88,7 @@ const mockHostResponses = (mockAdapter: any, { mockedHosts }: any) => {
 
         const plain = classToPlain(createdHost);
 
-        console.log(`[useUpdateHost] Mocked response for ${url}: `, createdHost);
+        console.info(`[useUpdateHost] Mocked response for ${url}: `, createdHost);
 
         return [200, JSON.stringify(plain)];
     });
