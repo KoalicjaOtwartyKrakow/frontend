@@ -1,21 +1,19 @@
 import React from "react";
-import { FormFeedback, Input } from "reactstrap";
+import { Input } from "reactstrap";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-import { useTranslation } from "react-i18next";
-import { useFormikContext } from "formik";
+import { FieldInputProps, useFormikContext } from "formik";
+import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
-const FormDate = ({ name, ...props }: { name: string }) => {
-    const { t } = useTranslation(["common"]);
+const FormDate = ({ name, field, ...props }: { name: string; field: FieldInputProps<string> }) => {
     const formikContext = useFormikContext();
-
-    const error = FormikApiErrors.getError(name, formikContext);
-    const invalid = !!error;
+    const errors = FormikApiErrors.getErrors(name, formikContext);
+    const invalid = errors.length > 0;
 
     return (
         <React.Fragment>
-            <Input invalid={invalid} type="date" {...props} />
-            {invalid && <FormFeedback>{t(error)}</FormFeedback>}
+            <Input invalid={invalid} type="date" {...field} {...props} />
+            <FormErrorsFeedback name={name} />
         </React.Fragment>
     );
 };

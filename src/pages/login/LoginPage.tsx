@@ -42,7 +42,7 @@ const LoginPage = ({ onSignInSuccess }: any) => {
     return (
         <React.Fragment>
             <LoadingPage visible={loginInProgress} />
-            <LoginPageContainer onSubmit={onSignIn} visible={!loginInProgress} />;
+            <LoginPageContainer onSubmit={onSignIn} visible={!loginInProgress} />
         </React.Fragment>
     );
 };

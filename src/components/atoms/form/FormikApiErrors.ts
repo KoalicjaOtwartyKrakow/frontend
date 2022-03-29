@@ -21,24 +21,26 @@ const getErrorMessageFromStatus = function (status: any) {
 };
 
 class FormikApiErrors {
-    static getError = function (name: string, formikContext: FormikContextType<any>) {
+    static getErrors = function (name: string, formikContext: FormikContextType<any>): string[] {
         const { touched, errors } = formikContext;
 
         const status: ApiErrors = formikContext.status;
 
         const fieldTouched = getIn(touched, name);
-        const backendError = getIn(status, ["fieldErrors", name]);
-        const frontendError = getIn(errors, name);
+        const backendErrors = status?.errors?.[name] || [];
+        // FIXME: TS2322: Type 'string | string[] | FormikErrors<any> | FormikErrors<any>[]' is not assignable to type 'string'. Type 'string[]' is not assignable to type 'string'.
+        // Probably <ErrorMessage /> would be a better choice overall
+        const frontendError = errors[name] as string;
 
         if (frontendError && fieldTouched) {
-            return frontendError;
+            return [frontendError];
         }
 
-        if (backendError && !fieldTouched) {
-            return backendError;
+        if (backendErrors && !fieldTouched) {
+            return backendErrors;
         }
 
-        return undefined;
+        return [];
     };
 
     static getInitialStatus = function () {

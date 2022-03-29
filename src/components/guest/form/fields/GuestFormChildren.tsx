@@ -9,7 +9,7 @@ import { faMinus, faPlus } from "@fortawesome/pro-regular-svg-icons";
 
 import FormInputNoFeedback from "components/atoms/form/FormInputNoFeedback";
 
-import Feedback from "components/atoms/form/Feedback";
+import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
 const GuestFormChildren = () => {
     const { t } = useTranslation(["guest"]);
@@ -46,7 +46,7 @@ const GuestFormChildren = () => {
                                         <FontAwesomeIcon icon={faPlus} />
                                     </Button>
                                 </InputGroup>
-                                <Feedback name={id} />
+                                <FormErrorsFeedback name={id} />
                             </FormGroup>
                         );
                     })

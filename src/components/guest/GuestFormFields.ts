@@ -48,6 +48,7 @@ class GuestFormFields {
 
         const fieldNames = Object.values(GuestFormFields);
         const formValues = pick(guest, fieldNames);
+        formValues.priorityDate = getFormattedDate(formValues.priorityDate);
 
         if (guest.id) {
             return formValues;
@@ -74,10 +75,6 @@ class GuestFormFields {
 
     getInitialStatus() {
         return FormikApiErrors.getInitialStatus();
-    }
-
-    getDateAsYMD(value: any) {
-        return getFormattedDate(value);
     }
 
     getStatusFromApi(apiErrors: ApiErrors) {

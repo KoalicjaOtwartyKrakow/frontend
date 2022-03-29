@@ -25,6 +25,7 @@ const EntityFormButtons = (props: Props) => {
     const formikContext = useFormikContext();
     const { isSubmitting, isValid } = formikContext;
     const submitDisabled = !isValid || isSubmitting || isCrudInProgress(crudInProgressState);
+    console.log({ isSubmitting, isValid, isCrudInProgress: isCrudInProgress(crudInProgressState) });
 
     const { t } = useTranslation(["common"]);
     return (

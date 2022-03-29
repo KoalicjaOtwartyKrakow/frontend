@@ -17,11 +17,10 @@ import { faCog, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-import navbarItems from "components/navbar/constants/NavbarItems";
-
 import { useTranslation } from "react-i18next";
 
 import LanguageSwitcher from "components/molecules/LanguageSwitcher";
+import navbarItems from "components/navbar/constants/NavbarItems";
 
 const AuthenticatedNavbar = ({ onLogout, onMenuItemSettings }: any) => {
     const { t } = useTranslation(["navbar"]);
@@ -32,7 +31,7 @@ const AuthenticatedNavbar = ({ onLogout, onMenuItemSettings }: any) => {
     };
 
     return (
-        <Navbar color="dark" dark expand="md">
+        <Navbar dark expand="md">
             <NavbarBrand href={AppRoutes.ROOT}>KOK:on</NavbarBrand>
             <NavbarToggler onClick={toggleIsNavbarOpen} />
             <Collapse isOpen={isNavbarOpen} navbar>

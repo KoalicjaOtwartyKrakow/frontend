@@ -20,5 +20,5 @@
         "experimentalDecorators": true,
         "sourceMap": true
     },
-//    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "public/locales/**/*.json"]
 }

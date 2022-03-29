@@ -69,7 +69,7 @@ const AuthenticatedPages = ({ onLogout }: any) => {
             <Mocks />
             <AuthenticatedNavbar onLogout={onLogout} onMenuItemSettings={toggleIsAsideOpen} />
             <AuthenticatedHeader />
-            <Container>
+            <Container className="pb-4">
                 <AuthenticatedBreadcrumbs />
                 <Routes>
                     <Route

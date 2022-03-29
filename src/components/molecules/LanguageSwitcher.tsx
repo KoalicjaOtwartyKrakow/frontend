@@ -26,7 +26,13 @@ const LanguageSwitcher = ({ className }: any) => {
             {supportedLanguages.map((item: any) => {
                 const active = isActive(item.code);
                 return (
-                    <Button onClick={switchLanguage(i18n, item.code)} active={active} outline={!active} key={item.code}>
+                    <Button
+                        color="secondary"
+                        onClick={switchLanguage(i18n, item.code)}
+                        active={active}
+                        outline={!active}
+                        key={item.code}
+                    >
                         {item.label}
                     </Button>
                 );

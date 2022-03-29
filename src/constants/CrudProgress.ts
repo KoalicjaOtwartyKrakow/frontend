@@ -36,7 +36,8 @@ const getCrudInProgress = ({
     return CrudInProgressStates.NONE;
 };
 
-const isCrudInProgress = (crudInProgress?: CrudInProgressState) => crudInProgress !== CrudInProgressStates.NONE;
+const isCrudInProgress = (crudInProgress?: CrudInProgressState) =>
+    crudInProgress !== undefined && crudInProgress !== CrudInProgressStates.NONE;
 
 export { getCrudInProgress, isCrudInProgress, CrudInProgressStates };
 export type { CrudInProgressState, CrudProgressFlags };

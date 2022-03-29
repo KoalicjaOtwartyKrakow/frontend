@@ -9,15 +9,23 @@ import classNames from "classnames";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
 interface Props {
-    icon: IconDefinition,
-    i18nKey: string,
-    path: string
+    icon: IconDefinition;
+    i18nKey: string;
+    path: string;
 }
 
 const AuthenticatedNavbarItem = ({ icon, i18nKey, path }: Props) => {
     const { t } = useTranslation(["accommodation"]);
     const NavbarNavLink = (props: any) => {
-        return <RouterNavLink {...props} className={(active) => classNames(props.className, { active })} />;
+        return (
+            <RouterNavLink
+                {...props}
+                className={(active) => {
+                    console.log(active);
+                    return classNames(props.className, { active: active.isActive });
+                }}
+            />
+        );
     };
     const options = {};
     return (

@@ -8,12 +8,14 @@ import { appConfig } from "constants/AppConfig";
 
 // @ts-ignore FIXME
 const LoginPageContainer = ({ onSubmit, visible }) => {
-    const className = classNames("h-100", { "d-none": !visible });
+    const className = classNames("d-flex min-vh-100 align-items-start align-items-md-center justify-content-center", {
+        "d-none": !visible,
+    });
     const { publicUrl } = appConfig;
 
     return (
         <Container className={className}>
-            <Row className="h-100 align-items-start align-items-md-center">
+            <Row>
                 <Col xs={{ size: 12 }} sm={{ size: 10 }} lg={{ size: 8, offset: 2 }}>
                     <Card className="login-container">
                         <CardHeader>Welcome! Please sign in.</CardHeader>

@@ -29,7 +29,7 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.FULL_NAME]: Yup.string().trim().required("common:form.validator.fullName"),
     [GuestFormFields.GLUTEN_FREE_DIET]: Yup.bool(),
     [GuestFormFields.PETS_PRESENT]: Yup.bool(),
-    [GuestFormFields.DURATION_OF_STAY]: Yup.string().trim(),
+    [GuestFormFields.DURATION_OF_STAY]: Yup.string().trim().required("common:form.validator.required"),
     [GuestFormFields.LACTOSE_FREE_DIET]: Yup.bool(),
     [GuestFormFields.MEAT_FREE_DIET]: Yup.bool(),
     [GuestFormFields.PEOPLE_TOTAL_COUNT]: Yup.number()

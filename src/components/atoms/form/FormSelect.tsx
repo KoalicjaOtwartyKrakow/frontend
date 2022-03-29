@@ -1,16 +1,16 @@
 import React from "react";
-import { FormFeedback, Input } from "reactstrap";
+import { Input } from "reactstrap";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-import { useTranslation } from "react-i18next";
+import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
 import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect";
 
 // @ts-ignore FIXME
 const FormSelect = React.memo(({ field, form, items, children, isPleaseSelect, ...props }) => {
-    const error = FormikApiErrors.getError(field.name, form);
-    const { t } = useTranslation("common");
-    const invalid = !!error;
+    const name = field.name;
+    const errors = FormikApiErrors.getErrors(name, form);
+    const invalid = errors.length > 0;
 
     return (
         <React.Fragment>
@@ -23,7 +23,7 @@ const FormSelect = React.memo(({ field, form, items, children, isPleaseSelect, .
                     </option>
                 ))}
             </Input>
-            {invalid && <FormFeedback>{t(error)}</FormFeedback>}
+            <FormErrorsFeedback name={name} />
         </React.Fragment>
     );
 });

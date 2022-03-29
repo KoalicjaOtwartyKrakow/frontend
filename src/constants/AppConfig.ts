@@ -1,5 +1,4 @@
 export const appConfig = Object.freeze({
-    dateFormat: process.env.REACT_APP_KOKON_DATE_FORMAT,
     gsi: Object.freeze({
         clientId: process.env.REACT_APP_KOKON_GSI_CLIENT_ID,
     }),

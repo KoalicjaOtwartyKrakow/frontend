@@ -1,22 +1,25 @@
 import React from "react";
-import { FormFeedback, FormText, Input } from "reactstrap";
+import { FormText, Input } from "reactstrap";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-import { useTranslation } from "react-i18next";
+import { useFormikContext } from "formik";
+import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
 // @ts-ignore FIXME
-const FormInput = React.memo(({ field, form, formText, ...props }) => {
-    const error = FormikApiErrors.getError(field.name, form);
-    const { t } = useTranslation(["common"]);
-    const invalid = !!error;
+const FormInput = ({ field, form, formText, ...props }) => {
+    const name = field.name;
+    const formikContext = useFormikContext();
+    const errors = FormikApiErrors.getErrors(field.name, formikContext);
+    const invalid = errors.length > 0;
+
     const showFormText = !invalid && formText;
     return (
         <React.Fragment>
             <Input invalid={invalid} {...field} {...props} />
-            {invalid && <FormFeedback>{t(error)}</FormFeedback>}
+            <FormErrorsFeedback name={name} />
             {showFormText && <FormText>{formText}</FormText>}
         </React.Fragment>
     );
-});
+};
 
-export default FormInput;
+export default React.memo(FormInput);

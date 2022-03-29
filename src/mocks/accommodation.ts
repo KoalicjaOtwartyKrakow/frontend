@@ -82,6 +82,9 @@ const mockAccommodationResponses = (mockAdapter: any, { mockedAccommodations, mo
         } = matchedPath;
 
         const accommodation = mockedAccommodations.find((mock: any) => mock.id === accommodationId);
+        if (!accommodation) {
+            return [404];
+        }
         const plain = classToPlain(accommodation);
 
         console.log(`[useGetAccommodation] Mocked response for ${url}: `, accommodation);

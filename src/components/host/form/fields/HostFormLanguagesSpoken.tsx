@@ -48,7 +48,7 @@ const HostFormLanguagesSpoken = () => {
         </Token>
     );
 
-    const error = FormikApiErrors.getError(HostFormFields.LANGUAGES_SPOKEN, formikContext);
+    const error = FormikApiErrors.getErrors(HostFormFields.LANGUAGES_SPOKEN, formikContext);
 
     const renderInput = (inputProps: any) => {
         return (

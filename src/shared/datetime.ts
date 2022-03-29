@@ -1,11 +1,7 @@
 import moment from "moment";
 
-import { appConfig } from "constants/AppConfig";
+export const getFormattedDate = (value?: moment.Moment): string =>
+    moment.isMoment(value) ? value.format("YYYY-MM-DD") : "";
 
-/**
- *
- * @param {moment.Moment|undefined} value
- * @returns {string}
- */
-export const getFormattedDate = (value: any) => (moment.isMoment(value) ? value.format(appConfig.dateFormat) : "");
-export const getFormattedDateTime = (value: any) => (moment.isMoment(value) ? value.format("LLL") : "");
+export const getFormattedDateTime = (value?: moment.Moment): string =>
+    moment.isMoment(value) ? value.format("LLL") : "";
