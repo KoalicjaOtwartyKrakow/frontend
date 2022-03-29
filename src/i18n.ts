@@ -1,4 +1,5 @@
 import i18next from "i18next";
+import "intl-pluralrules";
 import I18nextHttpBackend from "i18next-http-backend";
 import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
