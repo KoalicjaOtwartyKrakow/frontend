@@ -4,7 +4,7 @@ import Host from "models/Host";
 
 import { getFormattedDate } from "shared/datetime";
 
-import { isEqual, merge, pick } from "lodash-es";
+import { isEqual, merge, pick } from "lodash";
 import { ApiErrors } from "services/Api/types";
 
 class HostFormFields {

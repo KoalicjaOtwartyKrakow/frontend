@@ -3,7 +3,7 @@ import { FormGroup } from "reactstrap";
 import { Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 
-import { sortBy } from "lodash-es";
+import { sortBy } from "lodash";
 
 import {
     AccommodationFormFields,

@@ -2,7 +2,7 @@ import { TaJson } from "ta-json";
 import camelcaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
 
-import { cloneDeep, omit } from "lodash-es";
+import { cloneDeep, omit } from "lodash";
 
 const IMMUTABLE_FIELDS = [
     "uuid", // Used in frontend only

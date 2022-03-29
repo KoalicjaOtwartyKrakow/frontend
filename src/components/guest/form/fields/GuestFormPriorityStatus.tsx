@@ -11,7 +11,7 @@ import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
 import FormLabel from "components/atoms/form/FormLabel";
 
-import { sortBy } from "lodash-es";
+import { sortBy } from "lodash";
 
 const GuestFormPriorityStatus = (props: any) => {
     const fieldId = GuestFormFields.PRIORITY_STATUS;

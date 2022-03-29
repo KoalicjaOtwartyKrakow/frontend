@@ -1,5 +1,5 @@
 import HttpStatus from "http-status-codes";
-import { get } from "lodash-es";
+import { get } from "lodash";
 import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
 

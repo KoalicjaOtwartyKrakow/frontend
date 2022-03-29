@@ -1,4 +1,4 @@
-import { isEqual, merge, pick } from "lodash-es";
+import { isEqual, merge, pick } from "lodash";
 
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 

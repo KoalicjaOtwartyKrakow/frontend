@@ -1,6 +1,6 @@
 import Singleton from "singleton-decorator";
 
-import { capitalize } from "lodash-es";
+import { capitalize } from "lodash";
 
 @Singleton
 class LanguageCodeSerializer {

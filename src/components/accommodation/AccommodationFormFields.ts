@@ -5,7 +5,7 @@ import Accommodation from "models/Accommodation";
 import { getFormattedDate } from "shared/datetime";
 
 import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
-import { merge, pick } from "lodash-es";
+import { merge, pick } from "lodash";
 import { ApiErrors } from "services/Api/types";
 
 interface AccommodationFormFieldsInterface {
