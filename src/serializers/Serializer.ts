@@ -1,7 +1,6 @@
 import { TaJson } from "ta-json";
 import camelcaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
-
 import { cloneDeep, omit } from "lodash";
 
 const IMMUTABLE_FIELDS = [

@@ -2,11 +2,8 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field, useField } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-
 import { FormItemsVoivodeships } from "components/molecules/form/FormItemsVoivodeships";
-
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressVoivodeship = () => {

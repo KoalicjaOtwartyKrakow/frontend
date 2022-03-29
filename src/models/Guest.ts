@@ -3,20 +3,15 @@ import {
     JsonElementType,
     JsonObject,
     JsonProperty,
-    JsonReadonly,
     JsonType,
     JsonWriteonly,
     OnDeserialized,
 } from "ta-json";
-
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-
 import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
-
 import GuestAccommodation from "models/GuestAccommodation";
-
 import User from "models/User";
 
 @JsonObject()

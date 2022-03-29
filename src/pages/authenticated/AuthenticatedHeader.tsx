@@ -1,11 +1,8 @@
 import React from "react";
-
 import Jumbotron from "components/atoms/compat/Jumbotron";
 import { Container } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-
 import { AppRoutes } from "constants/AppRoutes";
-
 import { appConfig } from "constants/AppConfig";
 import { useTranslation } from "react-i18next";
 

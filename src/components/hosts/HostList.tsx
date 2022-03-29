@@ -3,9 +3,7 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import "components/hosts/HostList.sass";
-
 import { AppRoutes } from "constants/AppRoutes";
-
 import HostListItem from "components/hosts/HostListItem";
 
 const HostList = ({ hosts }: any) => {

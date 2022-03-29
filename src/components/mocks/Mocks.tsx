@@ -1,17 +1,11 @@
 import { mockGuest, mockGuestResponses } from "mocks/guest";
-
 import { mockHost, mockHostResponses } from "mocks/host";
-
 import { mockAccommodation, mockAccommodationResponses } from "mocks/accommodation";
-
 import { mockRelationships } from "mocks/relationships";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-
 import useApplicationSettings from "hooks/useApplicationSettings";
-
 import { ApplicationSettings } from "components/settings/constants";
-
 import { mockUser, mockUserResponses } from "mocks/user";
 
 const applyMocks = () => {

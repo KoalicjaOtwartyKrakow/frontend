@@ -2,7 +2,6 @@ import React from "react";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { Button } from "reactstrap";
-
 import ProgressIcon from "components/atoms/ProgressIcon";
 import classNames from "classnames";
 

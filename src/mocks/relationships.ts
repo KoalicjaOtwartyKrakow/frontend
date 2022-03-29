@@ -1,11 +1,7 @@
 import { times } from "lodash";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
-
 import Guest from "models/Guest";
-
 import GuestAccommodation from "models/GuestAccommodation";
-
 import { chance, getRandomItem } from "mocks/base";
 import moment from "moment";
 

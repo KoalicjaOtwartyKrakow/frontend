@@ -1,26 +1,16 @@
 import React, { useEffect } from "react";
-
 import AccommodationList from "components/accommodations/AccommodationList";
 import { Alert, Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
 import PageCard from "components/atoms/PageCard";
-
 import InProgress from "components/atoms/InProgress";
-
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-
 import AccommodationListDescription from "components/accommodations/AccommodationListDescription";
-
 import RefreshButton from "components/atoms/RefreshButton";
-
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
-
 import HorizontalLine from "components/atoms/HorizontalLine";
-
 import EntityCreateButton from "components/atoms/buttons/EntityCreateButton";
 import { useNavigate } from "react-router-dom";
-
 import { AppRoutes } from "constants/AppRoutes";
 
 const AccommodationsPage = () => {

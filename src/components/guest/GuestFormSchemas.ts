@@ -1,5 +1,4 @@
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
-
 import { GuestStatus } from "models/constants/GuestStatus";
 import * as Yup from "yup";
 import { GuestFormFields } from "./GuestFormFields";

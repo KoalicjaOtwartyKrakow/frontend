@@ -2,9 +2,7 @@ import React from "react";
 import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
-
 import { AppRoutes } from "constants/AppRoutes";
-
 import GuestListItem from "components/guests/GuestListItem";
 
 const GuestList = ({ guests }: any) => {

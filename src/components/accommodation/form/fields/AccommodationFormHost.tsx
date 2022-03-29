@@ -2,18 +2,13 @@ import React, { useEffect } from "react";
 import { FormGroup } from "reactstrap";
 import { Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { sortBy } from "lodash";
-
 import {
     AccommodationFormFields,
     AccommodationFormFieldsInterface,
 } from "components/accommodation/AccommodationFormFields";
-
 import FormSelect from "components/atoms/form/FormSelect";
-
 import { useGetHosts } from "hooks/api/hostsHooks";
-
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormHost = () => {

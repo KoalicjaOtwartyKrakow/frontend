@@ -9,16 +9,12 @@ import {
     NavbarToggler,
     UncontrolledDropdown,
 } from "reactstrap";
-
 import AuthenticatedNavbarItem from "components/navbar/AuthenticatedNavbarItem";
-
 import { AppRoutes } from "constants/AppRoutes";
 import { faCog, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-
 import { useTranslation } from "react-i18next";
-
 import LanguageSwitcher from "components/molecules/LanguageSwitcher";
 import navbarItems from "components/navbar/constants/NavbarItems";
 

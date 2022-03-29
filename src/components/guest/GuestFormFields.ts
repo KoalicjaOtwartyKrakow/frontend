@@ -1,9 +1,6 @@
 import { isEqual, merge, pick } from "lodash";
-
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-
 import { getFormattedDate } from "shared/datetime";
-
 import Guest from "models/Guest";
 import { ApiErrors } from "services/Api/types";
 

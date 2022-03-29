@@ -1,24 +1,15 @@
 import React, { useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
-
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-
 import AccommodationForm from "components/accommodation/AccommodationForm";
-
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-
 import { useCreateAccommodation } from "hooks/api/accommodationHooks";
-
 import { getCrudInProgress } from "constants/CrudProgress";
-
 import Accommodation from "models/Accommodation";
-
 import { AppRoutes } from "constants/AppRoutes";
 
 const AccommodationCreatePage = () => {

@@ -1,9 +1,6 @@
 import User from "models/User";
-
 import { chance } from "mocks/base";
-
 import { ApiPaths, UserByIdParams } from "services/Api/constants";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 

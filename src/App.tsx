@@ -1,10 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import "App.sass";
-
 import LoginPage from "pages/login/LoginPage";
-
 import Auth from "services/Auth";
-
 import LoadingPage from "pages/loading/LoadingPage";
 
 const Authenticated = React.lazy(() => import("pages/AuthenticatedPages"));

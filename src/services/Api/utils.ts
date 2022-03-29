@@ -2,7 +2,6 @@ import HttpStatus from "http-status-codes";
 import { get } from "lodash";
 import { compile } from "path-to-regexp";
 import camelcaseKeys from "camelcase-keys";
-
 import { plainToClass } from "serializers/Serializer";
 import axios, { AxiosError } from "axios";
 import type { ApiErrors, ApiErrorStatus } from "services/Api/types";

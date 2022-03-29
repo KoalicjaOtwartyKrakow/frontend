@@ -1,44 +1,25 @@
 import React, { useState } from "react";
 import { Container } from "reactstrap";
-
 import { Notifications } from "services/Notifications";
 import { ToastProvider } from "react-toast-notifications";
-
 import AuthenticatedNavbar from "components/navbar/AuthenticatedNavbar";
-
 import { CustomToast } from "components/atoms/Toast";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-
 import { AppRoutes } from "constants/AppRoutes";
-
 import DashboardPage from "pages/DashboardPage";
-
 import AccommodationsPage from "pages/accommodation/AccommodationsPage";
-
 import AccommodationCreatePage from "pages/accommodation/AccommodationCreatePage";
-
 import AccommodationEditPage from "pages/accommodation/AccommodationEditPage";
-
 import GuestsPage from "pages/guest/GuestsPage";
-
 import GuestCreatePage from "pages/guest/GuestCreatePage";
-
 import GuestEditPage from "pages/guest/GuestEditPage";
-
 import HostsPage from "pages/host/HostsPage";
-
 import HostCreatePage from "pages/host/HostCreatePage";
-
 import HostEditPage from "pages/host/HostEditPage";
-
 import Auth from "services/Auth";
-
 import AuthenticatedHeader from "pages/authenticated/AuthenticatedHeader";
-
 import AuthenticatedBreadcrumbs from "pages/authenticated/AuthenticatedBreadcrumbs";
-
 import Aside from "components/aside/Aside";
-
 import Mocks from "components/mocks/Mocks";
 
 const RequireAuth = ({ children }: any) => {

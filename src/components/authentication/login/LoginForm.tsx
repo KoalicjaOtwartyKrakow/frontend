@@ -1,8 +1,6 @@
 import React from "react";
 import { useGoogleLogin } from "react-google-login";
-
 import { Alert, Button } from "reactstrap";
-
 import { appConfig } from "constants/AppConfig";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

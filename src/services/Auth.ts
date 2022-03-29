@@ -1,7 +1,6 @@
 import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
-
 import { delay } from "lodash";
 
 class Auth {

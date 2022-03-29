@@ -2,9 +2,7 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
-
 import FormCheckbox from "components/atoms/form/FormCheckbox";
 
 const miscCheckbox = ({ name, label }: any) => {

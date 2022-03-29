@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-
 import { HostFormFields } from "components/host/HostFormFields";
 
 const commonSchema = Yup.object().shape({

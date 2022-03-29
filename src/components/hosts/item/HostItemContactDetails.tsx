@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { HostContext } from "components/host/HostContext";
 
 /**

@@ -2,19 +2,12 @@ import React, { useCallback, useEffect } from "react";
 import { FormGroup, FormText } from "reactstrap";
 import { Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { sortBy } from "lodash";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
-
 import FormSelect from "components/atoms/form/FormSelect";
-
 import { useGetUsers } from "hooks/api/usersHooks";
-
 import FormLabel from "components/atoms/form/FormLabel";
-
 import { emptyArray } from "services/Api/utils";
-
 import { getFormattedDateTime } from "shared/datetime";
 
 const GuestFormVolunteerAssignment = () => {

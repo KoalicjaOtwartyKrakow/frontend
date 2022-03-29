@@ -1,21 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
-
 import { useGetAccommodations } from "hooks/api/accommodationsHooks";
-
 import GuestFormAccommodationSearchItem from "components/guest/form/GuestFormAccommodationSearchItem";
 import { useTranslation } from "react-i18next";
-
 import { emptyArray } from "services/Api/utils";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
-
 import GuestAccommodation from "models/GuestAccommodation";
 import { useField } from "formik";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { FormGroup } from "reactstrap";
-
 import FormLabel from "components/atoms/form/FormLabel";
 import { Option } from "react-bootstrap-typeahead/types/types";
 

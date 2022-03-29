@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
-
 import { GuestContext } from "components/guest/GuestContext";
-
 import GuestPriorityStatusBadge from "components/guest/GuestPriorityStatusBadge";
-
 import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestColorScheme";
 
 /**

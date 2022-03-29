@@ -1,26 +1,16 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
-
 import InProgress from "components/atoms/InProgress";
-
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-
 import HostForm from "components/host/HostForm";
-
 import { HostFormFields } from "components/host/HostFormFields";
-
 import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
-
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
-
 import Host from "models/Host";
-
 import { AppRoutes } from "constants/AppRoutes";
 
 const HostEditPage = () => {

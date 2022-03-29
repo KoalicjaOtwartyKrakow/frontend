@@ -1,11 +1,7 @@
 import Host from "models/Host";
-
 import { availableLanguages, chance, getMockedHoursAndMinutes } from "mocks/base";
-
 import { HostStatus } from "models/constants/HostStatus";
-
 import { ApiPaths, HostByIdParams } from "services/Api/constants";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 import moment from "moment";

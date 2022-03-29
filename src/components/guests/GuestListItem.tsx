@@ -1,21 +1,12 @@
 import React from "react";
-
 import "components/guests/GuestListItem.sass";
-
 import { GuestContext } from "components/guest/GuestContext";
-
 import GuestItemFullName from "components/guests/item/GuestItemFullName";
-
 import GuestItemPhone from "components/guests/item/GuestItemPhone";
-
 import GuestItemPriorityStatus from "components/guests/item/GuestItemPriorityStatus";
-
 import GuestItemPriorityDate from "components/guests/item/GuestItemPriorityDate";
-
 import GuestItemPeople from "components/guests/item/GuestItemPeople";
-
 import GuestItemInfo from "components/guests/item/GuestItemInfo";
-
 import GuestItemDurationOfStay from "components/guests/item/GuestItemDurationOfStay";
 
 /**

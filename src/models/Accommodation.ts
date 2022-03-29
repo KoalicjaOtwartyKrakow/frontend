@@ -1,12 +1,8 @@
 import { JsonConverter, JsonElementType, JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
-
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
-
 import Host from "models/Host";
-
 import Guest from "models/Guest";
 
 @JsonObject()

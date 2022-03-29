@@ -1,7 +1,5 @@
 import { ApplicationSettings, ApplicationSettingsStorageKey } from "components/settings/constants";
-
 import { appConfig } from "constants/AppConfig";
-
 import { merge } from "lodash";
 
 const useApplicationSettings = () => {

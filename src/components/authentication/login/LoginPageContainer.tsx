@@ -3,7 +3,6 @@ import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 import LoginForm from "./LoginForm";
 import "./LoginPageContainer.scss";
 import classNames from "classnames";
-
 import { appConfig } from "constants/AppConfig";
 
 // @ts-ignore FIXME

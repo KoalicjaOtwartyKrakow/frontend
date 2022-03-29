@@ -3,13 +3,11 @@ import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import type { IconDefinition } from "@fortawesome/fontawesome-common-types";
 import { useFormikContext } from "formik";
-
 import EntityFormRemoveButton from "components/molecules/form/buttons/EntityFormRemoveButton";
 import EntityFormResetButton from "components/molecules/form/buttons/EntityFormResetButton";
 import EntityFormSubmitButton from "components/molecules/form/buttons/EntityFormSubmitButton";
 import EntityFormBackToListButton from "components/molecules/form/buttons/EntityFormBackToListButton";
 import HorizontalLine from "components/atoms/HorizontalLine";
-
 import { CrudInProgressState, CrudInProgressStates, isCrudInProgress } from "constants/CrudProgress";
 
 interface Props {

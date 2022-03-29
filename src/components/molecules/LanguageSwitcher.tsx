@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, ButtonGroup } from "reactstrap";
-
 import { fallbackLanguage, supportedLanguages } from "i18n";
 
 const LanguageSwitcher = ({ className }: any) => {

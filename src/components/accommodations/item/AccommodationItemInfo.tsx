@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import {
     IconDisabledPeopleFriendly,

@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-
 import { GuestContext } from "components/guest/GuestContext";
-
 import { getFormattedDate } from "shared/datetime";
 import classNames from "classnames";
 import moment from "moment";

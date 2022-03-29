@@ -1,10 +1,7 @@
 import React from "react";
-
 import { IconFoodAllergy, IconFoodGlutenFree, IconFoodLactoseFree, IconFoodMeatFree } from "components/shared/Icons";
 import { useTranslation } from "react-i18next";
-
 import GuestPriorityStatusBadge from "components/guest/GuestPriorityStatusBadge";
-
 import { GuestPeopleCountBadgeColor } from "components/shared/constants/GuestColorScheme";
 import { Col, Row } from "reactstrap";
 

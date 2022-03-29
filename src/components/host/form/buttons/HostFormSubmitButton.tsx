@@ -1,8 +1,6 @@
 import React from "react";
-
 import { Button } from "reactstrap";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
 import ProgressIcon from "components/atoms/ProgressIcon";
 
 const HostFormSubmitButton = ({ disabled, isSubmitting, label }: any) => {

@@ -1,7 +1,5 @@
 import { JsonConverter, JsonObject, JsonProperty, JsonType } from "ta-json";
-
 import LanguageCodeSerializer from "serializers/LanguageCodeSerializer";
-
 import { invert, sortBy } from "lodash";
 import ISO6391 from "iso-639-1";
 import { iso6393To1 } from "iso-639-3";

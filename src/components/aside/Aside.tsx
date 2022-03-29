@@ -1,12 +1,8 @@
 import React from "react";
 import { Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
-
 import HorizontalLine from "components/atoms/HorizontalLine";
-
 import SettingsForm from "components/settings/SettingsForm";
-
 import useApplicationSettings from "hooks/useApplicationSettings";
-
 import { ApplicationSettings } from "components/settings/constants";
 
 const Aside = ({ isOpen, toggleIsOpen }: any) => {

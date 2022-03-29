@@ -1,9 +1,6 @@
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-
 import Accommodation from "models/Accommodation";
-
 import { getFormattedDate } from "shared/datetime";
-
 import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
 import { merge, pick } from "lodash";
 import { ApiErrors } from "services/Api/types";

@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import "components/authentication/login/LoginPageContainer.scss";
-
 import LoadingPage from "pages/loading/LoadingPage";
-
 import LoginPageContainer from "components/authentication/login/LoginPageContainer";
 // eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";

@@ -1,8 +1,6 @@
 import React from "react";
-
 import { UncontrolledAlert } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
 import HttpStatus from "http-status-codes";
 import type { ApiErrorCodeClient, ApiErrors } from "services/Api/types";
 import { ApiErrorCodesClient, ApiErrorTypes } from "services/Api/types";

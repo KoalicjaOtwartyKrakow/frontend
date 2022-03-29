@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { GuestContext } from "components/guest/GuestContext";
 import {
     IconFoodAllergy,

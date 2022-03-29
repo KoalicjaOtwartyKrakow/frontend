@@ -1,19 +1,12 @@
 import Guest from "models/Guest";
-
 import { HostStatus } from "models/constants/HostStatus";
 import moment from "moment";
-
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
-
 import { chance } from "mocks/base";
 import { match, MatchResult, pathToRegexp } from "path-to-regexp";
-
 import { ApiPaths, GuestByIdParams } from "services/Api/constants";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
-
 import GuestAccommodation from "models/GuestAccommodation";
-
 import Accommodation from "models/Accommodation";
 
 const mockGuest = () => {

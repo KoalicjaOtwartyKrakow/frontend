@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button } from "reactstrap";
 import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

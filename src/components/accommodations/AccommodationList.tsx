@@ -3,9 +3,7 @@ import { generatePath, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 import "components/accommodations/AccommodationList.sass";
-
 import { AppRoutes } from "constants/AppRoutes";
-
 import AccommodationListItem from "components/accommodations/AccommodationListItem";
 
 const AccommodationList = ({ accommodations }: any) => {

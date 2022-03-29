@@ -2,14 +2,10 @@ import React from "react";
 import { FormFeedback, FormGroup, FormText } from "reactstrap";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { HostFormFields } from "components/host/HostFormFields";
 import { Token, Typeahead, TypeaheadInputMulti } from "react-bootstrap-typeahead";
-
 import FormLabel from "components/atoms/form/FormLabel";
-
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
-
 import Language, { availableLanguages } from "models/Language";
 
 const HostFormLanguagesSpoken = () => {

@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 
 const commonSchema = Yup.object().shape({

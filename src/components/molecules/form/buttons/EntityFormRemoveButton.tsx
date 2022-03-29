@@ -1,8 +1,6 @@
 import React from "react";
-
 import { Button } from "reactstrap";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import ProgressIcon from "components/atoms/ProgressIcon";
 
 const EntityFormRemoveButton = ({ label, onClick, inProgress }: any) => {

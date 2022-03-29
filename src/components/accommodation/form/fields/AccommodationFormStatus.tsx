@@ -2,13 +2,9 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
-
 import FormSelect from "components/atoms/form/FormSelect";
-
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
-
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressStatus = () => {

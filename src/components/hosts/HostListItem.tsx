@@ -1,9 +1,6 @@
 import React from "react";
-
 import { HostContext } from "components/host/HostContext";
-
 import HostItemLanguagesSpoken from "components/hosts/item/HostItemLanguagesSpoken";
-
 import HostItemStatus from "components/hosts/item/HostItemStatus";
 
 /**

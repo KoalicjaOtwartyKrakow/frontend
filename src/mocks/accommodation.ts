@@ -1,19 +1,11 @@
 import moment from "moment";
 import { match, MatchResult, pathToRegexp } from "path-to-regexp";
-
 import { chance, getRandomItem } from "mocks/base";
-
 import Accommodation from "models/Accommodation";
-
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
-
 import { polishVoivodeships } from "models/constants/Address";
-
-import GuestAccommodation from "models/GuestAccommodation";
-
 import { classToPlain, plainToClass } from "serializers/Serializer";
-
-import { AccommodationByIdParams, ApiPaths, GuestByIdParams } from "services/Api/constants";
+import { AccommodationByIdParams, ApiPaths } from "services/Api/constants";
 
 const mockAccommodation = () => {
     const accommodation = new Accommodation();

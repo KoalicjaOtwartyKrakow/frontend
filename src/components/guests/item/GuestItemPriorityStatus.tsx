@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-
 import { GuestContext } from "components/guest/GuestContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 
 /**

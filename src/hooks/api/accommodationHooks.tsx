@@ -1,11 +1,7 @@
 import useAxios from "axios-hooks";
-
 import { getErrorsFromApi, getPath, transformObjectResponse } from "services/Api/utils";
-
 import { ApiPaths } from "services/Api/constants";
-
 import { classToPlain, filterImmutableFields } from "serializers/Serializer";
-
 import Accommodation from "models/Accommodation";
 import { ApiErrors } from "services/Api/types";
 

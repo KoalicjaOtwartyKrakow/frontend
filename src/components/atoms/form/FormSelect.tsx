@@ -1,9 +1,7 @@
 import React from "react";
 import { Input } from "reactstrap";
-
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
-
 import FormOptionPleaseSelect from "components/atoms/form/FormOptionPleaseSelect";
 
 // @ts-ignore FIXME

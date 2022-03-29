@@ -2,13 +2,10 @@ import React from "react";
 import { Button, FormGroup, InputGroup, InputGroupText } from "reactstrap";
 import { Field, FieldArray, useField } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/pro-regular-svg-icons";
-
 import FormInputNoFeedback from "components/atoms/form/FormInputNoFeedback";
-
 import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
 const GuestFormChildren = () => {

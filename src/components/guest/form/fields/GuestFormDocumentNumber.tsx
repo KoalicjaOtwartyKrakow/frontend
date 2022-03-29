@@ -2,11 +2,8 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
 import FormInput from "components/atoms/form/FormInput";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
-
 import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormDocumentNumber = () => {

@@ -1,29 +1,17 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
-
 import InProgress from "components/atoms/InProgress";
-
 import PageErrorMessage from "components/atoms/PageErrorMessage";
-
 import PageNavigationBackToList from "components/atoms/PageNavHome";
-
 import GuestForm from "components/guest/GuestForm";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
-
 import { useGetGuest, useUpdateGuest } from "hooks/api/guestHooks";
-
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
-
 import Guest from "models/Guest";
-
 import { AppRoutes } from "constants/AppRoutes";
-
-import GuestAccommodation from "models/GuestAccommodation";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);

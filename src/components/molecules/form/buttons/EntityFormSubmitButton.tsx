@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
 import ProgressIcon from "components/atoms/ProgressIcon";
 import { useTranslation } from "react-i18next";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";

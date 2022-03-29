@@ -2,13 +2,9 @@ import React from "react";
 import { FormGroup } from "reactstrap";
 import { Field } from "formik";
 import { useTranslation } from "react-i18next";
-
 import { GuestFormFields } from "components/guest/GuestFormFields";
-
 import FormSelect from "components/atoms/form/FormSelect";
-
 import { GuestStatus } from "models/constants/GuestStatus";
-
 import FormLabel from "components/atoms/form/FormLabel";
 
 const GuestFormVerificationStatus = (props: any) => {

@@ -1,11 +1,8 @@
 import React from "react";
 import { Field, Form, Formik } from "formik";
 import { Button, FormGroup } from "reactstrap";
-
 import FormCheckbox from "components/atoms/form/FormCheckbox";
-
 import { appConfig } from "constants/AppConfig";
-
 import { ApplicationSettings } from "components/settings/constants";
 
 const SettingsForm = ({ initialValues, onCancel, onSubmit }: any) => {

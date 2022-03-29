@@ -1,15 +1,10 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
 import FormSection from "components/molecules/form/FormSection";
-
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
-
 import GuestFormFullName from "components/guest/form/fields/GuestFormFullName";
-
 import GuestFormEmail from "components/guest/form/fields/GuestFormEmail";
-
 import GuestFormPhoneNumber from "components/guest/form/fields/GuestFormPhoneNumber";
 
 /**

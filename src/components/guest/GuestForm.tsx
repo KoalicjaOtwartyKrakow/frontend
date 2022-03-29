@@ -5,9 +5,7 @@ import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useToasts } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
-
 import EntityFormButtons from "components/molecules/form/EntityFormButtons";
-
 import GuestAccommodation from "models/GuestAccommodation";
 import GuestFormAdditional from "components/guest/form/sections/GuestFormAdditional";
 import GuestFormAssignments from "components/guest/form/sections/GuestFormAssignments";
@@ -16,7 +14,6 @@ import GuestFormGroupAdults from "components/guest/form/sections/GuestFormGroupA
 import GuestFormGroupChildren from "components/guest/form/sections/GuestFormGroupChildren";
 import GuestFormPersonalData from "components/guest/form/sections/GuestFormPersonalData";
 import GuestFormStayInfo from "./form/sections/GuestFormStayInfo";
-
 import { guestFormCreateSchema, guestFormUpdateSchema } from "components/guest/GuestFormSchemas";
 import { guestFormFields as formFields } from "components/guest/GuestFormFields";
 
