@@ -63,6 +63,7 @@
             "numberMin": "Minimum value is too small",
             "phoneNumber": "Phone number is required",
             "positiveNumber": "Negative values are not accepted",
+            "required": "This field is required",
             "voivodeshipName": "Enter voivodeship name",
             "atLeastOneLanguage": "At least one language required"
         }
