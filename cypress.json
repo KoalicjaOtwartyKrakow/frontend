@@ -1,0 +1,6 @@
+{
+    "defaultCommandTimeout": 15000,
+    "baseUrl": "http://localhost:3000/",
+    "videoUploadOnPasses": false,
+    "env": {}
+}
