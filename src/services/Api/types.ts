@@ -1,4 +1,4 @@
-import type { FieldErrorList } from "models/FormikStatus";
+import type { ApiValidationStatus } from "models/ApiValidationStatus";
 
 const ApiErrorTypes = {
     CLIENT: "client",
@@ -31,12 +31,11 @@ type ApiErrorStatus = {
     type: ApiErrorType;
 };
 
-type ApiErrors =
-    | {
-          errors: FieldErrorList;
-          status?: ApiErrorStatus;
-      }
-    | undefined;
+interface ApiErrorsStatus {
+    status?: ApiErrorStatus;
+}
+
+type ApiErrors = (ApiValidationStatus & ApiErrorsStatus) | undefined;
 
 export type { ApiErrorType, ApiErrorCodeClient, ApiErrorCode, ApiErrorStatus, ApiErrors };
 

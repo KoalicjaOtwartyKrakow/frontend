@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PageCard from "components/atoms/PageCard";
 import { useTranslation } from "react-i18next";
@@ -39,6 +39,12 @@ const GuestCreatePage = () => {
             navigate(AppRoutes.GUESTS);
         }
     }, [addToast, createdGuest, navigate, t]);
+
+    useEffect(() => {
+        if (!guestCreateError) {
+            return;
+        }
+    }, [guestCreateError]);
 
     const onSubmit = async (values: any, onSubmitError: any) => {
         const guest = formFields.formToModel(values);

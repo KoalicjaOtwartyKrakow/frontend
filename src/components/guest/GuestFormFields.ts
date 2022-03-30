@@ -5,6 +5,8 @@ import Guest from "models/Guest";
 import { ApiErrors } from "services/Api/types";
 import DurationSerializer from "serializers/DurationSerializer";
 import moment from "moment";
+import GuestFieldErrors from "models/GuestFieldErrors";
+import { GuestFormField } from "components/guest/GuestFormTypes";
 
 class GuestFormFields {
     static ACCOMMODATION_UNIT = "accommodationUnit";
@@ -31,7 +33,7 @@ class GuestFormFields {
     static PETS_DESCRIPTION = "petsDescription";
     static PETS_PRESENT = "petsPresent";
     static PHONE_NUMBER = "phoneNumber";
-    static PRIORITY_DATE = "priorityDate";
+    static PRIORITY_DATE = GuestFormField.PRIORITY_DATE;
     static PRIORITY_STATUS = "priorityStatus";
     static SPECIAL_NEEDS = "specialNeeds";
     static VERIFICATION_STATUS = "verificationStatus";
@@ -85,7 +87,7 @@ class GuestFormFields {
     }
 
     getStatusFromApi(apiErrors: ApiErrors) {
-        return FormikApiErrors.getStatusFromApi(apiErrors);
+        return FormikApiErrors.getStatusFromApi(apiErrors, GuestFieldErrors);
     }
 
     areValuesEqual(prevValues: any, nextValues: any) {

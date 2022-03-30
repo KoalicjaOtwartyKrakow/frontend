@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikBag } from "formik";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { formikFormApplyYupTransforms as yupTransform } from "formik-yup";
 import { useToasts } from "react-toast-notifications";
@@ -47,15 +47,10 @@ const GuestForm = (props: any) => {
 
     const onSubmitError = (response: any, values: any, resetForm: any) => {
         const status = formFields.getStatusFromApi(response);
-        resetForm({ values, status });
+        const touched = {};
+        resetForm({ values, status, touched });
     };
 
-    /**
-     *
-     * @param values
-     * @param formikBag
-     * @returns {Promise<*>}
-     */
     const onSubmit = async (values: any, formikBag: any) => {
         console.info("[Guest] GuestForm onSubmit()");
 
