@@ -2,8 +2,9 @@ import { isEqual, merge, pick, omit } from "lodash-es";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { getFormattedDate } from "shared/datetime";
 import Guest from "models/Guest";
-import { DurationOfStaySubfields } from "components/guest/DurationOfStaySubfields";
 import { ApiErrors } from "services/Api/types";
+import DurationSerializer from "serializers/DurationSerializer";
+import moment from "moment";
 
 class GuestFormFields {
     static ACCOMMODATION_UNIT = "accommodationUnit";
@@ -13,10 +14,8 @@ class GuestFormFields {
     static CLAIMED_BY_USER_ID = "claimedById";
     static DESIRED_DESTINATION = "desiredDestination";
     static DOCUMENT_NUMBER = "documentNumber";
-    static DURATION_OF_STAY = "durationOfStay";
-    static DIMENSIONLESS_DURATION_OF_STAY = "dimensionlessDurationOfStay";
-    static DIMENSIONLESS_DURATION_OF_STAY_VALUE = "dimensionlessDurationOfStay";
-    static DURATION_OF_STAY_UNIT = "timeUnit";
+    static DURATION_OF_STAY_VALUE = "durationOfStayValue";
+    static DURATION_OF_STAY_UNIT = "durationOfStayUnit";
     static EMAIL = "email";
     static FINANCIAL_STATUS = "financialStatus";
     static FOOD_ALLERGIES = "foodAllergies";
@@ -48,42 +47,36 @@ class GuestFormFields {
         }
 
         const fieldNames = Object.values(GuestFormFields);
-        const formValues = pick(guest, fieldNames);
+
+        const formValues = { ...pick(guest, fieldNames), ...this.createDurationOfStaySubfields(guest.durationOfStay) };
+
         formValues.priorityDate = getFormattedDate(formValues.priorityDate);
 
+        const createFormValues = {};
 
-        const createFormValues = {
-            ...this.createDurationOfStaySubfields(guest.durationOfStay),
-        };
         return { ...formValues, ...createFormValues };
     }
 
-    private createDurationOfStaySubfields(durationOfStay: string) {
-        const subfields = DurationOfStaySubfields.fromJoinedField(durationOfStay);
+    private createDurationOfStaySubfields(duration: moment.Duration) {
+        const durationSerializer = new DurationSerializer();
+        const durationOfStay = durationSerializer.getValueAndUnitFromDuration(duration, ["months", "weeks", "days"]);
         return {
-            [GuestFormFields.DURATION_OF_STAY_UNIT]: subfields.unit,
-            [GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY]: subfields.dimensionlessValue,
+            [GuestFormFields.DURATION_OF_STAY_UNIT]: durationOfStay.unit,
+            [GuestFormFields.DURATION_OF_STAY_VALUE]: durationOfStay.value,
         };
     }
 
-    /**
-     *
-     * @param formValues
-     */
     formToModel(formValues: any) {
         const guest = new Guest();
-        /**
-         * @type {Guest}
-         */
-        const model = merge(
+        const model: Guest = merge(
             guest,
-            omit(formValues, [GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY, GuestFormFields.DURATION_OF_STAY_UNIT])
+            omit(formValues, [GuestFormFields.DURATION_OF_STAY_VALUE, GuestFormFields.DURATION_OF_STAY_UNIT])
         );
         model.accommodationUnitId = model.accommodationUnit?.id;
-        model.durationOfStay = new DurationOfStaySubfields(
-            formValues[GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY],
+        model.durationOfStay = moment.duration(
+            formValues[GuestFormFields.DURATION_OF_STAY_VALUE],
             formValues[GuestFormFields.DURATION_OF_STAY_UNIT]
-        ).toJoinedField();
+        );
         return model;
     }
 

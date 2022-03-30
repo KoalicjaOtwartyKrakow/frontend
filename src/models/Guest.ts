@@ -13,6 +13,8 @@ import { GuestStatus } from "models/constants/GuestStatus";
 import { GuestPriorityStatus } from "./constants/GuestPriorityStatus";
 import GuestAccommodation from "models/GuestAccommodation";
 import User from "models/User";
+import moment from "moment";
+import DurationSerializer from "serializers/DurationSerializer";
 
 @JsonObject()
 class Guest {
@@ -76,9 +78,10 @@ class Guest {
     @JsonType(Boolean)
     glutenFreeDiet = false;
 
+    @JsonConverter(new DurationSerializer())
     @JsonProperty("howLongToStay")
     @JsonType(String)
-    durationOfStay = "";
+    durationOfStay: moment.Duration = new DurationSerializer().getDefaultDuration();
 
     @JsonProperty("guid")
     @JsonType(String)
