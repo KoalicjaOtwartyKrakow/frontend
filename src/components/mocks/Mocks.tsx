@@ -11,9 +11,9 @@ import { mockUser, mockUserResponses } from "mocks/user";
 const applyMocks = () => {
     const mockAdapter = new MockAdapter(axios);
 
-    const mockedAccommodations = Array.from({ length: 30 }, mockAccommodation);
-    const mockedGuests = Array.from({ length: 30 }, mockGuest);
-    const mockedHosts = Array.from({ length: 30 }, mockHost);
+    const mockedAccommodations = Array.from({ length: 400 }, mockAccommodation);
+    const mockedGuests = Array.from({ length: 4000 }, mockGuest);
+    const mockedHosts = Array.from({ length: 400 }, mockHost);
     const mockedUsers = Array.from({ length: 30 }, mockUser);
 
     mockRelationships({ mockedAccommodations, mockedGuests, mockedHosts, mockedUsers });
