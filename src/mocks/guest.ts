@@ -19,11 +19,7 @@ const mockGuest = () => {
     guest.email = chance.email();
     guest.phoneNumber = chance.phone();
     guest.children = Array.from({ length: chance.natural({ min: 0, max: 3 }) }, () => chance.age({ type: "child" }));
-    const stayDuration = moment.duration({
-        months: chance.natural({ min: 0, max: 3 }),
-        days: chance.natural({ min: 1, max: 28 }),
-    });
-    guest.durationOfStay = stayDuration.humanize();
+    guest.durationOfStay = `${chance.natural({ min: 1, max: 4 })} m`;
     guest.peopleFemaleCount = chance.natural({ min: 1, max: 2 });
     guest.peopleMaleCount = chance.natural({ min: 0, max: 3 });
     guest.peopleTotalCount = guest.peopleFemaleCount + guest.peopleMaleCount + guest.children.length;

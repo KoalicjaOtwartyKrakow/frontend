@@ -1,7 +1,8 @@
-import { isEqual, merge, pick } from "lodash";
+import { isEqual, merge, pick, omit } from "lodash-es";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { getFormattedDate } from "shared/datetime";
 import Guest from "models/Guest";
+import { DurationOfStaySubfields } from "components/guest/DurationOfStaySubfields";
 import { ApiErrors } from "services/Api/types";
 
 class GuestFormFields {
@@ -13,6 +14,9 @@ class GuestFormFields {
     static DESIRED_DESTINATION = "desiredDestination";
     static DOCUMENT_NUMBER = "documentNumber";
     static DURATION_OF_STAY = "durationOfStay";
+    static DIMENSIONLESS_DURATION_OF_STAY = "dimensionlessDurationOfStay";
+    static DIMENSIONLESS_DURATION_OF_STAY_VALUE = "dimensionlessDurationOfStay";
+    static DURATION_OF_STAY_UNIT = "timeUnit";
     static EMAIL = "email";
     static FINANCIAL_STATUS = "financialStatus";
     static FOOD_ALLERGIES = "foodAllergies";
@@ -47,13 +51,19 @@ class GuestFormFields {
         const formValues = pick(guest, fieldNames);
         formValues.priorityDate = getFormattedDate(formValues.priorityDate);
 
-        if (guest.id) {
-            return formValues;
-        }
 
-        const createFormValues = {};
-
+        const createFormValues = {
+            ...this.createDurationOfStaySubfields(guest.durationOfStay),
+        };
         return { ...formValues, ...createFormValues };
+    }
+
+    private createDurationOfStaySubfields(durationOfStay: string) {
+        const subfields = DurationOfStaySubfields.fromJoinedField(durationOfStay);
+        return {
+            [GuestFormFields.DURATION_OF_STAY_UNIT]: subfields.unit,
+            [GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY]: subfields.dimensionlessValue,
+        };
     }
 
     /**
@@ -65,8 +75,15 @@ class GuestFormFields {
         /**
          * @type {Guest}
          */
-        const model = merge(guest, formValues);
+        const model = merge(
+            guest,
+            omit(formValues, [GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY, GuestFormFields.DURATION_OF_STAY_UNIT])
+        );
         model.accommodationUnitId = model.accommodationUnit?.id;
+        model.durationOfStay = new DurationOfStaySubfields(
+            formValues[GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY],
+            formValues[GuestFormFields.DURATION_OF_STAY_UNIT]
+        ).toJoinedField();
         return model;
     }
 

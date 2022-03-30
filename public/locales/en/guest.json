@@ -50,7 +50,7 @@
         },
         "placeholder": {
             "desiredDestination": "Where is the Guest headed?",
-            "durationOfStay": "3 months"
+            "durationOfStay": "3"
         },
         "section": {
             "additionalInfo": "Additional information",
@@ -97,5 +97,13 @@
             "lactoseFree": "Lactose free diet",
             "meatFree": "Meat free diet"
         }
+    },
+    "timeUnit": {
+        "day_one": "day",
+        "day_other": "days",
+        "week_one": "week",
+        "week_other": "weeks",
+        "month_one": "month",
+        "month_other": "months"
     }
 }
