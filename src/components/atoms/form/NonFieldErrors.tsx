@@ -1,6 +1,6 @@
 import { Alert } from "reactstrap";
 import React from "react";
-import { FormikStatus } from "models/FormikStatus";
+import { ApiValidationStatus } from "models/ApiValidationStatus";
 import { useFormikContext } from "formik";
 
 const NonFieldError = ({ error, isNotLastError }: any) => (
@@ -12,9 +12,9 @@ const NonFieldError = ({ error, isNotLastError }: any) => (
 
 const NonFieldErrors = ({ label = "" }: any) => {
     const formikContext = useFormikContext();
-    const status: FormikStatus = formikContext.status;
+    const status: ApiValidationStatus = formikContext.status;
 
-    const nonFieldErrors = status.nonFieldErrors || [];
+    const nonFieldErrors = status.errors?.nonFieldErrors || [];
     const hasErrors = nonFieldErrors.length > 0;
 
     if (!hasErrors) {

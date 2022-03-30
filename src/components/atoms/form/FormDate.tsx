@@ -4,7 +4,8 @@ import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { FieldInputProps, useFormikContext } from "formik";
 import FormErrorsFeedback from "components/atoms/form/FormErrorsFeedback";
 
-const FormDate = ({ name, field, ...props }: { name: string; field: FieldInputProps<string> }) => {
+const FormDate = ({ field, ...props }: { name: string; field: FieldInputProps<string> }) => {
+    const { name } = field;
     const formikContext = useFormikContext();
     const errors = FormikApiErrors.getErrors(name, formikContext);
     const invalid = errors.length > 0;

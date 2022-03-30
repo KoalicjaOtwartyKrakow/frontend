@@ -1,7 +1,8 @@
 import { FormikContextType, getIn } from "formik";
 import HttpStatus from "http-status-codes";
 import { ApiErrors, ApiErrorStatus, ApiErrorTypes } from "services/Api/types";
-import { FormikStatus } from "models/FormikStatus";
+import { ApiValidationStatus } from "models/ApiValidationStatus";
+import { plainToClass } from "serializers/Serializer";
 
 /**
  *
@@ -26,7 +27,8 @@ class FormikApiErrors {
         const status: ApiErrors = formikContext.status;
 
         const fieldTouched = getIn(touched, name);
-        const backendErrors = status?.errors?.[name] || [];
+        // FIXME: this could be simplified if initialStatus is set correctly
+        const backendErrors = status?.errors?.validationErrors?.[name] || [];
         // FIXME: TS2322: Type 'string | string[] | FormikErrors<any> | FormikErrors<any>[]' is not assignable to type 'string'. Type 'string[]' is not assignable to type 'string'.
         // Probably <ErrorMessage /> would be a better choice overall
         const frontendError = errors[name] as string;
@@ -43,32 +45,40 @@ class FormikApiErrors {
     };
 
     static getInitialStatus = function () {
-        const formikStatus: FormikStatus = {};
+        const formikStatus: ApiValidationStatus = {
+            errors: {},
+        };
         return formikStatus;
     };
 
-    static getStatusFromApi = function (apiErrors?: ApiErrors) {
+    static getStatusFromApi = function (apiErrors?: ApiErrors, transformClassName?: any): any {
+        const formikCleanStatus = FormikApiErrors.getInitialStatus();
+
         if (apiErrors === undefined || apiErrors.status === undefined) {
-            const formikStatus: FormikStatus = {};
-            return formikStatus;
+            return formikCleanStatus;
         }
 
         const { status, errors } = apiErrors;
 
-        if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.BAD_REQUEST) {
-            const formikStatus: FormikStatus = {
-                fieldErrors: errors,
+        if (status.type === ApiErrorTypes.SERVER && status.code === HttpStatus.UNPROCESSABLE_ENTITY) {
+            debugger;
+            if (!transformClassName) {
+                console.warn("[FormikApiErrors.getStatusFromApi]: please provide field errors transformation class");
+            }
+            const formikStatus: ApiValidationStatus = {
+                errors: {
+                    validationErrors: transformClassName
+                        ? (plainToClass(
+                              transformClassName,
+                              errors?.validationErrors || {}
+                          ) as typeof transformClassName)
+                        : errors.validationErrors,
+                },
             };
             return formikStatus;
         }
 
-        // const customErrorMessage = getErrorMessageFromStatus(status);
-        // FIXME this is probably screwed up
-        const formikStatus: FormikStatus = {
-            nonFieldErrors: errors["non_field_errors"],
-        };
-
-        return formikStatus;
+        return formikCleanStatus;
     };
 }
 

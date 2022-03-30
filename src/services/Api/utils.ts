@@ -69,6 +69,10 @@ export const getPath = (url: any, options?: any) => {
 export const transformObjectResponse = (modelClass: any) => (data: any) => {
     try {
         const parsed = JSON.parse(data);
+        // FIXME: this is fugly, we should go with some clever solution based on interceptors, as stupid Axios does not differentiate between error and success responses during transforms
+        if (parsed?.validationErrors || parsed?.nonFieldErrors) {
+            return parsed;
+        }
         return parsed && plainToClass(modelClass, parsed);
     } catch (error) {
         console.error("[transformResponse] Retrieved malformed JSON response:", { data, modelClass });
