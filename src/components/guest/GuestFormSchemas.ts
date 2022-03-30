@@ -28,7 +28,6 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.FULL_NAME]: Yup.string().trim().required("common:form.validator.fullName"),
     [GuestFormFields.GLUTEN_FREE_DIET]: Yup.bool(),
     [GuestFormFields.PETS_PRESENT]: Yup.bool(),
-    [GuestFormFields.DURATION_OF_STAY]: Yup.string().trim().required("common:form.validator.required"),
     [GuestFormFields.LACTOSE_FREE_DIET]: Yup.bool(),
     [GuestFormFields.MEAT_FREE_DIET]: Yup.bool(),
     [GuestFormFields.PEOPLE_TOTAL_COUNT]: Yup.number()
@@ -42,10 +41,10 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.PRIORITY_STATUS]: Yup.string().oneOf(Object.values(GuestPriorityStatus)),
     [GuestFormFields.SPECIAL_NEEDS]: Yup.string().trim(),
     [GuestFormFields.VERIFICATION_STATUS]: Yup.string().oneOf(Object.values(GuestStatus)),
-    [GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY_VALUE]: Yup.number()
+    [GuestFormFields.DURATION_OF_STAY_VALUE]: Yup.number()
         .integer("common:form.validator.integer")
-        .min(1, "common:form.validator.numberMin")
         .moreThan(0, "common:form.validator.positiveNumber")
+        .min(1, "common:form.validator.numberMin")
         .required("common:form.validator.integer"),
 });
 

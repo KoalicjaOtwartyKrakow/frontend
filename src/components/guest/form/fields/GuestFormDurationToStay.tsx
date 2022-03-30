@@ -1,6 +1,6 @@
 import React from "react";
-import { FormGroup, FormText } from "reactstrap";
-import { Field, useFormikContext } from "formik";
+import { FormGroup } from "reactstrap";
+import { Field, useField } from "formik";
 import { useTranslation } from "react-i18next";
 import { Col, Row } from "reactstrap";
 
@@ -11,24 +11,25 @@ import { TimeUnit } from "models/constants/TimeUnit";
 import { GuestFormFields } from "components/guest/GuestFormFields";
 
 const GuestFormDurationToStay = () => {
-    const durationId = GuestFormFields.DIMENSIONLESS_DURATION_OF_STAY_VALUE;
-    const timeUnitId = GuestFormFields.DURATION_OF_STAY_UNIT;
-
-    const { getFieldProps } = useFormikContext();
-    const { value: dimensionlessDuration } = getFieldProps(durationId);
     const { t } = useTranslation(["guest"]);
+
+    const timeUnitId = GuestFormFields.DURATION_OF_STAY_UNIT;
+    const durationId = GuestFormFields.DURATION_OF_STAY_VALUE;
+    const [{ value: dimensionlessDuration }] = useField(durationId);
+    const options = { count: Number(dimensionlessDuration) };
+
     const validTimeUnits = [
         {
             id: TimeUnit.DAY,
-            name: t("guest:timeUnit.day", { count: parseInt(dimensionlessDuration) }),
+            name: t("guest:timeUnit.day", options),
         },
         {
             id: TimeUnit.WEEK,
-            name: t("guest:timeUnit.week", { count: parseInt(dimensionlessDuration) }),
+            name: t("guest:timeUnit.week", options),
         },
         {
             id: TimeUnit.MONTH,
-            name: t("guest:timeUnit.month", { count: parseInt(dimensionlessDuration) }),
+            name: t("guest:timeUnit.month", options),
         },
     ];
 
@@ -37,21 +38,21 @@ const GuestFormDurationToStay = () => {
             <FormLabel for={durationId} className="required">
                 {t("guest:form.label.durationOfStay")}
             </FormLabel>
-            <Row>
-                <Col xs={6}>
+            <Row className="g-2">
+                <Col xs={4}>
                     <Field
                         component={FormInput}
                         id={durationId}
                         name={durationId}
                         placeholder={t("guest:form.placeholder.durationOfStay")}
-                        type="text"
+                        type="number"
+                        min={0}
                     />
                 </Col>
-                <Col xs={6}>
+                <Col xs={8}>
                     <Field component={FormSelect} id={timeUnitId} name={timeUnitId} items={validTimeUnits} />
                 </Col>
             </Row>
-            <FormText>{t("guest:form.text.durationOfStay")}</FormText>
         </FormGroup>
     );
 };
