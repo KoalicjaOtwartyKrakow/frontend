@@ -36,6 +36,7 @@ class GuestFormFields {
     static PRIORITY_DATE = GuestFormField.PRIORITY_DATE;
     static PRIORITY_STATUS = "priorityStatus";
     static SPECIAL_NEEDS = "specialNeeds";
+    static STAFF_COMMENTS = "staffComments";
     static VERIFICATION_STATUS = "verificationStatus";
 
     /**

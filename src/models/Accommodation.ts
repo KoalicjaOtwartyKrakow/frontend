@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
 import Guest from "models/Guest";
+import moment from "moment";
 
 @JsonObject()
 class Accommodation {

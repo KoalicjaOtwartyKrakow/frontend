@@ -6,6 +6,7 @@ import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import GuestFormAccommodationSearchInput from "components/guest/form/GuestFormAccommodationSearchInput";
 import GuestFormVolunteerAssignment from "components/guest/form/fields/GuestFormVolunteerAssignment";
 import GuestFormPriorityStatus from "components/guest/form/fields/GuestFormPriorityStatus";
+import GuestFormStaffComments from "components/guest/form/fields/GuestFormStaffComments";
 
 /**
  * @component
@@ -23,9 +24,10 @@ const GuestFormAssignments = ({ onAccommodationSelected }: any) => {
             <Row>
                 <Col xs={12} md={6}>
                     <GuestFormVolunteerAssignment />
+                    <GuestFormPriorityStatus />
                 </Col>
                 <Col xs={12} md={6}>
-                    <GuestFormPriorityStatus />
+                    <GuestFormStaffComments />
                 </Col>
             </Row>
         </FormSection>
