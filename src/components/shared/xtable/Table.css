@@ -1,0 +1,103 @@
+/* TABLE */
+
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.table > thead > tr.theader {
+  background-color: #f5f5f5;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.table > thead > tr > th {
+  color: #333;
+  font-size: 13px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.table > thead > tr > th.tfilter {
+  padding: 2px 5px;
+  font-weight: 400;
+}
+
+.table > thead > tr > th.tfilter > div > label.divFilter {
+  font-size: 10px;
+}
+
+.div-pagination {
+  font-size: 12px;
+}
+
+.div-pagination-2 {
+  float: right;
+  text-align: right;
+}
+.div-pagination-1 {
+  text-align: left;
+}
+
+.pagina {
+  color: #212529;
+}
+
+.table-search-switch > label {
+  font-size: 12px;
+  padding: 4px 2px;
+}
+
+.pagina .pagination {
+  margin-bottom: 3px;
+}
+
+.div-pagination-2-1 .inputan {
+  width: 40px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  color: #212529;
+}
+
+.div-pagination-2-1 .inputan:focus {
+  border: 1px solid #dee2e6;
+}
+
+.div-pagination-2-2 .selectan {
+  text-align: center;
+  border: 1px solid #dee2e6;
+  color: #212529;
+}
+
+.div-pagination-2-2 .inputan:focus {
+  border: 1px solid #dee2e6;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .div-pagination-2 {
+    float: none;
+    text-align: left;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
