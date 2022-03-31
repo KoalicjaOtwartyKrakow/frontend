@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import PageCard from "components/atoms/PageCard";
 import { AppRoutes, getRouteIcon } from "constants/AppRoutes";
 import HomePageCard from "pages/home/HomePageCard";
+import { appConfig } from "constants/AppConfig";
 
 const DashboardPage = () => {
     const { t } = useTranslation(["dashboard"]);
@@ -15,7 +16,7 @@ const DashboardPage = () => {
             header: t("dashboard:accommodations.header"),
             icon: getRouteIcon(AppRoutes.ACCOMMODATIONS),
             navigationButtonLabel: t("dashboard:accommodations.navigateButtonLabel"),
-            navigationRoute: AppRoutes.ACCOMMODATIONS,
+            navigationRoute: appConfig.routerOverride.accommodations || AppRoutes.ACCOMMODATIONS,
         },
         {
             body: t("dashboard:guests.description"),
@@ -23,7 +24,7 @@ const DashboardPage = () => {
             header: t("dashboard:guests.header"),
             icon: getRouteIcon(AppRoutes.GUESTS),
             navigationButtonLabel: t("dashboard:guests.navigateButtonLabel"),
-            navigationRoute: AppRoutes.GUESTS,
+            navigationRoute: appConfig.routerOverride.guests || AppRoutes.GUESTS,
         },
         {
             body: t("dashboard:hosts.description"),
@@ -31,7 +32,7 @@ const DashboardPage = () => {
             header: t("dashboard:hosts.header"),
             icon: getRouteIcon(AppRoutes.HOSTS),
             navigationButtonLabel: t("dashboard:hosts.navigateButtonLabel"),
-            navigationRoute: AppRoutes.HOSTS,
+            navigationRoute: appConfig.routerOverride.hosts || AppRoutes.HOSTS,
         },
     ];
 
