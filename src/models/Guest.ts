@@ -78,6 +78,10 @@ class Guest {
     @JsonType(Boolean)
     glutenFreeDiet = false;
 
+    @JsonType(String)
+    @JsonProperty("staffComments")
+    staffComments = "";
+
     @JsonConverter(new DurationSerializer())
     @JsonProperty("howLongToStay")
     @JsonType(String)

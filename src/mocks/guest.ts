@@ -45,6 +45,7 @@ const mockGuest = () => {
     guest.lactoseFreeDiet = chance.bool();
     guest.desiredDestination = chance.address();
     guest.priorityStatus = chance.pickone(Object.values(GuestPriorityStatus));
+    guest.staffComments = chance.sentence({ words: 16 });
 
     const daysFromStartOfWar = moment().diff(moment("2022-02-24"), "days");
 

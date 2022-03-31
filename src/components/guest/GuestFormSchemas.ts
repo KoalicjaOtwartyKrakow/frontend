@@ -40,6 +40,7 @@ const commonSchema = Yup.object().shape({
     [GuestFormFields.PRIORITY_DATE]: Yup.string().trim(),
     [GuestFormFields.PRIORITY_STATUS]: Yup.string().oneOf(Object.values(GuestPriorityStatus)),
     [GuestFormFields.SPECIAL_NEEDS]: Yup.string().trim(),
+    [GuestFormFields.STAFF_COMMENTS]: Yup.string().trim(),
     [GuestFormFields.VERIFICATION_STATUS]: Yup.string().oneOf(Object.values(GuestStatus)),
     [GuestFormFields.DURATION_OF_STAY_VALUE]: Yup.number()
         .integer("common:form.validator.integer")
