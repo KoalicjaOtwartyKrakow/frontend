@@ -34,7 +34,7 @@ const GuestList = ({ guests }: any) => {
         <Table hover striped responsive>
             <colgroup>
                 {columnNames.map((columnName) => (
-                    <col className={`accommodation__col-${columnName}`} key={columnName} />
+                    <col className={`guest__col-${columnName}`} key={columnName} />
                 ))}
             </colgroup>
             <thead className="thead-dark">

@@ -1,4 +1,5 @@
 import {
+    BeforeDeserialized,
     JsonConverter,
     JsonElementType,
     JsonObject,
@@ -134,7 +135,7 @@ class Guest {
 
     @JsonProperty()
     @JsonType(String)
-    priorityStatus = GuestPriorityStatus.AT_R3;
+    priorityStatus = GuestPriorityStatus.IN_KRAKOW;
 
     @JsonProperty()
     @JsonType(String)
@@ -164,6 +165,13 @@ class Guest {
 
     static is(item: any) {
         return item instanceof Guest;
+    }
+
+    @BeforeDeserialized()
+    workaroundBrokenApiData() {
+        this.durationOfStay = new DurationSerializer().getDefaultDuration();
+        this.priorityDate = undefined;
+        this.priorityStatus = GuestPriorityStatus.IN_KRAKOW;
     }
 
     @OnDeserialized()
