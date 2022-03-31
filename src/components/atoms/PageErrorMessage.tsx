@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import HttpStatus from "http-status-codes";
 import type { ApiErrorCodeClient, ApiErrors } from "services/Api/types";
 import { ApiErrorCodesClient, ApiErrorTypes } from "services/Api/types";
-import { timeout } from "services/Api/constants";
+import useApplicationSettings from "hooks/useApplicationSettings";
+import { ApplicationSettings } from "components/settings/constants";
 
 interface Props {
     children?: React.ReactNode;
@@ -13,6 +14,7 @@ interface Props {
 
 const PageErrorMessage = ({ children, error }: Props) => {
     const { t } = useTranslation(["common"]);
+    const applicationSettings = useApplicationSettings();
 
     if (!error) {
         return null;
@@ -38,10 +40,11 @@ const PageErrorMessage = ({ children, error }: Props) => {
             message = `${httpStatusToMessageMap[code as number]}`;
         }
         if (type === ApiErrorTypes.CLIENT) {
+            const networkTimeout = applicationSettings.get(ApplicationSettings.NETWORK_TIMEOUT);
             // FIXME: better key types
             const clientStatusToMessageMap: Record<string, string> = {
                 [ApiErrorCodesClient.ECONNREFUSED]: t("common:errors.connectionRefused"),
-                [ApiErrorCodesClient.ETIMEDOUT]: t("common:errors.connectionTimeout", { count: timeout }),
+                [ApiErrorCodesClient.ETIMEDOUT]: t("common:errors.connectionTimeout", { count: networkTimeout }),
             };
             message = `${clientStatusToMessageMap[code as ApiErrorCodeClient]}`;
         }
