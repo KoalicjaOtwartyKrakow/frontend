@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 const LoadingPage = ({ visible }: any) => {
     const className = classNames(
-        "h-100 align-items-center justify-content-center",
+        "vh-100 align-items-center justify-content-center",
         { "d-flex": visible },
         { "d-none": !visible }
     );

@@ -25,9 +25,11 @@
     "errors": {
         "apiFailure": "API request failed",
         "badRequest": "Bad request. Invalid data was provided by user or it is a bug. Contact us",
+        "codeAndType": "(Error code: {{code}}, error type: {{type}})",
         "connectionTimeout": "Server did not respond within a given timeframe (i.e. {{count}} ms). Data request was cancelled",
         "connectionRefused": "Server refused a network connection",
         "connectionReset": "Network connection was reset by server",
+        "gatewayTimeout": "We manged to contact API, but API didn't managed to retrieve the data within given timeframe",
         "internalServerError": "Ooops! This was unexpected. The server made a boo-boo. We've sent our best trained monkeys to investigate",
         "notFound": "Endpoint not found",
         "unauthorized": "You are (no longer) authorized to perform this operation. Authenticate again",

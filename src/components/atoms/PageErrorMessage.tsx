@@ -31,6 +31,7 @@ const PageErrorMessage = ({ children, error }: Props) => {
         if (type === ApiErrorTypes.SERVER) {
             // FIXME: better key types
             const httpStatusToMessageMap: Record<number, string> = {
+                [HttpStatus.GATEWAY_TIMEOUT]: t("common:errors.gatewayTimeout"),
                 [HttpStatus.INTERNAL_SERVER_ERROR]: t("common:errors.internalServerError"),
                 [HttpStatus.NOT_FOUND]: t("common:errors.notFound"),
                 [HttpStatus.UNAUTHORIZED]: t("common:errors.unauthorized"),
@@ -49,13 +50,15 @@ const PageErrorMessage = ({ children, error }: Props) => {
             message = `${clientStatusToMessageMap[code as ApiErrorCodeClient]}`;
         }
 
-        if (message.trim() === "") {
+        if (message.trim() === "" || message === "undefined") {
             message = t("common:errors.unhandledApiError");
         }
 
+        const messageCodeAndType = t("common:errors.codeAndType", { code: code.toString(), type });
+
         return (
             <p className={!children ? "mb-0" : undefined}>
-                {message}. ({code.toString()})
+                {message}. {messageCodeAndType}
             </p>
         );
     };
