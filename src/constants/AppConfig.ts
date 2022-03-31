@@ -4,6 +4,11 @@ export const appConfig = Object.freeze({
     }),
     publicUrl: process.env.PUBLIC_URL,
     routerBasename: process.env.REACT_APP_KOKON_ROUTER_BASENAME,
+    routerOverride: {
+        accommodations: process.env.REACT_APP_KOKON_OVERRIDE_ROUTE_ACCOMMODATIONS || "",
+        guests: process.env.REACT_APP_KOKON_OVERRIDE_ROUTE_GUESTS || "",
+        hosts: process.env.REACT_APP_KOKON_OVERRIDE_ROUTE_HOSTS || "",
+    },
     sentryDsn: process.env.REACT_APP_SENTRY_DSN,
 
     sentryTracesSampleRate: parseFloat(process.env.REACT_APP_SENTRY_TRACES_SAMPLE_RATE || "1.0"),

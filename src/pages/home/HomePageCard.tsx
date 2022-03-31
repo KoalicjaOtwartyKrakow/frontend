@@ -5,9 +5,14 @@ import React from "react";
 
 const HomePageCard = ({ children, color, header, icon, navigationButtonLabel, navigationRoute }: any) => {
     const navigate = useNavigate();
-    const onNavigate = (route: any) => {
-        const path = generatePath(route);
-        navigate(path);
+    const isAppRoute = navigationRoute.startsWith("/");
+    const onNavigate = (route: string) => {
+        if (isAppRoute) {
+            const path = generatePath(route);
+            navigate(path);
+            return;
+        }
+        window.location.href = route;
     };
 
     return (
@@ -21,7 +26,14 @@ const HomePageCard = ({ children, color, header, icon, navigationButtonLabel, na
                 <CardText>{children}</CardText>
                 <Row>
                     <Col lg={{ size: 10, offset: 1 }}>
-                        <Button color={color} size="lg" tag={Link} to={navigationRoute} className="w-100">
+                        <Button
+                            color={color}
+                            size="lg"
+                            tag={isAppRoute ? Link : "a"}
+                            {...(isAppRoute ? { to: navigationRoute } : {})}
+                            {...(!isAppRoute ? { href: navigationRoute } : {})}
+                            className="w-100"
+                        >
                             {navigationButtonLabel}
                         </Button>
                     </Col>
