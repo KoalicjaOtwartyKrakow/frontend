@@ -1,6 +1,7 @@
 import moment, { unitOfTime } from "moment";
 import Singleton from "singleton-decorator";
 import type { IPropertyConverter } from "ta-json";
+import Guest from "models/Guest";
 
 const defaultValue = "0";
 const defaultUnit = "days";
@@ -19,7 +20,8 @@ class DurationSerializer implements IPropertyConverter {
     }
 
     deserialize(property: string) {
-        if (!property?.length) {
+        // Workaround: try to deal with values like "1m, 2m, 1y"
+        if (!property || property.length === 0 || !property.trim().match(/^\d+\w+$/)) {
             return this.getDefaultDuration();
         }
 

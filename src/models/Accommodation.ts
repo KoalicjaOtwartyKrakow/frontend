@@ -1,4 +1,12 @@
-import { JsonConverter, JsonElementType, JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
+import {
+    BeforeDeserialized,
+    JsonConverter,
+    JsonElementType,
+    JsonObject,
+    JsonProperty,
+    JsonType,
+    OnDeserialized,
+} from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
 import { AccommodationStatus } from "models/constants/AccommodationStatus";
@@ -107,8 +115,28 @@ class Accommodation {
         this.vacanciesFree = this.vacanciesTotal - value;
     }
 
+    @BeforeDeserialized()
+    workaroundBrokenApiData() {
+        this.disabledPeopleFriendly = false;
+        this.easyAmbulanceAccess = false;
+        // forHowLong: null [? - Argasek]
+        this.lgbtFriendly = false;
+        this.parkingPlaceAvailable = false;
+        this.petsAllowed = false;
+        this.petsPresent = false;
+        this.staffComments = "";
+        this.vacanciesFree = 0;
+        this.addressVoivodeship = "";
+    }
+
     @OnDeserialized()
     uuidRegenerate() {
+        if (this.vacanciesTotal === undefined) {
+            this.vacanciesTotal = 0;
+        }
+        if (this.vacanciesFree === undefined) {
+            this.vacanciesFree = this.vacanciesTotal;
+        }
         this.uuid = nanoid();
     }
 
