@@ -1,10 +1,13 @@
 {
     "accommodations": "Accommodation",
+    "accommodationCreate": "Create accommodation",
     "account": "Account",
     "applicationSettings": "Application settings…",
     "dashboard": "Dashboard",
     "guests": "Guests",
+    "guestCreate": "Add new guest",
     "hosts": "Hosts",
+    "hostCreate": "Register new host",
     "signOut": "Sign out",
     "page": {
         "header": {

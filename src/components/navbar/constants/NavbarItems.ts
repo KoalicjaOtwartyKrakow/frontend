@@ -9,19 +9,19 @@ const navbarItems = [
         exact: true,
     },
     {
-        path: AppRoutes.ACCOMMODATIONS,
+        path: AppRoutes.ACCOMMODATION_CREATE,
         icon: getRouteIcon(AppRoutes.ACCOMMODATIONS),
-        i18nKey: "navbar:accommodations",
+        i18nKey: "navbar:accommodationCreate",
     },
     {
-        path: AppRoutes.GUESTS,
+        path: AppRoutes.GUEST_CREATE,
         icon: getRouteIcon(AppRoutes.GUESTS),
-        i18nKey: "navbar:guests",
+        i18nKey: "navbar:guestCreate",
     },
     {
-        path: AppRoutes.HOSTS,
+        path: AppRoutes.HOST_CREATE,
         icon: getRouteIcon(AppRoutes.HOSTS),
-        i18nKey: "navbar:hosts",
+        i18nKey: "navbar:hostCreate",
     },
 ];
 
