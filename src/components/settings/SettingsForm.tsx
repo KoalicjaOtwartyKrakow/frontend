@@ -1,33 +1,14 @@
 import React from "react";
-import { Field, Form, Formik } from "formik";
-import { Button, FormGroup } from "reactstrap";
-import FormCheckbox from "components/atoms/form/FormCheckbox";
+import { Form, Formik } from "formik";
+import { Button } from "reactstrap";
 import { appConfig } from "constants/AppConfig";
-import { ApplicationSettings } from "components/settings/constants";
+import SettingsFieldMockedResponses from "components/settings/form/SettingsFieldMockedResponses";
+import SettingsFieldTimeout from "components/settings/form/SettingsFieldTimeout";
 
 const SettingsForm = ({ initialValues, onCancel, onSubmit }: any) => {
-    const checkboxLabel = "Enable mocked API responses";
-
     const formikProps = {
         onSubmit,
         initialValues,
-    };
-
-    const SettingsMockedResponses = () => {
-        const name = ApplicationSettings.IS_ENABLE_MOCKS;
-        return (
-            <FormGroup tag="fieldset">
-                <legend className="form-label fw-semibold">Development settings:</legend>
-                <Field
-                    id={name}
-                    key={name}
-                    name={name}
-                    type="checkbox"
-                    label={checkboxLabel}
-                    component={FormCheckbox}
-                />
-            </FormGroup>
-        );
     };
 
     return (
@@ -39,8 +20,8 @@ const SettingsForm = ({ initialValues, onCancel, onSubmit }: any) => {
                 };
                 return (
                     <Form className="d-flex flex-column align-items-start">
-                        {appConfig.useMocks && <SettingsMockedResponses />}
-
+                        {appConfig.useMocks && <SettingsFieldMockedResponses />}
+                        <SettingsFieldTimeout />
                         <div className="d-flex justify-content-end align-self-stretch">
                             <Button type="button" color="secondary" outline onClick={handleCancel}>
                                 Cancel

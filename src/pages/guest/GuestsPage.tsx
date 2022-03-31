@@ -52,7 +52,7 @@ const GuestsPage = () => {
             {guests && (
                 <>
                     <GuestListDescription />
-                    {guests.length && <GuestList guests={guests} />}
+                    {guests.length > 0 && <GuestList guests={guests} />}
                     {!guests.length && <Alert color="warning">{t("guests:card.notAvailable")}</Alert>}
                 </>
             )}

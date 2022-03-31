@@ -53,7 +53,7 @@ const AccommodationsPage = () => {
             {accommodations && (
                 <>
                     <AccommodationListDescription />
-                    {accommodations.length && <AccommodationList accommodations={accommodations} />}
+                    {accommodations.length > 0 && <AccommodationList accommodations={accommodations} />}
                     {!accommodations.length && <Alert color="warning">{t("accommodations:card.notAvailable")}</Alert>}
                 </>
             )}

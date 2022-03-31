@@ -11,7 +11,7 @@ import axios from "axios";
 import { configure } from "axios-hooks";
 import "./index.sass";
 import App from "App";
-import { baseURL, timeout } from "services/Api/constants";
+import { baseURL } from "services/Api/constants";
 import { appConfig } from "constants/AppConfig";
 import "./i18n";
 
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 axios.defaults.baseURL = baseURL;
-axios.defaults.timeout = timeout;
+axios.defaults.timeout = appConfig.defaultTimeout;
 
 const defaultOptions = { manual: true, autoCancel: false };
 

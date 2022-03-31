@@ -3,12 +3,18 @@ import "App.sass";
 import LoginPage from "pages/login/LoginPage";
 import Auth from "services/Auth";
 import LoadingPage from "pages/loading/LoadingPage";
+import axios from "axios";
+import useApplicationSettings from "hooks/useApplicationSettings";
+import { ApplicationSettings } from "components/settings/constants";
 
 const Authenticated = React.lazy(() => import("pages/AuthenticatedPages"));
 
 const App = () => {
+    const applicationSettings = useApplicationSettings();
     const [token, setToken] = useState(Auth.getAuthTokenFromStorage());
     const isAuthenticated = token !== Auth.emptyToken;
+
+    axios.defaults.timeout = Number(applicationSettings.get(ApplicationSettings.NETWORK_TIMEOUT));
 
     const onSignInSuccess = (response: any) => {
         const token = Auth.startRotateRefreshToken(response);

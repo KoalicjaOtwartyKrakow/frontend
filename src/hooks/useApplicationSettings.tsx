@@ -3,7 +3,9 @@ import { appConfig } from "constants/AppConfig";
 import { merge } from "lodash";
 
 const useApplicationSettings = () => {
-    const defaultSettings = {};
+    const defaultSettings = {
+        [ApplicationSettings.NETWORK_TIMEOUT]: appConfig.defaultTimeout,
+    };
 
     if (appConfig.useMocks) {
         // @ts-ignore

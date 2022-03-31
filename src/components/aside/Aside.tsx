@@ -4,6 +4,8 @@ import HorizontalLine from "components/atoms/HorizontalLine";
 import SettingsForm from "components/settings/SettingsForm";
 import useApplicationSettings from "hooks/useApplicationSettings";
 import { ApplicationSettings } from "components/settings/constants";
+import axios from "axios";
+import { appConfig } from "constants/AppConfig";
 
 const Aside = ({ isOpen, toggleIsOpen }: any) => {
     const applicationSettings = useApplicationSettings();
@@ -15,6 +17,8 @@ const Aside = ({ isOpen, toggleIsOpen }: any) => {
         setAll(values);
 
         formikBag.setSubmitting(false);
+
+        axios.defaults.timeout = Number(get(ApplicationSettings.NETWORK_TIMEOUT) || appConfig.defaultTimeout);
 
         const isEnableMocksEnabled = previousIsEnableMocks !== undefined;
         const isEnableMocksChanged = get(ApplicationSettings.IS_ENABLE_MOCKS) !== previousIsEnableMocks;

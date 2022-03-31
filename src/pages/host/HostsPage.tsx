@@ -52,7 +52,7 @@ const HostsPage = () => {
             {hosts && (
                 <>
                     <HostListDescription />
-                    {hosts.length && <HostList hosts={hosts} />}
+                    {hosts.length > 0 && <HostList hosts={hosts} />}
                     {!hosts.length && <Alert color="warning">{t("hosts:card.notAvailable")}</Alert>}
                 </>
             )}
