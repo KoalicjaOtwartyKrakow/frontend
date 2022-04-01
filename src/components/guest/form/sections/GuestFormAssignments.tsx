@@ -7,6 +7,7 @@ import GuestFormAccommodationSearchInput from "components/guest/form/GuestFormAc
 import GuestFormVolunteerAssignment from "components/guest/form/fields/GuestFormVolunteerAssignment";
 import GuestFormPriorityStatus from "components/guest/form/fields/GuestFormPriorityStatus";
 import GuestFormStaffComments from "components/guest/form/fields/GuestFormStaffComments";
+import GuestFormAccommodationIdInput from "../GuestFormAccommodationIdInput";
 
 /**
  * @component
@@ -18,7 +19,12 @@ const GuestFormAssignments = ({ onAccommodationSelected }: any) => {
             <FormSectionHeader>{t("guest:form.section.assignAccommodation")}</FormSectionHeader>
             <Row>
                 <Col xs={12}>
-                    <GuestFormAccommodationSearchInput onAccommodationSelected={onAccommodationSelected} />
+                    {/* <GuestFormAccommodationSearchInput onAccommodationSelected={onAccommodationSelected} /> */}
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <GuestFormAccommodationIdInput onAccommodationSelected={onAccommodationSelected} />
                 </Col>
             </Row>
             <Row>

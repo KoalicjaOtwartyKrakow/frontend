@@ -47,6 +47,7 @@ const commonSchema = Yup.object().shape({
         .moreThan(0, "common:form.validator.positiveNumber")
         .min(1, "common:form.validator.numberMin")
         .required("common:form.validator.integer"),
+    [GuestFormFields.IS_VALID_ACCOMMODATION_UNIT]: Yup.boolean().isTrue(),
 });
 
 const guestFormCreateSchema = Yup.object().concat(commonSchema);

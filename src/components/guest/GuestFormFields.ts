@@ -10,6 +10,7 @@ import { GuestFormField } from "components/guest/GuestFormTypes";
 
 class GuestFormFields {
     static ACCOMMODATION_UNIT = "accommodationUnit";
+    static IS_VALID_ACCOMMODATION_UNIT = "isValidAccommodationUnit";
     static CHILDREN = "children";
     static CLAIMED_AT = "claimedAt";
     static CLAIMED_BY = "claimedBy";

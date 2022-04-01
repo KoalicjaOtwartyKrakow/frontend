@@ -51,7 +51,11 @@
         },
         "placeholder": {
             "desiredDestination": "Where is the Guest headed?",
-            "durationOfStay": "3"
+            "durationOfStay": "3",
+            "accommodationId": "Assigned accommodation id"
+        },
+        "error": {
+            "accommodationIdIsIncorrect": "No accommodation exists for provided id"
         },
         "section": {
             "additionalInfo": "Additional information",

@@ -16,23 +16,23 @@ const GuestFormAccommodationSearchItem = ({ accommodation }: { accommodation: Gu
     return (
         <AccommodationContext.Provider value={accommodation as Accommodation}>
             <Row>
-                <Col lg={4}>
+                <Col lg={3}>
                     <AccommodationItemAddress />
                 </Col>
                 {host && (
                     <HostContext.Provider value={host}>
                         <>
-                            <Col>
+                            <Col lg={3}>
                                 <HostItemContactDetails />
                             </Col>
-                            <Col lg={2}>
+                            <Col lg={3}>
                                 <HostItemStatus />
                             </Col>
                         </>
                     </HostContext.Provider>
                 )}
 
-                <Col lg={1}>
+                <Col lg={3}>
                     <AccommodationItemAvailability />
                 </Col>
             </Row>
