@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { FormGroup } from "reactstrap";
-import { Field, useFormikContext } from "formik";
+import { FastField, Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-import { sortBy } from "lodash";
+import { difference, sortBy } from "lodash";
 import {
     AccommodationFormFields,
     AccommodationFormFieldsInterface,
@@ -57,11 +57,14 @@ const AccommodationFormHost = () => {
      */
     const mapHostToItem = (host: any) => ({
         id: host.id,
-        name: `${host.fullName}`,
+        name: `${host.fullName} | ${host.id}`,
     });
 
-    const items = retrievedHosts.map(mapHostToItem);
-    const sortedItems = sortBy(items, ["name"]);
+    const sortedItems = useMemo(() => {
+        const items = retrievedHosts.map(mapHostToItem);
+        const sortedItems = sortBy(items, ["name"]);
+        return sortedItems;
+    }, [retrievedHosts]);
 
     return (
         <FormGroup>

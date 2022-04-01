@@ -9,7 +9,7 @@ import {
     accommodationFormCreateSchema,
     accommodationFormUpdateSchema,
 } from "components/accommodation/AccommodationFormSchemas";
-import AccommodationFormAddress from "components/accommodation/form/sections/AccommodationFormAddress";
+import AccommodationFormAccommodationData from "components/accommodation/form/sections/AccommodationFormAddress";
 import AccommodationFormAdditional from "components/accommodation/form/sections/AccommodationFormAdditional";
 import AccommodationFormVacancies from "components/accommodation/form/sections/AccommodationFormVacancies";
 import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
@@ -26,7 +26,7 @@ const AccommodationForm = (props: any) => {
     const isCreateMode = !initialValues.id;
     const isUpdateMode = !!initialValues.id;
 
-    const validateOnMount = isCreateMode;
+    const validateOnMount = !isCreateMode;
 
     const validationSchema = isUpdateMode ? accommodationFormUpdateSchema : accommodationFormCreateSchema;
 
@@ -75,7 +75,7 @@ const AccommodationForm = (props: any) => {
                 {/*<Effect onChange={ onChange } />*/}
                 <Row>
                     <Col xs={12} lg={6}>
-                        <AccommodationFormAddress />
+                        <AccommodationFormAccommodationData />
                         <AccommodationFormVacancies />
                     </Col>
                     <Col xs={12} lg={6}>
