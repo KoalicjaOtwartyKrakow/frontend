@@ -14,6 +14,7 @@ class HostFormFields {
     static LANGUAGES_SPOKEN = "languagesSpoken";
     static PHONE_NUMBER = "phoneNumber";
     static STATUS = "status";
+    static SYSTEM_COMMENTS = "systemComments";
 
     /**
      * Transform object from model to form values.

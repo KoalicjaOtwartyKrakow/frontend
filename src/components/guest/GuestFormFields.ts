@@ -38,6 +38,7 @@ class GuestFormFields {
     static PRIORITY_STATUS = "priorityStatus";
     static SPECIAL_NEEDS = "specialNeeds";
     static STAFF_COMMENTS = "staffComments";
+    static SYSTEM_COMMENTS = "systemComments";
     static VERIFICATION_STATUS = "verificationStatus";
 
     /**

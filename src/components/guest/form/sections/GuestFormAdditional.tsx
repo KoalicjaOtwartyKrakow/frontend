@@ -8,6 +8,8 @@ import GuestFormPetsDescription from "components/guest/form/fields/GuestFormPets
 import GuestFormFinancialStatus from "components/guest/form/fields/GuestFormFinancialStatus";
 import GuestFormDocumentNumber from "components/guest/form/fields/GuestFormDocumentNumber";
 import GuestFormIsAgent from "components/guest/form/fields/GuestFormIsAgent";
+import FormFieldSystemComments from "components/shared/form/fields/FormFieldSystemComments";
+import { GuestFormFields } from "components/guest/GuestFormFields";
 
 const GuestFormAdditional = () => {
     const { t } = useTranslation(["guest"]);
@@ -16,6 +18,7 @@ const GuestFormAdditional = () => {
             <FormSectionHeader>{t("guest:form.section.additionalInfo")}</FormSectionHeader>
             <Row>
                 <Col xs={12}>
+                    <FormFieldSystemComments fieldId={GuestFormFields.SYSTEM_COMMENTS} />
                     <GuestFormPetsPresence />
                     <GuestFormPetsDescription />
                     <GuestFormFinancialStatus />

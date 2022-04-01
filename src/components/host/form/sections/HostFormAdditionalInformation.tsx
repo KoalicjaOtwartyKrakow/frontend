@@ -4,6 +4,8 @@ import HostFormComments from "../fields/HostFormComments";
 import HostFormLanguagesSpoken from "components/host/form/fields/HostFormLanguagesSpoken";
 import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
+import FormFieldSystemComments from "components/shared/form/fields/FormFieldSystemComments";
+import { HostFormFields } from "components/host/HostFormFields";
 
 /**
  * @component
@@ -13,6 +15,7 @@ const HostFormAdditionalInformation = () => {
     return (
         <FormSection>
             <FormSectionHeader>{t("host:form.section.additionalInformation")}</FormSectionHeader>
+            <FormFieldSystemComments fieldId={HostFormFields.SYSTEM_COMMENTS} />
             <HostFormComments />
             <HostFormLanguagesSpoken />
         </FormSection>

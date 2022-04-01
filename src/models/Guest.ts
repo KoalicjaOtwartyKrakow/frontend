@@ -141,6 +141,11 @@ class Guest {
     @JsonType(String)
     specialNeeds = "";
 
+    @JsonProperty()
+    @JsonType(String)
+    @JsonWriteonly()
+    systemComments = "";
+
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
     @JsonType(String)

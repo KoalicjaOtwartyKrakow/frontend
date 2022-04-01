@@ -45,7 +45,8 @@
         "label": {
             "email": "E-mail",
             "fullName": "Full name",
-            "phone": "Phone"
+            "phone": "Phone",
+            "systemComments": "Data import information"
         },
         "placeholder": {
             "dateFormat": "YYYY-MM-DD",

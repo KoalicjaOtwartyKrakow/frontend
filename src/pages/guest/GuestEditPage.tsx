@@ -12,6 +12,7 @@ import { useGetGuest, useUpdateGuest } from "hooks/api/guestHooks";
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
 import Guest from "models/Guest";
 import { AppRoutes } from "constants/AppRoutes";
+import { appConfig } from "constants/AppConfig";
 
 const GuestEditPage = () => {
     const { t } = useTranslation(["guest"]);
@@ -45,6 +46,10 @@ const GuestEditPage = () => {
             addToast(t("guest:form.message.updateSuccess"), {
                 appearance: "success",
             });
+            if (appConfig.routerOverride.guests) {
+                window.location.href = appConfig.routerOverride.guests;
+                return;
+            }
             navigate(AppRoutes.GUESTS);
         }
     }, [addToast, navigate, t, updatedGuest]);

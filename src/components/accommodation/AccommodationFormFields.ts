@@ -24,6 +24,7 @@ interface AccommodationFormFieldsInterface {
     petsAllowed: any;
     petsPresent: any;
     status: any;
+    systemComments: string | undefined;
     uuid: any;
     vacanciesTaken: any;
     vacanciesTotal: any;
@@ -50,6 +51,7 @@ class AccommodationFormFields {
     static PETS_ALLOWED = "petsAllowed";
     static PETS_PRESENT = "petsPresent";
     static STATUS = "status";
+    static SYSTEM_COMMENTS = "systemComments";
     static UUID = "uuid";
     static VACANCIES_TAKEN = "vacanciesTaken";
     static VACANCIES_TOTAL = "vacanciesTotal";

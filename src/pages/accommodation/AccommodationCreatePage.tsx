@@ -11,6 +11,7 @@ import { useCreateAccommodation } from "hooks/api/accommodationHooks";
 import { getCrudInProgress } from "constants/CrudProgress";
 import Accommodation from "models/Accommodation";
 import { AppRoutes } from "constants/AppRoutes";
+import { appConfig } from "constants/AppConfig";
 
 const AccommodationCreatePage = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -33,6 +34,11 @@ const AccommodationCreatePage = () => {
             addToast(t("accommodation:form.message.createSuccess"), {
                 appearance: "success",
             });
+
+            if (appConfig.routerOverride.accommodations) {
+                window.location.href = appConfig.routerOverride.accommodations;
+                return;
+            }
 
             navigate(AppRoutes.ACCOMMODATIONS);
         }

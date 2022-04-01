@@ -13,6 +13,7 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 import { AppRoutes } from "constants/AppRoutes";
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
 import { useGetAccommodation, useUpdateAccommodation } from "hooks/api/accommodationHooks";
+import { appConfig } from "constants/AppConfig";
 
 const AccommodationEditPage = () => {
     const { t } = useTranslation(["accommodation", "guests"]);
@@ -57,6 +58,11 @@ const AccommodationEditPage = () => {
             addToast(t("accommodation:form.message.updateSuccess"), {
                 appearance: "success",
             });
+
+            if (appConfig.routerOverride.accommodations) {
+                window.location.href = appConfig.routerOverride.accommodations;
+                return;
+            }
 
             navigate(AppRoutes.ACCOMMODATIONS);
         }

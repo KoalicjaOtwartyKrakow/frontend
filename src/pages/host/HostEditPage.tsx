@@ -12,6 +12,7 @@ import { useGetHost, useUpdateHost } from "hooks/api/hostHooks";
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
 import Host from "models/Host";
 import { AppRoutes } from "constants/AppRoutes";
+import { appConfig } from "constants/AppConfig";
 
 const HostEditPage = () => {
     const { t } = useTranslation(["host"]);
@@ -46,6 +47,11 @@ const HostEditPage = () => {
             addToast(t("host:form.message.updateSuccess"), {
                 appearance: "success",
             });
+
+            if (appConfig.routerOverride.hosts) {
+                window.location.href = appConfig.routerOverride.hosts;
+                return;
+            }
 
             navigate(AppRoutes.HOSTS);
         }

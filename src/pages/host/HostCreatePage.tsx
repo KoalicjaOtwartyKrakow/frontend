@@ -14,6 +14,7 @@ import { useCreateHost } from "hooks/api/hostHooks";
 import { CrudInProgressStates, getCrudInProgress } from "constants/CrudProgress";
 import Host from "models/Host";
 import { AppRoutes } from "constants/AppRoutes";
+import { appConfig } from "constants/AppConfig";
 
 const HostCreatePage = () => {
     const { t } = useTranslation(["host"]);
@@ -35,6 +36,11 @@ const HostCreatePage = () => {
             addToast(t("host:form.message.createSuccess"), {
                 appearance: "success",
             });
+
+            if (appConfig.routerOverride.hosts) {
+                window.location.href = appConfig.routerOverride.hosts;
+                return;
+            }
 
             navigate(AppRoutes.HOSTS);
         }

@@ -5,6 +5,7 @@ import {
     JsonObject,
     JsonProperty,
     JsonType,
+    JsonWriteonly,
     OnDeserialized,
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
@@ -101,6 +102,11 @@ class Accommodation {
     @JsonProperty()
     @JsonType(Boolean)
     easyAmbulanceAccess = false;
+
+    @JsonProperty()
+    @JsonType(String)
+    @JsonWriteonly()
+    systemComments = "";
 
     public uuid: string = "";
 
