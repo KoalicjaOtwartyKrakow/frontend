@@ -5,8 +5,7 @@ import { GuestFormFields } from "./GuestFormFields";
 
 const childrenModelSchema = Yup.number()
     .integer("common:form.validator.integer")
-    .moreThan(0, "common:form.validator.positiveNumber")
-    .min(1, `common:form.validator.numberMin`)
+    .moreThan(-1, "common:form.validator.positiveNumber")
     .required(`common:form.validator.integer`);
 
 const commonSchema = Yup.object().shape({
