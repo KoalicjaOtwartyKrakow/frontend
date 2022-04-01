@@ -14,6 +14,7 @@ import { AccommodationStatus } from "models/constants/AccommodationStatus";
 import Host from "models/Host";
 import Guest from "models/Guest";
 import moment from "moment";
+import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
 
 @JsonObject()
 class Accommodation {
@@ -70,7 +71,7 @@ class Accommodation {
     @JsonProperty()
     staffComments = "";
 
-    @JsonProperty()
+    @JsonProperty("verificationStatus")
     @JsonType(String)
     status = AccommodationStatus.CREATED;
 
@@ -103,6 +104,7 @@ class Accommodation {
     @JsonType(Boolean)
     easyAmbulanceAccess = false;
 
+    @JsonConverter(MultiLineStringSerializer)
     @JsonProperty()
     @JsonType(String)
     @JsonWriteonly()

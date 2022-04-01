@@ -16,6 +16,7 @@ import GuestAccommodation from "models/GuestAccommodation";
 import User from "models/User";
 import moment from "moment";
 import DurationSerializer from "serializers/DurationSerializer";
+import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
 
 @JsonObject()
 class Guest {
@@ -141,6 +142,7 @@ class Guest {
     @JsonType(String)
     specialNeeds = "";
 
+    @JsonConverter(MultiLineStringSerializer)
     @JsonProperty()
     @JsonType(String)
     @JsonWriteonly()

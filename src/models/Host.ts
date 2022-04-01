@@ -11,6 +11,7 @@ import { nanoid } from "nanoid";
 import MomentSerializer from "serializers/MomentSerializer";
 import { HostStatus } from "models/constants/HostStatus";
 import Language from "models/Language";
+import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
 
 @JsonObject()
 class Host {
@@ -55,6 +56,7 @@ class Host {
     @JsonType(String)
     status = HostStatus.CREATED;
 
+    @JsonConverter(MultiLineStringSerializer)
     @JsonProperty()
     @JsonType(String)
     @JsonWriteonly()
