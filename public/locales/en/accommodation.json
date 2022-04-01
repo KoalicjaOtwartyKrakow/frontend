@@ -43,6 +43,7 @@
             "description": "Volunteer notes",
             "disabledPeopleFriendly": "Disabled people friendly",
             "easyAmbulanceAccess": "Easy ambulance access",
+            "forHowLong": "For how long",
             "host": "Host",
             "lgbtFriendly": "LGBTQ+ people friendly",
             "parkingPlace": "Has a parking place",
@@ -59,6 +60,9 @@
             "createSuccess": "The new Accommodation Unit has been added to the system",
             "updateFailure": "There was an issue updating the Accommodation Unit",
             "updateSuccess": "Successful update of Accommodation Unit data"
+        },
+        "placeholder": {
+            "forHowLong": "3"
         },
         "validator": {
             "address": "Enter address",
@@ -82,5 +86,13 @@
         "created": "New",
         "verified": "Verified",
         "rejected": "Rejected"
+    },
+    "timeUnit": {
+        "day_one": "day",
+        "day_other": "days",
+        "week_one": "week",
+        "week_other": "weeks",
+        "month_one": "month",
+        "month_other": "months"
     }
 }
