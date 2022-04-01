@@ -91,6 +91,9 @@ class AccommodationFormFields {
          * @type {Accommodation}
          */
         const accommodation = merge(new Accommodation(), formValues);
+        if (formValues.accommodationUnitId === "") {
+            accommodation.accommodationUnitId = null;
+        }
 
         // Required for recalculation, as vacanciesTaken setter is called sooner
         // than vacanciesFree get upgraded during merge()

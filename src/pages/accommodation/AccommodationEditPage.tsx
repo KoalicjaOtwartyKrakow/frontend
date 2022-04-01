@@ -58,6 +58,7 @@ const AccommodationEditPage = () => {
             addToast(t("accommodation:form.message.updateSuccess"), {
                 appearance: "success",
             });
+            debugger;
 
             if (appConfig.routerOverride.accommodations) {
                 window.location.href = appConfig.routerOverride.accommodations;

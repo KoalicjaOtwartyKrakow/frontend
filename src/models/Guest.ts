@@ -17,6 +17,7 @@ import User from "models/User";
 import moment from "moment";
 import DurationSerializer from "serializers/DurationSerializer";
 import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
+import NullifyId from "serializers/NullifyId";
 
 @JsonObject()
 class Guest {
@@ -24,9 +25,10 @@ class Guest {
     @JsonType(GuestAccommodation)
     accommodationUnit: GuestAccommodation | undefined = undefined;
 
+    @JsonConverter(new NullifyId())
     @JsonProperty()
     @JsonType(String)
-    accommodationUnitId: string | undefined = undefined;
+    accommodationUnitId: string | undefined | null = undefined;
 
     @JsonProperty("childrenAges")
     @JsonElementType(Number)
