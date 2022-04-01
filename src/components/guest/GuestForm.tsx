@@ -52,7 +52,7 @@ const GuestForm = (props: any) => {
     };
 
     const onSubmit = async (values: any, formikBag: any) => {
-        console.info("[Guest] GuestForm onSubmit()");
+        console.info("[Guest] GuestForm onSubmit() ");
 
         const [formattedValues, hasErrors] = await yupTransform(values, formikBag, validationSchema);
 

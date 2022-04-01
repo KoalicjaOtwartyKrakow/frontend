@@ -50,7 +50,7 @@ const useGetAccommodation = () => {
     const accommodationGetInProgress = loading;
     const accommodationGetError = getErrorsFromApi(error);
 
-    const fetchAccommodation = ({ accommodationId }: any) => {
+    const fetchAccommodation = ({ accommodationId }: { accommodationId?: string }) => {
         const url = getPath(ApiPaths.ACCOMMODATION_BY_ID, {
             accommodationId,
         });

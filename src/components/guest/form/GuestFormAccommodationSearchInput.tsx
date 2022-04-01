@@ -16,12 +16,10 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }: any) => 
     const { t } = useTranslation(["guest"]);
 
     const [field, , fieldHelper] = useField(GuestFormFields.ACCOMMODATION_UNIT);
-
     /**
      * @type {GuestAccommodation}
      */
     const guestAccommodation = field.value;
-
     const [caseSensitive] = useState(false);
     const [ignoreDiacritics] = useState(true);
 
@@ -80,6 +78,7 @@ const GuestFormAccommodationSearchInput = ({ onAccommodationSelected }: any) => 
     return (
         <FormGroup>
             <FormLabel>{t("guest:form.label.assignedAccommodation")}</FormLabel>
+
             <Typeahead
                 caseSensitive={caseSensitive}
                 defaultSelected={selectedGuestAccommodation}
