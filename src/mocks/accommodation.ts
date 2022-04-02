@@ -43,6 +43,10 @@ const mockAccommodation = () => {
         default:
             break;
     }
+    accommodation.forHowLong = moment.duration(
+        chance.natural({ min: 1, max: 4 }),
+        chance.pickone(["weeks", "months", "days"])
+    );
 
     // Pets
     accommodation.petsAllowed = chance.bool();

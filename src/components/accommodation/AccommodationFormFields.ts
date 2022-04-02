@@ -4,6 +4,8 @@ import { getFormattedDate } from "shared/datetime";
 import { defaultPolishVoivodeshipId, getPolishVoivodeshipById } from "models/constants/Address";
 import { merge, pick } from "lodash";
 import { ApiErrors } from "services/Api/types";
+import moment from "moment";
+import DurationSerializer from "../../serializers/DurationSerializer";
 
 interface AccommodationFormFieldsInterface {
     addressCity: any;
@@ -41,6 +43,8 @@ class AccommodationFormFields {
     static OWNER_COMMENTS = "ownerComments";
     static DESCRIPTION = "description";
     static DISABLED_PEOPLE_FRIENDLY = "disabledPeopleFriendly";
+    static DURATION_OF_STAY_VALUE = "durationOfStayValue";
+    static DURATION_OF_STAY_UNIT = "durationOfStayUnit";
     static EASY_AMBULANCE_ACCESS = "easyAmbulanceAccess";
     static HOST = "host";
     static HOST_ID = "hostId";
@@ -68,7 +72,10 @@ class AccommodationFormFields {
         }
 
         const fieldNames = Object.values(AccommodationFormFields);
-        const formValues = pick(accommodation, fieldNames);
+        const formValues = {
+            ...pick(accommodation, fieldNames),
+            ...this.createDurationOfStaySubfields(accommodation.forHowLong),
+        };
 
         formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP] =
             getPolishVoivodeshipById(formValues[AccommodationFormFields.ADDRESS_VOIVODESHIP])?.id ||
@@ -86,6 +93,15 @@ class AccommodationFormFields {
         return { ...formValues, ...createFormValues };
     }
 
+    private createDurationOfStaySubfields(duration: moment.Duration) {
+        const durationSerializer = new DurationSerializer();
+        const durationOfStay = durationSerializer.getValueAndUnitFromDuration(duration, ["months", "weeks", "days"]);
+        return {
+            [AccommodationFormFields.DURATION_OF_STAY_UNIT]: durationOfStay.unit,
+            [AccommodationFormFields.DURATION_OF_STAY_VALUE]: durationOfStay.value,
+        };
+    }
+
     formToModel(formValues: any) {
         /**
          * @type {Accommodation}
@@ -98,6 +114,11 @@ class AccommodationFormFields {
         // Required for recalculation, as vacanciesTaken setter is called sooner
         // than vacanciesFree get upgraded during merge()
         accommodation.vacanciesTaken = formValues[AccommodationFormFields.VACANCIES_TAKEN];
+
+        accommodation.forHowLong = moment.duration(
+            formValues[AccommodationFormFields.DURATION_OF_STAY_VALUE],
+            formValues[AccommodationFormFields.DURATION_OF_STAY_UNIT]
+        );
 
         return accommodation;
     }
