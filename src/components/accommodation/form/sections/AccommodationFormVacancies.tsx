@@ -5,8 +5,8 @@ import FormSection from "components/molecules/form/FormSection";
 import FormSectionHeader from "components/molecules/form/FormSectionHeader";
 import AccommodationFormVacanciesTotal from "components/accommodation/form/fields/AccommodationFormVacanciesTotal";
 import AccommodationFormVacanciesTaken from "components/accommodation/form/fields/AccommodationFormVacanciesTaken";
-import AccommodationFormStatus from "../fields/AccommodationFormStatus";
-import AccommodationFormForHowLong from "../fields/AccommodationFormForHowLong";
+import AccommodationFormVerificationStatus from "components/accommodation/form/fields/AccommodationFormVerificationStatus";
+import AccommodationFormStayDuration from "components/accommodation/form/fields/AccommodationFormStayDuration";
 
 const AccommodationFormVacancies = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -21,12 +21,12 @@ const AccommodationFormVacancies = () => {
                     <AccommodationFormVacanciesTotal />
                 </Col>
                 <Col xs={12} lg={6} xl={8}>
-                    <AccommodationFormStatus />
+                    <AccommodationFormStayDuration />
                 </Col>
             </Row>
             <Row>
-                <Col xs={12} md={6}>
-                    <AccommodationFormForHowLong />
+                <Col xs={12}>
+                    <AccommodationFormVerificationStatus />
                 </Col>
             </Row>
         </FormSection>

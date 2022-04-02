@@ -9,7 +9,7 @@ import {
     accommodationFormCreateSchema,
     accommodationFormUpdateSchema,
 } from "components/accommodation/AccommodationFormSchemas";
-import AccommodationFormAccommodationData from "components/accommodation/form/sections/AccommodationFormAddress";
+import AccommodationFormAccommodationData from "components/accommodation/form/sections/AccommodationFormAccommodationData";
 import AccommodationFormAdditional from "components/accommodation/form/sections/AccommodationFormAdditional";
 import AccommodationFormVacancies from "components/accommodation/form/sections/AccommodationFormVacancies";
 import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
@@ -26,7 +26,7 @@ const AccommodationForm = (props: any) => {
     const isCreateMode = !initialValues.id;
     const isUpdateMode = !!initialValues.id;
 
-    const validateOnMount = !isCreateMode;
+    const validateOnMount = isUpdateMode;
 
     const validationSchema = isUpdateMode ? accommodationFormUpdateSchema : accommodationFormCreateSchema;
 

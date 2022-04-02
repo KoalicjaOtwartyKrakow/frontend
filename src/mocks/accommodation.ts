@@ -2,10 +2,11 @@ import moment from "moment";
 import { match, MatchResult, pathToRegexp } from "path-to-regexp";
 import { chance, getRandomItem } from "mocks/base";
 import Accommodation from "models/Accommodation";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 import { polishVoivodeships } from "models/constants/Address";
 import { classToPlain, plainToClass } from "serializers/Serializer";
 import { AccommodationByIdParams, ApiPaths } from "services/Api/constants";
+import { AccommodationWorkflowStatus } from "models/constants/AccommodationWorkflowStatus";
 
 const mockAccommodation = () => {
     const accommodation = new Accommodation();
@@ -23,18 +24,19 @@ const mockAccommodation = () => {
     // Info
     accommodation.staffComments = chance.paragraph();
     accommodation.ownerComments = chance.paragraph();
-    accommodation.status = chance.pickone(Object.values(AccommodationStatus));
+    accommodation.status = chance.pickone(Object.values(AccommodationVerificationStatus));
+    accommodation.workflowStatus = chance.pickone(Object.values(AccommodationWorkflowStatus));
 
     // Vacancies
     accommodation.vacanciesTotal = chance.natural({ min: 1, max: 8 });
     switch (accommodation.status) {
-        case AccommodationStatus.CREATED:
+        case AccommodationVerificationStatus.CREATED:
             accommodation.vacanciesFree = accommodation.vacanciesTotal;
             break;
-        case AccommodationStatus.REJECTED:
+        case AccommodationVerificationStatus.REJECTED:
             accommodation.vacanciesFree = 0;
             break;
-        case AccommodationStatus.VERIFIED:
+        case AccommodationVerificationStatus.VERIFIED:
             accommodation.vacanciesFree = chance.natural({
                 min: 0,
                 max: accommodation.vacanciesTotal,

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 
 /**
  *
@@ -15,7 +15,7 @@ const AccommodationItemAvailability = () => {
     const { vacanciesTaken, vacanciesTotal, status } = accommodation;
     const className = "accommodation-availability w-100";
 
-    if (status === AccommodationStatus.REJECTED) {
+    if (status === AccommodationVerificationStatus.REJECTED) {
         return null;
         // return (
         //     <Badge color="danger" className={className}>

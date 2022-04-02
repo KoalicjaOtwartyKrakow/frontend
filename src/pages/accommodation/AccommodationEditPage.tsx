@@ -84,9 +84,11 @@ const AccommodationEditPage = () => {
         console.info("[AccommodationEditPage] Updated accommodation:", values);
     };
 
+    const pageCardHeader = `${t("accommodation:card.title.update")} (${accommodationId})`;
+
     return (
         <>
-            <PageCard header={t("accommodation:card.title.update")}>
+            <PageCard header={pageCardHeader}>
                 <InProgress inProgress={accommodationInProgress === CrudInProgressStates.RETRIEVE} />
                 <PageErrorMessage error={accommodationGetError} />
                 <PageErrorMessage error={accommodationUpdateError} />
