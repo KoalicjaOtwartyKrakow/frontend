@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import { FormGroup } from "reactstrap";
-import { FastField, Field, useFormikContext } from "formik";
+import { Field, useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
-import { difference, sortBy } from "lodash";
+import { sortBy } from "lodash";
 import {
     AccommodationFormFields,
     AccommodationFormFieldsInterface,

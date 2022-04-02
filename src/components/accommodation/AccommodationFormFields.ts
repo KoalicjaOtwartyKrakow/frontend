@@ -54,12 +54,13 @@ class AccommodationFormFields {
     static PARKING_PLACE = "parkingPlaceAvailable";
     static PETS_ALLOWED = "petsAllowed";
     static PETS_PRESENT = "petsPresent";
-    static STATUS = "status";
     static SYSTEM_COMMENTS = "systemComments";
     static UUID = "uuid";
     static VACANCIES_TAKEN = "vacanciesTaken";
     static VACANCIES_TOTAL = "vacanciesTotal";
+    static VERIFICATION_STATUS = "status";
     static VOLUNTEER_NAME = "volunteerName";
+    static WORKFLOW_STATUS = "workflowStatus";
 
     /**
      * Transform object from model to form values.

@@ -4,25 +4,25 @@ import { Field } from "formik";
 import { useTranslation } from "react-i18next";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormSelect from "components/atoms/form/FormSelect";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 import FormLabel from "components/atoms/form/FormLabel";
 
 const AccommodationFormAddressStatus = () => {
-    const fieldId = AccommodationFormFields.STATUS;
+    const fieldId = AccommodationFormFields.VERIFICATION_STATUS;
 
     const { t } = useTranslation(["accommodation"]);
 
     const items = [
         {
-            id: [AccommodationStatus.CREATED],
+            id: [AccommodationVerificationStatus.CREATED],
             name: t("accommodation:form.value.status.created"),
         },
         {
-            id: [AccommodationStatus.VERIFIED],
+            id: [AccommodationVerificationStatus.VERIFIED],
             name: t("accommodation:form.value.status.verified"),
         },
         {
-            id: [AccommodationStatus.REJECTED],
+            id: [AccommodationVerificationStatus.REJECTED],
             name: t("accommodation:form.value.status.rejected"),
         },
     ];

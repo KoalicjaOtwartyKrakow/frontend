@@ -1,7 +1,7 @@
 import { JsonConverter, JsonObject, JsonProperty, JsonType, OnDeserialized } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 import Host from "models/Host";
 
 @JsonObject()
@@ -57,7 +57,7 @@ class GuestAccommodation {
 
     @JsonProperty()
     @JsonType(String)
-    status = AccommodationStatus.CREATED;
+    status = AccommodationVerificationStatus.CREATED;
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
