@@ -36,6 +36,9 @@ const commonSchema = Yup.object().shape({
     [AccommodationFormFields.EASY_AMBULANCE_ACCESS]: Yup.bool(),
     [AccommodationFormFields.LGBT_FRIENDLY]: Yup.bool(),
     [AccommodationFormFields.PARKING_PLACE]: Yup.bool(),
+
+    [AccommodationFormFields.VERIFICATION_STATUS]: Yup.string().required(),
+    [AccommodationFormFields.WORKFLOW_STATUS]: Yup.string().required(),
 });
 
 const accommodationFormCreateSchema = Yup.object().concat(commonSchema);

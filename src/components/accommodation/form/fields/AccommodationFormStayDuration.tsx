@@ -10,7 +10,7 @@ import FormLabel from "components/atoms/form/FormLabel";
 import { TimeUnit } from "models/constants/TimeUnit";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 
-const AccommodationFormForHowLong = () => {
+const AccommodationFormStayDuration = () => {
     const { t } = useTranslation(["accommodation"]);
 
     const timeUnitId = AccommodationFormFields.DURATION_OF_STAY_UNIT;
@@ -36,7 +36,7 @@ const AccommodationFormForHowLong = () => {
     return (
         <FormGroup>
             <FormLabel for={durationId} className="required">
-                {t("accommodation:form.label.forHowLong")}
+                {t("accommodation:form.label.stayDuration")}
             </FormLabel>
             <Row className="g-2">
                 <Col xs={4}>
@@ -44,7 +44,7 @@ const AccommodationFormForHowLong = () => {
                         component={FormInput}
                         id={durationId}
                         name={durationId}
-                        placeholder={t("accommodation:form.placeholder.forHowLong")}
+                        placeholder={t("accommodation:form.placeholder.stayDuration")}
                         type="number"
                         min={0}
                     />
@@ -57,6 +57,4 @@ const AccommodationFormForHowLong = () => {
     );
 };
 
-AccommodationFormForHowLong.propTypes = {};
-
-export default AccommodationFormForHowLong;
+export default AccommodationFormStayDuration;

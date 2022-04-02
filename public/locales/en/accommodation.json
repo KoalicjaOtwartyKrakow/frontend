@@ -43,7 +43,7 @@
             "description": "Volunteer notes",
             "disabledPeopleFriendly": "Disabled people friendly",
             "easyAmbulanceAccess": "Easy ambulance access",
-            "forHowLong": "For how long",
+            "stayDuration": "Stay duration",
             "host": "Host",
             "lgbtFriendly": "LGBTQ+ people friendly",
             "parkingPlace": "Has a parking place",
@@ -53,7 +53,8 @@
             "status": "Verification status",
             "vacanciesFree": "Vacancies free",
             "vacanciesTaken": "Taken",
-            "vacanciesTotal": "Total"
+            "vacanciesTotal": "Total",
+            "workflowStatus": "Workflow status"
         },
         "message": {
             "createFailure": "Accommodation Unit was not added to the system",
@@ -62,7 +63,7 @@
             "updateSuccess": "Successful update of Accommodation Unit data"
         },
         "placeholder": {
-            "forHowLong": "3"
+            "stayDuration": "3"
         },
         "validator": {
             "address": "Enter address",
@@ -75,6 +76,12 @@
             "vacanciesTotal": "Total number of people missing"
         },
         "value": {
+            "workflowStatus": {
+                "available": "Available",
+                "done": "Done",
+                "needsVerification": "Needs verification",
+                "withdrawn": "Withdrawn"
+            },
             "status": {
                 "created": "Awaits verification",
                 "verified": "Verified",

@@ -8,15 +8,18 @@ import AccommodationFormZip from "components/accommodation/form/fields/Accommoda
 import AccommodationFormVoivodeship from "components/accommodation/form/fields/AccommodationFormVoivodeship";
 import AccommodationFormCity from "components/accommodation/form/fields/AccommodationFormCity";
 import AccommodationFormHost from "components/accommodation/form/fields/AccommodationFormHost";
+import AccommodationFormWorkflowStatus from "components/accommodation/form/fields/AccommodationFormWorkflowStatus";
 
 /**
  * @component
  */
-const AccommodationFormAddress = () => {
+const AccommodationFormAccommodationData = () => {
     const { t } = useTranslation(["accommodation"]);
     return (
         <FormSection>
             <FormSectionHeader>{t("accommodation:form.section.addressData")}</FormSectionHeader>
+            <AccommodationFormWorkflowStatus />
+            <AccommodationFormHost />
             <Row>
                 <Col xs={12} md={8}>
                     <AccommodationFormAddressLine />
@@ -33,9 +36,8 @@ const AccommodationFormAddress = () => {
                     </Row>
                 </Col>
             </Row>
-            <AccommodationFormHost />
         </FormSection>
     );
 };
 
-export default React.memo(AccommodationFormAddress);
+export default React.memo(AccommodationFormAccommodationData);

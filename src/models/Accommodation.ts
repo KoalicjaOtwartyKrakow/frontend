@@ -10,12 +10,13 @@ import {
 } from "ta-json";
 import MomentSerializer from "serializers/MomentSerializer";
 import { nanoid } from "nanoid";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 import Host from "models/Host";
 import Guest from "models/Guest";
 import moment from "moment";
 import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
 import DurationSerializer from "../serializers/DurationSerializer";
+import { AccommodationWorkflowStatus } from "models/constants/AccommodationWorkflowStatus";
 
 @JsonObject()
 class Accommodation {
@@ -40,6 +41,14 @@ class Accommodation {
     @JsonType(String)
     createdAt: moment.Moment | undefined = undefined;
 
+    @JsonProperty()
+    @JsonType(Boolean)
+    disabledPeopleFriendly = false;
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    easyAmbulanceAccess = false;
+
     @JsonConverter(new DurationSerializer())
     @JsonProperty("forHowLong")
     @JsonType(String)
@@ -61,9 +70,17 @@ class Accommodation {
     @JsonType(String)
     id: string | undefined = undefined;
 
+    @JsonProperty()
+    @JsonType(Boolean)
+    lgbtFriendly = false;
+
     @JsonType(String)
     @JsonProperty()
     ownerComments = "";
+
+    @JsonProperty()
+    @JsonType(Boolean)
+    parkingPlaceAvailable = false;
 
     @JsonProperty("petsAccepted")
     @JsonType(Boolean)
@@ -79,7 +96,13 @@ class Accommodation {
 
     @JsonProperty("verificationStatus")
     @JsonType(String)
-    status = AccommodationStatus.CREATED;
+    status = AccommodationVerificationStatus.CREATED;
+
+    @JsonConverter(MultiLineStringSerializer)
+    @JsonProperty()
+    @JsonType(String)
+    @JsonWriteonly()
+    systemComments = "";
 
     @JsonConverter(new MomentSerializer())
     @JsonProperty()
@@ -95,26 +118,8 @@ class Accommodation {
     vacanciesTotal = 1;
 
     @JsonProperty()
-    @JsonType(Boolean)
-    lgbtFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    disabledPeopleFriendly = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    parkingPlaceAvailable = false;
-
-    @JsonProperty()
-    @JsonType(Boolean)
-    easyAmbulanceAccess = false;
-
-    @JsonConverter(MultiLineStringSerializer)
-    @JsonProperty()
     @JsonType(String)
-    @JsonWriteonly()
-    systemComments = "";
+    workflowStatus = AccommodationWorkflowStatus.AVAILABLE;
 
     public uuid: string = "";
 

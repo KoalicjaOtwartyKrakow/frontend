@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AccommodationContext } from "components/accommodation/AccommodationContext";
 import { Badge } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { AccommodationStatus } from "models/constants/AccommodationStatus";
+import { AccommodationVerificationStatus } from "models/constants/AccommodationVerificationStatus";
 
 /**
  *
@@ -15,15 +15,15 @@ const AccommodationItemStatus = () => {
     const { status } = accommodation;
 
     const colorFromStatus = {
-        [AccommodationStatus.CREATED]: "info",
-        [AccommodationStatus.VERIFIED]: "success",
-        [AccommodationStatus.REJECTED]: "danger",
+        [AccommodationVerificationStatus.CREATED]: "info",
+        [AccommodationVerificationStatus.VERIFIED]: "success",
+        [AccommodationVerificationStatus.REJECTED]: "danger",
     };
 
     const labelFromStatus = {
-        [AccommodationStatus.CREATED]: t("accommodation:status.created"),
-        [AccommodationStatus.VERIFIED]: t("accommodation:status.verified"),
-        [AccommodationStatus.REJECTED]: t("accommodation:status.rejected"),
+        [AccommodationVerificationStatus.CREATED]: t("accommodation:status.created"),
+        [AccommodationVerificationStatus.VERIFIED]: t("accommodation:status.verified"),
+        [AccommodationVerificationStatus.REJECTED]: t("accommodation:status.rejected"),
     };
 
     const statusBadgeColor = colorFromStatus[status];
