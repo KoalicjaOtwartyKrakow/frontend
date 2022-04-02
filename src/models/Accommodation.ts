@@ -15,6 +15,7 @@ import Host from "models/Host";
 import Guest from "models/Guest";
 import moment from "moment";
 import MultiLineStringSerializer from "serializers/MultiLineStringSerializer";
+import DurationSerializer from "../serializers/DurationSerializer";
 
 @JsonObject()
 class Accommodation {
@@ -38,6 +39,11 @@ class Accommodation {
     @JsonProperty()
     @JsonType(String)
     createdAt: moment.Moment | undefined = undefined;
+
+    @JsonConverter(new DurationSerializer())
+    @JsonProperty("forHowLong")
+    @JsonType(String)
+    forHowLong: moment.Duration = new DurationSerializer().getDefaultDuration();
 
     @JsonProperty()
     @JsonElementType(Guest)
