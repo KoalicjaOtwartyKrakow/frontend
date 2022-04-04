@@ -4,15 +4,8 @@ import { AccommodationWorkflowStatus } from "models/constants/AccommodationWorkf
 
 const requiredIfNotWithdrawn = (errorMessage: string) => ({
     is: AccommodationWorkflowStatus.WITHDRAWN,
-    then: (schema: Yup.AnySchema) => {
-        // console.log("** THEN");
-        return schema;
-    },
-    otherwise: (schema: Yup.AnySchema) => {
-        let required = schema.required(errorMessage);
-        // console.log("** OTHERWISE", required);
-        return required;
-    },
+    then: (schema: Yup.AnySchema) => schema,
+    otherwise: (schema: Yup.AnySchema) => schema.required(errorMessage),
 });
 
 const workflowStatus = AccommodationFormFields.WORKFLOW_STATUS;
