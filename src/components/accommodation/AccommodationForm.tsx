@@ -15,6 +15,7 @@ import AccommodationFormVacancies from "components/accommodation/form/sections/A
 import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
 import EntityFormButtons from "components/molecules/form/EntityFormButtons";
 import { ApiErrors } from "services/Api/types";
+import { ValidationContext } from "components/shared/form/ValidationContext";
 
 const AccommodationForm = (props: any) => {
     const { initialValues, onRemove, crudInProgressState } = props;
@@ -73,16 +74,18 @@ const AccommodationForm = (props: any) => {
         <Formik {...formikProps}>
             <Form noValidate>
                 {/*<Effect onChange={ onChange } />*/}
-                <Row>
-                    <Col xs={12} lg={6}>
-                        <AccommodationFormAccommodationData />
-                        <AccommodationFormVacancies />
-                    </Col>
-                    <Col xs={12} lg={6}>
-                        <AccommodationFormAdditional />
-                    </Col>
-                </Row>
-                <AccommodationFormDetailedInformation />
+                <ValidationContext.Provider value={validationSchema}>
+                    <Row>
+                        <Col xs={12} lg={6}>
+                            <AccommodationFormAccommodationData />
+                            <AccommodationFormVacancies />
+                        </Col>
+                        <Col xs={12} lg={6}>
+                            <AccommodationFormAdditional />
+                        </Col>
+                    </Row>
+                    <AccommodationFormDetailedInformation />
+                </ValidationContext.Provider>
                 <EntityFormButtons
                     submitLabel={submitLabel}
                     onRemove={onRemove}

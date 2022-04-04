@@ -9,6 +9,8 @@ import FormSelect from "components/atoms/form/FormSelect";
 import FormLabel from "components/atoms/form/FormLabel";
 import { TimeUnit } from "models/constants/TimeUnit";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
+import { useRequired } from "components/shared/form/hooks/useRequired";
+import useWorkflowStatus from "components/accommodation/form/hooks/useWorkflowStatus";
 
 const AccommodationFormStayDuration = () => {
     const { t } = useTranslation(["accommodation"]);
@@ -33,9 +35,13 @@ const AccommodationFormStayDuration = () => {
         },
     ];
 
+    const { isRequired } = useRequired();
+    const workflowStatus = useWorkflowStatus();
+    const className = isRequired(workflowStatus.shouldValidate);
+
     return (
         <FormGroup>
-            <FormLabel for={durationId} className="required">
+            <FormLabel for={durationId} className={className}>
                 {t("accommodation:form.label.stayDuration")}
             </FormLabel>
             <Row className="g-2">
