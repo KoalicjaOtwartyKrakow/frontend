@@ -1,4 +1,4 @@
-import { isEqual, merge, pick, omit } from "lodash-es";
+import { isEqual, merge, pick, omit } from "lodash";
 import { FormikApiErrors } from "components/atoms/form/FormikApiErrors";
 import { getFormattedDate } from "shared/datetime";
 import Guest from "models/Guest";
