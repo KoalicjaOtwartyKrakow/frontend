@@ -1,7 +1,10 @@
 import { GuestPriorityStatus } from "models/constants/GuestPriorityStatus";
 import { GuestStatus } from "models/constants/GuestStatus";
 import * as Yup from "yup";
+import { PhoneNumberUtil } from "google-libphonenumber";
 import { GuestFormFields } from "./GuestFormFields";
+
+const phoneNumberUtil = PhoneNumberUtil.getInstance();
 
 const childrenModelSchema = Yup.number()
     .integer("common:form.validator.integer")
@@ -35,7 +38,16 @@ const commonSchema = Yup.object().shape({
         .min(1, "common:form.validator.numberMin")
         .required(`common:form.validator.integer`),
     [GuestFormFields.PETS_DESCRIPTION]: Yup.string().trim(),
-    [GuestFormFields.PHONE_NUMBER]: Yup.string().trim(),
+    [GuestFormFields.PHONE_NUMBER]: Yup.string()
+        .trim()
+        .test("google-libphonenumber", async (value) => {
+            try {
+                const number = phoneNumberUtil.parse(value as string, "UA");
+                return phoneNumberUtil.isValidNumber(number);
+            } catch {
+                return false;
+            }
+        }),
     [GuestFormFields.PRIORITY_DATE]: Yup.string().trim(),
     [GuestFormFields.PRIORITY_STATUS]: Yup.string().oneOf(Object.values(GuestPriorityStatus)),
     [GuestFormFields.SPECIAL_NEEDS]: Yup.string().trim(),
