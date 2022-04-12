@@ -45,6 +45,7 @@ class Guest {
     @JsonWriteonly()
     claimedBy = undefined;
 
+    @JsonConverter(new NullifyId())
     @JsonProperty()
     @JsonType(String)
     claimedById = undefined;
