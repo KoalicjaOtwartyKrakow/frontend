@@ -12,7 +12,7 @@ import { getFormattedDateTime } from "shared/datetime";
 
 const GuestFormVolunteerAssignment = () => {
     const { t } = useTranslation(["common", "guest"]);
-    const { setFieldValue, values } = useFormikContext();
+    const { values } = useFormikContext();
     const { users, usersGetInProgress, usersGetError, retrieveUsers } = useGetUsers();
 
     const fieldId = GuestFormFields.CLAIMED_BY_USER_ID;
@@ -48,7 +48,7 @@ const GuestFormVolunteerAssignment = () => {
         const result = retrievedUsers.map(mapUserToItem);
 
         result.unshift({
-            id: undefined,
+            id: "",
             name: t("common:form.pleaseSelect"),
         });
 

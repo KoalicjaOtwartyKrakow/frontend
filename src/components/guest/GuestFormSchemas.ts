@@ -9,6 +9,7 @@ const childrenModelSchema = Yup.number()
     .required(`common:form.validator.integer`);
 
 const commonSchema = Yup.object().shape({
+    [GuestFormFields.CLAIMED_BY_USER_ID]: Yup.string().nullable(),
     [GuestFormFields.PEOPLE_FEMALE_COUNT]: Yup.number()
         .integer("common:form.validator.integer")
         .min(0, "common:form.validator.numberMin")
