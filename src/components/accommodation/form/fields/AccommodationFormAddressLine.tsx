@@ -12,9 +12,8 @@ const AccommodationFormAddressLine = () => {
     const fieldId = AccommodationFormFields.ADDRESS_LINE;
 
     const { t } = useTranslation(["accommodation"]);
-    const { isRequired } = useRequired();
-    const workflowStatus = useWorkflowStatus();
-    const className = isRequired(workflowStatus.shouldValidate);
+    const { getRequiredClassName } = useRequired();
+    const className = getRequiredClassName(fieldId);
 
     return (
         <FormGroup>
