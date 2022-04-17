@@ -4,7 +4,7 @@ import { AccommodationWorkflowStatus } from "models/constants/AccommodationWorkf
 
 const requiredIfNotWithdrawn = (errorMessage: string) => ({
     is: AccommodationWorkflowStatus.WITHDRAWN,
-    then: (schema: Yup.AnySchema) => schema,
+    then: (schema: Yup.AnySchema) => schema.optional(),
     otherwise: (schema: Yup.AnySchema) => schema.required(errorMessage),
 });
 
@@ -25,6 +25,11 @@ const commonSchema = Yup.object().shape({
     [AccommodationFormFields.ADDRESS_ZIP]: Yup.string()
         .trim()
         .when(workflowStatus, requiredIfNotWithdrawn("common:form.validator.zip")),
+    [AccommodationFormFields.DURATION_OF_STAY_VALUE]: Yup.number()
+        .integer("common:form.validator.integer")
+        .moreThan(0, "common:form.validator.positiveNumber")
+        .min(1, `common:form.validator.numberMin`)
+        .when(workflowStatus, requiredIfNotWithdrawn("accommodation:form.validator.durationOfStay")),
 
     // Host
     [AccommodationFormFields.HOST_ID]: Yup.string().when(

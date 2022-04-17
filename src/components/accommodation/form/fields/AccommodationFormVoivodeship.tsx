@@ -6,7 +6,6 @@ import { AccommodationFormFields } from "components/accommodation/AccommodationF
 import { FormItemsVoivodeships } from "components/molecules/form/FormItemsVoivodeships";
 import FormLabel from "components/atoms/form/FormLabel";
 import { useRequired } from "components/shared/form/hooks/useRequired";
-import useWorkflowStatus from "components/accommodation/form/hooks/useWorkflowStatus";
 
 const AccommodationFormAddressVoivodeship = () => {
     const fieldId = AccommodationFormFields.ADDRESS_VOIVODESHIP;
@@ -14,9 +13,8 @@ const AccommodationFormAddressVoivodeship = () => {
     const accommodationId = accommodationField.value;
 
     const { t } = useTranslation(["accommodation"]);
-    const { isRequired } = useRequired();
-    const workflowStatus = useWorkflowStatus();
-    const className = isRequired(workflowStatus.shouldValidate);
+    const { getRequiredClassName } = useRequired();
+    const className = getRequiredClassName(fieldId);
 
     return (
         <FormGroup>

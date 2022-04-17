@@ -6,15 +6,13 @@ import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormLabel from "components/atoms/form/FormLabel";
 import { useRequired } from "components/shared/form/hooks/useRequired";
-import useWorkflowStatus from "components/accommodation/form/hooks/useWorkflowStatus";
 
 const AccommodationFormAddressCity = () => {
     const fieldId = AccommodationFormFields.ADDRESS_CITY;
 
     const { t } = useTranslation(["accommodation"]);
-    const { isRequired } = useRequired();
-    const workflowStatus = useWorkflowStatus();
-    const className = isRequired(workflowStatus.shouldValidate);
+    const { getRequiredClassName } = useRequired();
+    const className = getRequiredClassName(fieldId);
 
     return (
         <FormGroup>

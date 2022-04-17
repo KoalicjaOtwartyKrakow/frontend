@@ -68,6 +68,7 @@
         "validator": {
             "address": "Enter address",
             "cityName": "Enter a city name",
+            "durationOfStay": "Incorrect stay duration",
             "hostRequired": "Please choose the host",
             "numberMin": "At least 1 person required",
             "numberOfPeople": "Enter number of people",
