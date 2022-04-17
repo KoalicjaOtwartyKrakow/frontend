@@ -6,7 +6,6 @@ import FormInput from "components/atoms/form/FormInput";
 import { AccommodationFormFields } from "components/accommodation/AccommodationFormFields";
 import FormLabel from "components/atoms/form/FormLabel";
 import { useRequired } from "components/shared/form/hooks/useRequired";
-import useWorkflowStatus from "components/accommodation/form/hooks/useWorkflowStatus";
 
 const AccommodationFormAddressLine = () => {
     const fieldId = AccommodationFormFields.ADDRESS_LINE;

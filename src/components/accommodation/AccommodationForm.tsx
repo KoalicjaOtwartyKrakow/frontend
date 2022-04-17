@@ -1,4 +1,3 @@
-// import Effect from 'components/atoms/form/Effect';
 import { accommodationFormFields as formFields } from "components/accommodation/AccommodationFormFields";
 import React from "react";
 import { Form, Formik } from "formik";
@@ -15,7 +14,7 @@ import AccommodationFormVacancies from "components/accommodation/form/sections/A
 import AccommodationFormDetailedInformation from "components/accommodation/form/sections/AccommodationFormDetailedInformation";
 import EntityFormButtons from "components/molecules/form/EntityFormButtons";
 import { ApiErrors } from "services/Api/types";
-import { ValidationContext } from "components/shared/form/ValidationContext";
+import { ValidationSchemaProvider } from "components/shared/form/ValidationSchemaContext";
 
 const AccommodationForm = (props: any) => {
     const { initialValues, onRemove, crudInProgressState } = props;
@@ -36,12 +35,6 @@ const AccommodationForm = (props: any) => {
         resetForm({ values, status });
     };
 
-    /**
-     *
-     * @param values
-     * @param formikBag
-     * @returns {Promise<*>}
-     */
     const onSubmit = async (values: any, formikBag: any) => {
         console.info("[Accommodation] AccommodationForm onSubmit()");
 
@@ -58,11 +51,11 @@ const AccommodationForm = (props: any) => {
     };
 
     const formikProps = {
-        key,
-        initialValues,
         initialStatus,
-        validateOnMount,
+        initialValues,
+        key,
         onSubmit,
+        validateOnMount,
         validationSchema,
     };
 
@@ -73,8 +66,7 @@ const AccommodationForm = (props: any) => {
     return (
         <Formik {...formikProps}>
             <Form noValidate>
-                {/*<Effect onChange={ onChange } />*/}
-                <ValidationContext.Provider value={validationSchema}>
+                <ValidationSchemaProvider schema={validationSchema}>
                     <Row>
                         <Col xs={12} lg={6}>
                             <AccommodationFormAccommodationData />
@@ -85,11 +77,11 @@ const AccommodationForm = (props: any) => {
                         </Col>
                     </Row>
                     <AccommodationFormDetailedInformation />
-                </ValidationContext.Provider>
+                </ValidationSchemaProvider>
                 <EntityFormButtons
-                    submitLabel={submitLabel}
-                    onRemove={onRemove}
                     crudInProgressState={crudInProgressState}
+                    onRemove={onRemove}
+                    submitLabel={submitLabel}
                 />
             </Form>
         </Formik>
