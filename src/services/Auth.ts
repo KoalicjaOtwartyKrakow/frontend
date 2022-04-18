@@ -2,10 +2,15 @@ import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
 import { delay } from "lodash";
+import moment from "moment";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 
 class Auth {
     static emptyToken = "";
-    static tokenItemName = "kokon-auth-token";
+    static authItemPrefix = "kokon-auth";
+    static isRotationActiveItemName = `${this.authItemPrefix}-is-rotation-active`;
+    static tokenItemName = `${this.authItemPrefix}-auth-token`;
+    static rotationIntervalItemName = `${this.authItemPrefix}-rotation-interval`;
     static httpHeader = "Authorization";
     static rotateTokenIntervalHandle: number | undefined = undefined;
 
@@ -33,11 +38,38 @@ class Auth {
 
         const tokenRotateInterval = getAsMilliseconds(authResponse.expires_in);
 
+        sessionStorage.setItem(this.isRotationActiveItemName, "true");
         delay(() => {
             Auth.rotateTokenIntervalHandle = window.setInterval(rotateToken, tokenRotateInterval);
         }, tokenRotateInterval);
 
         return token;
+    };
+
+    static setRotationInterval = (rotationInterval: number) => {
+        return sessionStorage.setItem(this.isRotationActiveItemName, rotationInterval.toString());
+    };
+
+    static getRotationInterval = () => {
+        const rotationInterval = sessionStorage.getItem(this.isRotationActiveItemName);
+        return !!rotationInterval ? parseInt(rotationInterval) : null;
+    };
+
+    static isRotationActive = () => {
+        return sessionStorage.getItem(this.isRotationActiveItemName) !== null;
+    };
+
+    static isTokenValid = (token: string) => {
+        if (token === Auth.emptyToken) {
+            return false;
+        }
+        const { exp } = jwt_decode<JwtPayload>(token);
+        const leastAllowedDelta = 0.05 * (this.getRotationInterval() ?? 0);
+        const tokenExpirationTime = moment(exp ?? 0, "X");
+        if (moment().isAfter(tokenExpirationTime.add(leastAllowedDelta))) {
+            return false;
+        }
+        return true;
     };
 
     static stopRotateRefreshToken = () => {
